@@ -1,0 +1,18 @@
+<h1>
+    Gestiona las escape rooms desde aquí:
+</h1>
+
+<table>
+    <% for (var i in escapeRooms) { %>
+        <% var escapeRoom = escapeRooms[i]; %>
+        <tr>
+            <td>
+                <a href="/escapeRooms/<%= escapeRoom.id %>"><%= escapeRoom.title %></a>
+            </td>
+            <td>
+                <a href="/escapeRooms/<%= escapeRoom.id %>"><button>show</button></a>
+            </td>
+    <% } %>
+</table>
+
+<a href="/escapeRooms/new"><button type="button">Añadir escape room</button></a>

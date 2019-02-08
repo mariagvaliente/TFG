@@ -1,0 +1,42 @@
+
+<div class="wideRow">
+    <label for="tit"  class="itemNarrow">Título:</label>
+    <input type="text" class="itemWide" id="tit" name="title" value="<%= escapeRoom.title %>" placeholder="Escriba" autocomplete="off"/>
+</div>
+
+
+<div class="wideRow">
+    <label for="teach"  class="itemNarrow">Profesor:</label>
+    <input type="text" class="itemWide" id="teach" name="teacher" value="<%= escapeRoom.teacher %>" placeholder="Escriba" autocomplete="off"/>
+</div>
+
+<div class="wideRow">
+    <label for="subj"  class="itemNarrow">Asignatura:</label>
+    <input type="text" class="itemWide" id="subj" name="subject" value="<%= escapeRoom.subject %>" placeholder="Escriba" autocomplete="off"/>
+</div>
+
+<div class="wideRow">
+    <label for="dur"  class="itemNarrow">Duración:</label>
+    <input type="text" class="itemWide" id="dur" name="teacher" value="<%= escapeRoom.duration %>" placeholder="Escriba" autocomplete="off"/>
+</div>
+
+<div class="wideRow">
+    <label for="desc"  class="itemNarrow">Descripción:</label>
+    <input type="text" class="itemWide" id="desc" name="description" value="<%= escapeRoom.description %>" placeholder="Escriba" autocomplete="off"/>
+</div>
+
+<div class="wideRow">
+    <label for="vid"  class="itemNarrow">Video:</label>
+    <input type="text" class="itemWide" id="vid" name="video" value="<%= escapeRoom.video %>" placeholder="Escriba" autocomplete="off"/>
+</div>
+
+<div class="wideRow">
+    <label for="inv"  class="itemNarrow">Invitación:</label>
+    <input type="text" class="itemWide" id="inv" name="invitation" value="<%= escapeRoom.invitation %>" placeholder="Escriba" autocomplete="off"/>
+</div>
+
+<br/>
+<a href="/escapeRooms"><button type="button">Cancel</button></a>
+
+
+<input type="submit" value="Save">
