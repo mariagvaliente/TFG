@@ -11,13 +11,17 @@ const sequelize = new Sequelize(url);
 // Import the definition of the Escape Room Table from escapeRoom.js
 sequelize.import(path.join(__dirname, 'escapeRoom'));
 
+// Session
+sequelize.import(path.join(__dirname,'session'));
 
-// Create tables
-sequelize.sync()
-    .then(() => sequelize.models.escapeRoom.count())
-    .then(() => console.log('Data Bases created successfully'))
-    .catch(error => {
-        console.log("Error creating the data base tables:", error);
-        process.exit(1);
-    });
+// Import the definition of the Turns Table from turno.js
+sequelize.import(path.join(__dirname,'turno'));
 
+// Relation between models
+
+const {escapeRoom, turno} = sequelize.models;
+
+turno.belongsTo(escapeRoom);
+escapeRoom.hasMany(turno);
+
+module.exports=sequelize;

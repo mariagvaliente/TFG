@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
             },
             teacher:{
                 type: DataTypes.STRING,
-                validate: {notEmpty: {msg: "El nombre del profesor no puede estar vacío."}}
+                validate: {notEmpty: {msg: "El nombre del profesor/a no puede estar vacío."}}
             },
             subject:{
                 type: DataTypes.STRING,
@@ -25,6 +25,10 @@ module.exports = function (sequelize, DataTypes) {
             video:{
                 type: DataTypes.STRING,
                 validate: {notEmpty: {msg: "La URL del vídeo no puede estar vacía."}}
+            },
+            nmax:{
+                type: DataTypes.STRING,
+                validate: {notEmpty: {msg: "El número de participantes no puede estar vacío."}}
             },
             invitation:{
                 type: DataTypes.STRING,

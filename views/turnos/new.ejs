@@ -1,0 +1,33 @@
+
+<form method="POST" action="/escapeRooms/<%= escapeRoom.id %>/turnos/">
+
+    <div class="wideRow">
+
+        <span class="itemNarrow">Seleccione la fecha del turno:</span>
+
+        <input type="date" id="dat" name="date"  />
+
+        </br>
+
+        <span class="itemNarrow">Escriba la hora de comienzo del turno:</span>
+
+        <input type="text" class="itemWide" id="tit" name="start" value="" placeholder="Escriba la hora" autocomplete="off"/>
+
+        </br>
+
+        <span class="itemNarrow">Escriba la duración del turno:</span>
+
+        <input type="text" class="itemWide" id="nar" name="duration" value="" placeholder="Escriba la duración" autocomplete="off"/>
+
+        </br>
+
+        <span class="itemNarrow">Escriba una narrativa del turno:</span>
+
+        <input type="text" class="itemWide" id="nar" name="narrative" value="" placeholder="Escriba la narrativa" autocomplete="off"/>
+
+        </br>
+
+        <button type="submit" class="itemNarrow">Add</button>
+    </div>
+
+</form>

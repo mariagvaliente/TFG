@@ -1,17 +1,53 @@
 
 <h1>
-    Ver Escape Room:
+    Configuración básica de la escape room:
 </h1>
 
-<ul>
-    <li>Título: <b><%= escapeRoom.title %></b></li>
-    <li>Profesor: <b><%= escapeRoom.teacher %></b></li>
-    <li>Asignatura: <b><%= escapeRoom.subject %></b></li>
-    <li>Duración: <b><%= escapeRoom.duration %></b></li>
-    <li>Descripción: <b><%= escapeRoom.description %></b></li>
-    <li>Vídeo: <b><%= escapeRoom.video %></b></li>
-    <li>Invitación: <b><%= escapeRoom.invitation %></b></li>
-</ul>
+<br class="escapeRoomItem">
 
+
+    <div>
+        <br/>
+        Título: <b><%= escapeRoom.title %></b>
+        <br />
+        Profesor/a: <b><%= escapeRoom.teacher %></b>
+        <br />
+        Asignatura: <b><%= escapeRoom.subject %></b>
+        <br />
+        Duración: <b><%= escapeRoom.duration %></b>
+        <br />
+        Descripción: <b><%= escapeRoom.description %></b>
+        <br />
+        Vídeo: <b><%= escapeRoom.video %></b>
+        <br />
+        Número máximo de participantes: <b><%= escapeRoom.nmax %></b>
+        <br />
+        Inivitación: <b><%= escapeRoom.invitation %></b>
+        <br />
+
+    </div>
+    </br>
+    <td>
+        <a href="/escapeRooms/<%= escapeRoom.id %>/edit"><button>edit</button></a>
+    </td>
+    <td>
+        <a href="/escapeRooms/<%= escapeRoom.id %>?_method=DELETE"
+           onClick="return confirm('Delete: <%= escapeRoom.title %>');">
+            <button>delete</button>
+        </a>
+    </td>
+
+</div>
+</br>
+
+
+<h2>
+    Turnos:
+</h2>
+
+<% include ../turnos/new %>
+<% var turnos = escapeRoom.turnos; %>
+
+<% include ../turnos/index %>
 
 <a href="/escapeRooms"><button>Go back</button></a>
