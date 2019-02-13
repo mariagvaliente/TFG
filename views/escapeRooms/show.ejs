@@ -5,9 +5,12 @@
 
 <br class="escapeRoomItem">
 
-
+<div>
+    <% var attachment = escapeRoom.attachment; %>
+    <% include ../attachments/_show %>
+</div>
     <div>
-        <br/>
+        <br />
         Título: <b><%= escapeRoom.title %></b>
         <br />
         Profesor/a: <b><%= escapeRoom.teacher %></b>
@@ -28,12 +31,12 @@
     </div>
     </br>
     <td>
-        <a href="/escapeRooms/<%= escapeRoom.id %>/edit"><button>edit</button></a>
+        <a href="/escapeRooms/<%= escapeRoom.id %>/edit"><button>editar</button></a>
     </td>
     <td>
         <a href="/escapeRooms/<%= escapeRoom.id %>?_method=DELETE"
            onClick="return confirm('Delete: <%= escapeRoom.title %>');">
-            <button>delete</button>
+            <button>borrar</button>
         </a>
     </td>
 
@@ -50,4 +53,4 @@
 
 <% include ../turnos/index %>
 
-<a href="/escapeRooms"><button>Go back</button></a>
+<a href="/escapeRooms"><button>Volver</button></a>

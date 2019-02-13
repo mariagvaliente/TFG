@@ -18,6 +18,17 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+if(app.get('env')==='production'){
+    app.use((req,res,next)=>{
+        if (req.headers['x-forwarded-proto'] !== 'https'){
+            res.redirect('https://'+ req.get('Host')+req.url);
+        }
+        else{
+            next();
+        }
+    });
+}
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -44,6 +55,18 @@ app.use(methodOverride('_method', {methods: ["POST", "GET"]}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 app.use(flash());
+
+
+
+// Dynamic Helper:
+app.use(function(req, res, next) {
+
+    // To use req.session in the views
+    res.locals.session = req.session;
+    res.locals.url = req.url;
+
+    next();
+});
 
 app.use('/', index);
 

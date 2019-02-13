@@ -1,0 +1,20 @@
+<% if (attachment) { %>
+    <a href="<%= attachment.url %>"
+       type="<%= attachment.mime %>"
+       target="_blank">
+        <% if ( attachment.mime === 'image/jpeg' ||
+                attachment.mime === 'image/gif'  ||
+                attachment.mime === 'image/jpg'  ||
+                attachment.mime === 'image/png'    ) { %>
+            <%- cloudinary.image(attachment.public_id, {width: 150, secure: true})%>
+        <% } else if ( attachment.mime === 'video/mp4') { %>
+            <%- cloudinary.video(attachment.public_id, {width: 150, controls: false, secure: true})%>
+        <% } else if ( attachment.mime === 'application/pdf') { %>
+            <%- cloudinary.image(attachment.public_id, {width: 150, format: 'jpg', secure: true}) %>
+        <% } else { %>
+            <img src="/images/none.png" width="150px">
+        <% } %>
+    </a>
+<% } else { %>
+    <img src="/images/candados.jpg" width="50px"/>
+<% } %>

@@ -7,6 +7,10 @@
         <% var escapeRoom = escapeRooms[i]; %>
         <tr>
             <td>
+                <% var attachment = escapeRoom.attachment; %>
+                <% include ../attachments/_show %>
+            </td>
+            <td>
                 <a href="/escapeRooms/<%= escapeRoom.id %>"><%= escapeRoom.title %></a>
             </td>
 

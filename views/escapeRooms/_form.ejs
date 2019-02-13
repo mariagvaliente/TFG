@@ -39,8 +39,19 @@
     <input type="text" class="itemWide" id="inv" name="invitation" value="<%= escapeRoom.invitation %>" placeholder="Escriba" autocomplete="off"/>
 </div>
 
+<br/>
 
-<a href="/escapeRooms"><button type="button">Cancel</button></a>
+<label for="img">Miniatura:</label>
+<input type="file" id="img" name="image"/>
+
+<br/>
+
+<% if (escapeRoom.id) { %>
+    <label for="img">Mantener la imagen de la Escape Room:</label>
+    <input type="checkbox" name="keepAttachment" value="1" checked>
+<% } %>
+
+<a href="/escapeRooms"><button type="button">Cancelar</button></a>
 
 
 <input type="submit" value="Save">

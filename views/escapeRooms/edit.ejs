@@ -2,6 +2,6 @@
     Editar Escape Room:
 </h1>
 
-<form method="post" action="/escapeRooms/<%= escapeRoom.id %>?_method=PUT" >
+<form method="post" action="/escapeRooms/<%= escapeRoom.id %>?_method=PUT" enctype="multipart/form-data">
     <% include _form.ejs %>
 </form>

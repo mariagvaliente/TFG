@@ -10,7 +10,7 @@
         <tr>
                 <% for (var i in turnos) { %>
                         <% var turn = turnos[i]; %>
-                        <td><%= turn.start %> </br> <%= turn.duration %> </br><%= turn.narrative %> </br> <a href="/escapeRooms/<%= escapeRoom.id %>/turnos/<%= turn.id %>?_method=DELETE"><button>Delete</button></a></td>
+                        <td><%= turn.start %> </br> <%= turn.duration %> </br><%= turn.narrative %> </br> <a href="/escapeRooms/<%= escapeRoom.id %>/turnos/<%= turn.id %>?_method=DELETE"><button>Borrar</button></a></td>
                 <% } %>
 
         </tr>
