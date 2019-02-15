@@ -1,9 +1,18 @@
 body {
+  font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: white;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  background-image: url("../images/background.png");
+  background-size: cover; }
 
 a {
-  color: #48C18E; }
+  color: white; }
 
+button {
+  color: #161938;
+  font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif; }
 
-/*# sourceMappingURL=style.css.map */
+.main {
+  flex: 3 100%;
+  padding: 2px;
+  margin: 1px; }

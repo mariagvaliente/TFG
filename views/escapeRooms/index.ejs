@@ -1,20 +1,31 @@
-<h1>
-    Gestiona las escape rooms desde aquí:
-</h1>
 
-<table>
-    <% for (var i in escapeRooms) { %>
-        <% var escapeRoom = escapeRooms[i]; %>
-        <tr>
+
+<% if (escapeRooms==0) { %>
+    <h1>
+        No has creado ninguna escape room, gestiónalas desde aquí...
+    </h1>
+<% } else {  %>
+    <h1>
+        Gestiona las escape rooms desde aquí...
+    </h1>
+
+    <table>
+        <% for (var i in escapeRooms) { %>
+            <% var escapeRoom = escapeRooms[i]; %>
             <td>
                 <% var attachment = escapeRoom.attachment; %>
-                <% include ../attachments/_show %>
-            </td>
-            <td>
-                <a href="/escapeRooms/<%= escapeRoom.id %>"><%= escapeRoom.title %></a>
-            </td>
+                <form action="/escapeRooms/<%= escapeRoom.id %>">
+                    <button type="submit">
+                        <% include ../attachments/_show %>
+                        </br>
+                        <%= escapeRoom.title %>
+                    </button>
+                </form>
 
-    <% } %>
-</table>
+            <% } %>
+            </td>
+    </table>
+<% } %>
 
-<a href="/escapeRooms/new"><button type="button">Añadir escape room</button></a>
+<a href="/escapeRooms/new"><button type="button">+</button></a>
+

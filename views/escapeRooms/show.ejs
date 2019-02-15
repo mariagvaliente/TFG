@@ -27,7 +27,6 @@
         <br />
         Inivitación: <b><%= escapeRoom.invitation %></b>
         <br />
-
     </div>
     </br>
     <td>
@@ -41,16 +40,17 @@
     </td>
 
 </div>
-</br>
-
 
 <h2>
     Turnos:
 </h2>
 
 <% include ../turnos/new %>
+
 <% var turnos = escapeRoom.turnos; %>
 
 <% include ../turnos/index %>
+</br>
+
 
 <a href="/escapeRooms"><button>Volver</button></a>
