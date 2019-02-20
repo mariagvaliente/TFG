@@ -57,7 +57,7 @@ exports.create = (req, res, next) => {
             if (req.session.user) {
                 res.redirect('/users/' + user.id);
             } else {
-                res.redirect('/escapeRooms'); // Redirection
+                res.redirect("users/"+user.id+"/escapeRooms"); // Redirection
             }
         })
         .catch(Sequelize.UniqueConstraintError, error => {

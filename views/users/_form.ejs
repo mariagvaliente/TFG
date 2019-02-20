@@ -21,7 +21,7 @@
 
     <li>
         <% if ( !user.id) { %>
-            <label for="preg" class="rem">User name:</label>
+            <label for="preg" class="rem">Email/username::</label>
             <input type="text" id="username" name="username" value="<%= user.username %>" autocomplete="off"/>
         <% } else { %>
             Username: <%= user.username %>

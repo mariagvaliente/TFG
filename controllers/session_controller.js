@@ -11,6 +11,21 @@ const url = require('url');
 // 5 minutes.
 const maxIdleTime = 5*60*1000;
 
+// Autoload the user with id equals to :userId
+exports.load = (req, res, next, userId) => {
+
+    models.user.findById(userId)
+        .then(user => {
+            if (user) {
+                req.user = user;
+                next();
+            } else {
+                req.flash('error', 'There is no user with id=' + userId + '.');
+                throw new Error('No exist userId=' + userId);
+            }
+        })
+        .catch(error => next(error));
+};
 
 //
 // Middleware used to destroy the user's session if the inactivity time
@@ -140,7 +155,7 @@ const authenticate = (login, password) => {
 exports.new = (req, res, next) => {
 
     // Page to go/show after login:
-    let redir = req.query.redir || url.parse(req.headers.referer || "/escapeRooms").path;
+    let redir = req.query.redir || url.parse(req.headers.referer || "users/"+user.id+"/escapeRooms").path;
 
     // Do not go here, i.e. do not shown the login form again.
     if (redir === '/') {
@@ -154,7 +169,7 @@ exports.new = (req, res, next) => {
 // POST /   -- Create the session if the user authenticates successfully
 exports.create = (req, res, next) => {
 
-    const redir = req.body.redir || '/escapeRooms';
+    const redir = req.body.redir || "users/"+user.id+"/escapeRooms";
 
     const login     = req.body.login;
     const password  = req.body.password;
@@ -172,7 +187,7 @@ exports.create = (req, res, next) => {
                     expires: Date.now() + maxIdleTime
                 };
 
-                res.redirect(redir);
+                res.redirect("users/"+user.id+"/escapeRooms");
             } else {
                 req.flash('error', 'Authentication has failed. Retry it again.');
                 res.render('index', {redir});
@@ -191,4 +206,6 @@ exports.destroy = (req, res, next) => {
     delete req.session.user;
 
     res.redirect("/"); // redirect to login gage
+
+
 };
