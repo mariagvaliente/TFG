@@ -14,11 +14,13 @@ const cloudinary_upload_options = {
     tags: ['tfg', 'escapeRoom']
 };
 
+
+
 // Autoload the escape room with id equals to :escapeRoomId
 exports.load = (req, res, next, escapeRoomId) => {
 
 
-    models.escapeRoom.findById(escapeRoomId , { include: [ models.turno, models.attachment ] })
+    models.escapeRoom.findById(escapeRoomId , { include: [ models.turno, models.attachment, {model: models.user, as: 'author'} ] })
         .then(escapeRoom => {
             if (escapeRoom) {
                 req.escapeRoom = escapeRoom;
@@ -30,21 +32,48 @@ exports.load = (req, res, next, escapeRoomId) => {
         .catch(error => next(error));
 };
 
+// MW that allows actions only if the user logged in is admin or is the author of the escape room.
+exports.adminOrAuthorRequired = (req, res, next) => {
+
+    const isAdmin  = !!req.session.user.isAdmin;
+    const isAuthor = req.escapeRoom.authorId === req.session.user.id;
+
+    if (isAdmin || isAuthor) {
+        next();
+    } else {
+        console.log('Prohibited operation: The logged in user is not the author of the escape room, nor an administrator.');
+        res.send(403);
+    }
+};
+
 // GET /escapeRooms
 exports.index = (req, res, next) => {
 
 
-    findOptions = {
-        include : [
-            models.attachment
-        ]
+    let countOptions = {
+        where: {}
     };
 
-    models.escapeRoom.findAll(findOptions)
+    // If there exists "req.user", then only the escape rooms of that user are shown
+    if (req.user) {
+        countOptions.where.authorId = req.user.id;
+    }
+
+    models.escapeRoom.count(countOptions)
+        .then(count => {
+
+            const findOptions = {
+                ...countOptions,
+                include : [
+                    models.attachment,
+                    {model: models.user, as: 'author'}
+                ]
+            };
+            return models.escapeRoom.findAll(findOptions);
+        })
         .then(escapeRooms => {
             res.render('escapeRooms/index.ejs', {escapeRooms, cloudinary});
-        })
-        .catch(error => next(error));
+        }).catch(error => next(error));
 };
 
 // GET /escapeRooms/:escapeRoomId
@@ -78,6 +107,8 @@ exports.create = (req, res, next) => {
 
     const {title,teacher,subject,duration,description,video,nmax,invitation} = req.body;
 
+    const authorId = req.session.user && req.session.user.id || 0;
+
     const escapeRoom = models.escapeRoom.build({
         title,
         teacher,
@@ -86,11 +117,12 @@ exports.create = (req, res, next) => {
         description,
         video,
         nmax,
-        invitation
+        invitation,
+        authorId
     });
 
     // Saves only the fields question and answer into the DDBB
-    escapeRoom.save({fields: ["title", "teacher", "subject", "duration", "description", "video","nmax", "invitation"]})
+    escapeRoom.save({fields: ["title", "teacher", "subject", "duration", "description", "video","nmax", "invitation", "authorId"]})
         .then(escapeRoom => {
             req.flash('success', 'Escape Room created successfully.');
 

@@ -1,0 +1,36 @@
+<h1>
+    User:
+</h1>
+
+<ul>
+    <li>
+        User name:
+        <b><%= user.username %></b>
+    </li>
+
+    <li>
+        Administrator:
+        <b><%= user.isAdmin ? "Yes" : "No" %></b>
+    </li>
+
+</ul>
+
+<% if (session.user) { %>
+    <p>
+        <% if (session.user.isAdmin || session.user.id === user.id) { %>
+            <a href="/users/<%= user.id %>/edit">
+                <button type="button"> Edit</button>
+            </a>
+        <% } %>
+        <% if (session.user.isAdmin && session.user.id !== user.id) { %>
+            <a href="/users/<%= user.id %>?_method=DELETE">
+                <button type="button"
+                        onClick="return confirm('Delete user: <%= user.username %>');">
+                    Delete
+                </button>
+            </a>
+        <% } %>
+    </p>
+<% } %>
+
+<a href="/goback"><button type="button">Go back</button></a>

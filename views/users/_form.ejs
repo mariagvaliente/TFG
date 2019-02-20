@@ -1,0 +1,50 @@
+<script>
+    function confirmPassword() {
+        var pw1 = document.getElementById('user_password').value;
+        var pw2 = document.getElementById('user_confirm_password').value;
+        if (!pw1 || !pw2) {
+            alert('Password and Confirmation fields must be filled in.');
+            return false;
+        }
+        if (pw1 === pw2) {
+            return true;
+        } else {
+            alert('Passwords do not match.');
+            return false;
+        }
+    }
+</script>
+
+<div class="cuenta">
+
+    <ul>
+
+    <li>
+        <% if ( !user.id) { %>
+            <label for="preg" class="rem">User name:</label>
+            <input type="text" id="username" name="username" value="<%= user.username %>" autocomplete="off"/>
+        <% } else { %>
+            Username: <%= user.username %>
+        <% } %>
+    </li>
+
+    <li>
+        <label for="user_password" class="rem">Password:</label>
+        <input type="password" id="user_password" name="password" autocomplete="off"/>
+    </li>
+
+    <li>
+        <label for="user_confirm_password" class="rem">Confirm Password:</label>
+        <input type="password" id="user_confirm_password" autocomplete="off"/>
+
+    </li>
+    </ul>
+    <br />
+
+    <button type="submit" value="Save" onclick="return confirmPassword()">Registrate</button>
+
+   <br/>
+
+</div>
+
+<a href="/">¿Ya tienes cuenta?</a>

@@ -1,2 +1,32 @@
-<h1>Aplicación web para gestión de Escape Rooms educativas</h1>
 
+
+<h1>Aplicacion gestion escape rooms</h1>
+
+
+<h1>Login</h1>
+
+<form method='POST' action='/'>
+
+    <input type='hidden' name='redir' value='<%= redir %>'>
+
+    <div>
+        <label for="login">Email/username:</label>
+        <br />
+        <input type="text" id="login" name="login" size="30" placeholder="Introduce tu email/username" autocomplete="off"/>
+    </div>
+
+    <div>
+        <label for="password">Password:</label>
+        <br />
+        <input type="password" id="password" name="password" size="30" placeholder="Introduce tu contraseña" autocomplete="off" />
+    </div>
+    <br />
+    <div>
+        <button type="submit" value="Login">Login</button>
+        <br />
+    </div>
+
+
+</form>
+
+<a href="/users/new">¿No tienes cuenta?</a>
