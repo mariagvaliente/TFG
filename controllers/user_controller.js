@@ -27,11 +27,24 @@ exports.show = (req, res, next) => {
     res.render('users/show', {user});
 };
 
+// GET /users/:userId
+exports.student = (req, res, next) => {
+
+    const {user} = req;
+
+    res.render('users/student', {user});
+};
+
+
+
 
 // GET /users/new
 exports.new = (req, res, next) => {
 
     const user = {
+        name: "",
+        surname: "",
+        gender: "",
         username: "",
         password: ""
     };
@@ -43,21 +56,24 @@ exports.new = (req, res, next) => {
 // POST /users
 exports.create = (req, res, next) => {
 
-    const {username, password} = req.body;
+    const {name, surname, gender, username, password} = req.body;
 
     const user = models.user.build({
+        name,
+        surname,
+        gender,
         username,
         password
     });
 
     // Save into the data base
-    user.save({fields: ["username", "password", "salt"]})
+    user.save({fields: ["name", "surname", "gender","username", "password", "salt"]})
         .then(user => { // Render the users page
             req.flash('success', 'User created successfully.');
             if (req.session.user) {
                 res.redirect('/users/' + user.id);
             } else {
-                res.redirect("users/"+user.id+"/escapeRooms"); // Redirection
+                res.redirect('/'); // Redirection
             }
         })
         .catch(Sequelize.UniqueConstraintError, error => {

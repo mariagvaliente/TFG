@@ -18,26 +18,52 @@
 <div class="cuenta">
 
     <ul>
+        <li>
+            <% if ( !user.id) { %>
+                <label for="preg" class="rem">Nombre:</label>
+                <input type="text" id="name" name="name" value="<%= user.name %>" autocomplete="off"/>
+            <% } else { %>
+                Nombre: <%= user.name %>
+            <% } %>
+        </li>
 
-    <li>
-        <% if ( !user.id) { %>
-            <label for="preg" class="rem">Email/username::</label>
-            <input type="text" id="username" name="username" value="<%= user.username %>" autocomplete="off"/>
-        <% } else { %>
-            Username: <%= user.username %>
-        <% } %>
-    </li>
+        <li>
+            <% if ( !user.id) { %>
+                <label for="preg" class="rem">Apellidos:</label>
+                <input type="text" id="surname" name="surname" value="<%= user.surname %>" autocomplete="off"/>
+            <% } else { %>
+                Apellidos: <%= user.surname %>
+            <% } %>
+        </li>
 
-    <li>
-        <label for="user_password" class="rem">Password:</label>
-        <input type="password" id="user_password" name="password" autocomplete="off"/>
-    </li>
+        <li>
+            <% if ( !user.id) { %>
+                <label for="preg" class="rem">Género:</label>
+                <input type="text" id="gender" name="gender" value="<%= user.gender %>" autocomplete="off"/>
+            <% } else { %>
+                Género: <%= user.gender %>
+            <% } %>
+        </li>
 
-    <li>
-        <label for="user_confirm_password" class="rem">Confirm Password:</label>
-        <input type="password" id="user_confirm_password" autocomplete="off"/>
+        <li>
+            <% if ( !user.id) { %>
+                <label for="preg" class="rem">Email:</label>
+                <input type="text" id="username" name="username" value="<%= user.username %>" autocomplete="off"/>
+            <% } else { %>
+                Email: <%= user.username %>
+            <% } %>
+        </li>
 
-    </li>
+        <li>
+            <label for="user_password" class="rem">Contraseña:</label>
+            <input type="password" id="user_password" name="password" autocomplete="off"/>
+        </li>
+
+        <li>
+            <label for="user_confirm_password" class="rem">Confirmar contraseña:</label>
+            <input type="password" id="user_confirm_password" autocomplete="off"/>
+
+        </li>
     </ul>
     <br />
 

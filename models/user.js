@@ -5,6 +5,21 @@ const crypt = require('../helpers/crypt');
 
 module.exports = function (sequelize, DataTypes) {
     const User = sequelize.define('user', {
+        name: {
+            type: DataTypes.STRING,
+            unique: true,
+            validate: {notEmpty: {msg: "Name must not be empty."}}
+        },
+        surname: {
+            type: DataTypes.STRING,
+            unique: true,
+            validate: {notEmpty: {msg: "Surname must not be empty."}}
+        },
+        gender: {
+            type: DataTypes.STRING,
+            unique: true,
+            validate: {notEmpty: {msg: "Gender must not be empty."}}
+        },
         username: {
             type: DataTypes.STRING,
             unique: true,
@@ -23,6 +38,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING
         },
         isAdmin: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        isStudent: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         }

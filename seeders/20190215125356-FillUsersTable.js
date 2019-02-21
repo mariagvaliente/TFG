@@ -8,6 +8,9 @@ module.exports = {
 
     return queryInterface.bulkInsert('users', [
       {
+        name: 'Maria',
+        surname: 'Garcia Valiente',
+        gender: 'Femenino',
         username: 'admin',
         password: crypt.encryptPassword('1234', 'aaaa'),
         salt: 'aaaa',
@@ -15,9 +18,13 @@ module.exports = {
         createdAt: new Date(), updatedAt: new Date()
       },
       {
+        name: 'Pepe',
+        surname: 'Lopez Garcia',
+        gender: 'Masculino',
         username: 'pepe',
         password: crypt.encryptPassword('5678', 'bbbb'),
         salt: 'bbbb',
+        isStudent: true,
         createdAt: new Date(), updatedAt: new Date()
       }
     ]);

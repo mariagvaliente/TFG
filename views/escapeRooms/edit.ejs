@@ -4,7 +4,7 @@
         <% if (!session.user) { %>
             <a href="/">Login</a>
         <% } else { %>
-            <a href="/users/<%= session.user.id %>"><%= session.user.username %></a>
+            <%= session.user.username %>
 
         <% } %>
     </div>

@@ -9,23 +9,8 @@ const url = require('url');
 // then the user's session will be closed.
 // The value is in milliseconds.
 // 5 minutes.
+
 const maxIdleTime = 5*60*1000;
-
-// Autoload the user with id equals to :userId
-exports.load = (req, res, next, userId) => {
-
-    models.user.findById(userId)
-        .then(user => {
-            if (user) {
-                req.user = user;
-                next();
-            } else {
-                req.flash('error', 'There is no user with id=' + userId + '.');
-                throw new Error('No exist userId=' + userId);
-            }
-        })
-        .catch(error => next(error));
-};
 
 //
 // Middleware used to destroy the user's session if the inactivity time
@@ -80,6 +65,32 @@ exports.adminRequired = (req, res, next) => {
     }
 };
 
+exports.notStudentRequired = (req, res, next) => {
+
+
+    const isStudent = !req.session.user.isStudent;
+
+    if (isStudent) {
+        next();
+    } else {
+        console.log('Prohibited route: it is not the logged in user, nor an administrator.');
+        res.send(403);
+    }
+};
+
+exports.studentOrAdminRequired = (req, res, next) => {
+
+
+    const isStudent = !!req.session.user.isStudent;
+    const isAdmin = !!req.session.user.isAdmin;
+
+    if (isStudent || isAdmin) {
+        next();
+    } else {
+        console.log('Prohibited route: it is not the logged in user, nor an administrator.');
+        res.send(403);
+    }
+};
 
 // MW that allows to pass only if the logged in user is:
 // - the user to manage.
@@ -155,12 +166,7 @@ const authenticate = (login, password) => {
 exports.new = (req, res, next) => {
 
     // Page to go/show after login:
-    let redir = req.query.redir || url.parse(req.headers.referer || "users/"+user.id+"/escapeRooms").path;
-
-    // Do not go here, i.e. do not shown the login form again.
-    if (redir === '/') {
-        redir = "/escapeRooms";
-    }
+    let redir = req.query.redir || url.parse(req.headers.referer || "users/" + user.id + "/escapeRooms").path;
 
     res.render('index', {redir});
 };
@@ -170,7 +176,6 @@ exports.new = (req, res, next) => {
 exports.create = (req, res, next) => {
 
     const redir = req.body.redir || "users/"+user.id+"/escapeRooms";
-
     const login     = req.body.login;
     const password  = req.body.password;
 
@@ -184,10 +189,16 @@ exports.create = (req, res, next) => {
                     id: user.id,
                     username: user.username,
                     isAdmin: user.isAdmin,
+                    isStudent: user.isStudent,
                     expires: Date.now() + maxIdleTime
                 };
 
-                res.redirect("users/"+user.id+"/escapeRooms");
+                if (!user.isStudent){
+                    res.redirect("users/"+user.id+"/escapeRooms");
+                }else{
+                    res.redirect("users/"+user.id+"/student");
+                }
+
             } else {
                 req.flash('error', 'Authentication has failed. Retry it again.');
                 res.render('index', {redir});
