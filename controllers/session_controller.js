@@ -52,7 +52,7 @@ exports.loginRequired = (req, res, next) => {
 
 
 
-// MW that allows to pass only if the logged useer in is admin.
+// MW that allows to pass only if the logged user in is admin.
 exports.adminRequired = (req, res, next) => {
 
     const isAdmin = !!req.session.user.isAdmin;
@@ -65,6 +65,8 @@ exports.adminRequired = (req, res, next) => {
     }
 };
 
+// MW that allows to pass only if the logged user in is not student.
+
 exports.notStudentRequired = (req, res, next) => {
 
 
@@ -73,10 +75,12 @@ exports.notStudentRequired = (req, res, next) => {
     if (isStudent) {
         next();
     } else {
-        console.log('Prohibited route: it is not the logged in user, nor an administrator.');
+        console.log('Prohibited route: it is not the logged in user, is a student.');
         res.send(403);
     }
 };
+
+// MW that allows to pass only if the logged user in is admin or student.
 
 exports.studentOrAdminRequired = (req, res, next) => {
 
@@ -87,7 +91,7 @@ exports.studentOrAdminRequired = (req, res, next) => {
     if (isStudent || isAdmin) {
         next();
     } else {
-        console.log('Prohibited route: it is not the logged in user, nor an administrator.');
+        console.log('Prohibited route: it is not the logged in user, nor an administrator nor a student.');
         res.send(403);
     }
 };

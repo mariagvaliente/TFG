@@ -27,15 +27,14 @@ exports.show = (req, res, next) => {
     res.render('users/show', {user});
 };
 
-// GET /users/:userId
+// GET /users/:userId/student
+
 exports.student = (req, res, next) => {
 
     const {user} = req;
 
     res.render('users/student', {user});
 };
-
-
 
 
 // GET /users/new

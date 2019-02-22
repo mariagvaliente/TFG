@@ -47,7 +47,6 @@ exports.adminOrAuthorRequired = (req, res, next) => {
 };
 
 
-
 // GET /escapeRooms
 exports.index = (req, res, next) => {
 
