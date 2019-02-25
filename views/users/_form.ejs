@@ -16,61 +16,51 @@
 </script>
 
 <div>
-
-    <ul>
-        <li>
-            <% if ( !user.id) { %>
-                <label for="preg" class="rem">Nombre:</label>
-                <input type="text" id="name" name="name" value="<%= user.name %>" autocomplete="off"/>
-            <% } else { %>
-                Nombre: <%= user.name %>
-            <% } %>
-        </li>
-
-        <li>
-            <% if ( !user.id) { %>
-                <label for="preg" class="rem">Apellidos:</label>
-                <input type="text" id="surname" name="surname" value="<%= user.surname %>" autocomplete="off"/>
-            <% } else { %>
-                Apellidos: <%= user.surname %>
-            <% } %>
-        </li>
-
-        <li>
-            <% if ( !user.id) { %>
-                <label for="preg" class="rem">Género:</label>
-                <input type="text" id="gender" name="gender" value="<%= user.gender %>" autocomplete="off"/>
-            <% } else { %>
-                Género: <%= user.gender %>
-            <% } %>
-        </li>
-
-        <li>
-            <% if ( !user.id) { %>
-                <label for="preg" class="rem">Email:</label>
-                <input type="text" id="username" name="username" value="<%= user.username %>" autocomplete="off"/>
-            <% } else { %>
-                Email: <%= user.username %>
-            <% } %>
-        </li>
-
-        <li>
-            <label for="user_password" class="rem">Contraseña:</label>
-            <input type="password" id="user_password" name="password" autocomplete="off"/>
-        </li>
-
-        <li>
-            <label for="user_confirm_password" class="rem">Confirmar contraseña:</label>
-            <input type="password" id="user_confirm_password" autocomplete="off"/>
-
-        </li>
-    </ul>
-    <br />
-
-    <button class="registro" type="submit" value="Save" onclick="return confirmPassword()">Registrate</button>
-
-   <br/>
-
+        <% if ( !user.id) { %>
+         <label for="preg" class="rem">Nombre:</label>
+         <br />
+         <input type="text" id="name" name="name" value="<%= user.name %>" placeholder="Introduce tu nombre" autocomplete="off"/>
+        <% } else { %>Nombre: <%= user.name %><% } %>
 </div>
+<br />
+<div>
+        <% if ( !user.id) { %>
+         <label for="preg" class="rem">Apellidos:</label>
+        <br />
+        <input type="text" id="surname" name="surname" value="<%= user.surname %>" placeholder="Introduce tus apellidos" autocomplete="off"/>
+        <% } else { %>Apellidos: <%= user.surname %><% } %>
+</div>
+<br />
+<div>
+        <% if ( !user.id) { %>
+        <label for="preg" class="rem">Género:</label>
+        <br />
+        <input type="text" id="gender" name="gender" value="<%= user.gender %>" placeholder="Selecciona tu género" autocomplete="off"/>
+        <% } else { %>Género: <%= user.gender %><% } %>
+</div>
+<br />
+<div>
+        <% if ( !user.id) { %>
+        <label for="preg" class="rem">Email:</label>
+        <br />
+        <input type="text" id="username" name="username" value="<%= user.username %>" placeholder="Introduce tu email/username" autocomplete="off"/>
+        <% } else { %>Email: <%= user.username %><% } %>
+</div>
+<br />
+<div>
+        <label for="user_password" class="rem">Contraseña:</label>
+        <br />
+        <input type="password" id="user_password" name="password" placeholder="Introduce tu contraseña" autocomplete="off"/>
+</div>
+<br />
+<div>
+        <label for="user_confirm_password" class="rem">Confirmar contraseña:</label>
+        <br />
+        <input type="password" id="user_confirm_password" placeholder="Introduce tu contraseña" autocomplete="off"/>
+</div>
+<br />
 
+<button class="registro" type="submit" value="Save" onclick="return confirmPassword()">regístrate</button>
+<br />
+<br />
 <a class="login" href="/">¿Ya tienes cuenta?</a>

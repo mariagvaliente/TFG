@@ -6,11 +6,11 @@
                 attachment.mime === 'image/gif'  ||
                 attachment.mime === 'image/jpg'  ||
                 attachment.mime === 'image/png'    ) { %>
-            <%- cloudinary.image(attachment.public_id, {width: 150, secure: true})%>
+            <%- cloudinary.image(attachment.public_id, {width: 100, height:100, secure: true})%>
         <% } else if ( attachment.mime === 'video/mp4') { %>
-            <%- cloudinary.video(attachment.public_id, {width: 150, controls: false, secure: true})%>
+            <%- cloudinary.video(attachment.public_id, {width: 100, height:100, controls: false, secure: true})%>
         <% } else if ( attachment.mime === 'application/pdf') { %>
-            <%- cloudinary.image(attachment.public_id, {width: 150, format: 'jpg', secure: true}) %>
+            <%- cloudinary.image(attachment.public_id, {width: 100, height:100, format: 'jpg', secure: true}) %>
         <% } else { %>
             <img src="/images/none.png" width="150px">
         <% } %>
