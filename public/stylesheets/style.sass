@@ -1,7 +1,7 @@
 body.escapeRooms
   font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif
   color: white
-  padding: 50px
+  height: 100%
   background-image: url("../images/background.png")
   background-size: cover
 
@@ -9,7 +9,7 @@ body.login
   background-color: #232951
   font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif
   color: white
-  padding: 50px
+  height: 100%
 
 .main
   flex: 1 100%
@@ -25,13 +25,19 @@ body.login
 a
   color: white
   text-decoration: none
+  font-weight: lighter
 
 a.login
-  color: darkgray
+  color: dimgrey
   margin-left: 40px
+  font-weight: lighter
+
 
 h1.login
-  color: darkgray
+  color: dimgrey
+  font-weight: lighter
+h1
+  font-weight: lighter
 
 button
   background-color: white
@@ -77,20 +83,35 @@ button.more
   border-radius: 5px
   outline: 0
 
-input
-  background-color: #232951
-  color: white
-  font-size: large
-  text-align: center
-  border-color: white
-  border-radius: 20px
-  width: 300px
-  height: 30px
-  outline: 0
-
 
 div.loginRight
   margin-left: 25px
 
 div.loginLeft
   background-color: #161938
+
+div.flexBoxEscapeRooms
+  flex-flow: row wrap
+
+label
+  color: dimgrey
+
+input
+  background-color: #232951
+  color: dimgrey
+  font-size: large
+  text-align: center
+  border-color: dimgrey
+  border-radius: 20px
+  border-style: solid
+  width: 300px
+  height: 30px
+  outline: 0
+  font-weight: lighter
+
+input:focus
+  background-color: #232951
+  color: white
+  border-color: white
+  & + label
+    color: white

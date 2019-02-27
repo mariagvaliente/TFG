@@ -1,31 +1,15 @@
 body.escapeRooms {
   font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
   color: white;
-  padding: 50px;
+  height: 100%;
   background-image: url("../images/background.png");
   background-size: cover; }
 
-a {
-  color: white;
-  text-decoration: none; }
-
-a.login {
-  color: darkgray;
-  margin-left: 40px; }
-
-h1.login {
-  color: darkgray; }
-
-button {
-  background-color: white;
-  color: #161938;
+body.login {
+  background-color: #232951;
   font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
-  border-radius: 5px;
-  border-color: white;
-  border-style: solid;
-  padding: 10px;
-  text-align: center;
-  outline: 0; }
+  color: white;
+  height: 100%; }
 
 .main {
   flex: 1 100%;
@@ -38,11 +22,33 @@ button {
 .left {
   float: left; }
 
-body.login {
-  background-color: #232951;
-  font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
+a {
   color: white;
-  padding: 50px; }
+  text-decoration: none;
+  font-weight: lighter; }
+
+a.login {
+  color: dimgrey;
+  margin-left: 40px;
+  font-weight: lighter; }
+
+h1.login {
+  color: dimgrey;
+  font-weight: lighter; }
+
+h1 {
+  font-weight: lighter; }
+
+button {
+  background-color: white;
+  color: #161938;
+  font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
+  border-radius: 5px;
+  border-color: white;
+  border-style: solid;
+  padding: 10px;
+  text-align: center;
+  outline: 0; }
 
 button.login {
   background-color: #48C18E;
@@ -77,19 +83,34 @@ button.more {
   border-radius: 5px;
   outline: 0; }
 
-input {
-  background-color: #232951;
-  color: white;
-  font-size: large;
-  text-align: center;
-  border-color: white;
-  border-radius: 20px;
-  width: 300px;
-  height: 30px;
-  outline: 0; }
-
 div.loginRight {
   margin-left: 25px; }
 
 div.loginLeft {
   background-color: #161938; }
+
+div.flexBoxEscapeRooms {
+  flex-flow: row wrap; }
+
+label {
+  color: dimgrey; }
+
+input {
+  background-color: #232951;
+  color: dimgrey;
+  font-size: large;
+  text-align: center;
+  border-color: dimgrey;
+  border-radius: 20px;
+  border-style: solid;
+  width: 300px;
+  height: 30px;
+  outline: 0;
+  font-weight: lighter; }
+
+input:focus {
+  background-color: #232951;
+  color: white;
+  border-color: white; }
+  input:focus + label {
+    color: white; }

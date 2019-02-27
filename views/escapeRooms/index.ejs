@@ -24,28 +24,26 @@
         Gestiona las escape rooms desde aquí...
     </h1>
 
-    <table>
+    <div class="flexBoxEscapeRooms">
+
         <% for (var i in escapeRooms) { %>
             <% var escapeRoom = escapeRooms[i]; %>
-            <td>
-                <% var attachment = escapeRoom.attachment; %>
-                <form action="/escapeRooms/<%= escapeRoom.id %>">
-                    <button type="submit">
+            <% var attachment = escapeRoom.attachment; %>
+                <a href="/escapeRooms/<%= escapeRoom.id %>">
+                    <button>
                         <% include ../attachments/_show %>
                         </br>
                         <%= escapeRoom.title %>
                     </button>
-                </form>
+                </a>
 
             <% } %>
-            </td>
-    </table>
 <% } %>
 
+    <a href="/escapeRooms/new"><button class="more" type="button">+</button></a>
+    </div>
+
 </br>
-
-<a href="/escapeRooms/new"><button class="more" type="button">+</button></a>
-
 
 <footer>
     <img src="/images/logo.png" width="10%" style=" margin-top: 100px"/>
