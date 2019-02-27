@@ -170,7 +170,7 @@ const authenticate = (login, password) => {
 exports.new = (req, res, next) => {
 
     // Page to go/show after login:
-    let redir = req.query.redir || url.parse(req.headers.referer || "users/" + user.id + "/escapeRooms").path;
+    let redir = req.query.redir;
 
     res.render('index', {redir});
 };
@@ -179,7 +179,7 @@ exports.new = (req, res, next) => {
 // POST /   -- Create the session if the user authenticates successfully
 exports.create = (req, res, next) => {
 
-    const redir = req.body.redir || "users/"+user.id+"/escapeRooms";
+    const redir = req.body.redir;
     const login     = req.body.login;
     const password  = req.body.password;
 

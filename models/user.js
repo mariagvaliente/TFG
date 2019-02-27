@@ -22,8 +22,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         username: {
             type: DataTypes.STRING,
-            unique: true,
-            validate: {notEmpty: {msg: "Username must not be empty."}}
+            isEmail: true
         },
         password: {
             type: DataTypes.STRING,

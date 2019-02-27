@@ -1,3 +1,5 @@
+
+
 const Sequelize = require("sequelize");
 const {models} = require("../models");
 
@@ -65,15 +67,18 @@ exports.create = (req, res, next) => {
         password
     });
 
+    var expresion = /(@\upm+(\.\es))/;
+    const hallado = user.username.match(expresion);
+    console.log(hallado);
+
+    user.isStudent = !hallado;
+
     // Save into the data base
-    user.save({fields: ["name", "surname", "gender","username", "password", "salt"]})
+    user.save({fields: ["name", "surname", "gender","username", "password", "isStudent","salt"]})
         .then(user => { // Render the users page
             req.flash('success', 'User created successfully.');
-            if (req.session.user) {
-                res.redirect('/users/' + user.id);
-            } else {
                 res.redirect('/'); // Redirection
-            }
+
         })
         .catch(Sequelize.UniqueConstraintError, error => {
             req.flash('error', `User "${username}" already exists.`);

@@ -43,7 +43,7 @@
         <% if ( !user.id) { %>
         <label for="preg" class="rem">Email:</label>
         <br />
-        <input type="text" id="username" name="username" value="<%= user.username %>" placeholder="Introduce tu email/username" autocomplete="off"/>
+        <input type="email" id="username" name="username" value="<%= user.username %>" placeholder="Introduce tu email/username" autocomplete="off"/>
         <% } else { %>Email: <%= user.username %><% } %>
 </div>
 <br />

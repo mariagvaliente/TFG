@@ -28,9 +28,7 @@ module.exports = {
             },
             username: {
                 type: Sequelize.STRING,
-                unique: true,
-                validate: {
-                notEmpty: {msg: "Username must not be empty."}}
+                isEmail: true
             },
             password: {
                 type: Sequelize.STRING,
