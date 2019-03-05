@@ -1,3 +1,53 @@
+
+<div>
+        <% if ( !user.id) { %>
+         <label for="name"><span>Nombre</span>
+         <input type="text" class="customInput" id="name" name="name" value="<%= user.name %>" required placeholder="Introduce tu nombre" autocomplete="off"/> </label>
+        <% } else { %>Nombre: <%= user.name %><% } %>
+</div>
+<br />
+<div>
+        <% if ( !user.id) { %>
+         <label for="surname"><span>Apellidos</span>
+        <input type="text" class="customInput" id="surname" name="surname" value="<%= user.surname %>" required placeholder="Introduce tus apellidos" autocomplete="off"/>
+        <% } else { %>Apellidos: <%= user.surname %><% } %></label>
+</div>
+<br />
+<div>
+        <% if ( !user.id) { %>
+        <label for="gender"><span>Género</span>
+        <select  required class="customInput" id="gender" name="gender" value="<%= user.gender %>" placeholder="Selecciona tu género" autocomplete="off">
+            <option value="" disabled selected></option>
+            <option value="Femenino">Mujer</option>
+            <option value="Masculino">Hombre</option>
+            <option value="Otro">Otro</option>
+        </select></label>
+        <% } else { %>Género: <%= user.gender %><% } %>
+</div>
+<br />
+<div>
+        <% if ( !user.id) { %>
+        <label for="username"><span>Email</span>
+        <input type="email" class="customInput" id="username" name="username" value="<%= user.username %>" required placeholder="Introduce tu email" autocomplete="off"/></label>
+        <% } else { %>Email: <%= user.username %><% } %>
+</div>
+<br />
+<div>
+        <label for="user_password"><span>Contraseña</span>
+        <input type="password" class="customInput" id="user_password" name="password" required placeholder="Introduce tu contraseña" autocomplete="off"/></label>
+</div>
+<br />
+<div>
+        <label for="user_confirm_password"><span>Confirmar contraseña</span>
+        <input type="password" class="customInput" id="user_confirm_password" required placeholder="Introduce tu contraseña" autocomplete="off"/></label>
+</div>
+<br />
+
+<button class="registro" type="submit" value="Save" onclick="return confirmPassword()">regístrate</button>
+<br />
+<br />
+<a class="login" href="/">¿Ya tienes cuenta?</a>
+
 <script>
     function confirmPassword() {
         var pw1 = document.getElementById('user_password').value;
@@ -14,53 +64,3 @@
         }
     }
 </script>
-
-<div>
-        <% if ( !user.id) { %>
-         <label for="name">Nombre:</label>
-         <br />
-         <input type="text" id="name" name="name" value="<%= user.name %>" placeholder="Introduce tu nombre" autocomplete="off"/>
-        <% } else { %>Nombre: <%= user.name %><% } %>
-</div>
-<br />
-<div>
-        <% if ( !user.id) { %>
-         <label for="surname">Apellidos:</label>
-        <br />
-        <input type="text" id="surname" name="surname" value="<%= user.surname %>" placeholder="Introduce tus apellidos" autocomplete="off"/>
-        <% } else { %>Apellidos: <%= user.surname %><% } %>
-</div>
-<br />
-<div>
-        <% if ( !user.id) { %>
-        <label for="gender">Género:</label>
-        <br />
-        <input type="text" id="gender" name="gender" value="<%= user.gender %>" placeholder="Selecciona tu género" autocomplete="off"/>
-        <% } else { %>Género: <%= user.gender %><% } %>
-</div>
-<br />
-<div>
-        <% if ( !user.id) { %>
-        <label for="username">Email:</label>
-        <br />
-        <input type="email" id="username" name="username" value="<%= user.username %>" placeholder="Introduce tu email" autocomplete="off"/>
-        <% } else { %>Email: <%= user.username %><% } %>
-</div>
-<br />
-<div>
-        <label for="user_password">Contraseña:</label>
-        <br />
-        <input type="password" id="user_password" name="password" placeholder="Introduce tu contraseña" autocomplete="off"/>
-</div>
-<br />
-<div>
-        <label for="user_confirm_password">Confirmar contraseña:</label>
-        <br />
-        <input type="password" id="user_confirm_password" placeholder="Introduce tu contraseña" autocomplete="off"/>
-</div>
-<br />
-
-<button class="registro" type="submit" value="Save" onclick="return confirmPassword()">regístrate</button>
-<br />
-<br />
-<a class="login" href="/">¿Ya tienes cuenta?</a>

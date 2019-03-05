@@ -1,15 +1,19 @@
-'use strict';
+"use strict";
 
 module.exports = {
-  up: function (queryInterface, Sequelize) {
-    return queryInterface.addColumn(
-        'escapeRooms',
-        'authorId',
-        {type: Sequelize.INTEGER}
-    );
-  },
+    "up" (queryInterface, Sequelize) {
 
-  down: function (queryInterface, Sequelize) {
-    return queryInterface.removeColumn('escapeRooms', 'authorId');
-  }
+        return queryInterface.addColumn(
+            "escapeRooms",
+            "authorId",
+            {"type": Sequelize.INTEGER}
+        );
+
+    },
+
+    "down" (queryInterface) {
+
+        return queryInterface.removeColumn("escapeRooms", "authorId");
+
+    }
 };

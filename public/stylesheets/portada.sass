@@ -1,0 +1,48 @@
+.portada
+    flex: 1 100%
+    height: 100%
+    background-color: #232951
+    font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif
+    color: white
+    header
+        position: absolute
+        padding: 5px
+    .contenedor
+        display: flex
+        min-height: 100%
+        .loginLeft
+            background-color: #161938
+            width: 50%
+            text-align: center
+            flex: 7
+            padding: 30px
+            display: flex
+            #imagenPortada
+                max-height: 100%
+                width: auto
+                max-width: 100%
+                align-self: center
+        .loginRight
+            color: white
+            background-color: #232951
+            text-align: center
+            width: 50%
+            flex: 3
+            padding: 2em
+            h1
+                text-align: left
+            input, select
+                width: 100%
+            label
+                span
+                    padding-bottom: 7px
+                    text-align: left
+                    display: block
+                &:focus-within
+                    color: white
+            .loginWelcomeMessage
+                color: dimgrey
+                text-align: left
+        #imagenPortada
+            max-height: 04%
+            width: auto

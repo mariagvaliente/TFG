@@ -1,48 +1,45 @@
-<header class="main" id="mainHeader">
+<div class="portada">
+    <header class="" id="mainHeader">
+        <img src="/images/logo.png" width="12%" style=" margin-top: 0px; margin-bottom: 5px"/>
+        <img src="/images/ESCUDO_UPM.png" width="5%" style=" margin-top: 0px; margin-bottom: 5px; float: right"/>
+    </header>
 
-    <img src="/images/logo.png" width="10%" style=" margin-top: 0px; margin-bottom: 5px"/>
-    <img src="/images/ESCUDO_UPM.png" width="5%" style=" margin-top: 0px; margin-bottom: 5px; float: right"/>
-</header>
-<body class="login">
+    <div class="contenedor" style="display: flex; height: 100%">
+        <div class="loginLeft" style="">
+            <img id="imagenPortada" src="/images/puzzle.png" width="80%"/>
 
-<div class="contenedor" style="display: flex; height: 100%">
-<div class="loginLeft" style="width: 50%; float: left">
-    <img src="/images/puzzle.png" width="80%"/>
-
-</div>
-
-
-<div class="loginRight" style=" width: 50%; float: left; flex: 1">
-<h1 class="login">Bienvenido a la plataforma de gestión de escape rooms ;)</h1>
+        </div>
 
 
-<h1>Login</h1>
+        <div class="loginRight" style=" ">
+            <h1 class="loginWelcomeMessage">Bienvenido a la plataforma de gestión de escape rooms ;)</h1>
 
-<form method='POST' action='/'>
 
-    <input type='hidden' name='redir' value='<%= redir %>'>
+            <h1>Login</h1>
 
-    <div>
-        <label for="login">Email:
-        <br />
-        <input type="email" id="login" name="login" size="30" placeholder="Introduce tu email" autocomplete="off"/>
-        </label>
+            <form method='POST' action='/'>
+
+                <input type='hidden' name='redir' value='<%= redir %>'>
+
+                <div>
+                    <label for="login"><span>E-mail</span>
+                        <input type="email" id="login" name="login" size="30" autofocus placeholder="Introduce tu email" autocomplete="off"/>
+                    </label>
+                </div>
+                <br />
+                <div>
+                    <label for="password"><span>Contraseña</span>
+                        <input type="password" id="password" name="password" size="30" placeholder="Introduce tu contraseña" autocomplete="off" />
+                    </label>
+                </div>
+                <br />
+                <div>
+                    <button class="login" type="submit" value="Login">login</button>
+                    <br />
+                </div>
+            </form>
+            <br />
+            <a class="login" href="/users/new">¿No tienes cuenta?</a>
+        </div>
     </div>
-    <br />
-    <div>
-        <label for="password">Contraseña:
-        <br />
-        <input type="password" id="password" name="password" size="30" placeholder="Introduce tu contraseña" autocomplete="off" />
-        </label>
-    </div>
-    <br />
-    <div>
-        <button class="login" type="submit" value="Login">login</button>
-        <br />
-    </div>
-</form>
-    <br />
-<a class="login" href="/users/new">¿No tienes cuenta?</a>
 </div>
-</div>
-</body>

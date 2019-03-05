@@ -3,3 +3,5 @@ node_modules/
 .env
 escaperoom.sqlite
 uploads
+migrate.sh
+seed.sh

@@ -1,37 +1,42 @@
-'use strict';
+"use strict";
 
 module.exports = {
-    up(queryInterface, Sequelize) {
-        return queryInterface.createTable('sessions',
+    up (queryInterface, Sequelize) {
+
+        return queryInterface.createTable(
+            "sessions",
             {
-                sid: {
-                    type: Sequelize.STRING,
-                    allowNull: false,
-                    primaryKey: true,
-                    unique: true
+                "sid": {
+                    "type": Sequelize.STRING,
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "unique": true
                 },
-                expires: {
-                    type: Sequelize.DATE
+                "expires": {
+                    "type": Sequelize.DATE
                 },
-                data: {
-                    type: Sequelize.STRING(50000)
+                "data": {
+                    "type": Sequelize.STRING(50000)
                 },
-                createdAt: {
-                    type: Sequelize.DATE,
-                    allowNull: false
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
                 },
-                updatedAt: {
-                    type: Sequelize.DATE,
-                    allowNull: false
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
                 }
             },
             {
-                sync: {force: true}
+                "sync": {"force": true}
             }
         );
+
     },
 
-    down(queryInterface, Sequelize) {
-        return queryInterface.dropTable('sessions');
+    down (queryInterface,) {
+
+        return queryInterface.dropTable("sessions");
+
     }
 };

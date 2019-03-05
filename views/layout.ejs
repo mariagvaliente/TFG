@@ -8,38 +8,47 @@
 </head>
 <body>
     <section class="main" id="mainSection">
+        <% if (messages.success || messages.info || messages.error) { %> 
+            <div id="flassmessages">
+                <span class="close" id="close">&#x2716;</span>
+                <% if (messages.info) { %>
+                    <article id='flashinfo'>
+                        <h3>Information of interest:</h3>
+                        <ul>
+                            <% for (var i in messages.info) { %>
+                                <li> <%= messages.info[i] %> </li>
+                            <% } %>
+                        </ul>
+                    </article>
+                <% } %>
 
-        <% if (messages.info) { %>
-            <article id='flashinfo'>
-                <h3>Information of interest:</h3>
-                <ul>
-                    <% for (var i in messages.info) { %>
-                        <li> <%= messages.info[i] %> </li>
-                    <% } %>
-                </ul>
-            </article>
-        <% } %>
+                <% if (messages.success) { %>
+                    <article id='flashsuccess'>
+                        <h3>Tasks completed successfully:</h3>
+                        <ul>
+                            <% for (var i in messages.success) { %>
+                                <li> <%= messages.success[i] %> </li>
+                            <% } %>
+                        </ul>
+                    </article>
+                <% } %>
 
-        <% if (messages.success) { %>
-            <article id='flashsuccess'>
-                <h3>Tasks completed successfully:</h3>
-                <ul>
-                    <% for (var i in messages.success) { %>
-                        <li> <%= messages.success[i] %> </li>
-                    <% } %>
-                </ul>
-            </article>
-        <% } %>
-
-        <% if (messages.error) { %>
-            <article id='flasherror'>
-                <h3>Errors:</h3>
-                <ul>
-                    <% for (var i in messages.error) { %>
-                        <li> <%= messages.error[i] %> </li>
-                    <% } %>
-                </ul>
-            </article>
+                <% if (messages.error) { %>
+                    <article id='flasherror'>
+                        <h3>Errors:</h3>
+                        <ul>
+                            <% for (var i in messages.error) { %>
+                                <li> <%= messages.error[i] %> </li>
+                            <% } %>
+                        </ul>
+                    </article>
+                <% } %>
+            </div>
+            <script>
+            document.getElementById('close').onclick = (e)=>{
+                 document.getElementById('flassmessages').style.display = 'none';
+            }
+            </script>
         <% } %>
 
         <%- body %>

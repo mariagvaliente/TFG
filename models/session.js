@@ -1,18 +1,21 @@
 // Definition of the Session model:
 
 module.exports = function (sequelize, DataTypes) {
+
     return sequelize.define(
-        'session',
+        "session",
         {
-            sid: {
-                type: DataTypes.STRING,
-                primaryKey: true
+            "sid": {
+                "type": DataTypes.STRING,
+                "primaryKey": true
             },
-            expires: {
-                type: DataTypes.DATE
+            "expires": {
+                "type": DataTypes.DATE
             },
-            data: {
-                type: DataTypes.STRING(50000)
+            "data": {
+                "type": DataTypes.STRING(50000)
             }
-        });
+        }
+    );
+
 };

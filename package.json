@@ -5,10 +5,12 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "DEBUG=.... nodemon bin/www",
+    "dev-windows": "nodemon bin/www -e sass --exec \"npm run css && npm run lint && node\"",
     "test": "jest",
     "migrate_local": "sequelize db:migrate --url sqlite://$(pwd)/escaperoom.sqlite",
     "seed_local": "sequelize db:seed:all --url sqlite://$(pwd)/escaperoom.sqlite",
-    "css": "node-sass public/stylesheets/style.sass public/stylesheets/style.css"
+    "css": "node-sass public/stylesheets/style.sass public/stylesheets/style.css",
+    "lint": "eslint . "
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -17,6 +19,7 @@
     "cookie-parser": "^1.4.3",
     "debug": "~2.6.9",
     "ejs": "^2.6.1",
+    "eslint": "^5.15.1",
     "express": "^4.16.4",
     "express-flash": "^0.0.2",
     "express-partials": "^0.3.0",

@@ -1,64 +1,68 @@
-'use strict';
+"use strict";
 
 module.exports = {
-    up(queryInterface, Sequelize) {
+    up (queryInterface, Sequelize) {
+
         return queryInterface.createTable(
-            'escapeRooms',
+            "escapeRooms",
             {
-                id: {
-                    type: Sequelize.INTEGER,
-                    allowNull: false,
-                    primaryKey: true,
-                    autoIncrement: true,
-                    unique: true
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "unique": true
                 },
-                title:{
-                    type: Sequelize.STRING,
-                    validate: {notEmpty: {msg: "El título no puede estar vacío."}}
+                "title": {
+                    "type": Sequelize.STRING,
+                    "validate": {"notEmpty": {"msg": "El título no puede estar vacío."}}
                 },
-                teacher:{
-                    type: Sequelize.STRING,
-                    validate: {notEmpty: {msg: "El nombre del profesor no puede estar vacío."}}
+                "teacher": {
+                    "type": Sequelize.STRING,
+                    "validate": {"notEmpty": {"msg": "El nombre del profesor no puede estar vacío."}}
                 },
-                subject:{
-                    type: Sequelize.STRING,
-                    validate: {notEmpty: {msg: "El nombre de la asignatura no puede estar vacío."}}
+                "subject": {
+                    "type": Sequelize.STRING,
+                    "validate": {"notEmpty": {"msg": "El nombre de la asignatura no puede estar vacío."}}
                 },
-                duration:{
-                    type: Sequelize.STRING,
-                    validate: {notEmpty: {msg: "La duración no puede estar vacía."}}
+                "duration": {
+                    "type": Sequelize.STRING,
+                    "validate": {"notEmpty": {"msg": "La duración no puede estar vacía."}}
                 },
-                description:{
-                    type: Sequelize.STRING,
-                    validate: {notEmpty: {msg: "La descripción no puede estar vacía."}}
+                "description": {
+                    "type": Sequelize.STRING,
+                    "validate": {"notEmpty": {"msg": "La descripción no puede estar vacía."}}
                 },
-                video:{
-                    type: Sequelize.STRING,
-                    validate: {notEmpty: {msg: "La URL del vídeo no puede estar vacía."}}
+                "video": {
+                    "type": Sequelize.STRING,
+                    "validate": {"notEmpty": {"msg": "La URL del vídeo no puede estar vacía."}}
                 },
-                nmax:{
-                    type: Sequelize.STRING,
-                    allowNull: false
+                "nmax": {
+                    "type": Sequelize.STRING,
+                    "allowNull": false
                 },
-                invitation:{
-                    type: Sequelize.STRING,
-                    validate: {notEmpty: {msg: "La URL de la invitación no puede estar vacía."}}
+                "invitation": {
+                    "type": Sequelize.STRING,
+                    "validate": {"notEmpty": {"msg": "La URL de la invitación no puede estar vacía."}}
                 },
-                createdAt: {
-                    type: Sequelize.DATE,
-                    validate: {notEmpty: {msg: "El número de participantes no puede estar vacío."}}
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "validate": {"notEmpty": {"msg": "El número de participantes no puede estar vacío."}}
                 },
-                updatedAt: {
-                    type: Sequelize.DATE,
-                    allowNull: false
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
                 }
             },
             {
-                sync: {force: true}
+                "sync": {"force": true}
             }
         );
+
     },
-    down(queryInterface, Sequelize) {
-        return queryInterface.dropTable('escapeRooms');
+    down (queryInterface) {
+
+        return queryInterface.dropTable("escapeRooms");
+
     }
 };

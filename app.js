@@ -1,91 +1,109 @@
-var express = require('express');
-var path = require('path');
-//var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var SequelizeStore = require('connect-session-sequelize')(session.Store);
-var partials = require('express-partials');
-var flash = require('express-flash');
-var methodOverride = require('method-override');
+const express = require("express");
+const path = require("path");
+// Var favicon = require('serve-favicon');
+const logger = require("morgan");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const session = require("express-session"),
+    SequelizeStore = require("connect-session-sequelize")(session.Store);
+const partials = require("express-partials");
+const flash = require("express-flash");
+const methodOverride = require("method-override");
 
-var index = require('./routes/index');
+const index = require("./routes/index"),
 
-var app = express();
+    app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// View engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
-if(app.get('env')==='production'){
-    app.use((req,res,next)=>{
-        if (req.headers['x-forwarded-proto'] !== 'https'){
-            res.redirect('https://'+ req.get('Host')+req.url);
-        }
-        else{
+if (app.get("env") === "production") {
+
+    app.use((req, res, next) => {
+
+        if (req.headers["x-forwarded-proto"] !== "https") {
+
+            res.redirect(`https://${req.get("Host")}${req.url}`);
+
+        } else {
+
             next();
+
         }
+
     });
+
 }
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+/*
+ * Uncomment after placing your favicon in /public
+ * app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+ */
+app.use(logger("dev"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({"extended": false}));
 app.use(cookieParser());
 
 // Configuracion de la session para almacenarla en BBDD usando Sequelize.
-var sequelize = require("./models");
-var sessionStore = new SequelizeStore({
-    db: sequelize,
-    table: "session",
-    checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds. (15 minutes)
-    expiration: 4 * 60 * 60 * 1000  // The maximum age (in milliseconds) of a valid session. (4 hours)
-});
+const sequelize = require("./models"),
+    sessionStore = new SequelizeStore({
+        "db": sequelize,
+        "table": "session",
+        "checkExpirationInterval": 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds. (15 minutes)
+        "expiration": 4 * 60 * 60 * 1000 // The maximum age (in milliseconds) of a valid session. (4 hours)
+    });
+
 app.use(session({
-    secret: "Escape Room",
-    store: sessionStore,
-    resave: false,
-    saveUninitialized: true
+    "secret": "Escape Room",
+    "store": sessionStore,
+    "resave": false,
+    "saveUninitialized": true
 }));
 
-app.use(methodOverride('_method', {methods: ["POST", "GET"]}));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride("_method", {"methods": [
+    "POST",
+    "GET"
+]}));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(partials());
 app.use(flash());
 
 
-
 // Dynamic Helper:
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
 
     // To use req.session in the views
     res.locals.session = req.session;
     res.locals.url = req.url;
 
     next();
+
 });
 
-app.use('/', index);
+app.use("/", index);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
+// Catch 404 and forward to error handler
+app.use((req, res, next) => {
+
+    const err = new Error("Not Found");
+
     err.status = 404;
     next(err);
+
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+// Error handler
+app.use((err, req, res) => {
 
-    // render the error page
+    // Set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get("env") === "development" ? err : {};
+
+    // Render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.render("error");
+
 });
 
 module.exports = app;

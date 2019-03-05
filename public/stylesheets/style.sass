@@ -1,117 +1,70 @@
-body.escapeRooms
-  font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif
-  color: white
+
+@import 'buttons'
+@import 'escapeRooms'
+@import 'gugi'
+@import 'portada'
+
+*
+  font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif
+html 
   height: 100%
-  background-image: url("../images/background.png")
-  background-size: cover
+  body
+    height: 100%
+    margin: 0
+    a
+      color: white
+      text-decoration: none
+      font-weight: lighter
 
-body.login
-  background-color: #232951
-  font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif
-  color: white
-  height: 100%
+    h1
+      font-weight: lighter
 
-.main
-  flex: 1 100%
-  padding: 2px
-  margin: 1px
+    div.flexBoxEscapeRooms
+      flex-flow: row wrap
 
-.right
-  float: right
+    label
+      color: dimgrey
+    .left
+      float: left
+    .right
+      float: right
 
-.left
-  float: left
+    input, select
+      background-color: #232951
+      color: dimgrey
+      font-size: large
+      text-align: center
+      border-color: dimgrey
+      border-radius: 20px
+      border-style: solid
+      height: 34px
+      outline: 0
+      font-weight: lighter
 
-a
-  color: white
-  text-decoration: none
-  font-weight: lighter
-
-a.login
-  color: dimgrey
-  margin-left: 40px
-  font-weight: lighter
-
-
-h1.login
-  color: dimgrey
-  font-weight: lighter
-h1
-  font-weight: lighter
-
-button
-  background-color: white
-  color: #161938
-  font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif
-  border-radius: 5px
-  border-color: white
-  border-style: solid
-  padding: 10px
-  text-align: center
-  outline: 0
-
-button.login
-  background-color: #48C18E
-  color: #161938
-  border: #48C18E
-  text-align: center
-  font-size: medium
-  border-radius: 20px
-  width: 300px
-  height: 30px
-  outline: 0
-
-button.registro
-  background-color: #FAC855
-  color: #161938
-  border: #FAC855
-  border-radius: 20px
-  text-align: center
-  font-size: medium
-  width: 300px
-  height: 30px
-  outline: 0
-
-button.more
-  background-color: #9196A9
-  color: #D2D4DC
-  font-size: 100px
-  padding: 10px 20px
-  border-width: 5px
-  border-style: solid
-  border-color: #D2D4DC
-  border-radius: 5px
-  outline: 0
-
-
-div.loginRight
-  margin-left: 25px
-
-div.loginLeft
-  background-color: #161938
-
-div.flexBoxEscapeRooms
-  flex-flow: row wrap
-
-label
-  color: dimgrey
-
-input
-  background-color: #232951
-  color: dimgrey
-  font-size: large
-  text-align: center
-  border-color: dimgrey
-  border-radius: 20px
-  border-style: solid
-  width: 300px
-  height: 30px
-  outline: 0
-  font-weight: lighter
-
-input:focus
-  background-color: #232951
-  color: white
-  border-color: white
-  & + label
-    color: white
+    input:focus, select:focus
+      background-color: #232951
+      color: white
+      border-color: white
+      & + label
+        color: white
+    #flassmessages
+      position: fixed
+      bottom: 0
+      font-size: 1em !important
+      background: white
+      max-width: 600px
+      margin: 1%
+      color: #232951
+      padding: 15px
+      opacity: 0.9
+      padding-top: 0px
+      .close
+        content: '\2716'
+        top: 0
+        right: 0
+        display: block
+        position: relative
+        text-align: right
+        height: 0
+        cursor: pointer
+        padding: 2px
