@@ -1,25 +1,27 @@
-<header class="main" id="mainHeader">
+<div class="main">
+    <header class="" id="mainHeader">
 
-    <div class="right">
-        <% if (!session.user) { %>
-            <a href="/">Login</a>
-        <% } else { %>
-            <%= session.user.username %>
-        <% } %>
-    </div>
-    <div class="left">
-        <% if (session.user) { %>
-            <a href="/?_method=DELETE">Logout</a>
-        <% } %>
-    </div>
+        <div class="right">
+            <% if (!session.user) { %>
+                <a href="/">Login</a>
+            <% } else { %>
+                <%= session.user.username %>
+            <% } %>
+        </div>
+        <div class="left">
+            <% if (session.user) { %>
+                <a href="/?_method=DELETE">Logout</a>
+            <% } %>
+        </div>
 
-</header>
-<h1>
-    Configurar Escape Room:
-</h1>
+    </header>
+    <h1>
+        Configurar Escape Room:
+    </h1>
 
-<form method="post" action="/escapeRooms" enctype="multipart/form-data">
+    <form method="post" action="/escapeRooms" enctype="multipart/form-data">
 
-    <% include _form.ejs %>
+        <% include _form.ejs %>
 
-</form>
+    </form>
+</div>

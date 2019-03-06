@@ -1,15 +1,16 @@
-
+@import 'main'
 @import 'buttons'
-@import 'escapeRooms'
 @import 'gugi'
 @import 'portada'
+@import 'escapeRooms'
 
 *
   font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif
+  box-sizing: border-box
 html 
-  height: 100%
+  min-height: 100%
   body
-    height: 100%
+    min-height: 100%
     margin: 0
     a
       color: white
@@ -28,7 +29,16 @@ html
       float: left
     .right
       float: right
-
+    footer
+      display: flex
+      align-content: space-around
+      align-items: flex-end
+      justify-content: space-between
+      bottom: 0
+      position: absolute
+      width: 100%
+      margin-left: -15px
+      padding: 18px
     input, select
       background-color: #232951
       color: dimgrey
@@ -37,6 +47,7 @@ html
       border-color: dimgrey
       border-radius: 20px
       border-style: solid
+      border-width: 2px
       height: 34px
       outline: 0
       font-weight: lighter
@@ -63,8 +74,8 @@ html
         top: 0
         right: 0
         display: block
-        position: relative
+        position: absolute
         text-align: right
         height: 0
         cursor: pointer
-        padding: 2px
+        padding: 4px

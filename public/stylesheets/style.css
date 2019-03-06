@@ -1,3 +1,23 @@
+#mainSection {
+  min-height: 100%;
+  position: relative; }
+  #mainSection .main {
+    font-size: 22px;
+    min-height: calc(100vh - 0em);
+    color: white;
+    height: 100%;
+    background-image: url("../images/background.png");
+    background-size: cover;
+    height: 100%;
+    padding: 15px;
+    position: relative; }
+    #mainSection .main header {
+      height: auto; }
+      #mainSection .main header .wideRow {
+        margin-bottom: 5px; }
+        #mainSection .main header .wideRow label {
+          color: white; }
+
 button {
   background-color: white;
   color: #161938;
@@ -7,7 +27,8 @@ button {
   border-style: solid;
   padding: 10px;
   text-align: center;
-  outline: 0; }
+  outline: 0;
+  cursor: pointer; }
   button.login {
     background-color: #48C18E;
     color: #161938;
@@ -25,28 +46,11 @@ button {
     border-radius: 20px;
     text-align: center;
     font-size: medium;
-    width: 300px;
-    height: 30px;
-    outline: 0; }
-  button.more {
-    background-color: #9196A9;
-    color: #D2D4DC;
-    font-size: 100px;
-    padding: 10px 20px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #D2D4DC;
-    border-radius: 5px;
+    width: 100%;
+    height: 34px;
     outline: 0; }
   button[type=submit] {
     cursor: pointer; }
-
-.escapeRooms {
-  font-size: 22px;
-  color: white;
-  height: 100%;
-  background-image: url("../images/background.png");
-  background-size: cover; }
 
 @font-face {
   font-family: "Gugi";
@@ -60,7 +64,8 @@ button {
   color: white; }
   .portada header {
     position: absolute;
-    padding: 5px; }
+    padding: 15px;
+    width: 100%; }
   .portada .contenedor {
     display: flex;
     min-height: 100%; }
@@ -95,18 +100,51 @@ button {
         color: white; }
       .portada .contenedor .loginRight .loginWelcomeMessage {
         color: dimgrey;
-        text-align: left; }
+        text-align: left;
+        padding-top: 15px; }
     .portada .contenedor #imagenPortada {
       max-height: 04%;
       width: auto; }
 
+.escapeRooms .flexBoxEscapeRooms {
+  display: flex; }
+  .escapeRooms .flexBoxEscapeRooms::after {
+    content: "";
+    flex: auto;
+    width: 150px; }
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
+    background: white;
+    color: black;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px; }
+    .escapeRooms .flexBoxEscapeRooms .escapeRoomItem img {
+      width: 100%;
+      max-height: 100%; }
+    .escapeRooms .flexBoxEscapeRooms .escapeRoomItem.addEscapeRoom {
+      background-color: #9196A9;
+      color: #D2D4DC;
+      font-size: 100px;
+      padding: 10px 20px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #D2D4DC;
+      outline: 0; }
+
 * {
-  font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
+  box-sizing: border-box; }
 
 html {
-  height: 100%; }
+  min-height: 100%; }
   html body {
-    height: 100%;
+    min-height: 100%;
     margin: 0; }
     html body a {
       color: white;
@@ -122,6 +160,16 @@ html {
       float: left; }
     html body .right {
       float: right; }
+    html body footer {
+      display: flex;
+      align-content: space-around;
+      align-items: flex-end;
+      justify-content: space-between;
+      bottom: 0;
+      position: absolute;
+      width: 100%;
+      margin-left: -15px;
+      padding: 18px; }
     html body input, html body select {
       background-color: #232951;
       color: dimgrey;
@@ -130,6 +178,7 @@ html {
       border-color: dimgrey;
       border-radius: 20px;
       border-style: solid;
+      border-width: 2px;
       height: 34px;
       outline: 0;
       font-weight: lighter; }
@@ -155,8 +204,8 @@ html {
         top: 0;
         right: 0;
         display: block;
-        position: relative;
+        position: absolute;
         text-align: right;
         height: 0;
         cursor: pointer;
-        padding: 2px; }
+        padding: 4px; }

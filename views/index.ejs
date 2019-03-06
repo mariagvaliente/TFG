@@ -1,45 +1,15 @@
 <div class="portada">
-    <header class="" id="mainHeader">
-        <img src="/images/logo.png" width="12%" style=" margin-top: 0px; margin-bottom: 5px"/>
-        <img src="/images/ESCUDO_UPM.png" width="5%" style=" margin-top: 0px; margin-bottom: 5px; float: right"/>
-    </header>
-
+    <% include partials/__header.ejs %>
     <div class="contenedor" style="display: flex; height: 100%">
         <div class="loginLeft" style="">
             <img id="imagenPortada" src="/images/puzzle.png" width="80%"/>
-
         </div>
-
-
         <div class="loginRight" style=" ">
-            <h1 class="loginWelcomeMessage">Bienvenido a la plataforma de gestión de escape rooms ;)</h1>
-
-
-            <h1>Login</h1>
-
-            <form method='POST' action='/'>
-
-                <input type='hidden' name='redir' value='<%= redir %>'>
-
-                <div>
-                    <label for="login"><span>E-mail</span>
-                        <input type="email" id="login" name="login" size="30" autofocus placeholder="Introduce tu email" autocomplete="off"/>
-                    </label>
-                </div>
-                <br />
-                <div>
-                    <label for="password"><span>Contraseña</span>
-                        <input type="password" id="password" name="password" size="30" placeholder="Introduce tu contraseña" autocomplete="off" />
-                    </label>
-                </div>
-                <br />
-                <div>
-                    <button class="login" type="submit" value="Login">login</button>
-                    <br />
-                </div>
-            </form>
-            <br />
-            <a class="login" href="/users/new">¿No tienes cuenta?</a>
+           <% if(locals.register) { %>
+                <% include users/_form.ejs %>
+           <%  } else { %>
+                <% include users/_login.ejs %>
+           <% } %>
         </div>
     </div>
 </div>

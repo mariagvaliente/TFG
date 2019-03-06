@@ -59,7 +59,8 @@ exports.new = (req, res) => {
         "password": ""
     };
 
-    res.render("users/new", {user});
+    res.render("index", {user,
+        "register": true});
 
 };
 
@@ -106,14 +107,16 @@ exports.create = (req, res, next) => {
 
             console.error(error);
             req.flash("error", `User "${username}" already exists.`);
-            res.render("users/new", {user});
+            res.render("index", {user,
+                "register": true});
 
         }).
         catch(Sequelize.ValidationError, (error) => {
 
             req.flash("error", "There are errors in the form:");
             error.errors.forEach(({message}) => req.flash("error", message));
-            res.render("users/new", {user});
+            res.render("index", {user,
+                "register": true});
 
         }).
         catch((error) => next(error));

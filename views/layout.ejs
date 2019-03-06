@@ -7,7 +7,8 @@
     <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
-    <section class="main" id="mainSection">
+    <section  id="mainSection">
+        <%- body %>
         <% if (messages.success || messages.info || messages.error) { %> 
             <div id="flassmessages">
                 <span class="close" id="close">&#x2716;</span>
@@ -50,8 +51,6 @@
             }
             </script>
         <% } %>
-
-        <%- body %>
 
     </section>
 

@@ -1,6 +1,33 @@
 .escapeRooms
-    font-size: 22px 
-    color: white
-    height: 100%
-    background-image: url("../images/background.png")
-    background-size: cover
+	.flexBoxEscapeRooms
+		display: flex
+		// justify-content: space-between
+		&::after 
+		  	content: ""
+		  	flex: auto
+		  	width: 150px
+		.escapeRoomItem
+			background: white
+			color: black
+			width: 150px
+			height: 150px
+			display: flex
+			flex-direction: column
+			justify-content: flex-end
+			align-items: center
+			border-radius: 10px
+			padding: 5px
+			margin: 5px
+			img
+				width: 100%
+				max-height: 100%
+			.escapeRoomTitle
+			&.addEscapeRoom
+				background-color: #9196A9
+				color: #D2D4DC
+				font-size: 100px
+				padding: 10px 20px
+				border-width: 5px
+				border-style: solid
+				border-color: #D2D4DC
+				outline: 0
