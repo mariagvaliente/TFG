@@ -10,7 +10,7 @@ exports.load = (req, res, next, turnId) => {
                 req.turn = turn;
                 next();
             } else {
-                next(new Error('There is no tip with turnId=' + turnId));
+                next(new Error('There is no turn with turnId=' + turnId));
             }
         })
         .catch(error => next(error));
@@ -23,7 +23,6 @@ exports.create = (req, res, next) => {
         {
             date: req.body.date,
             start: req.body.start,
-            duration: req.body.duration,
             narrative: req.body.narrative,
             escapeRoomId: req.escapeRoom.id
         });

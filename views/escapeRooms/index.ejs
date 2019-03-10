@@ -30,7 +30,7 @@
             <% var escapeRoom = escapeRooms[i]; %>
             <% var attachment = escapeRoom.attachment; %>
                 <a href="/escapeRooms/<%= escapeRoom.id %>">
-                    <button>
+                    <button class="erFoto" style="text-align: center">
                         <% include ../attachments/_show %>
                         </br>
                         <%= escapeRoom.title %>

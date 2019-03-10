@@ -44,6 +44,10 @@ module.exports = {
                     type: Sequelize.STRING,
                     validate: {notEmpty: {msg: "La URL de la invitación no puede estar vacía."}}
                 },
+                appearance:{
+                    type: Sequelize.STRING,
+                    validate: {notEmpty: {msg: "La apariencia no puede estar vacía."}}
+                },
                 createdAt: {
                     type: Sequelize.DATE,
                     validate: {notEmpty: {msg: "El número de participantes no puede estar vacío."}}

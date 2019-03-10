@@ -24,10 +24,12 @@ sequelize.import(path.join(__dirname,'attachment'));
 sequelize.import(path.join(__dirname,'user'));
 
 
+
 // Relation between models
 
 const {escapeRoom, turno, attachment, user} = sequelize.models;
 
+// Relation 1-to-1 between Escape Room and Turn:
 turno.belongsTo(escapeRoom);
 escapeRoom.hasMany(turno);
 
@@ -35,8 +37,11 @@ escapeRoom.hasMany(turno);
 attachment.belongsTo(escapeRoom);
 escapeRoom.hasOne(attachment);
 
+
 // Relation 1-to-N between User and Quiz:
 user.hasMany(escapeRoom, {foreignKey: 'authorId'});
 escapeRoom.belongsTo(user, {as: 'author', foreignKey: 'authorId'});
+
+
 
 module.exports=sequelize;

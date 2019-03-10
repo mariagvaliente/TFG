@@ -1,0 +1,21 @@
+<body class="login">
+<h2>
+    Turnos:
+</h2>
+<% include ../turnos/new %>
+<% var turnos = escapeRoom.turnos; %>
+
+<div class="contenedor" style="display: flex; height: 100%">
+    <div class="turnosLeft" style="width: 50%; float: left">
+    </div>
+    <div class="loginRight" style=" width: 50%; float: left; flex: 1">
+     <% include ../turnos/index %>
+    </div>
+</div>
+<a href="/users/<%= session.user.id %>/escapeRooms"><button>Finalizar</button></a>
+<footer>
+    <img src="/images/logo.png" width="10%" style=" margin-top: 100px"/>
+    <img src="/images/ESCUDO_UPM.png" width="5%" style=" margin-top: 100px; float: right"/>
+</footer>
+
+</body>

@@ -86,6 +86,15 @@ exports.show = (req, res, next) => {
 };
 
 
+// GET /escapeRooms/:escapeRoomId
+exports.turns = (req, res, next) => {
+
+    const {escapeRoom} = req;
+
+    res.render('escapeRooms/step2', {escapeRoom});
+};
+
+
 // GET /escapeRooms/new
 exports.new = (req, res, next) => {
 
@@ -103,10 +112,20 @@ exports.new = (req, res, next) => {
     res.render('escapeRooms/new', {escapeRoom});
 };
 
+
+// POST /escapeRooms/new2
+exports.temas = (req, res, next) => {
+
+    const {escapeRoom} = req;
+
+    res.render('escapeRooms/step1', {escapeRoom});
+};
+
+
 // POST /escapeRooms/create
 exports.create = (req, res, next) => {
 
-    const {title,teacher,subject,duration,description,video,nmax,invitation} = req.body;
+    const {title,teacher,subject,duration,description,video,nmax,invitation,appearance} = req.body;
 
     const authorId = req.session.user && req.session.user.id || 0;
 
@@ -119,17 +138,18 @@ exports.create = (req, res, next) => {
         video,
         nmax,
         invitation,
+        appearance,
         authorId
     });
 
-    // Saves only the fields question and answer into the DDBB
-    escapeRoom.save({fields: ["title", "teacher", "subject", "duration", "description", "video","nmax", "invitation", "authorId"]})
+    // Saves the fields in to the DDBB
+    escapeRoom.save({fields: ["title", "teacher", "subject", "duration", "description", "video","nmax", "invitation","appearance", "authorId"]})
         .then(escapeRoom => {
             req.flash('success', 'Escape Room created successfully.');
 
             if (!req.file) {
                 req.flash('info', 'Escape Room without attachment.');
-                res.redirect('/escapeRooms/' + escapeRoom.id);
+                res.redirect('/escapeRooms/' + escapeRoom.id + '/step1');
                 return;
             }
 
@@ -161,7 +181,7 @@ exports.create = (req, res, next) => {
                 })
                 .then(() => {
                     fs.unlink(req.file.path); // delete the file uploaded at./uploads
-                    res.redirect('/escapeRooms/' + escapeRoom.id);
+                    res.redirect('/escapeRooms/' + escapeRoom.id + '/step1');
                 });
 
         })

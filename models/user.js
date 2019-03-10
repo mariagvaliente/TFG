@@ -7,21 +7,19 @@ module.exports = function (sequelize, DataTypes) {
     const User = sequelize.define('user', {
         name: {
             type: DataTypes.STRING,
-            unique: true,
             validate: {notEmpty: {msg: "Name must not be empty."}}
         },
         surname: {
             type: DataTypes.STRING,
-            unique: true,
             validate: {notEmpty: {msg: "Surname must not be empty."}}
         },
         gender: {
             type: DataTypes.STRING,
-            unique: true,
             validate: {notEmpty: {msg: "Gender must not be empty."}}
         },
         username: {
             type: DataTypes.STRING,
+            unique: true,
             isEmail: true
         },
         password: {

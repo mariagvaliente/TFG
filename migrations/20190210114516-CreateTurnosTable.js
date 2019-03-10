@@ -16,8 +16,8 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             date:{
-                type: Sequelize.DATE,
-                allowNull: false
+                type: Sequelize.STRING,
+                validate: {notEmpty: {msg: "La fecha no puede estar vacía."}}
             },
             start:{
                 type: Sequelize.STRING,

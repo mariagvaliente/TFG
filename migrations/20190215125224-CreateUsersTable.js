@@ -13,21 +13,19 @@ module.exports = {
             },
             name: {
                 type: Sequelize.STRING,
-                unique: true,
                 validate: {notEmpty: {msg: "Name must not be empty."}}
             },
             surname: {
                 type: Sequelize.STRING,
-                unique: true,
                 validate: {notEmpty: {msg: "Surname must not be empty."}}
             },
             gender: {
                 type: Sequelize.STRING,
-                unique: true,
                 validate: {notEmpty: {msg: "Gender must not be empty."}}
             },
             username: {
                 type: Sequelize.STRING,
+                unique: true,
                 isEmail: true
             },
             password: {

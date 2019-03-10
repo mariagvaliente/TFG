@@ -1,33 +1,17 @@
 
 <form method="POST" action="/escapeRooms/<%= escapeRoom.id %>/turnos/">
 
-    <div class="wideRow">
+    <div class="contenedor" style="display: flex; height: 100%">
+        <div class="turnosLeft" style="width: 50%; float: left">
+            <div id="datepicker"></div>
+        </div>
+        <div class="loginRight" style=" width: 50%; float: left; flex: 1">
 
-        <span class="itemNarrow">Seleccione la fecha del turno:</span>
+            <h2><input class="fecha" type="text" id="datepicker2" name="date"></h2>
 
-        <input type="date" id="dat" name="date"  />
-
-        </br>
-
-        <span class="itemNarrow">Escriba la hora de comienzo del turno:</span>
-
-        <input type="text" class="itemWide" id="tit" name="start" value="" placeholder="Escriba la hora" autocomplete="off"/>
-
-        </br>
-
-        <span class="itemNarrow">Escriba la duración del turno:</span>
-
-        <input type="text" class="itemWide" id="nar" name="duration" value="" placeholder="Escriba la duración" autocomplete="off"/>
-
-        </br>
-
-        <span class="itemNarrow">Escriba una narrativa del turno:</span>
-
-        <input type="text" class="itemWide" id="nar" name="narrative" value="" placeholder="Escriba la narrativa" autocomplete="off"/>
-
-        </br>
-
-        <button type="submit" class="itemNarrow">+</button>
+            <input class="turnos" type="text" id="tit" name="start" value="" placeholder="00:00" autocomplete="off"/>
+            <input class="turnos" type="text" id="nar" name="narrative" value="" placeholder="¿Alguna indicación?" autocomplete="off"/>
+            <button type="submit" class="more">+</button>
+        </div>
     </div>
-
 </form>

@@ -33,7 +33,12 @@ module.exports = function (sequelize, DataTypes) {
             invitation:{
                 type: DataTypes.STRING,
                 validate: {notEmpty: {msg: "La URL de la invitación no puede estar vacía."}}
+            },
+            appearance:{
+                type: DataTypes.STRING,
+                validate: {notEmpty: {msg: "La apariencia no puede estar vacía."}}
             }
+
         })
 };
 

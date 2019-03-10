@@ -39,6 +39,23 @@ h1.login
 h1
   font-weight: lighter
 
+h2
+  font-weight: lighter
+
+button.erFoto
+  background-color: white
+  color: #161938
+  font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif
+  border-radius: 5px
+  border-color: white
+  border-style: solid
+  padding-left: 7px
+  padding-right: 0px
+  padding-top: 0px
+  padding-bottom: 0px
+  text-align: center
+  outline: 0
+
 button
   background-color: white
   color: #161938
@@ -83,12 +100,36 @@ button.more
   border-radius: 5px
   outline: 0
 
+button.editButton
+  background-color: #FAC855
+  color: #161938
+  font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif
+  border-radius: 5px
+  border-color: #FAC855
+  border-style: solid
+  padding: 10px
+  text-align: center
+  outline: 0
+
+button.deleteButton
+  background-color: #F47E84
+  color: #161938
+  font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif
+  border-radius: 5px
+  border-color: #F47E84
+  border-style: solid
+  padding: 10px
+  text-align: center
+  outline: 0
 
 div.loginRight
   margin-left: 25px
 
 div.loginLeft
   background-color: #161938
+
+div.turnosLeft
+  background-color: #232951
 
 div.flexBoxEscapeRooms
   flex-flow: row wrap
@@ -113,5 +154,35 @@ input:focus
   background-color: #232951
   color: white
   border-color: white
-  & + label
+  & + label:focus
     color: white
+
+input.turnos
+  background-color: white
+  color: #161938
+  font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif
+  border-radius: 5px
+  border-color: white
+  border-style: solid
+  padding: 10px
+  text-align: center
+  outline: 0
+  flex-direction: column
+
+input.buttonApp
+  border-radius: 5px
+  border-color: white
+  border-style: solid
+  outline: 0
+  flex-direction: column
+  width: 150px
+  height: 100px
+  & + input:focus
+    border-color: #FAC855
+
+input.attach
+  border: none
+
+input.fecha
+  border: none
+  font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif

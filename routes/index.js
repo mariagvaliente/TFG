@@ -68,8 +68,14 @@ router.get('/escapeRooms/:escapeRoomId(\\d+)/edit',  sessionController.loginRequ
 router.put('/escapeRooms/:escapeRoomId(\\d+)',       sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, upload.single('image'),escapeRoomController.update);
 router.delete('/escapeRooms/:escapeRoomId(\\d+)',     sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.destroy);
 
+router.get('/escapeRooms/:escapeRoomId(\\d+)/step1',     sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.temas);
+router.get('/escapeRooms/:escapeRoomId(\\d+)/step2',     sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.turns);
+router.post('/escapeRooms/:escapeRoomId(\\d+)/step2',     sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.turns);
+
+
 router.post('/escapeRooms/:escapeRoomId(\\d+)/turnos',     sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);
 router.delete('/escapeRooms/:escapeRoomId(\\d+)/turnos/:turnoId(\\d+)',  sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.destroy);
+
 
 
 
