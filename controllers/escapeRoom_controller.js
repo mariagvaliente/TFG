@@ -117,6 +117,25 @@ exports.show = (req, res) => {
 
 };
 
+exports.preview = (req, res) => {
+
+    const {escapeRoom} = req;
+
+    res.render("escapeRooms/preview", {escapeRoom,
+        "layout": false,
+        "theme": req.query.appearance});
+
+};
+
+// GET /escapeRooms/:escapeRoomId
+exports.turns = (req, res) => {
+
+    const {escapeRoom} = req;
+
+    res.render("escapeRooms/step2", {escapeRoom});
+
+};
+
 
 // GET /escapeRooms/new
 exports.new = (req, res) => {
@@ -136,10 +155,20 @@ exports.new = (req, res) => {
 
 };
 
+// POST /escapeRooms/new2
+exports.temas = (req, res) => {
+
+    const {escapeRoom} = req;
+
+    res.render("escapeRooms/step1", {escapeRoom});
+
+};
+
+
 // POST /escapeRooms/create
 exports.create = (req, res, next) => {
 
-    const {title, teacher, subject, duration, description, video, nmax, invitation} = req.body,
+    const {title, teacher, subject, duration, description, video, nmax, invitation, appearance} = req.body,
 
         authorId = req.session.user && req.session.user.id || 0,
 
@@ -152,6 +181,7 @@ exports.create = (req, res, next) => {
             video,
             nmax,
             invitation,
+            appearance,
             authorId
         });
 
@@ -165,16 +195,17 @@ exports.create = (req, res, next) => {
         "video",
         "nmax",
         "invitation",
+        "appearance",
         "authorId"
     ]}).
-        then((er) => {
+        then(() => {
 
             req.flash("success", "Escape Room created successfully.");
 
             if (!req.file) {
 
                 req.flash("info", "Escape Room without attachment.");
-                res.redirect(`/escapeRooms/${er.id}`);
+                res.redirect(`/escapeRooms/${escapeRoom.id}/step1`);
 
                 return;
 
@@ -216,7 +247,6 @@ exports.create = (req, res, next) => {
         }).
         catch(Sequelize.ValidationError, (error) => {
 
-            req.flash("error", "There are errors in the form:");
             error.errors.forEach(({message}) => req.flash("error", message));
             res.render("escapeRooms/new", {escapeRoom});
 
@@ -339,6 +369,7 @@ exports.update = (req, res, next) => {
                     then(() => {
 
                         fs.unlink(req.file.path); // Delete the file uploaded at./uploads
+                        res.redirect(`/escapeRooms/${escapeRoom.id}/step1`);
 
                     });
 
@@ -352,7 +383,6 @@ exports.update = (req, res, next) => {
         }).
         catch(Sequelize.ValidationError, (error) => {
 
-            req.flash("error", "There are errors in the form:");
             error.errors.forEach(({message}) => req.flash("error", message));
             res.render("escapeRooms/edit", {escapeRoom});
 
@@ -397,5 +427,3 @@ exports.destroy = (req, res, next) => {
         });
 
 };
-
-

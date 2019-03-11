@@ -3,10 +3,9 @@ module.exports = function (sequelize, DataTypes) {
     return sequelize.define(
         "turno",
         {
-
             "date": {
                 "type": DataTypes.DATE,
-                "allowNull": false
+                "validate": {"notEmpty": {"msg": "La fecha no puede estar vacía."}}
             },
             "start": {
                 "type": DataTypes.STRING,

@@ -3,12 +3,14 @@
 @import 'gugi'
 @import 'portada'
 @import 'escapeRooms'
+@import 'colors'
 
 *
   font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif
   box-sizing: border-box
 html 
   min-height: 100%
+  background-color: $bckg
   body
     min-height: 100%
     margin: 0
@@ -24,7 +26,7 @@ html
       flex-flow: row wrap
 
     label
-      color: dimgrey
+      color: $textpurple
     .left
       float: left
     .right
@@ -40,24 +42,29 @@ html
       margin-left: -15px
       padding: 18px
     input, select
-      background-color: #232951
-      color: dimgrey
+      background-color: $mainpurple
+      -webkit-text-fill-color: $textpurple !important;
+      color: $textpurple
       font-size: large
       text-align: center
-      border-color: dimgrey
+      border-color: $textpurple
       border-radius: 20px
       border-style: solid
       border-width: 2px
-      height: 34px
+      height: 42px
       outline: 0
       font-weight: lighter
-
-    input:focus, select:focus
-      background-color: #232951
-      color: white
-      border-color: white
-      & + label
+      box-shadow: none !important
+      &:-webkit-autofill
+          -webkit-box-shadow: 0 0 0 30px $mainpurple inset !important;
+          -webkit-text-fill-color: $textpurple !important;
+      &:focus, &:active, &:-webkit-autofill:focus, &:-webkit-autofill:active
+        background-color: $mainpurple
         color: white
+        -webkit-text-fill-color: white !important;
+        border-color: white
+        & + label
+          color: white
     #flassmessages
       position: fixed
       bottom: 0
@@ -65,7 +72,7 @@ html
       background: white
       max-width: 600px
       margin: 1%
-      color: #232951
+      color: $mainpurple
       padding: 15px
       opacity: 0.9
       padding-top: 0px

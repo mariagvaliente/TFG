@@ -1,0 +1,18 @@
+<div class="main">
+    <% include _header.ejs %>
+	<h2>
+	    Turnos:
+	</h2>
+	<% include ../turnos/new %>
+	<% var turnos = escapeRoom.turnos; %>
+
+	<div class="contenedor" style="display: flex; height: 100%">
+	    <div class="turnosLeft" style="width: 50%; float: left">
+	    </div>
+	    <div class="loginRight" style=" width: 50%; float: left; flex: 1">
+	     <% include ../turnos/index %>
+	    </div>
+	</div>
+	<a href="/users/<%= session.user.id %>/escapeRooms"><button>finalizar</button></a>
+	<% include ../partials/__footer %>
+</div>

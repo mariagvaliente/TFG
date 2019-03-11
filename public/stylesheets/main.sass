@@ -1,3 +1,4 @@
+@import 'colors'
 #mainSection
 	min-height: 100%
 	position: relative
@@ -18,3 +19,32 @@
 				&:focus-within
 				label
 		   			color: white
+		.half-flex-container
+			display: flex
+			flex-direction: row
+			.left-half-flex
+				width: 50%
+				form
+					padding: 0px
+					.buttonApp
+						width: 40%
+						margin: 2%
+						border-radius: 5px
+						border: 3px solid white
+						cursor: pointer
+						transition: 0.1s all ease-in
+						&:hover
+							transform: scale(0.85)
+						&.selected
+							border-color: $brightyellow
+			.right-half-flex
+				width: 50%
+				.preview
+					width: 100%
+					height: 100%
+					#previewIframe
+						width: 90%
+						height: 100%
+						overflow: auto
+						border: 3px solid white
+						border-radius: 20px

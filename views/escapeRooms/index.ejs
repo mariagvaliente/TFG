@@ -32,6 +32,7 @@
                 <% var attachment = escapeRoom.attachment; %>
                 <a href="/escapeRooms/<%= escapeRoom.id %>">
                     <div class="escapeRoomItem">
+                    <button class="erFoto" style="text-align: center">
                         <% include ../attachments/_show %>
                         </br>
                         <span class="escapeRoomTitle"><%= escapeRoom.title %></span>

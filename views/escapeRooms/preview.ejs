@@ -1,0 +1,44 @@
+<html>
+	<head>
+	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/<%=theme%>/bootstrap.min.css">
+	</head>
+	<body>
+		<div class="previewContainer">
+			<h1><%=escapeRoom.title%></h1>
+			<div class="previewImage">
+			    <% var attachment = escapeRoom.attachment; %>
+			    <% include ../attachments/_show %>
+			</div>
+			<p><%=escapeRoom.description%></p>
+			<p class="countdown text-danger">00:00:49</p>
+			<button type="button" class="btn btn-warning">finish</button>
+		</div>
+	<style>
+
+		@font-face {
+		  font-family: 'Digital';
+		  src: url('/fonts/ds-digib.ttf') format('truetype');
+		  font-weight: bold;
+		  font-style: normal;
+		}
+
+		h1 {
+			font-size: 4em;
+		}
+
+		.previewContainer {
+			text-align: center;
+			padding: 20px;
+		}
+
+		.countdown {
+			font-family: 'Digital';
+			font-size: 24vw;
+		}
+
+		.previewImage img {
+			max-width: 40%;
+		}
+	</style>
+	</body>
+</html>

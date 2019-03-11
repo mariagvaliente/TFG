@@ -47,15 +47,6 @@
         <br />
     </div>
     </br>
-    <td>
-        <a href="/escapeRooms/<%= escapeRoom.id %>/edit"><button>editar</button></a>
-    </td>
-    <td>
-        <a href="/escapeRooms/<%= escapeRoom.id %>?_method=DELETE"
-           onClick="return confirm('Delete: <%= escapeRoom.title %>');">
-            <button>borrar</button>
-        </a>
-    </td>
 
  
 
@@ -63,15 +54,33 @@
     Turnos:
 </h2>
 
-<% include ../turnos/new %>
-
 <% var turnos = escapeRoom.turnos; %>
 
 <% include ../turnos/index %>
 </br>
 
+<h2>
+    Apariencia:
+</h2>
+<script>
+    $(function getTema(){
+        const tema=document.getElementById("appearance").value;
+    });
+</script>
 
-<a href="/users/<%= session.user.id %>/escapeRooms"><button>Volver</button></a>
+
+</br>
+<td>
+    <a href="/escapeRooms/<%= escapeRoom.id %>/edit"><button class="editButton">editar</button></a>
+</td>
+<td>
+    <a href="/escapeRooms/<%= escapeRoom.id %>?_method=DELETE"
+       onClick="return confirm('Delete: <%= escapeRoom.title %>');">
+        <a href="/users/<%= session.user.id %>/escapeRooms"><button class="deleteButton">borrar</button></a>
+    </a>
+</td>
+
+<a href="/users/<%= session.user.id %>/escapeRooms"><button>volver</button></a>
 <div style="height: 100px"/>
 
 </div>

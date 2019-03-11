@@ -1,17 +1,5 @@
 
-<table>
-
-        <tr>
-                <% for (var i in turnos) { %>
-                <th><%= turnos[i].date %> </th>
-                <% } %>
-
-        </tr>
-        <tr>
-                <% for (var i in turnos) { %>
-                        <% var turn = turnos[i]; %>
-                        <td><%= turn.start %> </br> <%= turn.duration %> </br><%= turn.narrative %> </br> <a href="/escapeRooms/<%= escapeRoom.id %>/turnos/<%= turn.id %>?_method=DELETE"><button>Borrar</button></a></td>
-                <% } %>
-
-        </tr>
-</table>
+<% for (var i in turnos) { %>
+        <% var turn = turnos[i]; %>
+        <button> <%= turn.date %> </br> <%= turn.start %> </br> <%= turn.narrative %></button>
+<% } %>

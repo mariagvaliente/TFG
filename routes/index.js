@@ -67,11 +67,20 @@ router.get("/users/:userId(\\d+)/student", sessionController.loginRequired, sess
 // Routes for the resource /escapeRooms
 router.get("/escapeRooms", sessionController.loginRequired, sessionController.adminRequired, escapeRoomController.index);
 router.get("/escapeRooms/:escapeRoomId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.show);
+router.get("/escapeRooms/:escapeRoomId(\\d+)/preview", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.preview);
 router.get("/escapeRooms/new", sessionController.loginRequired, escapeRoomController.new);
 router.post("/escapeRooms", sessionController.loginRequired, upload.single("image"), escapeRoomController.create);
 router.get("/escapeRooms/:escapeRoomId(\\d+)/edit", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.edit);
 router.put("/escapeRooms/:escapeRoomId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, upload.single("image"), escapeRoomController.update);
 router.delete("/escapeRooms/:escapeRoomId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.destroy);
+
+router.get("/escapeRooms/:escapeRoomId(\\d+)/step1", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.temas);
+router.get("/escapeRooms/:escapeRoomId(\\d+)/step2", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.turns);
+router.post("/escapeRooms/:escapeRoomId(\\d+)/step2", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.turns);
+
+
+router.post("/escapeRooms/:escapeRoomId(\\d+)/turnos", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);
+router.delete("/escapeRooms/:escapeRoomId(\\d+)/turnos/:turnoId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.destroy);
 
 router.post("/escapeRooms/:escapeRoomId(\\d+)/turnos", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);
 router.delete("/escapeRooms/:escapeRoomId(\\d+)/turnos/:turnoId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.destroy);

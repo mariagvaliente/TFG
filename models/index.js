@@ -1,12 +1,11 @@
-
 const path = require("path");
 
 // Load ORM
-const Sequelize = require("sequelize"),
+const Sequelize = require("sequelize");
 
-    url = process.env.DATABASE_URL || "sqlite:escapeRoom.sqlite",
+const url = process.env.DATABASE_URL || "sqlite:escapeRoom.sqlite";
 
-    sequelize = new Sequelize(url);
+const sequelize = new Sequelize(url);
 
 // Import the definition of the Escape Room Table from escapeRoom.js
 sequelize.import(path.join(__dirname, "escapeRoom"));
@@ -28,6 +27,7 @@ sequelize.import(path.join(__dirname, "user"));
 
 const {escapeRoom, turno, attachment, user} = sequelize.models;
 
+// Relation 1-to-1 between Escape Room and Turn:
 turno.belongsTo(escapeRoom);
 escapeRoom.hasMany(turno);
 
@@ -35,9 +35,11 @@ escapeRoom.hasMany(turno);
 attachment.belongsTo(escapeRoom);
 escapeRoom.hasOne(attachment);
 
+
 // Relation 1-to-N between User and Quiz:
 user.hasMany(escapeRoom, {"foreignKey": "authorId"});
 escapeRoom.belongsTo(user, {"as": "author",
     "foreignKey": "authorId"});
+
 
 module.exports = sequelize;

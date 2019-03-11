@@ -17,6 +17,35 @@
         margin-bottom: 5px; }
         #mainSection .main header .wideRow label {
           color: white; }
+    #mainSection .main .half-flex-container {
+      display: flex;
+      flex-direction: row; }
+      #mainSection .main .half-flex-container .left-half-flex {
+        width: 50%; }
+        #mainSection .main .half-flex-container .left-half-flex form {
+          padding: 0px; }
+          #mainSection .main .half-flex-container .left-half-flex form .buttonApp {
+            width: 40%;
+            margin: 2%;
+            border-radius: 5px;
+            border: 3px solid white;
+            cursor: pointer;
+            transition: 0.1s all ease-in; }
+            #mainSection .main .half-flex-container .left-half-flex form .buttonApp:hover {
+              transform: scale(0.85); }
+            #mainSection .main .half-flex-container .left-half-flex form .buttonApp.selected {
+              border-color: #FAC855; }
+      #mainSection .main .half-flex-container .right-half-flex {
+        width: 50%; }
+        #mainSection .main .half-flex-container .right-half-flex .preview {
+          width: 100%;
+          height: 100%; }
+          #mainSection .main .half-flex-container .right-half-flex .preview #previewIframe {
+            width: 90%;
+            height: 100%;
+            overflow: auto;
+            border: 3px solid white;
+            border-radius: 20px; }
 
 button {
   background-color: white;
@@ -37,7 +66,7 @@ button {
     font-size: medium;
     border-radius: 20px;
     width: 100%;
-    height: 34px;
+    height: 42px;
     outline: 0; }
   button.registro {
     background-color: #FAC855;
@@ -47,7 +76,27 @@ button {
     text-align: center;
     font-size: medium;
     width: 100%;
-    height: 34px;
+    height: 42px;
+    outline: 0; }
+  button.editButton {
+    background-color: #FAC855;
+    color: #161938;
+    font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
+    border-radius: 5px;
+    border-color: #FAC855;
+    border-style: solid;
+    padding: 10px;
+    text-align: center;
+    outline: 0; }
+  button.deleteButton {
+    background-color: #F47E84;
+    color: #161938;
+    font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
+    border-radius: 5px;
+    border-color: #F47E84;
+    border-style: solid;
+    padding: 10px;
+    text-align: center;
     outline: 0; }
   button[type=submit] {
     cursor: pointer; }
@@ -60,7 +109,7 @@ button {
   flex: 1 100%;
   height: 100%;
   background-color: #232951;
-  font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 18px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
   color: white; }
   .portada header {
     position: absolute;
@@ -75,7 +124,9 @@ button {
       text-align: center;
       flex: 7;
       padding: 30px;
-      display: flex; }
+      display: flex;
+      height: 100vh;
+      justify-content: center; }
       .portada .contenedor .loginLeft #imagenPortada {
         max-height: 100%;
         width: auto;
@@ -87,7 +138,7 @@ button {
       text-align: center;
       width: 50%;
       flex: 3;
-      padding: 2em; }
+      padding: 3em; }
       .portada .contenedor .loginRight h1 {
         text-align: left; }
       .portada .contenedor .loginRight input, .portada .contenedor .loginRight select {
@@ -99,7 +150,7 @@ button {
       .portada .contenedor .loginRight label:focus-within {
         color: white; }
       .portada .contenedor .loginRight .loginWelcomeMessage {
-        color: dimgrey;
+        color: #656683;
         text-align: left;
         padding-top: 15px; }
     .portada .contenedor #imagenPortada {
@@ -142,7 +193,8 @@ button {
   box-sizing: border-box; }
 
 html {
-  min-height: 100%; }
+  min-height: 100%;
+  background-color: #2A2A52; }
   html body {
     min-height: 100%;
     margin: 0; }
@@ -155,7 +207,7 @@ html {
     html body div.flexBoxEscapeRooms {
       flex-flow: row wrap; }
     html body label {
-      color: dimgrey; }
+      color: #656683; }
     html body .left {
       float: left; }
     html body .right {
@@ -172,22 +224,28 @@ html {
       padding: 18px; }
     html body input, html body select {
       background-color: #232951;
-      color: dimgrey;
+      -webkit-text-fill-color: #656683 !important;
+      color: #656683;
       font-size: large;
       text-align: center;
-      border-color: dimgrey;
+      border-color: #656683;
       border-radius: 20px;
       border-style: solid;
       border-width: 2px;
-      height: 34px;
+      height: 42px;
       outline: 0;
-      font-weight: lighter; }
-    html body input:focus, html body select:focus {
-      background-color: #232951;
-      color: white;
-      border-color: white; }
-      html body input:focus + label, html body select:focus + label {
-        color: white; }
+      font-weight: lighter;
+      box-shadow: none !important; }
+      html body input:-webkit-autofill, html body select:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px #232951 inset !important;
+        -webkit-text-fill-color: #656683 !important; }
+      html body input:focus, html body input:active, html body input:-webkit-autofill:focus, html body input:-webkit-autofill:active, html body select:focus, html body select:active, html body select:-webkit-autofill:focus, html body select:-webkit-autofill:active {
+        background-color: #232951;
+        color: white;
+        -webkit-text-fill-color: white !important;
+        border-color: white; }
+        html body input:focus + label, html body input:active + label, html body input:-webkit-autofill:focus + label, html body input:-webkit-autofill:active + label, html body select:focus + label, html body select:active + label, html body select:-webkit-autofill:focus + label, html body select:-webkit-autofill:active + label {
+          color: white; }
     html body #flassmessages {
       position: fixed;
       bottom: 0;

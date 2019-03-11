@@ -113,7 +113,6 @@ exports.create = (req, res, next) => {
         }).
         catch(Sequelize.ValidationError, (error) => {
 
-            req.flash("error", "There are errors in the form:");
             error.errors.forEach(({message}) => req.flash("error", message));
             res.render("index", {user,
                 "register": true});
@@ -163,7 +162,6 @@ exports.update = (req, res, next) => {
         }).
         catch(Sequelize.ValidationError, (error) => {
 
-            req.flash("error", "There are errors in the form:");
             error.errors.forEach(({message}) => req.flash("error", message));
             res.render("users/edit", {user});
 
