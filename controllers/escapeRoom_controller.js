@@ -155,6 +155,24 @@ exports.retos = (req, res) => {
 
 };
 
+// GET /escapeRooms/:escapeRoomId
+exports.pistas = (req, res) => {
+
+    const {escapeRoom} = req;
+
+    res.render("escapeRooms/step4", {escapeRoom});
+
+};
+
+// GET /escapeRooms/:escapeRoomId
+exports.encuestas = (req, res) => {
+
+    const {escapeRoom} = req;
+
+    res.render("escapeRooms/step5", {escapeRoom});
+
+};
+
 // GET /escapeRooms/new
 exports.new = (req, res) => {
 
@@ -217,6 +235,91 @@ exports.turnosUpdate = (req, res, next) => {
 
             error.errors.forEach(({message}) => req.flash("error", message));
             res.redirect(`/escapeRooms/${escapeRoom.id}/step2`);
+
+        }).
+        catch((error) => {
+
+            req.flash("error", `Error editing the Escape Room: ${error.message}`);
+            next(error);
+
+        });
+
+
+};
+
+
+// POST /escapeRooms/new2
+exports.retosUpdate = (req, res, next) => {
+
+    const {escapeRoom, body} = req;
+
+    escapeRoom.retos = body.retos;
+
+    escapeRoom.save({"fields": ["retos"]}).then(() => {
+
+        res.redirect(`/escapeRooms/${escapeRoom.id}/step4`);
+
+    }).
+        catch(Sequelize.ValidationError, (error) => {
+
+            error.errors.forEach(({message}) => req.flash("error", message));
+            res.redirect(`/escapeRooms/${escapeRoom.id}/step3`);
+
+        }).
+        catch((error) => {
+
+            req.flash("error", `Error editing the Escape Room: ${error.message}`);
+            next(error);
+
+        });
+
+
+};
+
+// POST /escapeRooms/new2
+exports.pistasUpdate = (req, res, next) => {
+
+    const {escapeRoom, body} = req;
+
+    escapeRoom.pistas = body.pistas;
+
+    escapeRoom.save({"fields": ["retos"]}).then(() => {
+
+        res.redirect(`/escapeRooms/${escapeRoom.id}/step5`);
+
+    }).
+        catch(Sequelize.ValidationError, (error) => {
+
+            error.errors.forEach(({message}) => req.flash("error", message));
+            res.redirect(`/escapeRooms/${escapeRoom.id}/step4`);
+
+        }).
+        catch((error) => {
+
+            req.flash("error", `Error editing the Escape Room: ${error.message}`);
+            next(error);
+
+        });
+
+
+};
+
+
+exports.encuestasUpdate = (req, res, next) => {
+
+    const {escapeRoom, body} = req;
+
+    escapeRoom.pistas = body.pistas;
+
+    escapeRoom.save({"fields": ["retos"]}).then(() => {
+
+        res.redirect(`/escapeRooms/${escapeRoom.id}/`);
+
+    }).
+        catch(Sequelize.ValidationError, (error) => {
+
+            error.errors.forEach(({message}) => req.flash("error", message));
+            res.redirect(`/escapeRooms/${escapeRoom.id}/step5`);
 
         }).
         catch((error) => {

@@ -80,6 +80,11 @@ router.post("/escapeRooms/:escapeRoomId(\\d+)/step1", sessionController.loginReq
 router.get("/escapeRooms/:escapeRoomId(\\d+)/step2", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.turnos);
 router.post("/escapeRooms/:escapeRoomId(\\d+)/step2", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.turnosUpdate);
 router.get("/escapeRooms/:escapeRoomId(\\d+)/step3", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.retos);
+router.post("/escapeRooms/:escapeRoomId(\\d+)/step3", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.retosUpdate);
+router.get("/escapeRooms/:escapeRoomId(\\d+)/step4", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.pistas);
+router.post("/escapeRooms/:escapeRoomId(\\d+)/step4", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.pistasUpdate);
+router.get("/escapeRooms/:escapeRoomId(\\d+)/step5", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.encuestas);
+router.post("/escapeRooms/:escapeRoomId(\\d+)/step5", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.encuestasUpdate);
 
 
 router.post("/escapeRooms/:escapeRoomId(\\d+)/turnos", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);

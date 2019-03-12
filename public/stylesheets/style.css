@@ -332,7 +332,7 @@ html {
       color: white;
       text-decoration: none;
       font-weight: lighter; }
-    html body h1 {
+    html body h1, html body h2 {
       font-weight: lighter; }
     html body div.flexBoxEscapeRooms {
       flex-flow: row wrap; }
