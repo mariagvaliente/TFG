@@ -68,6 +68,7 @@ router.get("/users/:userId(\\d+)/student", sessionController.loginRequired, sess
 router.get("/escapeRooms", sessionController.loginRequired, sessionController.adminRequired, escapeRoomController.index);
 router.get("/escapeRooms/:escapeRoomId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.show);
 router.get("/escapeRooms/:escapeRoomId(\\d+)/preview", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.preview);
+
 router.get("/escapeRooms/new", sessionController.loginRequired, escapeRoomController.new);
 router.post("/escapeRooms", sessionController.loginRequired, upload.single("image"), escapeRoomController.create);
 router.get("/escapeRooms/:escapeRoomId(\\d+)/edit", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.edit);
