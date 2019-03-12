@@ -39,6 +39,11 @@
     <input type="hidden" id="appearance" name="appearance" value="<%= escapeRoom.appearance  || "litera" %>" />
     <div class="align-right"><button type="submit">siguiente</button></div>
   </form>
+<br/>
+<br/>
+<br/>
+<br/>
 </div>
-<% include ../partials/__footer %>
 
+<% include ../partials/__footer %>
+<%- include ('../partials/__progress', {progress: 1}) %>

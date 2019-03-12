@@ -6,6 +6,9 @@
         <h1>
             No has creado ninguna escape room, gestiónalas desde aquí...
         </h1>
+        <div class="flexBoxEscapeRooms">
+            <a href="/escapeRooms/new"><div class="escapeRoomItem addEscapeRoom"><span>+</span></div></a>
+        </div>
         <% } else {  %>
         <h1>
             Gestiona las escape rooms desde aquí...
@@ -27,10 +30,11 @@
                 </a>
 
             <% } %>
+            <a href="/escapeRooms/new"><div class="escapeRoomItem addEscapeRoom"><span>+</span></div></a>
+        </div>
         <% } %>
 
-        <a href="/escapeRooms/new"><div class="escapeRoomItem addEscapeRoom"><span>+</span></div></a>
-    </div>
+       
     </br>
     <% include ../partials/__footer %>
 </div>

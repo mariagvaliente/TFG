@@ -1,7 +1,7 @@
 
 <div class="wideRow erFormField">
     <label for="tit"  class="itemNarrow">1. Título:</label>
-    <input type="text" class="customInput itemWide" id="tit" name="title" value="<%= escapeRoom.title %>" placeholder="¿Cómo se llama tu Escape Room?" autocomplete="off"/>
+    <input autofocus type="text" class="customInput itemWide" id="tit" name="title" value="<%= escapeRoom.title %>" placeholder="¿Cómo se llama tu Escape Room?" autocomplete="off"/>
 </div>
 
 <div class="wideRow erFormField">
@@ -31,21 +31,28 @@
 
 <br/>
 <div class="wideRow erFormField">
-    <label for="img">8. Miniatura:</label>
+    <label >8. Miniatura:</label>
     <input class="attach" type="file" id="img" name="image"/>
+    <label for="img" class="fileUpload customInput itemWide">
+      <span id="imgLabel" ><% if (escapeRoom.id) { %> <%=escapeRoom.attachment ? escapeRoom.attachment.filename : "Default" %> <% } else { %> No has subido ningún fichero <% } %></span>
+      <span id="upload" <% if (escapeRoom.id) { %> style="display: none;" <% } %> class="fileUploadButton"><i class="material-icons">file_upload</i></span> 
+      <span id="delete" <% if (!escapeRoom.id) { %> style="display: none;" <% } %>class="fileUploadButton"><i class="material-icons">delete</i></span>
+      <input type="hidden" name="keepAttachment" value="<%= escapeRoom.id ? "1" : "0" %>" >
+    </label>
 </div>
 
 <br/>
-
+<!-- 
 <% if (escapeRoom.id) { %>
     <label for="img">Mantener la imagen de la Escape Room:</label>
     <input type="checkbox" name="keepAttachment" value="1" checked>
 <% } %>
 
-
-<a href="/users/<%= session.user.id %>/escapeRooms"><button type="button">Cancelar</button></a>
-
-<button type="submit">Siguiente</button>
+ -->
+<div class="align-right">
+  <a href="/users/<%= session.user.id %>/escapeRooms"><button type="button">cancelar</button></a>
+  <button type ="submit">siguiente</button>
+</div>
 
 <br/>
 <br/>
@@ -54,6 +61,8 @@
 <br/>
 <br/>
 <script type="text/javascript">
+
+$(function(){
     var last_known_scroll_position = 0;
     var ticking = false;
 
@@ -75,4 +84,51 @@
       ticking = true;
     });
 
+    $('#img').on("change", function(e){
+      let path = $(this).val();
+      try {
+        let fileNameArr = path.split("\\");
+        let fileName = fileNameArr[fileNameArr.length - 1];
+        if(fileName) {
+          $('#delete').show();
+          $('#upload').hide();
+          $('#imgLabel').html(fileName);
+        }
+      } catch (e) {
+          $('#delete').hide();
+          $('#upload').show();
+          $('#imgLabel').html("No has subido ninguna imagen");
+      }
+    });
+
+/*    $('.customInput').on('focus', function(e){
+      elementMouseIsOver = document.querySelectorAll( ":hover" );
+      try {
+          [...elementMouseIsOver].filter(a=>a.classList.contains('erFormField'))[0].children[1]
+      } catch(e) {
+          var el = $( e.target);
+          var elOffset = el.offset().top;
+          var elHeight = el.height();
+          var windowHeight = $(window).height();
+          var offset;
+
+          if (elHeight < windowHeight) {
+            offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
+          }
+          else {
+            offset = elOffset;
+          }
+          var speed = 700;
+          $('html, body').animate({scrollTop:offset}, speed);
+      }
+      
+    })*/
+
+})
+
+
+
+
 </script>
+
+<%- include('../partials/__progress', {progress: 0}) %>

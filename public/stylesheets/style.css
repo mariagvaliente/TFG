@@ -84,7 +84,23 @@
           text-align: left;
           margin-left: 35px;
           width: 100%;
-          background-color: transparent; }
+          background-color: transparent;
+          color: #656683;
+          font-size: large;
+          height: 42px;
+          padding-top: 10px; }
+          #mainSection .main .basicConfig .erFormField .customInput .fileUploadButton {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 0px; }
+        #mainSection .main .basicConfig .erFormField input[type=file] {
+          width: 0.1px;
+          height: 0.1px;
+          opacity: 0;
+          overflow: hidden;
+          position: absolute;
+          z-index: -1; }
         #mainSection .main .basicConfig .erFormField label.itemNarrow {
           display: block; }
     #mainSection .main .flexShow {
@@ -348,6 +364,24 @@ html {
       width: 100%;
       margin-left: -15px;
       padding: 18px; }
+    html body .progressBar {
+      position: absolute;
+      bottom: 0;
+      width: 50%;
+      left: 25%;
+      color: white;
+      text-align: center;
+      padding-bottom: 10px; }
+      html body .progressBar .progressText {
+        padding-bottom: 10px;
+        font-size: 14px; }
+      html body .progressBar .outterBar {
+        height: 10px;
+        border: 2px solid white;
+        border-radius: 5px; }
+        html body .progressBar .outterBar .innerBar {
+          background-color: white;
+          height: 100%; }
     html body input, html body select {
       background-color: #232951;
       -webkit-text-fill-color: #656683 !important;
