@@ -1,90 +1,150 @@
-<div class="main">
-
-<header class="" id="mainHeader">
-
-    <div class="right">
-        <% if (!session.user) { %>
-            <a href="/">Login</a>
-        <% } else { %>
-            <%= session.user.username %>
-
-        <% } %>
-    </div>
-    <div class="left">
-        <% if (session.user) { %>
-        <a href="/?_method=DELETE">Logout</a>
-        <% } %>
-    </div>
-
-</header>
+<% include _header.ejs %>
+<div class="main no-bckg">
+ 
 <h1>
     Configuración básica de la escape room:
 </h1>
 
 <br class="escapeRoomItem">
-
-<div>
+<div class="menuERShow">
+<div class="attachmentShow">
     <% var attachment = escapeRoom.attachment; %>
     <% include ../attachments/_show %>
 </div>
-    <div>
-        <br />
-        Título: <b><%= escapeRoom.title %></b>
-        <br />
-        Profesor/a: <b><%= escapeRoom.teacher %></b>
-        <br />
-        Asignatura: <b><%= escapeRoom.subject %></b>
-        <br />
-        Duración: <b><%= escapeRoom.duration %></b>
-        <br />
-        Descripción: <b><%= escapeRoom.description %></b>
-        <br />
-        Vídeo: <b><%= escapeRoom.video %></b>
-        <br />
-        Número máximo de participantes: <b><%= escapeRoom.nmax %></b>
-        <br />
-        Inivitación: <b><%= escapeRoom.invitation %></b>
-        <br />
+<div class="menuERShowRight">
+   <ul class="menuERactionList">
+       <li><a href="#basic">Configuración básica</a></li>
+       <li><a href="#appearance">Apariencia</a></li>
+       <li><a href="#turnos">Turnos</a></li>
+       <li><a href="#join">Enlace de invitación</a></li>
+       <li><a href="">Participantes <i class="material-icons">keyboard_arrow_right</i></a></li>
+       <li><a href="">Equipos <i class="material-icons">keyboard_arrow_right</i> </a></li>
+       <li><a href="">Learning analytics <i class="material-icons">keyboard_arrow_right</i> </a></li>
+       <li><a href="/escapeRooms/<%= escapeRoom.id %>/edit"><button class="showMenuButton editButton">editar</button></a></li>
+       <li><a href="/escapeRooms/<%= escapeRoom.id %>?_method=DELETE" onClick="return confirm('Delete: <%= escapeRoom.title %>');"><button class="showMenuButton deleteButton">borrar</button></a></li>
+       <li><a href="/users/<%= session.user.id %>/escapeRooms"><button class="showMenuButton">volver</button></a></li>
+   </ul>
+
+</div>
+</div>
+<br/>
+<br/>
+<div class="flexShow">
+    <div class="flexRow" id="basic">
+        <div class="flexShowLeft">
+            Título:
+        </div>   
+        <div class="flexShowRight">
+            <%= escapeRoom.title %>
+        </div>   
     </div>
-    </br>
-
- 
-
-<h2>
-    Turnos:
-</h2>
-
-<% var turnos = escapeRoom.turnos; %>
-
-<% include ../turnos/index %>
+    <div class="flexRow">
+        <div class="flexShowLeft">
+            Asignatura:
+        </div>   
+        <div class="flexShowRight">
+            <%= escapeRoom.subject %>
+        </div>  
+    </div>
+    <div class="flexRow">
+        <div class="flexShowLeft">
+            Duración:
+        </div>   
+        <div class="flexShowRight">
+            <%= escapeRoom.duration %>
+        </div>  
+    </div>
+     <div class="flexRow">
+         <div class="flexShowLeft">
+             Descripción:
+         </div>   
+         <div class="flexShowRight">
+             <%= escapeRoom.description %>
+         </div>  
+        </div>
+    <div class="flexRow">
+        <div class="flexShowLeft">
+            Vídeo:
+        </div>   
+        <div class="flexShowRight">
+            <%= escapeRoom.video %>
+        </div>  
+    </div>
+    <div class="flexRow">
+        <div class="flexShowLeft">
+            Nº máx. participantes:
+        </div>   
+        <div class="flexShowRight">
+            <%= escapeRoom.nmax %>
+        </div>  
+    </div>
+    <div class="flexRow" id="join">
+        <div class="flexShowLeft">
+            Invitación:
+        </div>   
+        <div class="flexShowRight">
+            http://localhost:3000/escapeRooms/<%= escapeRoom.id %>/join?token=<%= escapeRoom.invitation %>
+            <input id="joinUrl" value="http://localhost:3000/escapeRooms/<%= escapeRoom.id %>/join?token=<%= escapeRoom.invitation %>" />
+            <button class="copy" id="copyButton"><i class="material-icons">file_copy</i></button>
+        </div>  
+    </div>
+    <div class="flexRow" id="appearance">
+        <div class="flexShowLeft">
+            Apariencia:
+        </div>   
+        <div class="flexShowRight">
+            <img src="/images/<%=escapeRoom.appearance%>.png"/>
+        </div>  
+    </div>
+    <div class="flexRow" id="turnos">
+        <div class="flexShowLeft">
+            Turnos:
+        </div>   
+        <div class="flexShowRight">
+            <% var turnos = escapeRoom.turnos; %>
+            <% include ../turnos/index %>
+        </div>  
+    </div>
+    <div class="flexRow" id="pistas">
+        <div class="flexShowLeft">
+            Retos:
+        </div>   
+        <div class="flexShowRight">
+             
+        </div>  
+    </div>
+    <div class="flexRow" id="pistas">
+        <div class="flexShowLeft">
+            Pistas:
+        </div>   
+        <div class="flexShowRight">
+             
+        </div>  
+    </div>
+</div>
 </br>
 
-<h2>
-    Apariencia:
-    <img src="/images/<%=escapeRoom.appearance%>.png"/>
-</h2>
-<script>
-    $(function getTema(){
-        const tema=document.getElementById("appearance").value;
-    });
-</script>
-
 
 </br>
-<td>
-    <a href="/escapeRooms/<%= escapeRoom.id %>/edit"><button class="editButton">editar</button></a>
-</td>
-<td>
-    <a href="/escapeRooms/<%= escapeRoom.id %>?_method=DELETE"
-       onClick="return confirm('Delete: <%= escapeRoom.title %>');">
-        <a href="/users/<%= session.user.id %>/escapeRooms"><button class="deleteButton">borrar</button></a>
-    </a>
-</td>
 
-<a href="/users/<%= session.user.id %>/escapeRooms"><button>volver</button></a>
+</br>
+
 <div style="height: 100px"/>
 
 </div>
+<script type="text/javascript">
+    window.onload = function() {
+        document.getElementById('copyButton').onclick = function() {
+            var copyText = document.getElementById("joinUrl");
 
+             /* Select the text field */
+             copyText.select();
+
+             /* Copy the text inside the text field */
+             document.execCommand("copy");
+        }
+    }
+
+</script>
 
 <% include ../partials/__footer %>

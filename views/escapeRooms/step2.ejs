@@ -1,5 +1,5 @@
+<% include _header.ejs %>
 <div class="main">
-    <% include _header.ejs %>
 	<h2>
 	    Turnos:
 	</h2>
@@ -13,6 +13,6 @@
 	     <% include ../turnos/index %>
 	    </div>
 	</div>
-	<a href="/users/<%= session.user.id %>/escapeRooms"><button>finalizar</button></a>
-	<% include ../partials/__footer %>
+	<a href="/escapeRooms/<%=escapeRoom.id%>/step3"><button>siguiente</button></a>
 </div>
+<% include ../partials/__footer %>

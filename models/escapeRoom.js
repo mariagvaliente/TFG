@@ -37,6 +37,7 @@ module.exports = function (sequelize, DataTypes) {
             },
             "appearance": {
                 "type": DataTypes.STRING,
+                "defaultValue": "litera",
                 "validate": {"notEmpty": {"msg": "La apariencia no puede estar vacía."}}
             }
 

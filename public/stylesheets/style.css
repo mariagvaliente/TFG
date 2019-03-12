@@ -1,51 +1,157 @@
 #mainSection {
   min-height: 100%;
   position: relative; }
+  #mainSection #mainHeader {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #161938;
+    width: 100%;
+    z-index: 1;
+    position: absolute; }
+    #mainSection #mainHeader .left, #mainSection #mainHeader .right {
+      padding: 10px;
+      color: white; }
+    #mainSection #mainHeader .wideRow {
+      margin-bottom: 5px; }
+      #mainSection #mainHeader .wideRow label {
+        color: white; }
   #mainSection .main {
     font-size: 22px;
     min-height: calc(100vh - 0em);
     color: white;
     height: 100%;
     background-image: url("../images/background.png");
-    background-size: cover;
+    background-size: contain;
     height: 100%;
-    padding: 15px;
+    padding: 35px;
+    padding-top: 70px !important;
     position: relative; }
-    #mainSection .main header {
-      height: auto; }
-      #mainSection .main header .wideRow {
-        margin-bottom: 5px; }
-        #mainSection .main header .wideRow label {
-          color: white; }
+    #mainSection .main.no-bckg {
+      background: none; }
+    #mainSection .main footer {
+      margin-left: -35px; }
     #mainSection .main .half-flex-container {
       display: flex;
       flex-direction: row; }
       #mainSection .main .half-flex-container .left-half-flex {
-        width: 50%; }
-        #mainSection .main .half-flex-container .left-half-flex form {
-          padding: 0px; }
-          #mainSection .main .half-flex-container .left-half-flex form .buttonApp {
-            width: 40%;
-            margin: 2%;
-            border-radius: 5px;
-            border: 3px solid white;
-            cursor: pointer;
-            transition: 0.1s all ease-in; }
-            #mainSection .main .half-flex-container .left-half-flex form .buttonApp:hover {
-              transform: scale(0.85); }
-            #mainSection .main .half-flex-container .left-half-flex form .buttonApp.selected {
-              border-color: #FAC855; }
+        width: 50%;
+        padding: 0px; }
+        #mainSection .main .half-flex-container .left-half-flex .buttonApp {
+          width: 40%;
+          margin: 2%;
+          margin-left: 0px;
+          border-radius: 5px;
+          border: 3px solid white;
+          cursor: pointer;
+          background-color: white;
+          transition: 0.1s all ease-in; }
+          #mainSection .main .half-flex-container .left-half-flex .buttonApp:hover {
+            transform: scale(0.85); }
+          #mainSection .main .half-flex-container .left-half-flex .buttonApp.selected {
+            border-color: #FAC855; }
       #mainSection .main .half-flex-container .right-half-flex {
         width: 50%; }
         #mainSection .main .half-flex-container .right-half-flex .preview {
           width: 100%;
           height: 100%; }
           #mainSection .main .half-flex-container .right-half-flex .preview #previewIframe {
-            width: 90%;
-            height: 100%;
+            width: 100%;
+            height: 94%;
             overflow: auto;
             border: 3px solid white;
-            border-radius: 20px; }
+            border-radius: 20px;
+            margin-top: 20px;
+            margin-bottom: 3%; }
+    #mainSection .main .attachmentShow img {
+      max-width: 100%;
+      border: 2px solid white; }
+    #mainSection .main .align-right {
+      text-align: right; }
+    #mainSection .main .basicConfig {
+      font-size: 26px;
+      text-align: center; }
+      #mainSection .main .basicConfig .erFormField {
+        padding: 40px;
+        text-align: left; }
+        #mainSection .main .basicConfig .erFormField:focus-within {
+          color: white !important; }
+          #mainSection .main .basicConfig .erFormField:focus-within label {
+            color: white; }
+        #mainSection .main .basicConfig .erFormField .customInput {
+          border: none;
+          text-align: left;
+          margin-left: 35px;
+          width: 100%;
+          background-color: transparent; }
+        #mainSection .main .basicConfig .erFormField label.itemNarrow {
+          display: block; }
+    #mainSection .main .flexShow {
+      width: 100%; }
+      #mainSection .main .flexShow .flexRow {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding-bottom: 20px; }
+        #mainSection .main .flexShow .flexRow:first-child {
+          font-size: 26px; }
+        #mainSection .main .flexShow .flexRow .flexShowLeft {
+          width: 250px;
+          line-height: 37px; }
+        #mainSection .main .flexShow .flexRow .flexShowRight {
+          width: 100%;
+          font-size: 24px;
+          flex: 1;
+          color: #656683;
+          font-family: 'Lato', sans-serif;
+          line-height: 32px; }
+          #mainSection .main .flexShow .flexRow .flexShowRight img {
+            width: 250px;
+            border-radius: 5px; }
+          #mainSection .main .flexShow .flexRow .flexShowRight #joinUrl {
+            height: 10px;
+            opacity: 0.01;
+            width: 10px;
+            padding: 2px;
+            margin: 0px; }
+          #mainSection .main .flexShow .flexRow .flexShowRight .copy {
+            background: transparent;
+            border: none;
+            font-size: 16px;
+            color: white;
+            vertical-align: middle; }
+    #mainSection .main .menuERShow {
+      display: flex;
+      justify-content: space-between; }
+      #mainSection .main .menuERShow .menuERShowRight {
+        margin-left: 50px;
+        padding: 10px;
+        border-left: 2px solid white; }
+        #mainSection .main .menuERShow .menuERShowRight .menuERactionList {
+          list-style: none;
+          font-size: 16px; }
+          #mainSection .main .menuERShow .menuERShowRight .menuERactionList li {
+            margin-bottom: 16px; }
+            #mainSection .main .menuERShow .menuERShowRight .menuERactionList li a {
+              line-height: 24px; }
+              #mainSection .main .menuERShow .menuERShowRight .menuERactionList li a:hover {
+                color: #48C18E; }
+            #mainSection .main .menuERShow .menuERShowRight .menuERactionList li .showMenuButton {
+              font-size: 16px;
+              border-radius: 20px;
+              padding: 5px 20px;
+              width: 100%;
+              transition: 0.1s all ease-in; }
+              #mainSection .main .menuERShow .menuERShowRight .menuERactionList li .showMenuButton:hover {
+                transform: scale(0.9); }
+
+@media (min-width: 1200px) {
+  #mainSection .main {
+    padding: 35px calc(50vw - 600px); }
+    #mainSection .main footer {
+      margin-left: calc(600px - 50vw); } }
 
 button {
   background-color: white;
@@ -105,16 +211,21 @@ button {
   font-family: "Gugi";
   src: url("../fonts/Gugi-Regular.eot?") format("eot"), url("../fonts/Gugi-Regular.woff2") format("woff2"), url("../fonts/Gugi-Regular.woff") format("woff"), url("../fonts/Gugi-Regular.ttf") format("truetype"), url("../fonts/Gugi-Regular.svg#Gugi-Regular") format("svg"); }
 
+.portada + #mainHeader {
+  position: absolute;
+  padding: 15px;
+  display: block;
+  width: 100%;
+  background-color: transparent !important;
+  top: 0px;
+  height: auto !important; }
+
 .portada {
   flex: 1 100%;
   height: 100%;
   background-color: #232951;
   font: 18px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
   color: white; }
-  .portada header {
-    position: absolute;
-    padding: 15px;
-    width: 100%; }
   .portada .contenedor {
     display: flex;
     min-height: 100%; }
@@ -158,23 +269,25 @@ button {
       width: auto; }
 
 .escapeRooms .flexBoxEscapeRooms {
-  display: flex; }
-  .escapeRooms .flexBoxEscapeRooms::after {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  .escapeRooms .flexBoxEscapeRooms:after {
     content: "";
     flex: auto;
-    width: 150px; }
+    width: auto; }
   .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
     background: white;
     color: black;
-    width: 150px;
-    height: 150px;
+    width: 14vw;
+    height: 14vw;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     border-radius: 10px;
-    padding: 5px;
-    margin: 5px; }
+    padding: 1vw;
+    margin: 1vw; }
     .escapeRooms .flexBoxEscapeRooms .escapeRoomItem img {
       width: 100%;
       max-height: 100%; }
@@ -186,7 +299,25 @@ button {
       border-width: 5px;
       border-style: solid;
       border-color: #D2D4DC;
-      outline: 0; }
+      outline: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; }
+
+@media (max-width: 1200px) {
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
+    width: 180px;
+    height: 180px; } }
+
+@media (max-width: 992px) {
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
+    width: 28vw;
+    height: 28vw; } }
+
+@media (max-width: 576px) {
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
+    width: 33vw;
+    height: 33vw; } }
 
 * {
   font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -208,10 +339,6 @@ html {
       flex-flow: row wrap; }
     html body label {
       color: #656683; }
-    html body .left {
-      float: left; }
-    html body .right {
-      float: right; }
     html body footer {
       display: flex;
       align-content: space-around;
@@ -256,7 +383,8 @@ html {
       color: #232951;
       padding: 15px;
       opacity: 0.9;
-      padding-top: 0px; }
+      padding-top: 0px;
+      left: 0px; }
       html body #flassmessages .close {
         content: '\2716';
         top: 0;
@@ -267,3 +395,6 @@ html {
         height: 0;
         cursor: pointer;
         padding: 4px; }
+
+.material-icons {
+  vertical-align: middle; }

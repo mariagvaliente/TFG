@@ -2,49 +2,172 @@
 #mainSection
 	min-height: 100%
 	position: relative
+	#mainHeader
+		height: 50px
+		display: flex
+		justify-content: space-between
+		align-items: center
+		background-color: $darkerpurple
+		width: 100%
+		z-index: 1
+		position: absolute
+
+		.left, .right
+			padding: 10px
+			color: white
+		.wideRow
+			margin-bottom: 5px
+			&:focus-within
+			label
+	   			color: white
 	.main
 		font-size: 22px 
 		min-height: calc(100vh - 0em)
 		color: white
 		height: 100%
 		background-image: url("../images/background.png")
-		background-size: cover
+		background-size: contain
 		height: 100%
-		padding: 15px
+		padding: 35px
+		padding-top: 70px !important
 		position: relative
-		header
-			height: auto
-			.wideRow
-				margin-bottom: 5px
-				&:focus-within
-				label
-		   			color: white
+		&.no-bckg
+			background: none
+		footer 
+			margin-left: -35px
 		.half-flex-container
 			display: flex
 			flex-direction: row
 			.left-half-flex
 				width: 50%
-				form
-					padding: 0px
-					.buttonApp
-						width: 40%
-						margin: 2%
-						border-radius: 5px
-						border: 3px solid white
-						cursor: pointer
-						transition: 0.1s all ease-in
-						&:hover
-							transform: scale(0.85)
-						&.selected
-							border-color: $brightyellow
+				padding: 0px
+				.buttonApp
+					width: 40%
+					margin: 2%
+					margin-left: 0px
+					border-radius: 5px
+					border: 3px solid white
+					cursor: pointer
+					background-color: white
+					transition: 0.1s all ease-in
+					&:hover
+						transform: scale(0.85)
+					&.selected
+						border-color: $brightyellow
 			.right-half-flex
 				width: 50%
 				.preview
 					width: 100%
 					height: 100%
 					#previewIframe
-						width: 90%
-						height: 100%
-						overflow: auto
-						border: 3px solid white
-						border-radius: 20px
+						width: 100%;
+						height: 94%;
+						overflow: auto;
+						border: 3px solid white;
+						border-radius: 20px;
+						margin-top: 20px;
+						margin-bottom: 3%;
+		.attachmentShow
+			img
+				max-width: 100%
+				border: 2px solid white
+		.align-right
+			text-align: right
+		.basicConfig
+			font-size: 26px
+			text-align: center
+			.erFormField	
+				padding: 40px
+				text-align: left
+				&:focus-within
+					color: white !important
+					label
+						color: white
+				.customInput
+					border: none
+					text-align: left
+					margin-left: 35px
+					width: 100%
+					background-color: transparent
+				label.itemNarrow
+					display: block
+		.flexShow
+			width: 100%
+			
+			.flexRow
+				width: 100%
+				display: flex
+				flex-wrap: wrap
+				flex-direction: row
+				padding-bottom: 20px
+				&:first-child
+					font-size: 26px
+
+				.flexShowLeft
+					width: 250px
+					line-height: 37px
+				.flexShowRight
+					width: 100%
+					font-size: 24px
+					flex: 1
+					color: $textpurple
+					font-family:  'Lato', sans-serif
+					line-height: 32px
+					img
+						width: 250px
+						border-radius:  5px
+					#joinUrl
+						height: 10px
+						opacity: 0.01
+						width: 10px
+						padding: 2px
+						margin: 0px
+					.copy
+						background: transparent
+						border: none
+						font-size: 16px
+						color: white
+						vertical-align: middle
+		.menuERShow
+			display: flex
+			justify-content: space-between
+			.menuERShowRight
+				margin-left:  50px
+				padding: 10px
+				border-left: 2px solid white
+				.menuERactionList
+					list-style: none
+					font-size: 16px
+					li
+						margin-bottom: 16px
+						a
+							line-height: 24px
+							&:hover
+								color: $brightgreen
+							 
+						.showMenuButton
+							font-size: 16px
+							border-radius: 20px
+							padding: 5px 20px
+							width: 100%
+							transition: 0.1s all ease-in
+							&:hover
+								transform: scale(0.9)
+// Small devices (landscape phones, 576px and up)
+// @media (min-width: 576px) 
+
+
+// Medium devices (tablets, 768px and up)
+// @media (min-width: 768px)  
+
+// Large devices (desktops, 992px and up)
+// @media (min-width: 992px) 
+
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) 
+ 	#mainSection
+ 		.main
+ 			padding: 35px calc(50vw - 600px)
+ 			footer 
+ 				margin-left: calc(600px - 50vw)

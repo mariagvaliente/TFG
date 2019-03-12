@@ -1,50 +1,44 @@
-
+<% include _header.ejs %>
 <div class="main">
-    <% include _header.ejs %>
-    <div class="half-flex-container">
-        <div class="left-half-flex">
-            <form method='POST' action='/escapeRooms/<%= escapeRoom.id %>/step2'  >
-                <label for="img">Seleccione una apariencia:</label>
-                <input type="hidden" id="appearance" name="appearance" value="litera"/>
-                </br>
-                </br>
-                <img class="buttonApp selected" id="litera" src="/images/litera.png" autocomplete="off"/>
-                <img class="buttonApp" id="cerulean" src="/images/cerulean.png" autocomplete="off"/>
-                <img class="buttonApp" id="journal" src="/images/journal.png" autocomplete="off"/>
-                <img class="buttonApp" id="sketchy" src="/images/sketchy.png" autocomplete="off"/>
-                <img class="buttonApp" id="darkly" src="/images/darkly.png" autocomplete="off"/>
-                <img class="buttonApp" id="cyborg" src="/images/cyborg.png" autocomplete="off"/>
-                </br>
-                </br>
-                <button type="submit">siguiente</button>
-            </form>
-            <script>
-            var url = '/escapeRooms/<%= escapeRoom.id %>/preview?appearance=';
-            window.onload = function() {
-              let anchors = document.getElementsByClassName('buttonApp');
-              for(var i = 0; i < anchors.length; i++) {
-                let anchor = anchors[i];
-                anchor.onclick = function() {
-                  let input = document.getElementById('appearance');
-                  let oldSelected = document.getElementById(input.value);
-                  input.value = anchor.id;
-                  if (oldSelected) {
-                    oldSelected.classList.remove('selected');
-                  }
-                  document.getElementById('previewIframe').src = url + anchor.id;
-                  this.classList.add('selected')
-                 }
+  <div class="half-flex-container">
+    <div class="left-half-flex">
+        <h2 >Apariencia</h2>
+        <img class="buttonApp selected" id="litera" src="/images/litera.png" autocomplete="off"/>
+        <img class="buttonApp" id="cerulean" src="/images/cerulean.png" autocomplete="off"/>
+        <img class="buttonApp" id="journal" src="/images/journal.png" autocomplete="off"/>
+        <img class="buttonApp" id="sketchy" src="/images/sketchy.png" autocomplete="off"/>
+        <img class="buttonApp" id="darkly" src="/images/darkly.png" autocomplete="off"/>
+        <img class="buttonApp" id="cyborg" src="/images/cyborg.png" autocomplete="off"/>
+      <script>
+        var url = '/escapeRooms/<%= escapeRoom.id %>/preview?appearance=';
+        window.onload = function() {
+          let anchors = document.getElementsByClassName('buttonApp');
+          for(var i = 0; i < anchors.length; i++) {
+            let anchor = anchors[i];
+            anchor.onclick = function() {
+              let input = document.getElementById('appearance');
+              let oldSelected = document.getElementById(input.value);
+              input.value = anchor.id;
+              if (oldSelected) {
+                oldSelected.classList.remove('selected');
               }
+              document.getElementById('previewIframe').src = url + anchor.id;
+              this.classList.add('selected')
             }
-            </script>
-        </div>
-        <div class="right-half-flex">
-            <div class="preview">
-                <iframe id="previewIframe" src='/escapeRooms/<%= escapeRoom.id %>/preview?appearance=litera'/>
-            </div>
-        </div>
+          }
+        }
+      </script>
     </div>
+    <div class="right-half-flex">
+      <div class="preview">
+        <iframe id="previewIframe" src='/escapeRooms/<%= escapeRoom.id %>/preview?appearance=litera'></iframe>
+      </div>
+    </div>
+  </div>
+  <form method='POST' action='/escapeRooms/<%= escapeRoom.id %>/step1'  >
+    <input type="hidden" id="appearance" name="appearance" value="litera" />
+    <div class="align-right"><button type="submit">siguiente</button></div>
+  </form>
 </div>
-
 <% include ../partials/__footer %>
 

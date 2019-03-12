@@ -1,49 +1,39 @@
 
-<body class="login">
-<div class="wideRow">
-    <label for="tit"  class="itemNarrow">Título:</label>
-    <input type="text" class="customInput itemWide" id="tit" name="title" value="<%= escapeRoom.title %>" placeholder="Escriba" autocomplete="off"/>
+<div class="wideRow erFormField">
+    <label for="tit"  class="itemNarrow">1. Título:</label>
+    <input type="text" class="customInput itemWide" id="tit" name="title" value="<%= escapeRoom.title %>" placeholder="¿Cómo se llama tu Escape Room?" autocomplete="off"/>
 </div>
 
-<div class="wideRow">
-    <label for="tit"  class="itemNarrow">Profesor/a:</label>
-    <input type="text" class="customInput itemWide" id="tit" name="teacher" value="<%= escapeRoom.title %>" placeholder="Escriba" autocomplete="off"/>
+<div class="wideRow erFormField">
+    <label for="subj"  class="itemNarrow">2. Asignatura:</label>
+    <input type="text" class="customInput itemWide" id="subj" name="subject" value="<%= escapeRoom.subject %>" placeholder="¿A qué asignatura pertenece esta actividad?" autocomplete="off"/>
 </div>
 
-<div class="wideRow">
-    <label for="subj"  class="itemNarrow">Asignatura:</label>
-    <input type="text" class="customInput itemWide" id="subj" name="subject" value="<%= escapeRoom.subject %>" placeholder="Escriba" autocomplete="off"/>
+<div class="wideRow erFormField">
+    <label for="dur"  class="itemNarrow">3. Duración:</label>
+    <input type="text" class="customInput itemWide" id="dur" name="duration" value="<%= escapeRoom.duration %>" placeholder="¿Cual es el tiempo máximo del que disponen los alumnos?" autocomplete="off"/>
 </div>
 
-<div class="wideRow">
-    <label for="dur"  class="itemNarrow">Duración:</label>
-    <input type="text" class="customInput itemWide" id="dur" name="duration" value="<%= escapeRoom.duration %>" placeholder="Escriba" autocomplete="off"/>
+<div class="wideRow erFormField">
+    <label for="desc"  class="itemNarrow">4. Descripción:</label>
+    <input type="text" class="customInput itemWide" id="desc" name="description" value="<%= escapeRoom.description %>" placeholder="Escribe la descripción de tu Escape Room. Esta será la información que se les presentará a los alumnos" autocomplete="off"/>
 </div>
 
-<div class="wideRow">
-    <label for="desc"  class="itemNarrow">Descripción:</label>
-    <input type="text" class="customInput itemWide" id="desc" name="description" value="<%= escapeRoom.description %>" placeholder="Escriba" autocomplete="off"/>
+<div class="wideRow erFormField">
+    <label for="vid"  class="itemNarrow">5. Video:</label>
+    <input type="text" class="customInput itemWide" id="vid" name="video" value="<%= escapeRoom.video %>" placeholder="URL del vídeo de presentación de la Escape Room" autocomplete="off"/>
 </div>
 
-<div class="wideRow">
-    <label for="vid"  class="itemNarrow">Video:</label>
-    <input type="text" class="customInput itemWide" id="vid" name="video" value="<%= escapeRoom.video %>" placeholder="Escriba" autocomplete="off"/>
-</div>
-
-<div class="wideRow">
-    <label for="vid"  class="itemNarrow">Número máximo de participantes:</label>
-    <input type="text" class="customInput itemWide" id="nm" name="nmax" value="<%= escapeRoom.nmax %>" placeholder="Escriba" autocomplete="off"/>
-</div>
-
-<div class="wideRow">
-    <label for="inv"  class="itemNarrow">Invitación:</label>
-    <input type="text" class="customInput itemWide" id="inv" name="invitation" value="<%= escapeRoom.invitation %>" placeholder="Escriba" autocomplete="off"/>
+<div class="wideRow erFormField">
+    <label for="vid"  class="itemNarrow">6. Número máximo de participantes:</label>
+    <input type="text" class="customInput itemWide" id="nm" name="nmax" value="<%= escapeRoom.nmax %>" placeholder="¿Cuántos participantes puede haber en cada turno?" autocomplete="off"/>
 </div>
 
 <br/>
-
-<label for="img">Miniatura:</label>
-<input class="attach" type="file" id="img" name="image"/>
+<div class="wideRow erFormField">
+    <label for="img">8. Miniatura:</label>
+    <input class="attach" type="file" id="img" name="image"/>
+</div>
 
 <br/>
 
@@ -57,6 +47,32 @@
 
 <button type="submit">Siguiente</button>
 
-<% include ../partials/__footer %>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<script type="text/javascript">
+    var last_known_scroll_position = 0;
+    var ticking = false;
 
-</body>
+    window.addEventListener('scroll', function(e) {
+      last_known_scroll_position = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          // doSomething(last_known_scroll_position);
+          ticking = false;
+          var x = e.clientX, y = e.clientY,
+            elementMouseIsOver = document.querySelectorAll( ":hover" );
+            try {
+                [...elementMouseIsOver].filter(a=>a.classList.contains('erFormField'))[0].children[1].focus()
+            } catch(e) {
+
+            }
+        });
+      }
+      ticking = true;
+    });
+
+</script>
