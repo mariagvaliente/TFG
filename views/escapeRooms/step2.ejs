@@ -16,3 +16,19 @@
 	<a href="/escapeRooms/<%=escapeRoom.id%>/step3"><button>siguiente</button></a>
 </div>
 <% include ../partials/__footer %>
+<%- include('../partials/__progress', {progress: 2}) %>
+<script>
+    $(function() {
+        $('#datepicker').datepicker({
+            onSelect: function(dateText) {
+                $('#datepicker2').datepicker("setDate", $(this).datepicker("getDate"));
+            }
+
+        });
+    });
+
+    $(function() {
+        $("#datepicker2").datepicker();
+    });
+
+</script>

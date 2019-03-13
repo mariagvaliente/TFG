@@ -1,9 +1,9 @@
 <% include _header.ejs %>
 <div class="main">
   <h2>Pistas</h2>
-  <form method='POST' action='/escapeRooms/<%= escapeRoom.id %>/step4'  >
+  <form class="basicConfig" method='POST' action='/escapeRooms/<%= escapeRoom.id %>/step4'  >
   <div class="align-right"><button type="submit">siguiente</button></div>
   </form>
 </div>
 <% include ../partials/__footer %>
-
+<%- include('../partials/__progress', {progress: 4}) %>

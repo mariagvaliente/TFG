@@ -19,7 +19,7 @@
 			margin-bottom: 5px
 			&:focus-within
 			label
-	   			color: white
+	   			color: white 
 	.main
 		font-size: 22px 
 		min-height: calc(100vh - 0em)
@@ -89,6 +89,22 @@
 					margin-left: 35px
 					width: 100%
 					background-color: transparent
+					color: #656683
+					font-size: large
+					height: 42px
+					padding-top: 10px
+					.fileUploadButton
+						background-color: transparent
+						color: white
+						border: none
+						padding: 0px
+				input[type=file]
+					width: 0.1px
+					height: 0.1px
+					opacity: 0
+					overflow: hidden
+					position: absolute
+					z-index: -1
 				label.itemNarrow
 					display: block
 		.flexShow
@@ -153,6 +169,15 @@
 							transition: 0.1s all ease-in
 							&:hover
 								transform: scale(0.9)
+								
+
+@media (min-width: 1200px) 
+ 	#mainSection
+ 		.main
+ 			padding: 35px calc(50vw - 600px)
+ 			footer 
+ 				margin-left: calc(600px - 50vw)
+
 // Small devices (landscape phones, 576px and up)
 // @media (min-width: 576px) 
 
@@ -165,9 +190,3 @@
 
 
 // Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) 
- 	#mainSection
- 		.main
- 			padding: 35px calc(50vw - 600px)
- 			footer 
- 				margin-left: calc(600px - 50vw)
