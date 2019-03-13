@@ -18,11 +18,10 @@
                 <% var attachment = escapeRoom.attachment; %>
                 <a href="/escapeRooms/<%= escapeRoom.id %>">
                     <div class="escapeRoomItem">
-                    <div class="erFoto" style="text-align: center">
-                        <% include ../attachments/_show %>
-                        </br>
-                        <span class="escapeRoomTitle"><%= escapeRoom.title %></span>
-                    </div>
+                        <div class="erFoto" style="text-align: center">
+                            <div class="bckgFoto" style="background-image: url(<% if (attachment) {%>attachment.secure_url<%} else {%>/images/placeholder.png<%}%>)"></div>
+                            <div class="escapeRoomTitle"><%= escapeRoom.title %></div>
+                        </div>
                     </div>
                 </a>
 
