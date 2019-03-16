@@ -4,8 +4,6 @@ const {models} = require("../models");
 const cloudinary = require("cloudinary");
 const fs = require("fs");
 const attHelper = require("../helpers/attachments"),
-
-
     // Options for the files uploaded to Cloudinary
     cloudinary_upload_options = {
         "async": true,
@@ -65,7 +63,6 @@ exports.adminOrAuthorRequired = (req, res, next) => {
 
 };
 
-
 // GET /escapeRooms
 exports.index = (req, res, next) => {
 
@@ -117,6 +114,7 @@ exports.show = (req, res) => {
 
 };
 
+// /escapeRooms/:escapeRoomId/preview
 exports.preview = (req, res) => {
 
     const {escapeRoom} = req;
@@ -127,8 +125,123 @@ exports.preview = (req, res) => {
 
 };
 
+// GET /escapeRooms/new
+exports.new = (req, res) => {
 
-// GET /escapeRooms/:escapeRoomId
+  const escapeRoom = {
+    "title": "",
+    "teacher": "",
+    "subject": "",
+    "duration": "",
+    "description": "",
+    "video": "",
+    "nmax": ""
+  };
+
+  res.render("escapeRooms/new", {escapeRoom});
+
+};
+
+// POST /escapeRooms/create
+exports.create = (req, res, next) => {
+
+  const {title, subject, duration, description, video, nmax} = req.body,
+
+    authorId = req.session.user && req.session.user.id || 0,
+
+    escapeRoom = models.escapeRoom.build({
+      title,
+      subject,
+      duration,
+      description,
+      video,
+      nmax,
+      authorId
+    });
+
+  // Saves only the fields question and answer into the DDBB
+  escapeRoom.save({"fields": [
+    "title",
+    "teacher",
+    "subject",
+    "duration",
+    "description",
+    "video",
+    "nmax",
+    "authorId"
+  ]}).
+  then(() => {
+
+    req.flash("success", "Escape Room created successfully.");
+
+    if (!req.file) {
+
+      req.flash("info", "Escape Room without attachment.");
+      res.redirect(`/escapeRooms/${escapeRoom.id}/step1`);
+
+      return;
+
+    }
+
+    // Save the attachment into  Cloudinary
+    return attHelper.checksCloudinaryEnv().
+    then(() => attHelper.uploadResourceToCloudinary(req.file.path, cloudinary_upload_options)).
+    then((uploadResult) => models.attachment.create({
+      "public_id": uploadResult.public_id,
+      "url": uploadResult.url,
+      "filename": req.file.originalname,
+      "mime": req.file.mimetype,
+      "escapeRoomId": escapeRoom.id
+    }).
+    then(() => {
+
+      req.flash("success", "Image saved successfully.");
+
+    }).
+    catch((error) => { // Ignoring validation errors
+
+      req.flash("error", `Failed to save file: ${error.message}`);
+      cloudinary.api.delete_resources(uploadResult.public_id);
+
+    })).
+    catch((error) => {
+
+      req.flash("error", `Failed to save attachment: ${error.message}`);
+
+    }).
+    then(() => {
+
+      fs.unlink(req.file.path); // Delete the file uploaded at./uploads
+      res.redirect(`/escapeRooms/${escapeRoom.id}`);
+
+    });
+
+  }).
+  catch(Sequelize.ValidationError, (error) => {
+
+    error.errors.forEach(({message}) => req.flash("error", message));
+    res.render("escapeRooms/new", {escapeRoom});
+
+  }).
+  catch((error) => {
+
+    req.flash("error", `Error creating a new Escape Room: ${error.message}`);
+    next(error);
+
+  });
+
+};
+
+// GET /escapeRooms/:escapeRoomId/edit
+exports.edit = (req, res) => {
+
+  const {escapeRoom} = req;
+
+  res.render("escapeRooms/edit", {escapeRoom});
+
+};
+
+// GET /escapeRooms/:escapeRoomId/step1
 exports.temas = (req, res) => {
 
     const {escapeRoom} = req;
@@ -137,7 +250,35 @@ exports.temas = (req, res) => {
 
 };
 
-// GET /escapeRooms/:escapeRoomId
+// POST /escapeRooms/:escapeRoomId/step1
+exports.temasUpdate = (req, res, next) => {
+
+  const {escapeRoom, body} = req;
+
+  escapeRoom.appearance = body.appearance;
+
+  escapeRoom.save({"fields": ["appearance"]}).then(() => {
+
+    res.redirect(`/escapeRooms/${escapeRoom.id}/step2`);
+
+  }).
+  catch(Sequelize.ValidationError, (error) => {
+
+    error.errors.forEach(({message}) => req.flash("error", message));
+    res.redirect(`/escapeRooms/${escapeRoom.id}/step1`);
+
+  }).
+  catch((error) => {
+
+    req.flash("error", `Error editing the Escape Room: ${error.message}`);
+    next(error);
+
+  });
+
+
+};
+
+// GET /escapeRooms/:escapeRoomId/step2
 exports.turnos = (req, res) => {
 
     const {escapeRoom} = req;
@@ -146,7 +287,35 @@ exports.turnos = (req, res) => {
 
 };
 
-// GET /escapeRooms/:escapeRoomId
+// POST /escapeRooms/:escapeRoomId/step2
+exports.turnosUpdate = (req, res, next) => {
+
+  const {escapeRoom, body} = req;
+
+  escapeRoom.appearance = body.appearance;
+
+  escapeRoom.save({"fields": ["turnos"]}).then(() => {
+
+    res.redirect(`/escapeRooms/${escapeRoom.id}/step3`);
+
+  }).
+  catch(Sequelize.ValidationError, (error) => {
+
+    error.errors.forEach(({message}) => req.flash("error", message));
+    res.redirect(`/escapeRooms/${escapeRoom.id}/step2`);
+
+  }).
+  catch((error) => {
+
+    req.flash("error", `Error editing the Escape Room: ${error.message}`);
+    next(error);
+
+  });
+
+
+};
+
+// GET /escapeRooms/:escapeRoomId/step3
 exports.retos = (req, res) => {
 
     const {escapeRoom} = req;
@@ -155,7 +324,34 @@ exports.retos = (req, res) => {
 
 };
 
-// GET /escapeRooms/:escapeRoomId
+// POST /escapeRooms/:escapeRoomId/step3
+exports.retosUpdate = (req, res, next) => {
+
+  const {escapeRoom, body} = req;
+
+  escapeRoom.retos = body.retos;
+  escapeRoom.save({"fields": ["retos"]}).then(() => {
+
+    res.redirect(`/escapeRooms/${escapeRoom.id}/step4`);
+
+  }).
+  catch(Sequelize.ValidationError, (error) => {
+
+    error.errors.forEach(({message}) => req.flash("error", message));
+    res.redirect(`/escapeRooms/${escapeRoom.id}/step3`);
+
+  }).
+  catch((error) => {
+
+    req.flash("error", `Error editing the Escape Room: ${error.message}`);
+    next(error);
+
+  });
+
+
+};
+
+// GET /escapeRooms/:escapeRoomId/step4
 exports.pistas = (req, res) => {
 
     const {escapeRoom} = req;
@@ -164,7 +360,35 @@ exports.pistas = (req, res) => {
 
 };
 
-// GET /escapeRooms/:escapeRoomId
+// POST /escapeRooms/:escapeRoomId/step4
+exports.pistasUpdate = (req, res, next) => {
+
+  const {escapeRoom, body} = req;
+
+  escapeRoom.pistas = body.pistas;
+
+  escapeRoom.save({"fields": ["retos"]}).then(() => {
+
+    res.redirect(`/escapeRooms/${escapeRoom.id}/step5`);
+
+  }).
+  catch(Sequelize.ValidationError, (error) => {
+
+    error.errors.forEach(({message}) => req.flash("error", message));
+    res.redirect(`/escapeRooms/${escapeRoom.id}/step4`);
+
+  }).
+  catch((error) => {
+
+    req.flash("error", `Error editing the Escape Room: ${error.message}`);
+    next(error);
+
+  });
+
+
+};
+
+// GET /escapeRooms/:escapeRoomId/step5
 exports.encuestas = (req, res) => {
 
     const {escapeRoom} = req;
@@ -173,271 +397,33 @@ exports.encuestas = (req, res) => {
 
 };
 
-// GET /escapeRooms/new
-exports.new = (req, res) => {
-
-    const escapeRoom = {
-        "title": "",
-        "teacher": "",
-        "subject": "",
-        "duration": "",
-        "description": "",
-        "video": "",
-        "nmax": ""
-    };
-
-    res.render("escapeRooms/new", {escapeRoom});
-
-};
-
-// POST /escapeRooms/new2
-exports.temasUpdate = (req, res, next) => {
-
-    const {escapeRoom, body} = req;
-
-    escapeRoom.appearance = body.appearance;
-
-    escapeRoom.save({"fields": ["appearance"]}).then(() => {
-
-        res.redirect(`/escapeRooms/${escapeRoom.id}/step2`);
-
-    }).
-        catch(Sequelize.ValidationError, (error) => {
-
-            error.errors.forEach(({message}) => req.flash("error", message));
-            res.redirect(`/escapeRooms/${escapeRoom.id}/step1`);
-
-        }).
-        catch((error) => {
-
-            req.flash("error", `Error editing the Escape Room: ${error.message}`);
-            next(error);
-
-        });
-
-
-};
-
-
-// POST /escapeRooms/new2
-exports.turnosUpdate = (req, res, next) => {
-
-    const {escapeRoom, body} = req;
-
-    escapeRoom.appearance = body.appearance;
-
-    escapeRoom.save({"fields": ["turnos"]}).then(() => {
-
-        res.redirect(`/escapeRooms/${escapeRoom.id}/step3`);
-
-    }).
-        catch(Sequelize.ValidationError, (error) => {
-
-            error.errors.forEach(({message}) => req.flash("error", message));
-            res.redirect(`/escapeRooms/${escapeRoom.id}/step2`);
-
-        }).
-        catch((error) => {
-
-            req.flash("error", `Error editing the Escape Room: ${error.message}`);
-            next(error);
-
-        });
-
-
-};
-
-
-// POST /escapeRooms/new2
-exports.retosUpdate = (req, res, next) => {
-
-    const {escapeRoom, body} = req;
-
-    escapeRoom.retos = body.retos;
-    console.log(body.retos)
-    console.log("/*************************************/")
-    escapeRoom.save({"fields": ["retos"]}).then(() => {
-
-        res.redirect(`/escapeRooms/${escapeRoom.id}/step4`);
-
-    }).
-        catch(Sequelize.ValidationError, (error) => {
-
-            error.errors.forEach(({message}) => req.flash("error", message));
-            res.redirect(`/escapeRooms/${escapeRoom.id}/step3`);
-
-        }).
-        catch((error) => {
-
-            req.flash("error", `Error editing the Escape Room: ${error.message}`);
-            next(error);
-
-        });
-
-
-};
-
-// POST /escapeRooms/new2
-exports.pistasUpdate = (req, res, next) => {
-
-    const {escapeRoom, body} = req;
-
-    escapeRoom.pistas = body.pistas;
-
-    escapeRoom.save({"fields": ["retos"]}).then(() => {
-
-        res.redirect(`/escapeRooms/${escapeRoom.id}/step5`);
-
-    }).
-        catch(Sequelize.ValidationError, (error) => {
-
-            error.errors.forEach(({message}) => req.flash("error", message));
-            res.redirect(`/escapeRooms/${escapeRoom.id}/step4`);
-
-        }).
-        catch((error) => {
-
-            req.flash("error", `Error editing the Escape Room: ${error.message}`);
-            next(error);
-
-        });
-
-
-};
-
-
+// POST /escapeRooms/:escapeRoomId/step5
 exports.encuestasUpdate = (req, res, next) => {
 
-    const {escapeRoom, body} = req;
+  const {escapeRoom, body} = req;
 
-    escapeRoom.pistas = body.pistas;
+  escapeRoom.pistas = body.pistas;
 
-    escapeRoom.save({"fields": ["retos"]}).then(() => {
+  escapeRoom.save({"fields": ["retos"]}).then(() => {
 
-        res.redirect(`/escapeRooms/${escapeRoom.id}/`);
+    res.redirect(`/escapeRooms/${escapeRoom.id}/`);
 
-    }).
-        catch(Sequelize.ValidationError, (error) => {
+  }).
+  catch(Sequelize.ValidationError, (error) => {
 
-            error.errors.forEach(({message}) => req.flash("error", message));
-            res.redirect(`/escapeRooms/${escapeRoom.id}/step5`);
+    error.errors.forEach(({message}) => req.flash("error", message));
+    res.redirect(`/escapeRooms/${escapeRoom.id}/step5`);
 
-        }).
-        catch((error) => {
+  }).
+  catch((error) => {
 
-            req.flash("error", `Error editing the Escape Room: ${error.message}`);
-            next(error);
+    req.flash("error", `Error editing the Escape Room: ${error.message}`);
+    next(error);
 
-        });
+  });
 
 
 };
-
-
-// POST /escapeRooms/create
-exports.create = (req, res, next) => {
-
-    const {title, teacher, subject, duration, description, video, nmax, invitation, appearance} = req.body,
-
-        authorId = req.session.user && req.session.user.id || 0,
-
-        escapeRoom = models.escapeRoom.build({
-            title,
-            teacher,
-            subject,
-            duration,
-            description,
-            video,
-            nmax,
-            invitation,
-            appearance,
-            authorId
-        });
-
-    // Saves only the fields question and answer into the DDBB
-    escapeRoom.save({"fields": [
-        "title",
-        "teacher",
-        "subject",
-        "duration",
-        "description",
-        "video",
-        "nmax",
-        "invitation",
-        "appearance",
-        "authorId"
-    ]}).
-        then(() => {
-
-            req.flash("success", "Escape Room created successfully.");
-
-            if (!req.file) {
-
-                req.flash("info", "Escape Room without attachment.");
-                res.redirect(`/escapeRooms/${escapeRoom.id}/step1`);
-
-                return;
-
-            }
-
-            // Save the attachment into  Cloudinary
-            return attHelper.checksCloudinaryEnv().
-                then(() => attHelper.uploadResourceToCloudinary(req.file.path, cloudinary_upload_options)).
-                then((uploadResult) => models.attachment.create({
-                    "public_id": uploadResult.public_id,
-                    "url": uploadResult.url,
-                    "filename": req.file.originalname,
-                    "mime": req.file.mimetype,
-                    "escapeRoomId": escapeRoom.id
-                }).
-                    then(() => {
-
-                        req.flash("success", "Image saved successfully.");
-
-                    }).
-                    catch((error) => { // Ignoring validation errors
-
-                        req.flash("error", `Failed to save file: ${error.message}`);
-                        cloudinary.api.delete_resources(uploadResult.public_id);
-
-                    })).
-                catch((error) => {
-
-                    req.flash("error", `Failed to save attachment: ${error.message}`);
-
-                }).
-                then(() => {
-
-                    fs.unlink(req.file.path); // Delete the file uploaded at./uploads
-                    res.redirect(`/escapeRooms/${escapeRoom.id}`);
-
-                });
-
-        }).
-        catch(Sequelize.ValidationError, (error) => {
-
-            error.errors.forEach(({message}) => req.flash("error", message));
-            res.render("escapeRooms/new", {escapeRoom});
-
-        }).
-        catch((error) => {
-
-            req.flash("error", `Error creating a new Escape Room: ${error.message}`);
-            next(error);
-
-        });
-
-};
-
-// GET /escapeRooms/:escapeRoomId/edit
-exports.edit = (req, res) => {
-
-    const {escapeRoom} = req;
-
-    res.render("escapeRooms/edit", {escapeRoom});
-
-};
-
 
 // PUT /escapeRooms/:escapeRoomId
 exports.update = (req, res, next) => {
@@ -561,7 +547,6 @@ exports.update = (req, res, next) => {
         });
 
 };
-
 
 // DELETE /escapeRooms/:escapeRoomId
 exports.destroy = (req, res, next) => {
