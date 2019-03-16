@@ -1,5 +1,8 @@
 const cloudinary = require("cloudinary");
 // Const fs = require('fs');
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 exports.uploadResourceToCloudinary = (path, options) => new Promise((resolve, reject) => {
 
