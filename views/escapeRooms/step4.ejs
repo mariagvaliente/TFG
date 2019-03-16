@@ -1,9 +1,42 @@
 <% include _header.ejs %>
-<div class="main">
-  <h2>Pistas</h2>
-  <form class="basicConfig" method='POST' action='/escapeRooms/<%= escapeRoom.id %>/step4'  >
-  <div class="align-right"><button type="submit">siguiente</button></div>
-  </form>
+<div class="main step4">
+  	<h2>Pistas</h2>
+  	<form class="basicConfig" method='POST' action='/escapeRooms/<%= escapeRoom.id %>/step4'  >
+	  	<h3 id="pistasQuestion">¿Va a haber pistas en tu escape room?</h3>
+	  	<label for="noHints" id="noHintsLabel">No quiero que haya pistas en mi escape room<input id="noHints" name="noHints" type="checkbox" checked/></label>
+	  	<input type="file" name="hints"/>
+	  	<p id="yourScorm">Crea tu propio paquete de pistas SCORM <button type="button" id="opener">crear</button></p>
+	  	<div class="align-right">
+	  		<button type="submit" >siguiente</button>
+  		</div>
+  	</form>
+  
+</div>
+<div id="dialog-rescorm" title="Crea tu propio paquete SCORM">
+  <iframe id="rescorm" src="https://sonsoleslp.github.io/rescorm-generator/"></iframe>
 </div>
 <% include ../partials/__footer %>
 <%- include('../partials/__progress', {progress: 4}) %>
+<script type="text/javascript">
+$( function() {
+	$( "#dialog-rescorm" ).dialog({
+	  autoOpen: false,
+	  resizable: false,
+	  width: screen.width*0.8,
+	  height: screen.height*0.8,
+	  show: {
+	    effect: "blind",
+	    duration: 100
+	  },
+	  hide: {
+	    effect: "explode",
+	    duration: 400
+	  },
+	  appendTo: '.main'
+	});
+
+	$( "#opener" ).on( "click", function() {
+	  $( "#dialog-rescorm" ).dialog( "open" );
+	});
+});
+</script>

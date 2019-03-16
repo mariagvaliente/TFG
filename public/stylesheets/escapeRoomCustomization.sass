@@ -1,0 +1,211 @@
+@import 'colors'
+#mainSection
+	#mainHeader
+	.main
+		.attachmentShow
+			img
+				max-width: 100%
+				border: 2px solid white
+		.align-right
+			text-align: right
+		.basicConfig
+			font-size: 26px
+			text-align: center
+			.erFormField	
+				padding: 40px
+				text-align: left
+				&:focus-within
+					color: white !important
+					label
+						color: white
+				.customInput
+					border: none
+					text-align: left
+					margin-left: 35px
+					width: 100%
+					background-color: transparent
+					color: #656683
+					font-size: large
+					height: 42px
+					padding-top: 10px
+					.fileUploadButton
+						background-color: transparent
+						color: white
+						border: none
+						padding: 0px
+				input[type=file]
+					width: 0.1px
+					height: 0.1px
+					opacity: 0
+					overflow: hidden
+					position: absolute
+					z-index: -1
+				label.itemNarrow
+					display: block
+		.flexShow
+			width: 100%
+			.flexRow
+				width: 100%
+				display: flex
+				flex-wrap: wrap
+				flex-direction: row
+				padding-bottom: 20px
+				&:first-child
+					font-size: 26px
+
+				.flexShowLeft
+					width: 250px
+					line-height: 37px
+				.flexShowRight
+					width: 100%
+					font-size: 24px
+					flex: 1
+					color: $textpurple
+					font-family:  'Lato', sans-serif
+					line-height: 32px
+					img
+						width: 250px
+						border-radius:  5px
+					#joinUrl
+						height: 10px
+						opacity: 0.01
+						width: 10px
+						padding: 2px
+						margin: 0px
+					.copy
+						background: transparent
+						border: none
+						font-size: 16px
+						color: white
+						vertical-align: middle
+		&.step1
+			.half-flex-container
+				display: flex
+				flex-direction: row
+				.left-half-flex
+					width: 50%
+					padding: 0px
+					.buttonApp
+						width: 40%
+						margin: 2%
+						margin-left: 0px
+						border-radius: 5px
+						border: 3px solid white
+						cursor: pointer
+						background-color: white
+						transition: 0.1s all ease-in
+						&:hover
+							transform: scale(0.85)
+						&.selected
+							border-color: $brightyellow
+				.right-half-flex
+					width: 50%
+					.preview
+						width: 100%
+						height: 100%
+						#previewIframe
+							width: 100%;
+							height: 94%;
+							overflow: auto;
+							border: 3px solid white;
+							border-radius: 20px;
+							margin-top: 20px;
+							margin-bottom: 3%;
+		&.step2
+			position: relative
+		&.step3
+			.flex-table-retos
+				display: flex
+				flex-direction: column
+				background-color: $textpurple
+				border: 3px solid white
+				border-radius: 10px
+				overflow: hidden
+				font-size: 18px
+				.flex-row-retos
+					display: flex
+					flex-direction: row
+					border-top: 3px solid white
+					&.flex-row-retos-title
+						background-color: $darkerpurple
+						border-top: none
+						.flex-cell
+							font-family: 'Gugi', sans-serif !important
+							padding: 20px
+					.flex-cell
+						text-align: center
+						border-right: 3px solid white
+						&.flex-cell-retos
+							width: 20%
+						&.flex-cell-sol
+							width: 10%
+							.retoTextArea
+								&:empty:before
+									content: 'xxxx'
+						&.flex-cell-desc
+							width: 30%
+						&.flex-cell-pista								
+							width: 40%
+							border-right: none
+						.retoTextArea
+							padding: 20px
+							font-family: 'Lato', sans-serif !important
+							font-size: 16px
+							width: 100%
+							border: none
+							margin: 0px
+							background: transparent
+							height: auto
+							height: 100%
+							resize: none
+							outline: none
+							display: inline-block
+							&:empty:before
+								content: 'Escribe aquí...'
+								opacity: 0.5
+								display: block
+							&:focus:before
+								content: '' !important
+					.delete-reto
+						position: absolute
+						margin-left: -56px
+						margin-top: 8px
+						float: right
+						background: transparent
+						border: none
+						color: white
+						transition: 0.1s all ease-in
+						&:hover
+							transform: scale(1.2)
+
+			#add-reto
+				background: none
+				border: none
+				color: white
+				transition: 0.1s all ease-in
+				font-size: 38px
+				.material-icons
+					font-size: 32px
+				&:hover, &:active, &:focus
+					transform: scale(1.2)
+		&.step4
+			#noHintsLabel
+				font-family: 'Lato', sans-serif !important
+				display: block
+			#noHints
+				vertical-align: middle
+				margin-left: 10px
+			#yourScorm
+				color: $textpurple
+				font-size: 18px
+				display: block
+			.ui-dialog .ui-dialog-titlebar
+			    background: white !important
+			    border: white !important
+			#dialog-rescorm
+				padding: 0
+				#rescorm
+					width: 100%
+					border: none	
+					margin: 0px	
+					height: calc(100% - 16px)

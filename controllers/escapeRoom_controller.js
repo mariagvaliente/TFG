@@ -254,7 +254,8 @@ exports.retosUpdate = (req, res, next) => {
     const {escapeRoom, body} = req;
 
     escapeRoom.retos = body.retos;
-
+    console.log(body.retos)
+    console.log("/*************************************/")
     escapeRoom.save({"fields": ["retos"]}).then(() => {
 
         res.redirect(`/escapeRooms/${escapeRoom.id}/step4`);

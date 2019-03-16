@@ -101,6 +101,13 @@ $(function(){
       }
     });
 
+    $('#delete').on('click', function(e){
+        e.preventDefault();
+        $('#delete').hide();
+        $('#upload').show();
+        $('#imgLabel').html("No has subido ninguna imagen");
+    })
+
 /*    $('.customInput').on('focus', function(e){
       elementMouseIsOver = document.querySelectorAll( ":hover" );
       try {

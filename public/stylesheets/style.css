@@ -1,3 +1,4 @@
+@charset "UTF-8";
 #mainSection {
   min-height: 100%;
   position: relative; }
@@ -32,112 +33,6 @@
       background: none; }
     #mainSection .main footer {
       margin-left: -35px; }
-    #mainSection .main .half-flex-container {
-      display: flex;
-      flex-direction: row; }
-      #mainSection .main .half-flex-container .left-half-flex {
-        width: 50%;
-        padding: 0px; }
-        #mainSection .main .half-flex-container .left-half-flex .buttonApp {
-          width: 40%;
-          margin: 2%;
-          margin-left: 0px;
-          border-radius: 5px;
-          border: 3px solid white;
-          cursor: pointer;
-          background-color: white;
-          transition: 0.1s all ease-in; }
-          #mainSection .main .half-flex-container .left-half-flex .buttonApp:hover {
-            transform: scale(0.85); }
-          #mainSection .main .half-flex-container .left-half-flex .buttonApp.selected {
-            border-color: #FAC855; }
-      #mainSection .main .half-flex-container .right-half-flex {
-        width: 50%; }
-        #mainSection .main .half-flex-container .right-half-flex .preview {
-          width: 100%;
-          height: 100%; }
-          #mainSection .main .half-flex-container .right-half-flex .preview #previewIframe {
-            width: 100%;
-            height: 94%;
-            overflow: auto;
-            border: 3px solid white;
-            border-radius: 20px;
-            margin-top: 20px;
-            margin-bottom: 3%; }
-    #mainSection .main .attachmentShow img {
-      max-width: 100%;
-      border: 2px solid white; }
-    #mainSection .main .align-right {
-      text-align: right; }
-    #mainSection .main .basicConfig {
-      font-size: 26px;
-      text-align: center; }
-      #mainSection .main .basicConfig .erFormField {
-        padding: 40px;
-        text-align: left; }
-        #mainSection .main .basicConfig .erFormField:focus-within {
-          color: white !important; }
-          #mainSection .main .basicConfig .erFormField:focus-within label {
-            color: white; }
-        #mainSection .main .basicConfig .erFormField .customInput {
-          border: none;
-          text-align: left;
-          margin-left: 35px;
-          width: 100%;
-          background-color: transparent;
-          color: #656683;
-          font-size: large;
-          height: 42px;
-          padding-top: 10px; }
-          #mainSection .main .basicConfig .erFormField .customInput .fileUploadButton {
-            background-color: transparent;
-            color: white;
-            border: none;
-            padding: 0px; }
-        #mainSection .main .basicConfig .erFormField input[type=file] {
-          width: 0.1px;
-          height: 0.1px;
-          opacity: 0;
-          overflow: hidden;
-          position: absolute;
-          z-index: -1; }
-        #mainSection .main .basicConfig .erFormField label.itemNarrow {
-          display: block; }
-    #mainSection .main .flexShow {
-      width: 100%; }
-      #mainSection .main .flexShow .flexRow {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        padding-bottom: 20px; }
-        #mainSection .main .flexShow .flexRow:first-child {
-          font-size: 26px; }
-        #mainSection .main .flexShow .flexRow .flexShowLeft {
-          width: 250px;
-          line-height: 37px; }
-        #mainSection .main .flexShow .flexRow .flexShowRight {
-          width: 100%;
-          font-size: 24px;
-          flex: 1;
-          color: #656683;
-          font-family: 'Lato', sans-serif;
-          line-height: 32px; }
-          #mainSection .main .flexShow .flexRow .flexShowRight img {
-            width: 250px;
-            border-radius: 5px; }
-          #mainSection .main .flexShow .flexRow .flexShowRight #joinUrl {
-            height: 10px;
-            opacity: 0.01;
-            width: 10px;
-            padding: 2px;
-            margin: 0px; }
-          #mainSection .main .flexShow .flexRow .flexShowRight .copy {
-            background: transparent;
-            border: none;
-            font-size: 16px;
-            color: white;
-            vertical-align: middle; }
     #mainSection .main .menuERShow {
       display: flex;
       justify-content: space-between; }
@@ -269,7 +164,8 @@ button {
       .portada .contenedor .loginRight h1 {
         text-align: left; }
       .portada .contenedor .loginRight input, .portada .contenedor .loginRight select {
-        width: 100%; }
+        width: 100%;
+        text-align-last: center; }
       .portada .contenedor .loginRight label span {
         padding-bottom: 7px;
         text-align: left;
@@ -303,9 +199,21 @@ button {
     border-radius: 10px;
     padding: 1vw;
     margin: 1vw; }
-    .escapeRooms .flexBoxEscapeRooms .escapeRoomItem img {
+    .escapeRooms .flexBoxEscapeRooms .escapeRoomItem .erFoto {
       width: 100%;
-      max-height: 100%; }
+      display: flex;
+      flex-direction: column;
+      flex: 1 auto; }
+      .escapeRooms .flexBoxEscapeRooms .escapeRoomItem .erFoto .bckgFoto {
+        flex: 1;
+        background-position: center;
+        background-size: cover; }
+      .escapeRooms .flexBoxEscapeRooms .escapeRoomItem .erFoto .escapeRoomTitle {
+        white-space: nowrap;
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        padding-top: 5px; }
     .escapeRooms .flexBoxEscapeRooms .escapeRoomItem.addEscapeRoom {
       background-color: #9196A9;
       color: #D2D4DC;
@@ -334,6 +242,219 @@ button {
     width: 33vw;
     height: 33vw; } }
 
+#mainSection .main .attachmentShow img {
+  max-width: 100%;
+  border: 2px solid white; }
+
+#mainSection .main .align-right {
+  text-align: right; }
+
+#mainSection .main .basicConfig {
+  font-size: 26px;
+  text-align: center; }
+  #mainSection .main .basicConfig .erFormField {
+    padding: 40px;
+    text-align: left; }
+    #mainSection .main .basicConfig .erFormField:focus-within {
+      color: white !important; }
+      #mainSection .main .basicConfig .erFormField:focus-within label {
+        color: white; }
+    #mainSection .main .basicConfig .erFormField .customInput {
+      border: none;
+      text-align: left;
+      margin-left: 35px;
+      width: 100%;
+      background-color: transparent;
+      color: #656683;
+      font-size: large;
+      height: 42px;
+      padding-top: 10px; }
+      #mainSection .main .basicConfig .erFormField .customInput .fileUploadButton {
+        background-color: transparent;
+        color: white;
+        border: none;
+        padding: 0px; }
+    #mainSection .main .basicConfig .erFormField input[type=file] {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1; }
+    #mainSection .main .basicConfig .erFormField label.itemNarrow {
+      display: block; }
+
+#mainSection .main .flexShow {
+  width: 100%; }
+  #mainSection .main .flexShow .flexRow {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding-bottom: 20px; }
+    #mainSection .main .flexShow .flexRow:first-child {
+      font-size: 26px; }
+    #mainSection .main .flexShow .flexRow .flexShowLeft {
+      width: 250px;
+      line-height: 37px; }
+    #mainSection .main .flexShow .flexRow .flexShowRight {
+      width: 100%;
+      font-size: 24px;
+      flex: 1;
+      color: #656683;
+      font-family: 'Lato', sans-serif;
+      line-height: 32px; }
+      #mainSection .main .flexShow .flexRow .flexShowRight img {
+        width: 250px;
+        border-radius: 5px; }
+      #mainSection .main .flexShow .flexRow .flexShowRight #joinUrl {
+        height: 10px;
+        opacity: 0.01;
+        width: 10px;
+        padding: 2px;
+        margin: 0px; }
+      #mainSection .main .flexShow .flexRow .flexShowRight .copy {
+        background: transparent;
+        border: none;
+        font-size: 16px;
+        color: white;
+        vertical-align: middle; }
+
+#mainSection .main.step1 .half-flex-container {
+  display: flex;
+  flex-direction: row; }
+  #mainSection .main.step1 .half-flex-container .left-half-flex {
+    width: 50%;
+    padding: 0px; }
+    #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp {
+      width: 40%;
+      margin: 2%;
+      margin-left: 0px;
+      border-radius: 5px;
+      border: 3px solid white;
+      cursor: pointer;
+      background-color: white;
+      transition: 0.1s all ease-in; }
+      #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp:hover {
+        transform: scale(0.85); }
+      #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp.selected {
+        border-color: #FAC855; }
+  #mainSection .main.step1 .half-flex-container .right-half-flex {
+    width: 50%; }
+    #mainSection .main.step1 .half-flex-container .right-half-flex .preview {
+      width: 100%;
+      height: 100%; }
+      #mainSection .main.step1 .half-flex-container .right-half-flex .preview #previewIframe {
+        width: 100%;
+        height: 94%;
+        overflow: auto;
+        border: 3px solid white;
+        border-radius: 20px;
+        margin-top: 20px;
+        margin-bottom: 3%; }
+
+#mainSection .main.step2 {
+  position: relative; }
+
+#mainSection .main.step3 .flex-table-retos {
+  display: flex;
+  flex-direction: column;
+  background-color: #656683;
+  border: 3px solid white;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 18px; }
+  #mainSection .main.step3 .flex-table-retos .flex-row-retos {
+    display: flex;
+    flex-direction: row;
+    border-top: 3px solid white; }
+    #mainSection .main.step3 .flex-table-retos .flex-row-retos.flex-row-retos-title {
+      background-color: #161938;
+      border-top: none; }
+      #mainSection .main.step3 .flex-table-retos .flex-row-retos.flex-row-retos-title .flex-cell {
+        font-family: 'Gugi', sans-serif !important;
+        padding: 20px; }
+    #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell {
+      text-align: center;
+      border-right: 3px solid white; }
+      #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell.flex-cell-retos {
+        width: 20%; }
+      #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell.flex-cell-sol {
+        width: 10%; }
+        #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell.flex-cell-sol .retoTextArea:empty:before {
+          content: 'xxxx'; }
+      #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell.flex-cell-desc {
+        width: 30%; }
+      #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell.flex-cell-pista {
+        width: 40%;
+        border-right: none; }
+      #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell .retoTextArea {
+        padding: 20px;
+        font-family: 'Lato', sans-serif !important;
+        font-size: 16px;
+        width: 100%;
+        border: none;
+        margin: 0px;
+        background: transparent;
+        height: auto;
+        height: 100%;
+        resize: none;
+        outline: none;
+        display: inline-block; }
+        #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell .retoTextArea:empty:before {
+          content: 'Escribe aquí...';
+          opacity: 0.5;
+          display: block; }
+        #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell .retoTextArea:focus:before {
+          content: '' !important; }
+    #mainSection .main.step3 .flex-table-retos .flex-row-retos .delete-reto {
+      position: absolute;
+      margin-left: -56px;
+      margin-top: 8px;
+      float: right;
+      background: transparent;
+      border: none;
+      color: white;
+      transition: 0.1s all ease-in; }
+      #mainSection .main.step3 .flex-table-retos .flex-row-retos .delete-reto:hover {
+        transform: scale(1.2); }
+
+#mainSection .main.step3 #add-reto {
+  background: none;
+  border: none;
+  color: white;
+  transition: 0.1s all ease-in;
+  font-size: 38px; }
+  #mainSection .main.step3 #add-reto .material-icons {
+    font-size: 32px; }
+  #mainSection .main.step3 #add-reto:hover, #mainSection .main.step3 #add-reto:active, #mainSection .main.step3 #add-reto:focus {
+    transform: scale(1.2); }
+
+#mainSection .main.step4 #noHintsLabel {
+  font-family: 'Lato', sans-serif !important;
+  display: block; }
+
+#mainSection .main.step4 #noHints {
+  vertical-align: middle;
+  margin-left: 10px; }
+
+#mainSection .main.step4 #yourScorm {
+  color: #656683;
+  font-size: 18px;
+  display: block; }
+
+#mainSection .main.step4 .ui-dialog .ui-dialog-titlebar {
+  background: white !important;
+  border: white !important; }
+
+#mainSection .main.step4 #dialog-rescorm {
+  padding: 0; }
+  #mainSection .main.step4 #dialog-rescorm #rescorm {
+    width: 100%;
+    border: none;
+    margin: 0px;
+    height: calc(100% - 16px); }
+
 * {
   font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
   box-sizing: border-box; }
@@ -348,7 +469,7 @@ html {
       color: white;
       text-decoration: none;
       font-weight: lighter; }
-    html body h1, html body h2 {
+    html body h1, html body h2, html body h3 {
       font-weight: lighter; }
     html body div.flexBoxEscapeRooms {
       flex-flow: row wrap; }
