@@ -26,30 +26,32 @@ exports.load = (req, res, next, turnId) => {
 // POST /escapeRooms/:escapeRoomId/turnos
 exports.create = (req, res, next) => {
 
+    const {date, indications} = req.body;
+    const modDate = new Date(date);
     const turn = models.turno.build({
-        "date": req.body.date,
-        "start": req.body.start,
-        "duration": req.body.durantion,
-        "narrative": req.body.narrative,
+        "date": modDate,
+        indications,
         "escapeRoomId": req.escapeRoom.id
     });
+
+    const back = `/escapeRooms/${req.escapeRoom.id}/step2?date=${modDate.getFullYear()}-${modDate.getMonth() + 1}-${modDate.getDate()}`;
 
     turn.save().
         then(() => {
 
-            req.flash("success", "Turn created successfully.");
-            res.redirect("back");
+            req.flash("success", "Turno creado correctamente.");
+            res.redirect(back);
 
         }).
         catch(Sequelize.ValidationError, (error) => {
 
             error.errors.forEach(({message}) => req.flash("error", message));
-            res.redirect("back");
+            res.redirect(back);
 
         }).
         catch((error) => {
 
-            req.flash("error", `Error creating the new turn: ${error.message}`);
+            req.flash("error", `Error creando el turno: ${error.message}`);
             next(error);
 
         });
@@ -59,11 +61,16 @@ exports.create = (req, res, next) => {
 // DELETE /escapeRooms/:escapeRoomId/turnos/:turnoId
 exports.destroy = (req, res, next) => {
 
+    console.log(req.turn);
+    const modDate = new Date(req.turn.date);
+
     req.turn.destroy().
         then(() => {
 
-            req.flash("success", "turn deleted successfully.");
-            res.redirect(`/escapeRooms/${req.params.escapeRoomId}`);
+            const back = `/escapeRooms/${req.params.escapeRoomId}/step2?date=${modDate.getFullYear()}-${modDate.getMonth() + 1}-${modDate.getDate()}`;
+
+            req.flash("success", "Turno borrado correctamente");
+            res.redirect(back);
 
         }).
         catch((error) => next(error));

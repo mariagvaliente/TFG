@@ -12,15 +12,21 @@
 				line-height: 30px
 				th
 					color: #333
-				td, a
-					color: #92A3AB
-					text-align: center
-					font-weight: bold
 				th:nth-child(6), th:nth-child(7)
 					color: $lightred
 				*
 					font-family: 'Lato', font-family
 					font-size: 16px
+				td, a
+					color: #92A3AB
+					text-align: center
+					font-weight: bold
+					&.turn-day-highlight
+						.ui-state-default
+							color: blue
+							background-color: $brightyellow
+							border-radius: 50%
+							color: black
 				.ui-datepicker-header 
 					&.ui-widget-header
 						background-color: white
@@ -31,3 +37,9 @@
 				.ui-state-default
 					background-color: transparent
 					border-color: transparent
+				.ui-state-highlight:not(.ui-state-active)
+					color: $lightred
+				.ui-state-active
+					background-color: $brightgreen !important
+					border-radius: 50%
+					color: black

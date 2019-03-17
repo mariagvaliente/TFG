@@ -6,8 +6,7 @@ const fs = require("fs");
 const attHelper = require("../helpers/attachments"),
     // Options for the files uploaded to Cloudinary
     cloudinary_upload_options = {
-        "async": true,
-        "folder": "/tfg/escapeRoom/attachments",
+        "folder": "/escapeRoom/attachments",
         "resource_type": "auto",
         "tags": [
             "tfg",
@@ -20,12 +19,21 @@ const attHelper = require("../helpers/attachments"),
 exports.load = (req, res, next, escapeRoomId) => {
 
 
-    models.escapeRoom.findById(escapeRoomId, {"include": [
-        models.turno,
-        models.attachment,
-        {"model": models.user,
-            "as": "author"}
-    ]}).
+    models.escapeRoom.findById(escapeRoomId, {
+        "include": [
+            {"model": models.turno},
+            models.attachment,
+            {"model": models.user,
+                "as": "author"}
+        ],
+        "order": [
+            [
+                {"model": models.turno},
+                "date",
+                "asc"
+            ]
+        ]
+    }).
         then((escapeRoom) => {
 
             if (escapeRoom) {
@@ -121,6 +129,7 @@ exports.preview = (req, res) => {
 
     res.render("escapeRooms/preview", {escapeRoom,
         "layout": false,
+        cloudinary,
         "theme": req.query.appearance});
 
 };
@@ -172,9 +181,7 @@ exports.create = (req, res, next) => {
     ]}).
         then((er) => {
 
-            console.log(req.file, req.body.img, req.body.image);
             req.flash("success", "Escape Room created successfully.");
-
             if (!req.file) {
 
                 req.flash("info", "Escape Room without attachment.");
@@ -183,10 +190,10 @@ exports.create = (req, res, next) => {
                 return;
 
             }
-
             // Save the attachment into  Cloudinary
+
             return attHelper.checksCloudinaryEnv().
-                then(() => attHelper.uploadResourceToCloudinary(req.file.path, cloudinary_upload_options)).
+                then(() => attHelper.uploadResource(req.file.path, cloudinary_upload_options)).
                 then((uploadResult) => models.attachment.create({
                     "public_id": uploadResult.public_id,
                     "url": uploadResult.url,
@@ -194,29 +201,24 @@ exports.create = (req, res, next) => {
                     "mime": req.file.mimetype,
                     "escapeRoomId": er.id
                 }).
-                    then(() => {
-
-                        req.flash("success", "Image saved successfully.");
-
-                    }).
                     catch((error) => { // Ignoring validation errors
 
                         console.error(error);
-                        req.flash("error", `Failed to save file: ${error.message}`);
-                        cloudinary.api.delete_resources(uploadResult.public_id);
+                        req.flash("error", `Error al subir la imagen: ${error.message}`);
+                        attHelper.deleteResource(uploadResult.public_id);
 
                     })).
                 catch((error) => {
 
                     console.error(error);
 
-                    req.flash("error", `Failed to save attachment: ${error.message}`);
+                    req.flash("error", `Error al subir el fichero: ${error.message}`);
 
                 }).
                 then(() => {
 
                     fs.unlink(req.file.path); // Delete the file uploaded at./uploads
-                    res.redirect(`/escapeRooms/${er.id}`);
+                    res.redirect(`/escapeRooms/${er.id}/step1`);
 
                 });
 
@@ -269,8 +271,7 @@ exports.update = (req, res, next) => {
         then((er) => {
 
             req.flash("success", "Escape Room edited successfully.");
-
-            if (!body.keepAttachment) {
+            if (body.keepAttachment === "0") {
 
                 // There is no attachment: Delete old attachment.
                 if (!req.file) {
@@ -278,7 +279,7 @@ exports.update = (req, res, next) => {
                     req.flash("info", "This Escape Room has no attachment.");
                     if (er.attachment) {
 
-                        cloudinary.api.delete_resources(er.attachment.public_id);
+                        attHelper.deleteResource(er.attachment.public_id);
                         er.attachment.destroy();
 
                     }
@@ -289,7 +290,7 @@ exports.update = (req, res, next) => {
 
                 // Save the new attachment into Cloudinary:
                 return attHelper.checksCloudinaryEnv().
-                    then(() => attHelper.uploadResourceToCloudinary(req.file.path, cloudinary_upload_options)).
+                    then(() => attHelper.uploadResource(req.file.path, cloudinary_upload_options)).
                     then((uploadResult) => {
 
                         // Remenber the public_id of the old image.
@@ -319,7 +320,7 @@ exports.update = (req, res, next) => {
                                 req.flash("success", "Image saved successfully.");
                                 if (old_public_id) {
 
-                                    cloudinary.api.delete_resources(old_public_id);
+                                    attHelper.deleteResource(old_public_id);
 
                                 }
 
@@ -327,7 +328,7 @@ exports.update = (req, res, next) => {
                             catch((error) => { // Ignoring image validation errors
 
                                 req.flash("error", `Failed saving new image: ${error.message}`);
-                                cloudinary.api.delete_resources(uploadResult.public_id);
+                                attHelper.deleteResource(uploadResult.public_id);
 
                             });
 
@@ -410,8 +411,11 @@ exports.temasUpdate = (req, res, next) => {
 exports.turnos = (req, res) => {
 
     const {escapeRoom} = req;
+    const {turnos} = escapeRoom;
+    const turnosParsed = turnos;
 
-    res.render("escapeRooms/step2", {escapeRoom});
+    res.render("escapeRooms/step2", {escapeRoom,
+        "turnos": turnosParsed});
 
 };
 
@@ -572,7 +576,7 @@ exports.destroy = (req, res, next) => {
         attHelper.checksCloudinaryEnv().
             then(() => {
 
-                cloudinary.api.delete_resources(req.escapeRoom.attachment.public_id);
+                attHelper.deleteResource(req.escapeRoom.attachment.public_id);
 
             });
 

@@ -31,13 +31,31 @@
 
 <br/>
 <div class="wideRow erFormField">
-    <label >8. Miniatura:</label>
+    <label class="itemNarrow">8. Miniatura:</label>
     <input class="attach" type="file" id="img" name="image"/>
     <label for="img" class="fileUpload customInput itemWide">
-      <span id="imgLabel" ><% if (escapeRoom.id) { %> <%=escapeRoom.attachment ? escapeRoom.attachment.filename : "Default" %> <% } else { %> No has subido ningún fichero <% } %></span>
-      <span id="upload" <% if (escapeRoom.id) { %> style="display: none;" <% } %> class="fileUploadButton"><i class="material-icons">file_upload</i></span> 
-      <span id="delete" <% if (!escapeRoom.id) { %> style="display: none;" <% } %>class="fileUploadButton"><i class="material-icons">delete</i></span>
-      <input type="hidden" name="keepAttachment" value="<%= escapeRoom.id ? "1" : "0" %>" >
+      <span id="imgLabel" >
+        <% if (escapeRoom.id && escapeRoom.attachment) { %> 
+          <%= escapeRoom.attachment.filename ||  "Default" %> 
+        <% } else { %> 
+          No has subido ningún fichero 
+        <% } %>
+      </span>
+      <span id="upload" 
+        <% if (escapeRoom.id && escapeRoom.attachment) { %> 
+          style="display: none;" 
+        <% } %> 
+        class="fileUploadButton">
+          <i class="material-icons">file_upload</i>
+      </span> 
+      <span id="delete"
+        <% if (!escapeRoom.id && !escapeRoom.attachment) { %> 
+          style="display: none;" 
+        <% } %>
+        class="fileUploadButton">
+          <i class="material-icons">delete</i>
+        </span>
+      <input type="hidden" name="keepAttachment" id="keepAttachment" value="<%= (escapeRoom.id && escapeRoom.attachment) ? "1" : "0" %>" >
     </label>
 </div>
 
@@ -50,17 +68,20 @@
 
  -->
 <div class="align-right">
-  <% if (escapeRoom.id) { %> <a href="/users/<%= session.user.id %>/escapeRooms"><button type="button">volver</button></a> <% } %>
-  <% if (!escapeRoom.id) { %> <a href="/users/<%= session.user.id %>/escapeRooms"><button type="button">cancelar</button></a> <% } %>
+  <% if (escapeRoom.id) { %> 
+    <a href="/users/<%= session.user.id %>/escapeRooms">
+      <button type="button">volver</button>
+    </a> 
+  <% } %>
+  <% if (!escapeRoom.id) { %> 
+    <a href="/users/<%= session.user.id %>/escapeRooms">
+      <button type="button">cancelar</button>
+    </a> 
+  <% } %>
   <button type ="submit">siguiente</button>
 </div>
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+<br/><br/><br/><br/><br/><br/>
 <script type="text/javascript">
 
 $(function(){
@@ -107,6 +128,7 @@ $(function(){
         $('#delete').hide();
         $('#upload').show();
         $('#imgLabel').html("No has subido ninguna imagen");
+        $('#keepAttachment').val("0");
     })
 
 /*    $('.customInput').on('focus', function(e){

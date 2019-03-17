@@ -22,18 +22,19 @@
                 <a href="/escapeRooms/<%= escapeRoom.id %>" class="animated bounceIn" style="animation-delay: <%=100*i%>ms;">
                     <div class="escapeRoomItem">
                         <div class="erFoto" style="text-align: center">
-                            <div class="bckgFoto" style="background-image: url(<% if (attachment) {%>attachment.secure_url<%} else {%>/images/placeholder.png<%}%>)"></div>
+                            <div class="bckgFoto" style="background-image: url(<% if (attachment) {%><%=attachment.url%><%} else {%>/images/placeholder.png<%}%>)"></div>
                             <div class="escapeRoomTitle"><%= escapeRoom.title %></div>
                         </div>
                     </div>
                 </a>
-
             <% } %>
-            <a href="/escapeRooms/new"><div class="escapeRoomItem addEscapeRoom animated bounceIn" style="animation-delay: <%=escapeRooms ? (escapeRooms.length * 100 + 100): 0 %>ms;"><span>+</span></div></a>
+            <a href="/escapeRooms/new" class=" animated bounceIn">
+                <div class="escapeRoomItem addEscapeRoom" style="animation-delay: <%=escapeRooms ? (escapeRooms.length * 100 + 100): 0 %>ms;">
+                    <span>+</span>
+                </div>
+            </a>
         </div>
         <% } %>
-
-       
     </br>
     <% include ../partials/__footer %>
 </div>

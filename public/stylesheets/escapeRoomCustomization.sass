@@ -1,5 +1,7 @@
 @import 'colors'
 @import 'calendar'
+@import 'mixins'
+
 #mainSection
 	#mainHeader
 	.main
@@ -22,19 +24,27 @@
 				.customInput
 					border: none
 					text-align: left
-					margin-left: 35px
+					margin-left: 26px
 					width: 100%
 					background-color: transparent
 					color: #656683
-					font-size: large
+					font-size: 0.8em
 					height: 42px
 					padding-top: 10px
+					font-family: Lato, sans-serif
+					font-weight: normal
+					padding-left: 5px
 					.fileUploadButton
 						background-color: transparent
 						color: white
 						border: none
 						padding: 0px
+					#imgLabel
+						font-size: 1em
+						margin-top: 0.4em
+						font-family: Lato, sans-serif
 				input[type=file]
+					font-family: Lato, sans-serif
 					width: 0.1px
 					height: 0.1px
 					opacity: 0
@@ -94,9 +104,7 @@
 						border: 3px solid white
 						cursor: pointer
 						background-color: white
-						transition: 0.1s all ease-in
-						&:hover
-							transform: scale(0.85)
+						@extend %scale-animation-down
 						&.selected
 							border-color: $brightyellow
 				.right-half-flex
@@ -114,6 +122,87 @@
 							margin-bottom: 3%;
 		&.step2
 			position: relative
+			.contenedor
+				display: block !important
+				h2
+					color: $textpurple
+				.flexBoxTurnos
+					display: flex
+					flex-direction: row
+					flex-wrap: wrap
+					margin-bottom: 20px
+					.turno
+						background-color: white
+						width: 100px
+						height: 100px
+						position: relative
+						margin: 5px
+						color: $darkerpurple
+						text-align: center
+						padding: 12px
+						border-radius: 20px
+						&.hidden
+							display: none
+						.hora
+							font-size: 25px
+							margin-bottom: 10px
+							overflow: hidden
+						.indications
+							color: $darkerpurple
+							font-size: 12px
+							.no-indications
+								color: #ddd
+						&.add-turno
+							.turnos-picker
+								background: transparent
+								padding: 0px
+								margin: 0px
+								text-align: center
+								text-align-last: center
+								width: 100%
+								color: $textgrey
+								border: none
+								font-size: 1em
+								caret-color: $textgrey
+								color: $textgrey !important
+								-webkit-text-fill-color: $textgrey !important
+								&:focus, &:active, &:-webkit-autofill:focus, &:-webkit-autofill:active
+									color: $textgrey !important
+									-webkit-text-fill-color: $textgrey !important;
+								&:-webkit-autofill
+									-webkit-box-shadow: 0 0 0 30px $mainpurple inset !important
+									-webkit-text-fill-color: $textgrey !important;
+								&.turnos-time-picker
+									width: 150%
+									margin-top: -1em
+									margin-bottom: -1em
+									&::-webkit-clear-button, &::-ms-clear
+										display: none
+								&.turnos-indications-picker
+									resize: none
+									height: 40px
+									outline: none !important
+						.little-button
+							padding: 3px
+							padding-left: 4px
+							font-size: 14px
+							border: none
+							float: right
+							color: white
+							border-radius: 50%
+							line-height: 11px
+							vertical-align: text-bottom
+							margin-right: -15px
+							position: absolute
+							bottom: 0
+							right: 10px
+							.material-icons
+								font-size: 16px
+							&.more
+								background: $brightyellow
+							&.less
+								background: $lightred
+
 		&.step3
 			.flex-table-retos
 				display: flex
@@ -169,26 +258,22 @@
 								content: '' !important
 					.delete-reto
 						position: absolute
-						margin-left: -56px
+						margin-left: -40px
 						margin-top: 8px
 						float: right
 						background: transparent
 						border: none
 						color: white
-						transition: 0.1s all ease-in
-						&:hover
-							transform: scale(1.2)
+						@extend %scale-animation-up
 
 			#add-reto
 				background: none
 				border: none
 				color: white
-				transition: 0.1s all ease-in
 				font-size: 38px
 				.material-icons
 					font-size: 32px
-				&:hover, &:active, &:focus
-					transform: scale(1.2)
+				@extend %scale-animation-up
 		&.step4
 			#noHintsLabel
 				font-family: 'Lato', sans-serif !important

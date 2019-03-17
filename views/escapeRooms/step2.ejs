@@ -5,14 +5,24 @@
 	<h2>
 	    Turnos
 	</h2>
-	<% include ../turnos/new %>
 	<% var turnos = escapeRoom.turnos; %>
-
+	<div class="contenedor" style="display: flex; height: 100%">
+    <div class="turnosLeft" style="width: 50%; float: left">
+        <div id="datepicker"></div>
+    </div>
+    <div class="loginRight" style=" width: 50%; float: left; flex: 1">
+        <h2>
+            <span id="currentDate"></span>
+        </h2>
+        <% include ../turnos/index %>
+        
+    </div>
+</div>
 	<div class="contenedor" style="display: flex; height: 100%">
 	    <div class="turnosLeft" style="width: 50%; float: left">
 	    </div>
 	    <div class="loginRight" style=" width: 50%; float: left; flex: 1">
-	     <% include ../turnos/index %>
+	     
 	    </div>
 	</div>
 	<form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/step2'  >	
@@ -21,39 +31,16 @@
 		  <button type="submit" value="next" id="next" name="next">siguiente</button>
 		</div>
 	</form>
+	<br/>
 </div>
 <% include ../partials/__footer %>
 <%- include('../partials/__progress', {progress: 2}) %>
 <script>
-    $(function() {
-    	$.datepicker.setDefaults({
- 			firstDay: 1,
-    		dayNamesMin: ["d","l","m","m","j","v","s"], 
-    		monthNames:  ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
-    		monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
-    		dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
- 			dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
- 			isRTL: false,
- 			showMonthAfterYear: false,
- 			yearSuffix: '',
- 			dateFormat: 'dd/mm/yy',
- 			closeText: 'Cerrar',
- 			prevText: '< Ant',
- 			nextText: 'Sig >',
- 			currentText: 'Hoy'
- 		});
-    	$.datepicker.setDefaults( $.datepicker.regional[ "es" ] );
-        $('#datepicker').datepicker({
-            onSelect: function(dateText) {
-                $('#datepicker2').datepicker("setDate", $(this).datepicker("getDate"));
-            }
-
-        });
-        var currentDate = $('#datepicker').datepicker("getDate");
-        var monthArray = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-        var label = currentDate.getDate() + " de " + monthArray[currentDate.getMonth() + 1]; //+ " de " + currentDate.getFullYear();
-        $('#currentDate').html(label);
-    });
-
+var selectedDates = [
+<% for (var d = 0; d < turnos.length; d++) { %>
+	new Date("<%= turnos[d].date%>") <%if (d !== turnos.length -1) {%>,<% }%>
+<% } %>
+].map(d=>{d.setHours(0,0,0,0); return d.getTime()}); ;
 
 </script>
+<script type="text/javascript" src="/js/turnos.js"></script>

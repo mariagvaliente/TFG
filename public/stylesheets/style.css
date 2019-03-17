@@ -36,6 +36,8 @@
     #mainSection .main .menuERShow {
       display: flex;
       justify-content: space-between; }
+      #mainSection .main .menuERShow .attachmentShow {
+        max-width: 60%; }
       #mainSection .main .menuERShow .menuERShowRight {
         margin-left: 50px;
         padding: 10px;
@@ -165,7 +167,8 @@ button {
         text-align: left; }
       .portada .contenedor .loginRight input, .portada .contenedor .loginRight select {
         width: 100%;
-        text-align-last: center; }
+        text-align-last: center;
+        padding: 0px 15px; }
       .portada .contenedor .loginRight label span {
         padding-bottom: 7px;
         text-align: left;
@@ -198,8 +201,7 @@ button {
     align-items: center;
     border-radius: 10px;
     padding: 1vw;
-    margin: 1vw;
-    transition: 0.2s all ease-in; }
+    margin: 1vw; }
     .escapeRooms .flexBoxEscapeRooms .escapeRoomItem .erFoto {
       width: 100%;
       display: flex;
@@ -227,8 +229,6 @@ button {
       display: flex;
       flex-direction: column;
       justify-content: center; }
-    .escapeRooms .flexBoxEscapeRooms .escapeRoomItem:hover {
-      transform: scale(0.9); }
 
 @media (max-width: 1200px) {
   .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
@@ -255,15 +255,20 @@ button {
   line-height: 30px; }
   .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker th {
     color: #333; }
-  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker td, .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker a {
-    color: #92A3AB;
-    text-align: center;
-    font-weight: bold; }
   .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker th:nth-child(6), .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker th:nth-child(7) {
     color: #F47E84; }
   .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker * {
     font-family: 'Lato', font-family;
     font-size: 16px; }
+  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker td, .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker a {
+    color: #92A3AB;
+    text-align: center;
+    font-weight: bold; }
+    .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker td.turn-day-highlight .ui-state-default, .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker a.turn-day-highlight .ui-state-default {
+      color: blue;
+      background-color: #FAC855;
+      border-radius: 50%;
+      color: black; }
   .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker .ui-datepicker-header.ui-widget-header {
     background-color: white;
     border-color: white; }
@@ -272,6 +277,26 @@ button {
   .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker .ui-state-default {
     background-color: transparent;
     border-color: transparent; }
+  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker .ui-state-highlight:not(.ui-state-active) {
+    color: #F47E84; }
+  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker .ui-state-active {
+    background-color: #48C18E !important;
+    border-radius: 50%;
+    color: black; }
+
+#mainSection .main.step3 .flex-table-retos .flex-row-retos .delete-reto, #mainSection .main.step3 #add-reto {
+  transition: 0.2s all ease-in; }
+  #mainSection .main.step3 .flex-table-retos .flex-row-retos .delete-reto:hover, #mainSection .main.step3 #add-reto:hover, #mainSection .main.step3 .flex-table-retos .flex-row-retos .delete-reto:active, #mainSection .main.step3 #add-reto:active, #mainSection .main.step3 .flex-table-retos .flex-row-retos .delete-reto:focus, #mainSection .main.step3 #add-reto:focus {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2); }
+
+.escapeRooms .flexBoxEscapeRooms .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItem.addEscapeRoom, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp {
+  transition: 0.2s all ease-in; }
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItem:hover, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItem:active, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItem:focus, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp:focus {
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8); }
 
 #mainSection .main .attachmentShow img {
   max-width: 100%;
@@ -293,19 +318,27 @@ button {
     #mainSection .main .basicConfig .erFormField .customInput, #mainSection .main.step5 .erFormField .customInput {
       border: none;
       text-align: left;
-      margin-left: 35px;
+      margin-left: 26px;
       width: 100%;
       background-color: transparent;
       color: #656683;
-      font-size: large;
+      font-size: 0.8em;
       height: 42px;
-      padding-top: 10px; }
+      padding-top: 10px;
+      font-family: Lato, sans-serif;
+      font-weight: normal;
+      padding-left: 5px; }
       #mainSection .main .basicConfig .erFormField .customInput .fileUploadButton, #mainSection .main.step5 .erFormField .customInput .fileUploadButton {
         background-color: transparent;
         color: white;
         border: none;
         padding: 0px; }
+      #mainSection .main .basicConfig .erFormField .customInput #imgLabel, #mainSection .main.step5 .erFormField .customInput #imgLabel {
+        font-size: 1em;
+        margin-top: 0.4em;
+        font-family: Lato, sans-serif; }
     #mainSection .main .basicConfig .erFormField input[type=file], #mainSection .main.step5 .erFormField input[type=file] {
+      font-family: Lato, sans-serif;
       width: 0.1px;
       height: 0.1px;
       opacity: 0;
@@ -364,10 +397,7 @@ button {
       border-radius: 5px;
       border: 3px solid white;
       cursor: pointer;
-      background-color: white;
-      transition: 0.1s all ease-in; }
-      #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp:hover {
-        transform: scale(0.85); }
+      background-color: white; }
       #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp.selected {
         border-color: #FAC855; }
   #mainSection .main.step1 .half-flex-container .right-half-flex {
@@ -386,6 +416,85 @@ button {
 
 #mainSection .main.step2 {
   position: relative; }
+  #mainSection .main.step2 .contenedor {
+    display: block !important; }
+    #mainSection .main.step2 .contenedor h2 {
+      color: #656683; }
+    #mainSection .main.step2 .contenedor .flexBoxTurnos {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-bottom: 20px; }
+      #mainSection .main.step2 .contenedor .flexBoxTurnos .turno {
+        background-color: white;
+        width: 100px;
+        height: 100px;
+        position: relative;
+        margin: 5px;
+        color: #161938;
+        text-align: center;
+        padding: 12px;
+        border-radius: 20px; }
+        #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.hidden {
+          display: none; }
+        #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .hora {
+          font-size: 25px;
+          margin-bottom: 10px;
+          overflow: hidden; }
+        #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .indications {
+          color: #161938;
+          font-size: 12px; }
+          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .indications .no-indications {
+            color: #ddd; }
+        #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker {
+          background: transparent;
+          padding: 0px;
+          margin: 0px;
+          text-align: center;
+          text-align-last: center;
+          width: 100%;
+          color: #a1a3af;
+          border: none;
+          font-size: 1em;
+          caret-color: #a1a3af;
+          color: #a1a3af !important;
+          -webkit-text-fill-color: #a1a3af !important; }
+          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:focus, #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:active, #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill:focus, #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill:active {
+            color: #a1a3af !important;
+            -webkit-text-fill-color: #a1a3af !important; }
+          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 30px #232951 inset !important;
+            -webkit-text-fill-color: #a1a3af !important; }
+          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker {
+            width: 150%;
+            margin-top: -1em;
+            margin-bottom: -1em; }
+            #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker::-webkit-clear-button, #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker::-ms-clear {
+              display: none; }
+          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-indications-picker {
+            resize: none;
+            height: 40px;
+            outline: none !important; }
+        #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .little-button {
+          padding: 3px;
+          padding-left: 4px;
+          font-size: 14px;
+          border: none;
+          float: right;
+          color: white;
+          border-radius: 50%;
+          line-height: 11px;
+          vertical-align: text-bottom;
+          margin-right: -15px;
+          position: absolute;
+          bottom: 0;
+          right: 10px; }
+          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .little-button .material-icons {
+            font-size: 16px; }
+          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .little-button.more {
+            background: #FAC855; }
+          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .little-button.less {
+            background: #F47E84; }
 
 #mainSection .main.step3 .flex-table-retos {
   display: flex;
@@ -440,26 +549,20 @@ button {
           content: '' !important; }
     #mainSection .main.step3 .flex-table-retos .flex-row-retos .delete-reto {
       position: absolute;
-      margin-left: -56px;
+      margin-left: -40px;
       margin-top: 8px;
       float: right;
       background: transparent;
       border: none;
-      color: white;
-      transition: 0.1s all ease-in; }
-      #mainSection .main.step3 .flex-table-retos .flex-row-retos .delete-reto:hover {
-        transform: scale(1.2); }
+      color: white; }
 
 #mainSection .main.step3 #add-reto {
   background: none;
   border: none;
   color: white;
-  transition: 0.1s all ease-in;
   font-size: 38px; }
   #mainSection .main.step3 #add-reto .material-icons {
     font-size: 32px; }
-  #mainSection .main.step3 #add-reto:hover, #mainSection .main.step3 #add-reto:active, #mainSection .main.step3 #add-reto:focus {
-    transform: scale(1.2); }
 
 #mainSection .main.step4 #noHintsLabel {
   font-family: 'Lato', sans-serif !important;
@@ -549,6 +652,7 @@ html {
       border-width: 2px;
       height: 42px;
       outline: 0;
+      caret-color: white;
       font-weight: lighter;
       box-shadow: none !important; }
       html body input:-webkit-autofill, html body select:-webkit-autofill {

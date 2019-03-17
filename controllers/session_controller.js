@@ -12,7 +12,7 @@ const {models} = require("../models"),
      * 5 minutes.
      */
 
-    maxIdleTime = 5 * 60 * 1000;
+    maxIdleTime = 50 * 60 * 1000;
 
 /*
  *
@@ -45,7 +45,7 @@ exports.deleteExpiredUserSession = (req, res, next) => {
 /*
  * Middleware: Login required.
  *
- * If the user is logged in previously then there will exists
+ * If the user is logged in previously then there will exist
  * The req.session.user object, so I continue with the others
  * Middlewares or routes.
  * If req.session.user does not exist, then nobody is logged,
@@ -247,8 +247,11 @@ exports.create = (req, res, next) => {
                     "isStudent": user.isStudent,
                     "expires": Date.now() + maxIdleTime
                 };
+                if (req.body.redir) {
 
-                if (!user.isStudent) {
+                    res.redirect(req.body.redir);
+
+                } else if (!user.isStudent) {
 
                     res.redirect(`users/${user.id}/escapeRooms`);
 
@@ -257,6 +260,7 @@ exports.create = (req, res, next) => {
                     res.redirect(`users/${user.id}/student`);
 
                 }
+
 
             } else {
 
@@ -281,7 +285,7 @@ exports.destroy = (req, res) => {
 
     delete req.session.user;
 
-    res.redirect("/"); // Redirect to login gage
+    res.redirect("/"); // Redirect to login page
 
 
 };

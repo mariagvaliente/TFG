@@ -9,6 +9,10 @@ const session = require("express-session"),
 const partials = require("express-partials");
 const flash = require("express-flash");
 const methodOverride = require("method-override");
+const dotenv = require("dotenv");
+
+dotenv.config();
+
 
 const index = require("./routes/index"),
 

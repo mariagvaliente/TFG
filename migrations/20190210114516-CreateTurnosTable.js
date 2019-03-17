@@ -20,17 +20,8 @@ module.exports = {
                     "type": Sequelize.STRING,
                     "validate": {"notEmpty": {"msg": "La fecha no puede estar vacía."}}
                 },
-                "start": {
-                    "type": Sequelize.STRING,
-                    "validate": {"notEmpty": {"msg": "La hora no puede estar vacía."}}
-                },
-                "duration": {
-                    "type": Sequelize.STRING,
-                    "validate": {"notEmpty": {"msg": "La duración no puede estar vacía."}}
-                },
-                "narrative": {
-                    "type": Sequelize.STRING,
-                    "validate": {"notEmpty": {"msg": "La narrativa no puede estar vacía."}}
+                "indications": {
+                    "type": Sequelize.STRING
                 },
                 "createdAt": {
                     "type": Sequelize.DATE,
