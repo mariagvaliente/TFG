@@ -3,32 +3,6 @@ const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 
-if (process.env.CLOUDINARY_URL) {
-
-    try {
-
-        const two = process.env.CLOUDINARY_URL.split("@");
-        const first = two[0].replace("cloudinary://", "").split(":");
-        const [, cloud_name] = two;
-        const [
-            api_key,
-            api_secret
-        ] = first;
-
-        cloudinary.config({
-            cloud_name,
-            api_key,
-            api_secret
-        });
-
-    } catch (err) {
-
-        console.error(err);
-
-    }
-
-}
-
 const uploadResourceToCloudinary = (src, options) => new Promise((resolve, reject) => {
 
     cloudinary.v2.uploader.upload(
