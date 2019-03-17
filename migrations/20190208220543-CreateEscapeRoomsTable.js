@@ -47,6 +47,7 @@ module.exports = {
                 },
                 "appearance": {
                     "type": Sequelize.STRING,
+                    "defaultValue": "litera",
                     "validate": {"notEmpty": {"msg": "La apariencia no puede estar vacía."}}
                 },
                 "createdAt": {

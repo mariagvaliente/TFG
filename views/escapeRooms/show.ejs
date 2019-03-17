@@ -83,8 +83,9 @@
             Invitación:
         </div>   
         <div class="flexShowRight">
-            http://localhost:3000/escapeRooms/<%= escapeRoom.id %>/join?token=<%= escapeRoom.invitation %>
-            <input id="joinUrl" value="http://localhost:3000/escapeRooms/<%= escapeRoom.id %>/join?token=<%= escapeRoom.invitation %>" />
+            <% var invitationLink = "http://localhost:3000/escapeRooms/" + escapeRoom.id +"/join?token=" + escapeRoom.invitation; %>
+            <a href="<%= invitationLink %>"><%= invitationLink %><a/>
+            <input id="joinUrl" value="<%= invitationLink %>">
             <button class="copy" id="copyButton"><i class="material-icons">file_copy</i></button>
         </div>  
     </div>
@@ -119,6 +120,30 @@
         </div>   
         <div class="flexShowRight">
              
+        </div>  
+    </div>
+    <div class="flexRow" id="pretest">
+        <div class="flexShowLeft">
+            Pre-test:
+        </div>   
+        <div class="flexShowRight">
+             <a href="<%= escapeRoom.pretest %>"><%= escapeRoom.pretest %><a/>
+        </div>  
+    </div>
+    <div class="flexRow" id="posttest">
+        <div class="flexShowLeft">
+            Post-test:
+        </div>   
+        <div class="flexShowRight">
+             <a href="<%= escapeRoom.posttest %>"><%= escapeRoom.posttest %><a/>
+        </div>  
+    </div>
+    <div class="flexRow" id="survey">
+        <div class="flexShowLeft">
+            Encuesta:
+        </div>   
+        <div class="flexShowRight">
+             <a href="<%= escapeRoom.survey %>"><%= escapeRoom.survey %><a/>
         </div>  
     </div>
 </div>

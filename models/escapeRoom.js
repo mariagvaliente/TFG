@@ -39,7 +39,16 @@ module.exports = function (sequelize, DataTypes) {
                 "type": DataTypes.STRING,
                 "defaultValue": "litera",
                 "validate": {"notEmpty": {"msg": "La apariencia no puede estar vacía."}}
-            }
+            },
+            "survey": {
+                "type": DataTypes.STRING
+            },
+            "pretest": {
+                "type": DataTypes.STRING
+            },
+            "posttest": {
+                "type": DataTypes.STRING
+            },
 
         }
     );

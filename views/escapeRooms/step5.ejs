@@ -1,9 +1,24 @@
 <% include _header.ejs %>
 <div class="main step5">
-  <h2>Encuestas</h2>
+  <h2>Evaluación</h2>
   <form method='POST' action='/escapeRooms/<%= escapeRoom.id %>/step5'  >
-  	
-  <div class="align-right"><button type="submit">finalizar</button></div>
+  	<div class="wideRow erFormField">
+  	    <label for="tit"  class="itemNarrow">1. Pre-test:</label>
+  	    <input autofocus type="text" class="customInput itemWide" id="pretest" name="pretest" value="<%= escapeRoom.pretest %>" placeholder="Escribe el enlace al pre-test" autocomplete="off"/>
+  	</div>
+  	<div class="wideRow erFormField">
+  	    <label for="subj"  class="itemNarrow">2. Post-test:</label>
+  	    <input type="text" class="customInput itemWide" id="posttest" name="posttest" value="<%= escapeRoom.posttest %>" placeholder="Escribe el enlace al post-test" autocomplete="off"/>
+  	</div>
+  	<div class="wideRow erFormField">
+  	    <label for="subj"  class="itemNarrow">3. Encuesta:</label>
+  	    <input type="text" class="customInput itemWide" id="survey" name="survey" value="<%= escapeRoom.survey %>" placeholder="Escribe el enlace a la encuesta" autocomplete="off"/>
+  	</div>
+
+  	<div class="align-right">
+  	  <button type="submit" value="previous" id="previous" name="previous">anterior</button>
+  	  <button type="submit" value="next" id="next" name="next">finalizar</button>
+  	</div>
   </form>
 </div>
 <% include ../partials/__footer %>

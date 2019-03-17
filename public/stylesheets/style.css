@@ -242,6 +242,34 @@ button {
     width: 33vw;
     height: 33vw; } }
 
+.main.step2 #datepicker .ui-datepicker-inline.ui-datepicker {
+  width: 20em;
+  padding-left: 75px;
+  padding-right: 75px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+  border-radius: 20px;
+  line-height: 30px; }
+  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker th {
+    color: #333; }
+  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker td, .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker a {
+    color: #92A3AB;
+    text-align: center;
+    font-weight: bold; }
+  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker th:nth-child(6), .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker th:nth-child(7) {
+    color: #F47E84; }
+  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker * {
+    font-family: 'Lato', font-family;
+    font-size: 16px; }
+  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker .ui-datepicker-header.ui-widget-header {
+    background-color: white;
+    border-color: white; }
+  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker .ui-datepicker-header .ui-datepicker-title span {
+    font-size: 20px; }
+  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker .ui-state-default {
+    background-color: transparent;
+    border-color: transparent; }
+
 #mainSection .main .attachmentShow img {
   max-width: 100%;
   border: 2px solid white; }
@@ -249,17 +277,17 @@ button {
 #mainSection .main .align-right {
   text-align: right; }
 
-#mainSection .main .basicConfig {
+#mainSection .main .basicConfig, #mainSection .main.step5 {
   font-size: 26px;
   text-align: center; }
-  #mainSection .main .basicConfig .erFormField {
+  #mainSection .main .basicConfig .erFormField, #mainSection .main.step5 .erFormField {
     padding: 40px;
     text-align: left; }
-    #mainSection .main .basicConfig .erFormField:focus-within {
+    #mainSection .main .basicConfig .erFormField:focus-within, #mainSection .main.step5 .erFormField:focus-within {
       color: white !important; }
-      #mainSection .main .basicConfig .erFormField:focus-within label {
+      #mainSection .main .basicConfig .erFormField:focus-within label, #mainSection .main.step5 .erFormField:focus-within label {
         color: white; }
-    #mainSection .main .basicConfig .erFormField .customInput {
+    #mainSection .main .basicConfig .erFormField .customInput, #mainSection .main.step5 .erFormField .customInput {
       border: none;
       text-align: left;
       margin-left: 35px;
@@ -269,19 +297,19 @@ button {
       font-size: large;
       height: 42px;
       padding-top: 10px; }
-      #mainSection .main .basicConfig .erFormField .customInput .fileUploadButton {
+      #mainSection .main .basicConfig .erFormField .customInput .fileUploadButton, #mainSection .main.step5 .erFormField .customInput .fileUploadButton {
         background-color: transparent;
         color: white;
         border: none;
         padding: 0px; }
-    #mainSection .main .basicConfig .erFormField input[type=file] {
+    #mainSection .main .basicConfig .erFormField input[type=file], #mainSection .main.step5 .erFormField input[type=file] {
       width: 0.1px;
       height: 0.1px;
       opacity: 0;
       overflow: hidden;
       position: absolute;
       z-index: -1; }
-    #mainSection .main .basicConfig .erFormField label.itemNarrow {
+    #mainSection .main .basicConfig .erFormField label.itemNarrow, #mainSection .main.step5 .erFormField label.itemNarrow {
       display: block; }
 
 #mainSection .main .flexShow {

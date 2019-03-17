@@ -44,7 +44,8 @@ module.exports = function (sequelize, DataTypes) {
         "isStudent": {
             "type": DataTypes.BOOLEAN,
             "defaultValue": false
-        }
+        },
+
     });
 
     User.prototype.verifyPassword = function (password) {

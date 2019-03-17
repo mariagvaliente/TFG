@@ -50,7 +50,8 @@
 
  -->
 <div class="align-right">
-  <a href="/users/<%= session.user.id %>/escapeRooms"><button type="button">cancelar</button></a>
+  <% if (escapeRoom.id) { %> <a href="/users/<%= session.user.id %>/escapeRooms"><button type="button">volver</button></a> <% } %>
+  <% if (!escapeRoom.id) { %> <a href="/users/<%= session.user.id %>/escapeRooms"><button type="button">cancelar</button></a> <% } %>
   <button type ="submit">siguiente</button>
 </div>
 

@@ -6,7 +6,10 @@
         </div>
         <div class="loginRight" style=" width: 50%; float: left; flex: 1">
 
-            <h2><input class="fecha" type="text" id="datepicker2" name="date"></h2>
+            <h2>
+                <input class="fecha" type="hidden" id="datepicker2" name="date">
+                <span id="currentDate"></span>
+            </h2>
 
             <input class="turnos" type="text" id="tit" name="start" value="" placeholder="00:00" autocomplete="off"/>
             <input class="turnos" type="text" id="nar" name="narrative" value="" placeholder="¿Alguna indicación?" autocomplete="off"/>

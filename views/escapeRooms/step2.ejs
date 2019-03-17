@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <% include _header.ejs %>
 <div class="main step2">
 	<h2>
@@ -13,22 +15,45 @@
 	     <% include ../turnos/index %>
 	    </div>
 	</div>
-	<a href="/escapeRooms/<%=escapeRoom.id%>/step3"><button>siguiente</button></a>
+	<form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/step2'  >	
+		<div class="align-right">
+		  <button type="submit" value="previous" id="previous" name="previous">anterior</button>
+		  <button type="submit" value="next" id="next" name="next">siguiente</button>
+		</div>
+	</form>
 </div>
 <% include ../partials/__footer %>
 <%- include('../partials/__progress', {progress: 2}) %>
 <script>
     $(function() {
+    	$.datepicker.setDefaults({
+ 			firstDay: 1,
+    		dayNamesMin: ["d","l","m","m","j","v","s"], 
+    		monthNames:  ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+    		monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+    		dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+ 			dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+ 			isRTL: false,
+ 			showMonthAfterYear: false,
+ 			yearSuffix: '',
+ 			dateFormat: 'dd/mm/yy',
+ 			closeText: 'Cerrar',
+ 			prevText: '< Ant',
+ 			nextText: 'Sig >',
+ 			currentText: 'Hoy'
+ 		});
+    	$.datepicker.setDefaults( $.datepicker.regional[ "es" ] );
         $('#datepicker').datepicker({
             onSelect: function(dateText) {
                 $('#datepicker2').datepicker("setDate", $(this).datepicker("getDate"));
             }
 
         });
+        var currentDate = $('#datepicker').datepicker("getDate");
+        var monthArray = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        var label = currentDate.getDate() + " de " + monthArray[currentDate.getMonth() + 1]; //+ " de " + currentDate.getFullYear();
+        $('#currentDate').html(label);
     });
 
-    $(function() {
-        $("#datepicker2").datepicker();
-    });
 
 </script>
