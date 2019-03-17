@@ -44,7 +44,7 @@ module.exports = function (sequelize, DataTypes) {
         "isStudent": {
             "type": DataTypes.BOOLEAN,
             "defaultValue": false
-        },
+        }
 
     });
 

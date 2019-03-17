@@ -7,7 +7,7 @@
 
 <br class="escapeRoomItem">
 <div class="menuERShow">
-<div class="attachmentShow">
+<div class="attachmentShow" >
     <% var attachment = escapeRoom.attachment; %>
     <% include ../attachments/_show %>
 </div>
@@ -30,7 +30,7 @@
 <br/>
 <br/>
 <div class="flexShow">
-    <div class="flexRow" id="basic">
+    <div class="flexRow animated bounceIn" id="basic">
         <div class="flexShowLeft">
             Título:
         </div>   
@@ -38,7 +38,7 @@
             <%= escapeRoom.title %>
         </div>   
     </div>
-    <div class="flexRow">
+    <div class="flexRow animated bounceIn">
         <div class="flexShowLeft">
             Asignatura:
         </div>   
@@ -46,7 +46,7 @@
             <%= escapeRoom.subject %>
         </div>  
     </div>
-    <div class="flexRow">
+    <div class="flexRow animated bounceIn">
         <div class="flexShowLeft">
             Duración:
         </div>   
@@ -54,7 +54,7 @@
             <%= escapeRoom.duration %>
         </div>  
     </div>
-     <div class="flexRow">
+     <div class="flexRow animated bounceIn">
          <div class="flexShowLeft">
              Descripción:
          </div>   
@@ -62,7 +62,7 @@
              <%= escapeRoom.description %>
          </div>  
         </div>
-    <div class="flexRow">
+    <div class="flexRow animated bounceIn">
         <div class="flexShowLeft">
             Vídeo:
         </div>   
@@ -70,7 +70,7 @@
             <%= escapeRoom.video %>
         </div>  
     </div>
-    <div class="flexRow">
+    <div class="flexRow animated bounceIn">
         <div class="flexShowLeft">
             Nº máx. participantes:
         </div>   
@@ -78,7 +78,7 @@
             <%= escapeRoom.nmax %>
         </div>  
     </div>
-    <div class="flexRow" id="join">
+    <div class="flexRow animated bounceIn" id="join">
         <div class="flexShowLeft">
             Invitación:
         </div>   
@@ -89,7 +89,7 @@
             <button class="copy" id="copyButton"><i class="material-icons">file_copy</i></button>
         </div>  
     </div>
-    <div class="flexRow" id="appearance">
+    <div class="flexRow animated bounceIn" id="appearance">
         <div class="flexShowLeft">
             Apariencia:
         </div>   
@@ -97,7 +97,7 @@
             <img src="/images/<%=escapeRoom.appearance%>.png"/>
         </div>  
     </div>
-    <div class="flexRow" id="turnos">
+    <div class="flexRow animated bounceIn" id="turnos">
         <div class="flexShowLeft">
             Turnos:
         </div>   
@@ -106,7 +106,7 @@
             <% include ../turnos/index %>
         </div>  
     </div>
-    <div class="flexRow" id="pistas">
+    <div class="flexRow animated bounceIn" id="pistas">
         <div class="flexShowLeft">
             Retos:
         </div>   
@@ -114,7 +114,7 @@
              
         </div>  
     </div>
-    <div class="flexRow" id="pistas">
+    <div class="flexRow animated bounceIn" id="pistas">
         <div class="flexShowLeft">
             Pistas:
         </div>   
@@ -122,7 +122,7 @@
              
         </div>  
     </div>
-    <div class="flexRow" id="pretest">
+    <div class="flexRow animated bounceIn" id="pretest">
         <div class="flexShowLeft">
             Pre-test:
         </div>   
@@ -130,7 +130,7 @@
              <a href="<%= escapeRoom.pretest %>"><%= escapeRoom.pretest %><a/>
         </div>  
     </div>
-    <div class="flexRow" id="posttest">
+    <div class="flexRow animated bounceIn" id="posttest">
         <div class="flexShowLeft">
             Post-test:
         </div>   
@@ -138,7 +138,7 @@
              <a href="<%= escapeRoom.posttest %>"><%= escapeRoom.posttest %><a/>
         </div>  
     </div>
-    <div class="flexRow" id="survey">
+    <div class="flexRow animated bounceIn" id="survey">
         <div class="flexShowLeft">
             Encuesta:
         </div>   

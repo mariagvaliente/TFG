@@ -5,8 +5,10 @@
     <title>Escape room</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="/stylesheets/animate.css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
@@ -20,7 +22,7 @@
             <span class="close" id="close">&#x2716;</span>
             <% if (messages.info) { %>
                 <article id='flashinfo'>
-                    <h3>Information of interest:</h3>
+                    <h3>Información de interés:</h3>
                     <ul>
                         <% for (var i in messages.info) { %>
                             <li> <%= messages.info[i] %> </li>
@@ -31,7 +33,7 @@
 
             <% if (messages.success) { %>
                 <article id='flashsuccess'>
-                    <h3>Tasks completed successfully:</h3>
+                    <h3>Tareas completadas con éxito:</h3>
                     <ul>
                         <% for (var i in messages.success) { %>
                             <li> <%= messages.success[i] %> </li>
@@ -42,7 +44,7 @@
 
             <% if (messages.error) { %>
                 <article id='flasherror'>
-                    <h3>Errors:</h3>
+                    <h3>Errores:</h3>
                     <ul>
                         <% for (var i in messages.error) { %>
                             <li> <%= messages.error[i] %> </li>

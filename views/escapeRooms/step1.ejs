@@ -3,12 +3,12 @@
   <div class="half-flex-container">
     <div class="left-half-flex">
         <h2 >Apariencia</h2>
-        <img class="buttonApp <%= escapeRoom.appearance  === "litera" ?  "selected" : "" %>" id="litera" src="/images/litera.png" autocomplete="off"/>
-        <img class="buttonApp <%= escapeRoom.appearance  === "cerulean" ?  "selected" : "" %>" id="cerulean" src="/images/cerulean.png" autocomplete="off"/>
-        <img class="buttonApp <%= escapeRoom.appearance  === "journal" ?  "selected" : "" %>" id="journal" src="/images/journal.png" autocomplete="off"/>
-        <img class="buttonApp <%= escapeRoom.appearance  === "sketchy" ?  "selected" : "" %>" id="sketchy" src="/images/sketchy.png" autocomplete="off"/>
-        <img class="buttonApp <%= escapeRoom.appearance  === "darkly" ?  "selected" : "" %>" id="darkly" src="/images/darkly.png" autocomplete="off"/>
-        <img class="buttonApp <%= escapeRoom.appearance  === "cyborg" ?  "selected" : "" %>" id="cyborg" src="/images/cyborg.png" autocomplete="off"/>
+        <img class="buttonApp animated bounceIn <%= escapeRoom.appearance  === "litera" ?  "selected" : "" %>" id="litera" src="/images/litera.png" autocomplete="off"/>
+        <img class="buttonApp animated bounceIn <%= escapeRoom.appearance  === "cerulean" ?  "selected" : "" %>" id="cerulean" src="/images/cerulean.png" autocomplete="off"/>
+        <img class="buttonApp animated bounceIn <%= escapeRoom.appearance  === "journal" ?  "selected" : "" %>" id="journal" src="/images/journal.png" autocomplete="off"/>
+        <img class="buttonApp animated bounceIn <%= escapeRoom.appearance  === "sketchy" ?  "selected" : "" %>" id="sketchy" src="/images/sketchy.png" autocomplete="off"/>
+        <img class="buttonApp animated bounceIn <%= escapeRoom.appearance  === "darkly" ?  "selected" : "" %>" id="darkly" src="/images/darkly.png" autocomplete="off"/>
+        <img class="buttonApp animated bounceIn <%= escapeRoom.appearance  === "cyborg" ?  "selected" : "" %>" id="cyborg" src="/images/cyborg.png" autocomplete="off"/>
       <script>
         var url = '/escapeRooms/<%= escapeRoom.id %>/preview?appearance=';
         window.onload = function() {

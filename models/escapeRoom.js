@@ -48,7 +48,7 @@ module.exports = function (sequelize, DataTypes) {
             },
             "posttest": {
                 "type": DataTypes.STRING
-            },
+            }
 
         }
     );

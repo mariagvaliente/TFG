@@ -181,7 +181,7 @@ button {
 
 .escapeRooms .flexBoxEscapeRooms {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap; }
   .escapeRooms .flexBoxEscapeRooms:after {
     content: "";
@@ -198,7 +198,8 @@ button {
     align-items: center;
     border-radius: 10px;
     padding: 1vw;
-    margin: 1vw; }
+    margin: 1vw;
+    transition: 0.2s all ease-in; }
     .escapeRooms .flexBoxEscapeRooms .escapeRoomItem .erFoto {
       width: 100%;
       display: flex;
@@ -226,6 +227,8 @@ button {
       display: flex;
       flex-direction: column;
       justify-content: center; }
+    .escapeRooms .flexBoxEscapeRooms .escapeRoomItem:hover {
+      transform: scale(0.9); }
 
 @media (max-width: 1200px) {
   .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
@@ -482,6 +485,9 @@ button {
     border: none;
     margin: 0px;
     height: calc(100% - 16px); }
+
+#mainSection .main.step5 h2 {
+  text-align: left; }
 
 * {
   font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;

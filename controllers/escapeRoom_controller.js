@@ -538,7 +538,11 @@ exports.encuestasUpdate = (req, res, next) => {
     escapeRoom.pretest = body.pretest;
     escapeRoom.posttest = body.posttest;
 
-    escapeRoom.save({"fields": ["survey","pretest","posttest"]}).then(() => {
+    escapeRoom.save({"fields": [
+        "survey",
+        "pretest",
+        "posttest"
+    ]}).then(() => {
 
         res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "step4" : ""}`);
 
