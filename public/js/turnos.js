@@ -165,8 +165,8 @@ $(function () {
         const time = $("#start").val().
             split(":");
 
-        date.setHours(time[0]);
-        date.setMinutes(time[1]);
+        dateSubmitted.setHours(time[0]);
+        dateSubmitted.setMinutes(time[1]);
         $("#date").val(dateSubmitted);
 
         return true;

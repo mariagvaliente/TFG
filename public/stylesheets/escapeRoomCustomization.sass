@@ -14,7 +14,7 @@
 		.basicConfig, &.step5
 			font-size: 26px
 			text-align: center
-			.erFormField	
+			.erFormField
 				padding: 40px
 				text-align: left
 				&:focus-within
@@ -23,6 +23,7 @@
 						color: white
 				.customInput
 					border: none
+					border-radius: 0px
 					text-align: left
 					margin-left: 26px
 					width: 100%
@@ -113,13 +114,13 @@
 						width: 100%
 						height: 100%
 						#previewIframe
-							width: 100%;
-							height: 94%;
-							overflow: auto;
-							border: 3px solid white;
-							border-radius: 20px;
-							margin-top: 20px;
-							margin-bottom: 3%;
+							width: 100%
+							height: 94%
+							overflow: auto
+							border: 3px solid white
+							border-radius: 20px
+							margin-top: 20px
+							margin-bottom: 3%
 		&.step2
 			position: relative
 			.contenedor
@@ -127,31 +128,7 @@
 				h2
 					color: $textpurple
 				.flexBoxTurnos
-					display: flex
-					flex-direction: row
-					flex-wrap: wrap
-					margin-bottom: 20px
 					.turno
-						background-color: white
-						width: 100px
-						height: 100px
-						position: relative
-						margin: 5px
-						color: $darkerpurple
-						text-align: center
-						padding: 12px
-						border-radius: 20px
-						&.hidden
-							display: none
-						.hora
-							font-size: 25px
-							margin-bottom: 10px
-							overflow: hidden
-						.indications
-							color: $darkerpurple
-							font-size: 12px
-							.no-indications
-								color: #ddd
 						&.add-turno
 							.turnos-picker
 								background: transparent
@@ -168,10 +145,10 @@
 								-webkit-text-fill-color: $textgrey !important
 								&:focus, &:active, &:-webkit-autofill:focus, &:-webkit-autofill:active
 									color: $textgrey !important
-									-webkit-text-fill-color: $textgrey !important;
+									-webkit-text-fill-color: $textgrey !important
 								&:-webkit-autofill
 									-webkit-box-shadow: 0 0 0 30px $mainpurple inset !important
-									-webkit-text-fill-color: $textgrey !important;
+									-webkit-text-fill-color: $textgrey !important
 								&.turnos-time-picker
 									width: 150%
 									margin-top: -1em
@@ -285,11 +262,14 @@
 				color: $textpurple
 				font-size: 18px
 				display: block
+				height: 0px
 			.ui-dialog .ui-dialog-titlebar
-			    background: white !important
-			    border: white !important
+				background: white !important
+				border-color: white !important
+				color: $lightred
 			#dialog-rescorm
 				padding: 0
+				background-color: white
 				#rescorm
 					width: 100%
 					border: none	
@@ -298,3 +278,37 @@
 		&.step5
 			h2
 				text-align: left
+		.progress-buttons
+			border-radius: 25px
+			padding: 10px 20px
+			&#exit
+				border: 2px solid white
+				background-color: transparent
+				color: white
+		.flexBoxTurnos
+			display: flex
+			flex-direction: row
+			flex-wrap: wrap
+			margin-bottom: 20px
+			.turno
+				background-color: white
+				width: 100px
+				height: 100px
+				position: relative
+				margin: 5px
+				color: $darkerpurple
+				text-align: center
+				padding: 12px
+				border-radius: 20px
+				&.hidden
+					display: none
+				.hora
+					font-size: 25px
+					margin-bottom: 10px
+					overflow: hidden
+				.indications
+					color: $darkerpurple
+					font-size: 12px
+					line-height: 100%
+					.no-indications
+						color: #ddd

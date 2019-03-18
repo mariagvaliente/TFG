@@ -28,6 +28,9 @@ exports.create = (req, res, next) => {
 
     const {date, indications} = req.body;
     const modDate = new Date(date);
+
+    console.log("/*************************************************************/");
+    console.log(modDate);
     const turn = models.turno.build({
         "date": modDate,
         indications,

@@ -6,38 +6,42 @@
 	  	<label for="noHints" id="noHintsLabel">No quiero que haya pistas en mi escape room<input id="noHints" name="noHints" type="checkbox" checked/></label>
 	  	<input type="file" name="hints"/>
 	  	<p id="yourScorm">Crea tu propio paquete de pistas SCORM <button type="button" id="opener">crear</button></p>
+		<br/><br/><br/>
 	  	<div class="align-right">
-	  	  <button type="submit" value="previous" id="previous" name="previous">anterior</button>
-	  	  <button type="submit" value="next" id="next" name="next">siguiente</button>
-	  	</div>
+			<a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button></a>
+			<button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
+			<button class="progress-buttons" type="submit" value="next" id="next" name="next">siguiente</button>
+		</div>
   	</form>
-  
+
 </div>
 <div id="dialog-rescorm" title="Crea tu propio paquete SCORM">
   <iframe id="rescorm" src="https://sonsoleslp.github.io/rescorm-generator/"></iframe>
 </div>
 <% include ../partials/__footer %>
 <%- include('../partials/__progress', {progress: 4}) %>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
-$( function() {
-	$( "#dialog-rescorm" ).dialog({
-	  autoOpen: false,
-	  resizable: false,
-	  width: screen.width*0.8,
-	  height: screen.height*0.8,
-	  show: {
-	    effect: "blind",
-	    duration: 100
-	  },
-	  hide: {
-	    effect: "explode",
-	    duration: 400
-	  },
-	  appendTo: '.main'
-	});
+	$( function() {
+		$( "#dialog-rescorm" ).dialog({
+		  autoOpen: false,
+		  resizable: false,
+		  width: screen.width*0.8,
+		  height: screen.height*0.75,
+		  show: {
+			effect: "blind",
+			duration: 100
+		  },
+		  hide: {
+			effect: "blind",
+			duration: 400
+		  },
+		  appendTo: '.main',
+          modal: true,
+		});
 
-	$( "#opener" ).on( "click", function() {
-	  $( "#dialog-rescorm" ).dialog( "open" );
+		$( "#opener" ).on( "click", function() {
+		  $( "#dialog-rescorm" ).dialog( "open" );
+		});
 	});
-});
 </script>

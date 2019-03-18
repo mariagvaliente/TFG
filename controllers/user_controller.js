@@ -17,8 +17,8 @@ exports.load = (req, res, next, userId) => {
 
             } else {
 
-                req.flash("error", `There is no user with id=${userId}.`);
-                throw new Error(`No exist userId=${userId}`);
+                req.flash("error", `No existe usuario con id=${userId}.`);
+                throw new Error(`No existe userId=${userId}`);
 
             }
 
@@ -99,14 +99,14 @@ exports.create = (req, res, next) => {
     ]}).
         then(() => { // Render the users page
 
-            req.flash("success", "User created successfully.");
+            req.flash("success", "Usuario creado con éxito.");
             res.redirect("/"); // Redirection
 
         }).
         catch(Sequelize.UniqueConstraintError, (error) => {
 
             console.error(error);
-            req.flash("error", `User "${username}" already exists.`);
+            req.flash("error", `El usuario "${username}" ya existe`);
             res.render("index", {user,
                 "register": true});
 
@@ -144,7 +144,7 @@ exports.update = (req, res, next) => {
     // Password can not be empty
     if (!body.password) {
 
-        req.flash("error", "Password field must be filled in.");
+        req.flash("error", "Es obligatorio introducir una contraseña");
 
         return res.render("users/edit", {user});
 
@@ -156,7 +156,7 @@ exports.update = (req, res, next) => {
     ]}).
         then((user_saved) => {
 
-            req.flash("success", "User updated successfully.");
+            req.flash("success", "Usuario actualizado correctamente");
             res.redirect(`/users/${user_saved.id}`);
 
         }).
@@ -185,7 +185,7 @@ exports.destroy = (req, res, next) => {
 
             }
 
-            req.flash("success", "User deleted successfully.");
+            req.flash("success", "Usuario borrado correctamente");
             res.redirect("/goback");
 
         }).

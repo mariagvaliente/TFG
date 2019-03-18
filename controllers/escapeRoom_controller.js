@@ -424,27 +424,9 @@ exports.turnosUpdate = (req, res /* , next*/) => {
 
     const {escapeRoom, body} = req;
 
-    escapeRoom.appearance = body.appearance;
     const isPrevious = Boolean(body.previous);
 
     res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "step1" : "step3"}`);
-    /* EscapeRoom.save({"fields": ["turnos"]}).then(() => {
-
-        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "step1" : "step3"}`);
-
-    }).
-        catch(Sequelize.ValidationError, (error) => {
-
-            error.errors.forEach(({message}) => req.flash("error", message));
-            res.redirect(`/escapeRooms/${escapeRoom.id}/step2`);
-
-        }).
-        catch((error) => {
-
-            req.flash("error", `Error editing the Escape Room: ${error.message}`);
-            next(error);
-
-        });*/
 
 };
 

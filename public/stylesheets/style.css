@@ -59,6 +59,34 @@
               transition: 0.1s all ease-in; }
               #mainSection .main .menuERShow .menuERShowRight .menuERactionList li .showMenuButton:hover {
                 transform: scale(0.9); }
+    #mainSection .main .turno-date-title-show {
+      color: white;
+      margin: 5px; }
+    #mainSection .main #dialog-preview-video {
+      padding: 0;
+      background-color: white;
+      outline: none;
+      border: none; }
+      #mainSection .main #dialog-preview-video #previewVideoContent {
+        padding: 10px; }
+    #mainSection .main .ui-dialog {
+      outline: none !important; }
+    #mainSection .main .ui-dialog-title {
+      line-height: 50px;
+      padding-left: 10px; }
+    #mainSection .main .ui-dialog-titlebar-close {
+      visibility: hidden;
+      float: right;
+      width: 50px; }
+    #mainSection .main .ui-button-icon-space {
+      visibility: visible; }
+      #mainSection .main .ui-button-icon-space:after {
+        content: '\e5cd';
+        font-family: 'Material Icons'; }
+    #mainSection .main .ui-dialog .ui-dialog-titlebar {
+      background: white !important;
+      border-color: white !important;
+      color: #F47E84; }
 
 @media (min-width: 1200px) {
   #mainSection .main {
@@ -317,6 +345,7 @@ button {
         color: white; }
     #mainSection .main .basicConfig .erFormField .customInput, #mainSection .main.step5 .erFormField .customInput {
       border: none;
+      border-radius: 0px;
       text-align: left;
       margin-left: 26px;
       width: 100%;
@@ -420,81 +449,55 @@ button {
     display: block !important; }
     #mainSection .main.step2 .contenedor h2 {
       color: #656683; }
-    #mainSection .main.step2 .contenedor .flexBoxTurnos {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      margin-bottom: 20px; }
-      #mainSection .main.step2 .contenedor .flexBoxTurnos .turno {
-        background-color: white;
-        width: 100px;
-        height: 100px;
-        position: relative;
-        margin: 5px;
-        color: #161938;
-        text-align: center;
-        padding: 12px;
-        border-radius: 20px; }
-        #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.hidden {
+    #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker {
+      background: transparent;
+      padding: 0px;
+      margin: 0px;
+      text-align: center;
+      text-align-last: center;
+      width: 100%;
+      color: #a1a3af;
+      border: none;
+      font-size: 1em;
+      caret-color: #a1a3af;
+      color: #a1a3af !important;
+      -webkit-text-fill-color: #a1a3af !important; }
+      #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:focus, #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:active, #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill:focus, #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill:active {
+        color: #a1a3af !important;
+        -webkit-text-fill-color: #a1a3af !important; }
+      #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px #232951 inset !important;
+        -webkit-text-fill-color: #a1a3af !important; }
+      #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker {
+        width: 150%;
+        margin-top: -1em;
+        margin-bottom: -1em; }
+        #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker::-webkit-clear-button, #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker::-ms-clear {
           display: none; }
-        #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .hora {
-          font-size: 25px;
-          margin-bottom: 10px;
-          overflow: hidden; }
-        #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .indications {
-          color: #161938;
-          font-size: 12px; }
-          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .indications .no-indications {
-            color: #ddd; }
-        #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker {
-          background: transparent;
-          padding: 0px;
-          margin: 0px;
-          text-align: center;
-          text-align-last: center;
-          width: 100%;
-          color: #a1a3af;
-          border: none;
-          font-size: 1em;
-          caret-color: #a1a3af;
-          color: #a1a3af !important;
-          -webkit-text-fill-color: #a1a3af !important; }
-          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:focus, #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:active, #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill:focus, #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill:active {
-            color: #a1a3af !important;
-            -webkit-text-fill-color: #a1a3af !important; }
-          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill {
-            -webkit-box-shadow: 0 0 0 30px #232951 inset !important;
-            -webkit-text-fill-color: #a1a3af !important; }
-          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker {
-            width: 150%;
-            margin-top: -1em;
-            margin-bottom: -1em; }
-            #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker::-webkit-clear-button, #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker::-ms-clear {
-              display: none; }
-          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-indications-picker {
-            resize: none;
-            height: 40px;
-            outline: none !important; }
-        #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .little-button {
-          padding: 3px;
-          padding-left: 4px;
-          font-size: 14px;
-          border: none;
-          float: right;
-          color: white;
-          border-radius: 50%;
-          line-height: 11px;
-          vertical-align: text-bottom;
-          margin-right: -15px;
-          position: absolute;
-          bottom: 0;
-          right: 10px; }
-          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .little-button .material-icons {
-            font-size: 16px; }
-          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .little-button.more {
-            background: #FAC855; }
-          #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .little-button.less {
-            background: #F47E84; }
+      #mainSection .main.step2 .contenedor .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-indications-picker {
+        resize: none;
+        height: 40px;
+        outline: none !important; }
+    #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .little-button {
+      padding: 3px;
+      padding-left: 4px;
+      font-size: 14px;
+      border: none;
+      float: right;
+      color: white;
+      border-radius: 50%;
+      line-height: 11px;
+      vertical-align: text-bottom;
+      margin-right: -15px;
+      position: absolute;
+      bottom: 0;
+      right: 10px; }
+      #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .little-button .material-icons {
+        font-size: 16px; }
+      #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .little-button.more {
+        background: #FAC855; }
+      #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .little-button.less {
+        background: #F47E84; }
 
 #mainSection .main.step3 .flex-table-retos {
   display: flex;
@@ -575,14 +578,17 @@ button {
 #mainSection .main.step4 #yourScorm {
   color: #656683;
   font-size: 18px;
-  display: block; }
+  display: block;
+  height: 0px; }
 
 #mainSection .main.step4 .ui-dialog .ui-dialog-titlebar {
   background: white !important;
-  border: white !important; }
+  border-color: white !important;
+  color: #F47E84; }
 
 #mainSection .main.step4 #dialog-rescorm {
-  padding: 0; }
+  padding: 0;
+  background-color: white; }
   #mainSection .main.step4 #dialog-rescorm #rescorm {
     width: 100%;
     border: none;
@@ -591,6 +597,42 @@ button {
 
 #mainSection .main.step5 h2 {
   text-align: left; }
+
+#mainSection .main .progress-buttons {
+  border-radius: 25px;
+  padding: 10px 20px; }
+  #mainSection .main .progress-buttons#exit {
+    border: 2px solid white;
+    background-color: transparent;
+    color: white; }
+
+#mainSection .main .flexBoxTurnos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 20px; }
+  #mainSection .main .flexBoxTurnos .turno {
+    background-color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin: 5px;
+    color: #161938;
+    text-align: center;
+    padding: 12px;
+    border-radius: 20px; }
+    #mainSection .main .flexBoxTurnos .turno.hidden {
+      display: none; }
+    #mainSection .main .flexBoxTurnos .turno .hora {
+      font-size: 25px;
+      margin-bottom: 10px;
+      overflow: hidden; }
+    #mainSection .main .flexBoxTurnos .turno .indications {
+      color: #161938;
+      font-size: 12px;
+      line-height: 100%; }
+      #mainSection .main .flexBoxTurnos .turno .indications .no-indications {
+        color: #ddd; }
 
 * {
   font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;

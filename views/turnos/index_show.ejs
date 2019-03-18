@@ -1,0 +1,48 @@
+<%
+var monthArray = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+var zeroPadding = function(hour) {
+	if (hour < 10) {
+		return "0" + hour;
+	}
+	return hour;
+}
+
+var formatDate = function(currentDate) {
+	return currentDate.getDate() + " de " + monthArray[currentDate.getMonth()] + " de " + currentDate.getFullYear();
+}
+
+var formatTime = function(currentDate) {
+	return zeroPadding(currentDate.getHours()) + ":" + zeroPadding(currentDate.getMinutes());
+}
+
+var pastDates = [];
+%>
+<div>
+<% for (var i in turnos) { %>
+<% 	var turn = turnos[i];
+	var date = new Date(turn.date);
+	var dateNoTime = new Date(turn.date);
+	dateNoTime.setHours(0,0,0,0); %>
+<%	if (pastDates.indexOf(dateNoTime.getTime()) === -1) {
+  		pastDates.push(dateNoTime.getTime()); %>
+		</div>
+		<p class="turno-date-title-show"><%=formatDate(dateNoTime)%></p>
+		<div class="flexBoxTurnos">
+	<%}%>
+
+		<div class="turno" data-date="<%=dateNoTime.getTime()%>">
+			<div class="hora">
+				<%= formatTime(date) %>
+			</div>
+			<div class="indications">
+				<% if (turn.indications) { %>
+					<%= turn.indications %> <br/>
+				<% } else { %> 
+					<em class="no-indications"> Sin indicaciones</em>
+				<% } %>
+			</div>
+		</div>
+       
+<%}%>
+
+		</div>

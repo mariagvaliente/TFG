@@ -38,8 +38,9 @@
   <form method='POST' action='/escapeRooms/<%= escapeRoom.id %>/step1'  >
     <input type="hidden" id="appearance" name="appearance" value="<%= escapeRoom.appearance  || "litera" %>" />
     <div class="align-right">
-      <button type="submit" value="previous" id="previous" name="previous">anterior</button>
-      <button type="submit" value="next" id="next" name="next">siguiente</button>
+        <a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button></a>
+        <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
+        <button class="progress-buttons" type="submit" value="next" id="next" name="next">siguiente</button>
     </div>
   </form>
   <br/><br/><br/><br/>

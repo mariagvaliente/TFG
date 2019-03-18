@@ -1,175 +1,223 @@
 <% include _header.ejs %>
 <div class="main no-bckg">
  
-<h1>
-    Configuración básica de la escape room:
-</h1>
+    <h1>
+        Configuración básica de la escape room:
+    </h1>
 
-<br class="escapeRoomItem">
-<div class="menuERShow">
-<div class="attachmentShow" >
-    <% var attachment = escapeRoom.attachment; %>
-    <% include ../attachments/_show %>
-</div>
-<div class="menuERShowRight">
-   <ul class="menuERactionList">
-       <li><a href="#basic">Configuración básica</a></li>
-       <li><a href="#appearance">Apariencia</a></li>
-       <li><a href="#turnos">Turnos</a></li>
-       <li><a href="#join">Enlace de invitación</a></li>
-       <li><a href="">Participantes <i class="material-icons">keyboard_arrow_right</i></a></li>
-       <li><a href="">Equipos <i class="material-icons">keyboard_arrow_right</i> </a></li>
-       <li><a href="">Learning analytics <i class="material-icons">keyboard_arrow_right</i> </a></li>
-       <li><a href="/escapeRooms/<%= escapeRoom.id %>/edit"><button class="showMenuButton editButton">editar</button></a></li>
-       <li><a href="/escapeRooms/<%= escapeRoom.id %>?_method=DELETE" onClick="return confirm('Delete: <%= escapeRoom.title %>');"><button class="showMenuButton deleteButton">borrar</button></a></li>
-       <li><a href="/users/<%= session.user.id %>/escapeRooms"><button class="showMenuButton">volver</button></a></li>
-   </ul>
+    <br class="escapeRoomItem">
+    <div class="menuERShow">
+    <div class="attachmentShow" >
+        <% var attachment = escapeRoom.attachment; %>
+        <% include ../attachments/_show %>
+    </div>
+    <div class="menuERShowRight">
+       <ul class="menuERactionList">
+           <li><a href="#basic">Configuración básica</a></li>
+           <li><a href="#appearance">Apariencia</a></li>
+           <li><a href="#turnos">Turnos</a></li>
+           <li><a href="#join">Enlace de invitación</a></li>
+           <li><a href="">Participantes <i class="material-icons">keyboard_arrow_right</i></a></li>
+           <li><a href="">Equipos <i class="material-icons">keyboard_arrow_right</i> </a></li>
+           <li><a href="">Learning analytics <i class="material-icons">keyboard_arrow_right</i> </a></li>
+           <li><a href="/escapeRooms/<%= escapeRoom.id %>/edit"><button class="showMenuButton editButton">editar</button></a></li>
+           <li><a href="/escapeRooms/<%= escapeRoom.id %>?_method=DELETE" onClick="return confirm('Delete: <%= escapeRoom.title %>');"><button class="showMenuButton deleteButton">borrar</button></a></li>
+           <li><a href="/users/<%= session.user.id %>/escapeRooms"><button class="showMenuButton">volver</button></a></li>
+       </ul>
 
-</div>
-</div>
-<br/>
-<br/>
-<div class="flexShow">
-    <div class="flexRow animated bounceIn" id="basic">
-        <div class="flexShowLeft">
-            Título:
-        </div>   
-        <div class="flexShowRight">
-            <%= escapeRoom.title %>
-        </div>   
     </div>
-    <div class="flexRow animated bounceIn">
-        <div class="flexShowLeft">
-            Asignatura:
-        </div>   
-        <div class="flexShowRight">
-            <%= escapeRoom.subject %>
-        </div>  
     </div>
-    <div class="flexRow animated bounceIn">
-        <div class="flexShowLeft">
-            Duración:
-        </div>   
-        <div class="flexShowRight">
-            <%= escapeRoom.duration %>
-        </div>  
-    </div>
-     <div class="flexRow animated bounceIn">
-         <div class="flexShowLeft">
-             Descripción:
-         </div>   
-         <div class="flexShowRight">
-             <%= escapeRoom.description %>
-         </div>  
+    <br/>
+    <br/>
+    <div class="flexShow">
+        <div class="flexRow animated bounceIn" id="basic">
+            <div class="flexShowLeft">
+                Título:
+            </div>
+            <div class="flexShowRight">
+                <%= escapeRoom.title %>
+            </div>
         </div>
-    <div class="flexRow animated bounceIn">
-        <div class="flexShowLeft">
-            Vídeo:
-        </div>   
-        <div class="flexShowRight">
-            <%= escapeRoom.video %>
-        </div>  
-    </div>
-    <div class="flexRow animated bounceIn">
-        <div class="flexShowLeft">
-            Nº máx. participantes:
-        </div>   
-        <div class="flexShowRight">
-            <%= escapeRoom.nmax %>
-        </div>  
-    </div>
-    <div class="flexRow animated bounceIn" id="join">
-        <div class="flexShowLeft">
-            Invitación:
-        </div>   
-        <div class="flexShowRight">
-            <% var invitationLink = "http://localhost:3000/escapeRooms/" + escapeRoom.id +"/join?token=" + escapeRoom.invitation; %>
-            <a href="<%= invitationLink %>"><%= invitationLink %><a/>
-            <input id="joinUrl" value="<%= invitationLink %>">
-            <button class="copy" id="copyButton"><i class="material-icons">file_copy</i></button>
-        </div>  
-    </div>
-    <div class="flexRow animated bounceIn" id="appearance">
-        <div class="flexShowLeft">
-            Apariencia:
-        </div>   
-        <div class="flexShowRight">
-            <img src="/images/<%=escapeRoom.appearance%>.png"/>
-        </div>  
-    </div>
-    <div class="flexRow animated bounceIn" id="turnos">
-        <div class="flexShowLeft">
-            Turnos:
-        </div>   
-        <div class="flexShowRight">
-            <% var turnos = escapeRoom.turnos; %>
-            <% /*include ../turnos/index */%>
-        </div>  
-    </div>
-    <div class="flexRow animated bounceIn" id="pistas">
-        <div class="flexShowLeft">
-            Retos:
-        </div>   
-        <div class="flexShowRight">
-             
-        </div>  
-    </div>
-    <div class="flexRow animated bounceIn" id="pistas">
-        <div class="flexShowLeft">
-            Pistas:
-        </div>   
-        <div class="flexShowRight">
-             
-        </div>  
-    </div>
-    <div class="flexRow animated bounceIn" id="pretest">
-        <div class="flexShowLeft">
-            Pre-test:
-        </div>   
-        <div class="flexShowRight">
-             <a href="<%= escapeRoom.pretest %>"><%= escapeRoom.pretest %><a/>
-        </div>  
-    </div>
-    <div class="flexRow animated bounceIn" id="posttest">
-        <div class="flexShowLeft">
-            Post-test:
-        </div>   
-        <div class="flexShowRight">
-             <a href="<%= escapeRoom.posttest %>"><%= escapeRoom.posttest %><a/>
-        </div>  
-    </div>
-    <div class="flexRow animated bounceIn" id="survey">
-        <div class="flexShowLeft">
-            Encuesta:
-        </div>   
-        <div class="flexShowRight">
-             <a href="<%= escapeRoom.survey %>"><%= escapeRoom.survey %><a/>
-        </div>  
+        <div class="flexRow animated bounceIn">
+            <div class="flexShowLeft">
+                Asignatura:
+            </div>
+            <div class="flexShowRight">
+                <%= escapeRoom.subject %>
+            </div>
+        </div>
+        <div class="flexRow animated bounceIn">
+            <div class="flexShowLeft">
+                Duración:
+            </div>
+            <div class="flexShowRight">
+                <%= escapeRoom.duration %>
+            </div>
+        </div>
+        <div class="flexRow animated bounceIn">
+             <div class="flexShowLeft">
+                 Descripción:
+             </div>
+             <div class="flexShowRight">
+                 <%= escapeRoom.description %>
+             </div>
+            </div>
+        <div class="flexRow animated bounceIn">
+            <div class="flexShowLeft">
+                Vídeo:
+            </div>
+            <div class="flexShowRight">
+                <a href="<%= escapeRoom.video %>"><%= escapeRoom.video %></a> <button class="copy" id="previewVideo"><i class="material-icons">remove_red_eye</i></button>
+            </div>
+        </div>
+        <div class="flexRow animated bounceIn">
+            <div class="flexShowLeft">
+                Nº máx. participantes:
+            </div>
+            <div class="flexShowRight">
+                <%= escapeRoom.nmax %>
+            </div>
+        </div>
+        <div class="flexRow animated bounceIn" id="join">
+            <div class="flexShowLeft">
+                Invitación:
+            </div>
+            <div class="flexShowRight">
+                <% var invitationLink = "http://localhost:3000/escapeRooms/" + escapeRoom.id +"/join?token=" + escapeRoom.invitation; %>
+                <a href="<%= invitationLink %>"><%= invitationLink %></a>
+                <input id="joinUrl" value="<%= invitationLink %>"/>
+                <button class="copy" id="copyButton"><i class="material-icons">file_copy</i></button>
+            </div>
+        </div>
+        <div class="flexRow animated bounceIn" id="appearance">
+            <div class="flexShowLeft">
+                Apariencia:
+            </div>
+            <div class="flexShowRight">
+                <img src="/images/<%=escapeRoom.appearance%>.png"/>
+            </div>
+        </div>
+        <div class="flexRow animated bounceIn" id="turnos">
+            <div class="flexShowLeft">
+                Turnos:
+            </div>
+            <div class="flexShowRight">
+                <% var turnos = escapeRoom.turnos; %>
+                <%  include ../turnos/index_show  %>
+            </div>
+        </div>
+        <div class="flexRow animated bounceIn" id="pistas">
+            <div class="flexShowLeft">
+                Retos:
+            </div>
+            <div class="flexShowRight">
+
+            </div>
+        </div>
+        <div class="flexRow animated bounceIn" id="pistas">
+            <div class="flexShowLeft">
+                Pistas:
+            </div>
+            <div class="flexShowRight">
+
+            </div>
+        </div>
+        <div class="flexRow animated bounceIn" id="pretest">
+            <div class="flexShowLeft">
+                Pre-test:
+            </div>
+            <div class="flexShowRight">
+                 <a href="<%= escapeRoom.pretest %>"><%= escapeRoom.pretest %></a>
+            </div>
+        </div>
+        <div class="flexRow animated bounceIn" id="posttest">
+            <div class="flexShowLeft">
+                Post-test:
+            </div>
+            <div class="flexShowRight">
+                 <a href="<%= escapeRoom.posttest %>"><%= escapeRoom.posttest %></a>
+            </div>
+        </div>
+        <div class="flexRow animated bounceIn" id="survey">
+            <div class="flexShowLeft">
+                Encuesta:
+            </div>
+            <div class="flexShowRight">
+                 <a href="<%= escapeRoom.survey %>"><%= escapeRoom.survey %></a>
+            </div>
+        </div>
     </div>
 </div>
-</br>
+<br/>
+
+<br/>
+
+<div style="height: 100px"></div>
 
 
-</br>
 
-</br>
-
-<div style="height: 100px"/>
-
-</div>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
-    window.onload = function() {
-        document.getElementById('copyButton').onclick = function() {
-            var copyText = document.getElementById("joinUrl");
 
-             /* Select the text field */
-             copyText.select();
+  $( function() {
+    $('#copyButton').on('click', function() {
+      var copyText = $("#joinUrl");
+      copyText.select();
+      document.execCommand("copy");
+    });
+    $("#dialog-preview-video").dialog({
+      autoOpen: false,
+      resizable: false,
+      width: 560,
+      height: "auto",
+      show: {
+        effect: "blind",
+        duration: 100
+      },
+      hide: {
+        effect: "explode",
+        duration: 400
+      },
+      appendTo: '.main'
+    });
 
-             /* Copy the text inside the text field */
-             document.execCommand("copy");
-        }
-    }
 
+
+    $( "#previewVideo" ).on( "click", function() {
+      $( "#dialog-preview-video" ).dialog( "open" );
+    });
+  });
 </script>
+<%
+const parseURL = (url) => {
+    if (url === '') {
+        return false;
+    }
+    var patt1 = /youtube.com\/watch\?v=(.*)/;
+    var patt2 = /youtube.com\/embed\/(.*)/;
+    var patt3 = /youtu.be\/(.*)/;
+    if (patt2.exec(url)) {
+        return url;
+    }
+    var code = patt1.exec(url);
+    if (code) {
+        return 'https://www.youtube.com/embed/' + code[1];
+    }
+    var code2 = patt3.exec(url);
+    if (code2) {
+        return 'https://www.youtube.com/embed/' + code2[1];
+    }
+    return false;
+}
+ %>
+<% if (escapeRoom.video) { %>
+<div id="dialog-preview-video" title="Previsualizar video">
+    <% if (parseURL(escapeRoom.video)) { %>
+        <iframe id="previewVideoContent" width="560" height="315" src="<%=parseURL(escapeRoom.video)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <% } else { %>
+        <video id="previewVideoContent" width="560" height="315" src="<%= escapeRoom.video %>">"></video>
+    <% } %>
 
+</div>
+<% } %>
 <% include ../partials/__footer %>
