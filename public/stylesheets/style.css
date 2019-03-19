@@ -443,7 +443,7 @@ button {
         border-color: #FAC855; }
   #mainSection .main.step1 .half-flex-container .right-half-flex {
     width: 50%;
-    height: 70vh; }
+    height: 60vh; }
     #mainSection .main.step1 .half-flex-container .right-half-flex .preview {
       width: 100%;
       height: 100%; }
@@ -453,7 +453,7 @@ button {
         overflow: auto;
         border: 3px solid white;
         border-radius: 20px;
-        margin-top: 20px;
+        margin-top: 10px;
         margin-bottom: 3%; }
 
 #mainSection .main.step2 {
@@ -610,6 +610,21 @@ button {
 
 #mainSection .main.step5 h2 {
   text-align: left; }
+
+#mainSection .main.step6 .editor-wrapper {
+  background-color: white;
+  margin-bottom: 20px;
+  color: black; }
+  #mainSection .main.step6 .editor-wrapper #editor {
+    min-height: 300px; }
+    #mainSection .main.step6 .editor-wrapper #editor.ql-container {
+      font-size: 18px; }
+    #mainSection .main.step6 .editor-wrapper #editor * {
+      font-family: 'Lato'; }
+    #mainSection .main.step6 .editor-wrapper #editor .ql-active, #mainSection .main.step6 .editor-wrapper #editor .ql-snow.ql-toolbar button:hover {
+      color: #F47E84; }
+      #mainSection .main.step6 .editor-wrapper #editor .ql-active *, #mainSection .main.step6 .editor-wrapper #editor .ql-snow.ql-toolbar button:hover * {
+        stroke: #F47E84; }
 
 #mainSection .main .progress-buttons {
   border-radius: 25px;

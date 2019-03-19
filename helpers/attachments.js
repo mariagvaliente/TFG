@@ -12,8 +12,6 @@ const uploadResourceToCloudinary = (src, options) => new Promise((resolve, rejec
 
             if (!error) {
 
-                console.log("/*******************************************/");
-                console.log(result);
                 resolve({
                     "public_id": result.public_id,
                     "url": result.secure_url
@@ -91,7 +89,7 @@ exports.deleteResource = function (public_id) {
         // Delete from local file system.
         fs.unlink(destination, function (error) {
 
-            console.log("Error deleting attachment file from local file system:", error);
+            console.error("Error al borrar el archivo del sistema de ficheros:", error);
 
         });
 
@@ -150,15 +148,13 @@ exports.video = function (public_id, options) {
 
 exports.checksCloudinaryEnv = () => new Promise((resolve, reject) => {
 
-    console.log("*********************************************************************");
     if (process.env.CLOUDINARY_URL) {
 
-        console.log(process.env.CLOUDINARY_URL);
         resolve();
 
     } else {
 
-        reject(new Error("Environment variable CLOUDINARY_URL is not defined."));
+        reject(new Error("La variable de entonrno CLOUDINARY_URL no está definida."));
 
     }
 

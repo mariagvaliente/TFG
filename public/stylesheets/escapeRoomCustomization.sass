@@ -117,7 +117,7 @@
 							border-color: $brightyellow
 				.right-half-flex
 					width: 50%
-					height: 70vh
+					height: 60vh
 					.preview
 						width: 100%
 						height: 100%
@@ -127,7 +127,7 @@
 							overflow: auto
 							border: 3px solid white
 							border-radius: 20px
-							margin-top: 20px
+							margin-top: 10px
 							margin-bottom: 3%
 		&.step2
 			position: relative
@@ -286,6 +286,21 @@
 		&.step5
 			h2
 				text-align: left
+		&.step6
+			.editor-wrapper
+				background-color: white
+				margin-bottom: 20px
+				color: black
+				#editor
+					min-height: 300px
+					&.ql-container
+						font-size: 18px
+					*
+						font-family: 'Lato'
+					.ql-active, .ql-snow.ql-toolbar button:hover
+						color: $lightred
+						*
+							stroke: $lightred
 		.progress-buttons
 			border-radius: 25px
 			padding: 10px 20px

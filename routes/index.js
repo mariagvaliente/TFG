@@ -85,6 +85,7 @@ router.get("/escapeRooms/:escapeRoomId(\\d+)/step4", sessionController.loginRequ
 router.post("/escapeRooms/:escapeRoomId(\\d+)/step4", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.pistasUpdate);
 router.get("/escapeRooms/:escapeRoomId(\\d+)/step5", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.encuestas);
 router.post("/escapeRooms/:escapeRoomId(\\d+)/step5", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.encuestasUpdate);
+router.get("/escapeRooms/:escapeRoomId(\\d+)/step6", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.instrucciones);
 
 
 router.post("/escapeRooms/:escapeRoomId(\\d+)/turnos", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);
