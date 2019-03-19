@@ -210,58 +210,60 @@ button {
     .portada .contenedor #imagenPortada {
       width: auto; }
 
-.escapeRooms .flexBoxEscapeRooms {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap; }
-  .escapeRooms .flexBoxEscapeRooms:after {
-    content: "";
-    flex: auto;
-    width: auto; }
-  .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
-    background: white;
-    color: black;
-    width: 14vw;
-    height: 14vw;
+.escapeRooms {
+  padding: 10vw; }
+  .escapeRooms .flexBoxEscapeRooms {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    border-radius: 10px;
-    padding: 1vw;
-    margin: 1vw; }
-    .escapeRooms .flexBoxEscapeRooms .escapeRoomItem .erFoto {
-      width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap; }
+    .escapeRooms .flexBoxEscapeRooms:after {
+      content: "";
+      flex: auto;
+      width: auto; }
+    .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
+      background: white;
+      color: black;
+      width: calc(14vw - 20px);
+      height: calc(14vw - 20px);
       display: flex;
       flex-direction: column;
-      flex: 1 auto; }
-      .escapeRooms .flexBoxEscapeRooms .escapeRoomItem .erFoto .bckgFoto {
-        flex: 1;
-        background-position: center;
-        background-size: cover; }
-      .escapeRooms .flexBoxEscapeRooms .escapeRoomItem .erFoto .escapeRoomTitle {
-        white-space: nowrap;
+      justify-content: flex-end;
+      align-items: center;
+      border-radius: 10px;
+      padding: 1vw;
+      margin: 1vw; }
+      .escapeRooms .flexBoxEscapeRooms .escapeRoomItem .erFoto {
         width: 100%;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        padding-top: 5px; }
-    .escapeRooms .flexBoxEscapeRooms .escapeRoomItem.addEscapeRoom {
-      background-color: #9196A9;
-      color: #D2D4DC;
-      font-size: 100px;
-      padding: 10px 20px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: #D2D4DC;
-      outline: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center; }
+        display: flex;
+        flex-direction: column;
+        flex: 1 auto; }
+        .escapeRooms .flexBoxEscapeRooms .escapeRoomItem .erFoto .bckgFoto {
+          flex: 1;
+          background-position: center;
+          background-size: cover; }
+        .escapeRooms .flexBoxEscapeRooms .escapeRoomItem .erFoto .escapeRoomTitle {
+          white-space: nowrap;
+          width: 100%;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          padding-top: 5px; }
+      .escapeRooms .flexBoxEscapeRooms .escapeRoomItem.addEscapeRoom {
+        background-color: #9196A9;
+        color: #D2D4DC;
+        font-size: 100px;
+        padding: 10px 20px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #D2D4DC;
+        outline: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; }
 
 @media (max-width: 1200px) {
   .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
-    width: 180px;
-    height: 180px; } }
+    width: 18vw;
+    height: 18vw; } }
 
 @media (max-width: 992px) {
   .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
