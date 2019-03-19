@@ -7,10 +7,6 @@ module.exports = function (sequelize, DataTypes) {
                 "type": DataTypes.STRING,
                 "validate": {"notEmpty": {"msg": "El título no puede estar vacío."}}
             },
-            "teacher": {
-                "type": DataTypes.STRING,
-                "validate": {"notEmpty": {"msg": "El nombre del profesor/a no puede estar vacío."}}
-            },
             "subject": {
                 "type": DataTypes.STRING,
                 "validate": {"notEmpty": {"msg": "El nombre de la asignatura no puede estar vacío."}}
@@ -21,11 +17,9 @@ module.exports = function (sequelize, DataTypes) {
             },
             "description": {
                 "type": DataTypes.STRING,
-                "validate": {"notEmpty": {"msg": "La descripción no puede estar vacía."}}
             },
             "video": {
                 "type": DataTypes.STRING,
-                "validate": {"notEmpty": {"msg": "La URL del vídeo no puede estar vacía."}}
             },
             "nmax": {
                 "type": DataTypes.STRING,
@@ -38,7 +32,6 @@ module.exports = function (sequelize, DataTypes) {
             "appearance": {
                 "type": DataTypes.STRING,
                 "defaultValue": "litera",
-                "validate": {"notEmpty": {"msg": "La apariencia no puede estar vacía."}}
             },
             "survey": {
                 "type": DataTypes.STRING

@@ -67,7 +67,11 @@
                 Vídeo:
             </div>
             <div class="flexShowRight">
-                <a href="<%= escapeRoom.video %>"><%= escapeRoom.video %></a> <button class="copy" id="previewVideo"><i class="material-icons">remove_red_eye</i></button>
+                <% if (escapeRoom.video) { %>
+                <a class="show_link" href="<%= escapeRoom.video %>"><%= escapeRoom.video %></a> <button class="copy" id="previewVideo"><i class="material-icons">remove_red_eye</i></button>
+                <%  } else { %>
+                <em>No hay vídeo</em>
+                <%  } %>
             </div>
         </div>
         <div class="flexRow animated bounceIn">
@@ -84,7 +88,7 @@
             </div>
             <div class="flexShowRight">
                 <% var invitationLink = "http://localhost:3000/escapeRooms/" + escapeRoom.id +"/join?token=" + escapeRoom.invitation; %>
-                <a href="<%= invitationLink %>"><%= invitationLink %></a>
+                <a class="show_link" href="<%= invitationLink %>"><%= invitationLink %></a>
                 <input id="joinUrl" value="<%= invitationLink %>"/>
                 <button class="copy" id="copyButton"><i class="material-icons">file_copy</i></button>
             </div>

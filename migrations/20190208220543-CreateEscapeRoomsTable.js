@@ -17,10 +17,6 @@ module.exports = {
                     "type": Sequelize.STRING,
                     "validate": {"notEmpty": {"msg": "El título no puede estar vacío."}}
                 },
-                "teacher": {
-                    "type": Sequelize.STRING,
-                    "validate": {"notEmpty": {"msg": "El nombre del profesor no puede estar vacío."}}
-                },
                 "subject": {
                     "type": Sequelize.STRING,
                     "validate": {"notEmpty": {"msg": "El nombre de la asignatura no puede estar vacío."}}
@@ -31,11 +27,9 @@ module.exports = {
                 },
                 "description": {
                     "type": Sequelize.STRING,
-                    "validate": {"notEmpty": {"msg": "La descripción no puede estar vacía."}}
                 },
                 "video": {
                     "type": Sequelize.STRING,
-                    "validate": {"notEmpty": {"msg": "La URL del vídeo no puede estar vacía."}}
                 },
                 "nmax": {
                     "type": Sequelize.STRING,
@@ -48,7 +42,6 @@ module.exports = {
                 "appearance": {
                     "type": Sequelize.STRING,
                     "defaultValue": "litera",
-                    "validate": {"notEmpty": {"msg": "La apariencia no puede estar vacía."}}
                 },
                 "createdAt": {
                     "type": Sequelize.DATE,
