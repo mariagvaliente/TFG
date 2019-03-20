@@ -65,11 +65,12 @@ router.get("/users/:userId(\\d+)/escapeRooms", sessionController.loginRequired, 
 router.get("/users/:userId(\\d+)/student", sessionController.loginRequired, sessionController.studentOrAdminRequired, userController.student);
 
 // Routes for the resource /escapeRooms
-router.get("/escapeRooms", sessionController.loginRequired, sessionController.adminRequired, escapeRoomController.index);
+router.get("/escapeRooms", sessionController.loginRequired, escapeRoomController.indexBreakDown);
+router.get("/escapeRoomsAdmin", sessionController.loginRequired, sessionController.adminRequired, escapeRoomController.index);
 router.get("/escapeRooms/:escapeRoomId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.show);
 router.get("/escapeRooms/:escapeRoomId(\\d+)/preview", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.preview);
 
-router.get("/escapeRooms/new", sessionController.loginRequired, escapeRoomController.new);
+router.get("/escapeRooms/new", sessionController.loginRequired, sessionController.notStudentRequired, escapeRoomController.new);
 router.post("/escapeRooms", sessionController.loginRequired, upload.single("image"), escapeRoomController.create);
 router.get("/escapeRooms/:escapeRoomId(\\d+)/edit", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.edit);
 router.put("/escapeRooms/:escapeRoomId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, upload.single("image"), escapeRoomController.update);

@@ -22,12 +22,18 @@ sequelize.import(path.join(__dirname, "attachment"));
 // Import the definition of the User Table from user.js
 sequelize.import(path.join(__dirname, "user"));
 
+// Import the definition of the User Table from puzzle.js (Retos)
+sequelize.import(path.join(__dirname, "puzzle"));
+
+// Import the definition of the User Table from hint.js (Pistas)
+sequelize.import(path.join(__dirname, "hint"));
+
 
 // Relation between models
 
-const {escapeRoom, turno, attachment, user} = sequelize.models;
+const {escapeRoom, turno, attachment, user, puzzle, hint} = sequelize.models;
 
-// Relation 1-to-1 between Escape Room and Turn:
+// Relation 1-to-N between Escape Room and Turn:
 turno.belongsTo(escapeRoom);
 escapeRoom.hasMany(turno);
 
@@ -35,6 +41,13 @@ escapeRoom.hasMany(turno);
 attachment.belongsTo(escapeRoom);
 escapeRoom.hasOne(attachment);
 
+// Relation 1-to-N between Escape Room and Puzzle:
+puzzle.belongsTo(escapeRoom);
+escapeRoom.hasMany(puzzle);
+
+// Relation 1-to-N between Puzzle and Hint:
+hint.belongsTo(puzzle);
+escapeRoom.hasMany(hint);
 
 // Relation 1-to-N between User and Quiz:
 user.hasMany(escapeRoom, {"foreignKey": "authorId"});

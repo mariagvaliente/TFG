@@ -112,6 +112,14 @@ exports.index = (req, res, next) => {
 
 };
 
+
+// GET /escapeRooms
+exports.indexBreakDown = (req, res) => {
+
+    res.redirect("/");
+
+};
+
 // GET /escapeRooms/:escapeRoomId
 exports.show = (req, res) => {
 
@@ -276,7 +284,7 @@ exports.update = (req, res, next) => {
                 // There is no attachment: Delete old attachment.
                 if (!req.file) {
 
-                    // req.flash("info", "This Escape Room has no attachment.");
+                    // Req.flash("info", "This Escape Room has no attachment.");
                     if (er.attachment) {
 
                         attHelper.deleteResource(er.attachment.public_id);

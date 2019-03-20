@@ -218,6 +218,21 @@ exports.new = (req, res) => {
     // Page to go/show after login:
     const {redir} = req.query;
 
+    if (req.session && req.session.user) {
+
+        if (req.session.user.isStudent) {
+
+            res.redirect(`/users/${req.session.user.id}/student/`);
+
+        } else {
+
+            res.redirect(`/users/${req.session.user.id}/escapeRooms/`);
+
+        }
+
+        return;
+
+    }
     res.render("index", {redir});
 
 };

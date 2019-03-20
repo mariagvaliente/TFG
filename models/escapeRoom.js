@@ -16,10 +16,10 @@ module.exports = function (sequelize, DataTypes) {
                 "validate": {"notEmpty": {"msg": "La duración no puede estar vacía."}}
             },
             "description": {
-                "type": DataTypes.STRING,
+                "type": DataTypes.STRING
             },
             "video": {
-                "type": DataTypes.STRING,
+                "type": DataTypes.STRING
             },
             "nmax": {
                 "type": DataTypes.STRING,
@@ -31,7 +31,7 @@ module.exports = function (sequelize, DataTypes) {
             },
             "appearance": {
                 "type": DataTypes.STRING,
-                "defaultValue": "litera",
+                "defaultValue": "litera"
             },
             "survey": {
                 "type": DataTypes.STRING

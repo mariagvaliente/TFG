@@ -77,13 +77,16 @@
   $('#add-reto').on('click', addReto);
 
   $('#form').on("submit", (e)=>{
+
+    e.preventDefault();
     var retos = [...$('.flex-row-retos:not(.flex-row-retos-title)')].map( reto => {
-       return Object.assign({}, ...[...$(reto).find('.retoTextArea')].map( el => {
-          return {[$(el).data("id")]: $(el).text()};
+       return Object.assign({}, ...[...$(reto).find('.retoTextArea')].map( (el,i) => {
+          return {[$(el).data("id")]: i === 3 ? el.innerText.split("\n") : $(el).text()};
        }));
     });
     $('#retos').val(JSON.stringify(retos));
-    return true;
+    console.log(retos)
+    return false;
   });
 
   var deleteReto = function (el) {

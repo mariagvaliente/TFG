@@ -28,9 +28,6 @@ exports.create = (req, res, next) => {
 
     const {date, indications} = req.body;
     const modDate = new Date(date);
-
-    console.log("/*************************************************************/");
-    console.log(modDate);
     const turn = models.turno.build({
         "date": modDate,
         indications,
@@ -64,7 +61,6 @@ exports.create = (req, res, next) => {
 // DELETE /escapeRooms/:escapeRoomId/turnos/:turnoId
 exports.destroy = (req, res, next) => {
 
-    console.log(req.turn);
     const modDate = new Date(req.turn.date);
 
     req.turn.destroy().

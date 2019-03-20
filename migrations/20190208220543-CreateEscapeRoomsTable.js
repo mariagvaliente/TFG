@@ -26,10 +26,10 @@ module.exports = {
                     "validate": {"notEmpty": {"msg": "La duración no puede estar vacía."}}
                 },
                 "description": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.STRING
                 },
                 "video": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.STRING
                 },
                 "nmax": {
                     "type": Sequelize.STRING,
@@ -41,7 +41,7 @@ module.exports = {
                 },
                 "appearance": {
                     "type": Sequelize.STRING,
-                    "defaultValue": "litera",
+                    "defaultValue": "litera"
                 },
                 "createdAt": {
                     "type": Sequelize.DATE,
