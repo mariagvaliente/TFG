@@ -18,7 +18,6 @@ const attHelper = require("../helpers/attachments"),
 // Autoload the escape room with id equals to :escapeRoomId
 exports.load = (req, res, next, escapeRoomId) => {
 
-
     models.escapeRoom.findById(escapeRoomId, {
         "include": [
             {"model": models.turno},
@@ -422,8 +421,7 @@ exports.turnos = (req, res) => {
     const {turnos} = escapeRoom;
     const turnosParsed = turnos;
 
-    res.render("escapeRooms/step2", {escapeRoom,
-        "turnos": turnosParsed});
+    res.render("escapeRooms/step2", {escapeRoom, "turnos": turnosParsed});
 
 };
 
@@ -451,12 +449,31 @@ exports.retos = (req, res) => {
 exports.retosUpdate = (req, res, next) => {
 
     const {escapeRoom, body} = req;
-
-    escapeRoom.retos = body.retos;
+    let retos = JSON.parse(body.retos).map(reto => {
+       return reto;
+    });
+    // escapeRoom.puzzle = retos;
     const isPrevious = Boolean(body.previous);
+    console.log(retos);
 
-    escapeRoom.save({"fields": ["retos"]}).then(() => {
 
+    const functionWithPromise = item => { 
+      return models.puzzle.build({...item, escapeRoomId: escapeRoom.id}).save()
+    }
+
+    const anAsyncFunction = async item => {
+      return await functionWithPromise(item)
+    }
+
+    const getData = async () => {
+      return await Promise.all(retos.map(item => anAsyncFunction(item)));
+    }
+
+    const data = getData()
+    console.log(data)
+    res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "step2" : "step4"}`);
+   /* escapeRoom.save({"fields": ["puzzle"]}).then((er) => {
+        console.log(er.puzzles)
         res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "step2" : "step4"}`);
 
     }).
@@ -472,7 +489,7 @@ exports.retosUpdate = (req, res, next) => {
             next(error);
 
         });
-
+*/
 };
 
 // GET /escapeRooms/:escapeRoomId/step4

@@ -10,6 +10,10 @@ module.exports = {
                 "autoIncrement": true,
                 "unique": true
             },
+            "escapeRoomId": {
+                "type": Sequelize.INTEGER,
+                "allowNull": false
+            },
             "content": {
                 "type": Sequelize.STRING,
                 "validate": {"notEmpty": {"msg": "El contenido no puede estar vacío."}}

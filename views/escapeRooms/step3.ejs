@@ -1,47 +1,46 @@
 <% include _header.ejs %>
 <div class="main step3">
   <h2>Retos   
-  <button style="float: right;" id="add-reto"><i class="material-icons">add_circle_outline</i></button>
-
+    <button style="float: right;" id="add-reto"><i class="material-icons">add_circle_outline</i></button>
   </h2>
   <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/step3'  >
     <div class="flex-table-retos">
       <div class="flex-row-retos flex-row-retos-title">
         <div class="flex-cell flex-cell-retos">
-        Título
+          Título
         </div>
         <div class="flex-cell flex-cell-sol">
-        Solución
+          Solución
         </div>
         <div class="flex-cell flex-cell-desc">
-        Descripción
+          Descripción
         </div>
         <div class="flex-cell flex-cell-pista">
-        Pista
+          Pista
         </div>
       </div>
       <div class="flex-row-retos">
         <div class="flex-cell flex-cell-retos">
-        <div contenteditable class="retoTextArea" data-id="title"></div>
+          <div contenteditable class="retoTextArea" data-id="title"></div>
         </div>
         <div class="flex-cell flex-cell-sol">
-        <div contenteditable class="retoTextArea" data-id="solution"></div>
+          <div contenteditable class="retoTextArea" data-id="sol"></div>
         </div>
         <div class="flex-cell flex-cell-desc">
-        <div contenteditable class="retoTextArea" data-id="description"></div>
+          <div contenteditable class="retoTextArea" data-id="desc"></div>
         </div>
         <div class="flex-cell flex-cell-pista">
-        <div contenteditable class="retoTextArea" data-id="hint"></div>
+          <div contenteditable class="retoTextArea" data-id="hint"></div>
         </div>
         <button type="button"  onclick="deleteReto(this)" class="delete-reto"><i class="material-icons">delete</i></button>
       </div>
-        
-      
     </div>
     <br/>
     <input type="hidden" name="retos" id="retos" value="">
     <div class="align-right">
-      <a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button></a>
+      <a href="/escapeRooms/<%= escapeRoom.id %>">
+        <button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button>
+      </a>
       <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
       <button class="progress-buttons" type="submit" value="next" id="next" name="next">siguiente</button>
     </div>
@@ -54,16 +53,16 @@
   var template = `
        <div class="flex-row-retos">
         <div class="flex-cell flex-cell-retos">
-        <div contenteditable class="retoTextArea" data-id="title"></div>
+          <div contenteditable class="retoTextArea" data-id="title"></div>
         </div>
         <div class="flex-cell flex-cell-sol">
-        <div contenteditable class="retoTextArea" data-id="solution"></div>
+          <div contenteditable class="retoTextArea" data-id="sol"></div>
         </div>
         <div class="flex-cell flex-cell-desc">
-        <div contenteditable class="retoTextArea" data-id="description"></div>
+          <div contenteditable class="retoTextArea" data-id="desc"></div>
         </div>
         <div class="flex-cell flex-cell-pista">
-        <div contenteditable class="retoTextArea" data-id="hint"></div>
+          <div contenteditable class="retoTextArea" data-id="hint"></div>
         </div>
         <button type="button" class="delete-reto" onclick="deleteReto(this)"><i class="material-icons">delete</i></button>
       </div>
@@ -76,17 +75,14 @@
 
   $('#add-reto').on('click', addReto);
 
-  $('#form').on("submit", (e)=>{
-
-    e.preventDefault();
-    var retos = [...$('.flex-row-retos:not(.flex-row-retos-title)')].map( reto => {
-       return Object.assign({}, ...[...$(reto).find('.retoTextArea')].map( (el,i) => {
+  $('#form').on("submit", e => {
+    var retos = [...$('.flex-row-retos:not(.flex-row-retos-title)')].map(reto => {
+       return Object.assign({}, ...[...$(reto).find('.retoTextArea')].map((el,i) => {
           return {[$(el).data("id")]: i === 3 ? el.innerText.split("\n") : $(el).text()};
        }));
     });
     $('#retos').val(JSON.stringify(retos));
-    console.log(retos)
-    return false;
+    return true;
   });
 
   var deleteReto = function (el) {

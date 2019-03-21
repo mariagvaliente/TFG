@@ -14,7 +14,8 @@ module.exports = {
                     "unique": true
                 },
                 "escapeRoomId": {
-                    "type": Sequelize.INTEGER
+                    "type": Sequelize.INTEGER,
+                    "allowNull": false
                 },
                 "date": {
                     "type": Sequelize.STRING,
