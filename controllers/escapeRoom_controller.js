@@ -52,6 +52,7 @@ exports.load = (req, res, next, escapeRoomId) => {
 
 };
 
+
 // MW that allows actions only if the user logged in is admin or is the author of the escape room.
 exports.adminOrAuthorRequired = (req, res, next) => {
 
@@ -150,6 +151,8 @@ exports.new = (req, res) => {
     res.render("escapeRooms/new", {escapeRoom});
 
 };
+
+
 
 // POST /escapeRooms/create
 exports.create = (req, res, next) => {
@@ -577,5 +580,18 @@ exports.destroy = (req, res, next) => {
             next(error);
 
         });
+
+};
+
+
+
+// Autoload the escape room with id equals to :escapeRoomId
+exports.studentToken = (req, res) => {
+
+    const {escapeRoom} = req;
+
+    res.render("escapeRooms/indexStudent", {escapeRoom,
+        cloudinary});
+
 
 };

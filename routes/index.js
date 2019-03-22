@@ -32,6 +32,7 @@ const saveBack = (req, res, next) => {
 
 };
 
+
 router.get([
     "/",
     "/users",
@@ -45,7 +46,6 @@ router.get("/goback", redirectBack);
 router.param("escapeRoomId", escapeRoomController.load);
 router.param("turnoId", turnController.load);
 router.param("userId", userController.load);
-
 
 // Routes for LOGIN page /
 router.get("/", sessionController.new); // Login form
@@ -62,7 +62,11 @@ router.delete("/users/:userId(\\d+)", sessionController.loginRequired, sessionCo
 
 router.get("/users/:userId(\\d+)/escapeRooms", sessionController.loginRequired, sessionController.notStudentRequired, sessionController.adminOrMyselfRequired, escapeRoomController.index);
 
+
 router.get("/users/:userId(\\d+)/student", sessionController.loginRequired, sessionController.studentOrAdminRequired, userController.student);
+
+router.get("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequired, sessionController.studentOrAdminRequired, escapeRoomController.studentToken);
+
 
 // Routes for the resource /escapeRooms
 router.get("/escapeRooms", sessionController.loginRequired, sessionController.adminRequired, escapeRoomController.index);
