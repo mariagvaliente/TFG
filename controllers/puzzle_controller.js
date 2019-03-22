@@ -83,7 +83,7 @@ exports.update = (req, res, next) => {
         "desc",
         "hint"
     ]}).
-        then((puz) => {
+        then(() => {
 
             req.flash("success", "Reto modificado correctamente.");
             res.redirect(back);
