@@ -2,6 +2,8 @@ const express = require("express"),
     router = express.Router();
 const escapeRoomController = require("../controllers/escapeRoom_controller");
 const turnController = require("../controllers/turnos_controller");
+const puzzleController = require("../controllers/puzzle_controller");
+const hintController = require("../controllers/hint_controller");
 const userController = require("../controllers/user_controller");
 const sessionController = require("../controllers/session_controller");
 
@@ -45,6 +47,8 @@ router.get("/goback", redirectBack);
 // Autoload for routes using :escapeRoomId
 router.param("escapeRoomId", escapeRoomController.load);
 router.param("turnoId", turnController.load);
+router.param("puzzleId", puzzleController.load);
+router.param("hintId", hintController.load);
 router.param("userId", userController.load);
 
 // Routes for LOGIN page /
@@ -61,12 +65,8 @@ router.put("/users/:userId(\\d+)", sessionController.loginRequired, sessionContr
 router.delete("/users/:userId(\\d+)", sessionController.loginRequired, sessionController.notStudentRequired, sessionController.adminOrMyselfRequired, userController.destroy);
 
 router.get("/users/:userId(\\d+)/escapeRooms", sessionController.loginRequired, sessionController.notStudentRequired, sessionController.adminOrMyselfRequired, escapeRoomController.index);
-
-
 router.get("/users/:userId(\\d+)/student", sessionController.loginRequired, sessionController.studentOrAdminRequired, userController.student);
-
 router.get("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequired, sessionController.studentOrAdminRequired, escapeRoomController.studentToken);
-
 
 // Routes for the resource /escapeRooms
 router.get("/escapeRooms", sessionController.loginRequired, escapeRoomController.indexBreakDown);
@@ -96,8 +96,12 @@ router.get("/escapeRooms/:escapeRoomId(\\d+)/step6", sessionController.loginRequ
 router.post("/escapeRooms/:escapeRoomId(\\d+)/turnos", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);
 router.delete("/escapeRooms/:escapeRoomId(\\d+)/turnos/:turnoId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.destroy);
 
-router.post("/escapeRooms/:escapeRoomId(\\d+)/turnos", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);
-router.delete("/escapeRooms/:escapeRoomId(\\d+)/turnos/:turnoId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.destroy);
+router.post("/escapeRooms/:escapeRoomId(\\d+)/puzzles", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, puzzleController.create);
+router.put("/escapeRooms/:escapeRoomId(\\d+)/puzzles/:puzzleId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, puzzleController.update);
+router.delete("/escapeRooms/:escapeRoomId(\\d+)/puzzles/:puzzleId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, puzzleController.destroy);
 
+router.post("/escapeRooms/:escapeRoomId(\\d+)/puzzles/:puzzleId(\\d+)/hints/new", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, hintController.create);
+router.put("/escapeRooms/:escapeRoomId(\\d+)/hints/:hintId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, hintController.update);
+router.delete("/escapeRooms/:escapeRoomId(\\d+)/hints/:hintId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, hintController.destroy);
 
 module.exports = router;

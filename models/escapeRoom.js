@@ -27,8 +27,11 @@ module.exports = function (sequelize, DataTypes) {
             },
             "invitation": {
                 "type": DataTypes.STRING,
-                "defaultValue": function(){
-                    return Math.random().toString(36).substr(2);
+                "defaultValue" () {
+
+                    return Math.random().toString(36).
+                        substr(2);
+
                 },
                 "validate": {"notEmpty": {"msg": "La URL de la invitación no puede estar vacía."}}
             },

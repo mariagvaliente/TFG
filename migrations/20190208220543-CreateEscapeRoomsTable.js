@@ -37,7 +37,12 @@ module.exports = {
                 },
                 "invitation": {
                     "type": Sequelize.STRING,
-                    "defaultValue": Math.random().toString(36).substr(2),
+                    "defaultValue" () {
+
+                        return Math.random().toString(36).
+                            substr(2);
+
+                    },
                     "validate": {"notEmpty": {"msg": "La URL de la invitación no puede estar vacía."}}
                 },
                 "appearance": {
@@ -64,10 +69,4 @@ module.exports = {
         return queryInterface.dropTable("escapeRooms");
 
     }
-};
-
-// Generate random token
-
-function random() {
-    return Math.random().toString(36).substr(2); // Eliminar `0.`
 };

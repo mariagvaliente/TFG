@@ -189,68 +189,150 @@
 								background: $lightred
 
 		&.step3
-			.flex-table-retos
-				display: flex
-				flex-direction: column
-				background-color: $textpurple
-				border: 3px solid white
-				border-radius: 10px
-				overflow: hidden
-				font-size: 18px
-				.flex-row-retos
+			.flex-table-retos-wrapper
+				position: relative
+				overflow: visible
+				.flex-table-retos
 					display: flex
-					flex-direction: row
-					border-top: 3px solid white
-					&.flex-row-retos-title
-						background-color: $darkerpurple
-						border-top: none
+					flex-direction: column
+					background-color: $purpleedit
+					color: $darkerpurple
+					border: 3px solid white
+					border-radius: 10px
+					overflow: visible
+					font-size: 18px
+					word-break: break-word
+					.flex-row-retos
+						display: flex
+						flex-direction: row
+						border-top: 3px solid white
+						&.flex-row-retos-title
+							background-color: $darkerpurple
+							color: white
+							border-top: none
+							.flex-cell
+								font-family: 'Gugi', sans-serif !important
+								padding: 20px
 						.flex-cell
-							font-family: 'Gugi', sans-serif !important
-							padding: 20px
-					.flex-cell
-						text-align: center
-						border-right: 3px solid white
-						&.flex-cell-retos
-							width: 20%
-						&.flex-cell-sol
-							width: 10%
+							text-align: center
+							border-right: 3px solid white
+							&.flex-cell-retos
+								width: 20%
+							&.flex-cell-sol
+								width: 10%
+								.retoTextArea
+									&:empty:before
+										content: 'xxxx'
+							&.flex-cell-desc
+								width: 30%
+							&.flex-cell-pista
+								width: 40%
+								border-right: none
 							.retoTextArea
+								padding: 20px
+								font-family: 'Lato', sans-serif !important
+								font-size: 16px
+								width: 100%
+								border: none
+								margin: 0
+								background: transparent
+								height: 100%
+								resize: none
+								outline: none
+								display: inline-block
+								&.retoEditable, &[contenteditable]
+									background-color:  $textpurple
+									color: $purpleedit
+									&.no-pistas
+										cursor: not-allowed
+										font-style: italic
 								&:empty:before
-									content: 'xxxx'
-						&.flex-cell-desc
-							width: 30%
-						&.flex-cell-pista								
-							width: 40%
-							border-right: none
-						.retoTextArea
-							padding: 20px
-							font-family: 'Lato', sans-serif !important
-							font-size: 16px
-							width: 100%
-							border: none
-							margin: 0px
-							background: transparent
-							height: auto
-							height: 100%
-							resize: none
-							outline: none
-							display: inline-block
-							&:empty:before
-								content: 'Escribe aquí...'
-								opacity: 0.5
-								display: block
-							&:focus:before
-								content: '' !important
-					.delete-reto
-						position: absolute
-						margin-left: -40px
-						margin-top: 8px
-						float: right
-						background: transparent
-						border: none
-						color: white
-						@extend %scale-animation-up
+									content: 'Escribe aquí...'
+									opacity: 0.5
+									display: block
+								&:focus:before
+									content: '' !important
 
+								&.hints-cell
+									padding: 0
+									background-color:  $textpurple
+									*:not(.material-icons)
+										font-family: inherit
+
+									.edit-hints
+										padding: 0
+										list-style: none
+										margin: 0px
+										li
+											padding: 0px
+											background-color: $purpleedit
+											border-bottom: 3px solid white
+											display: flex
+											&.no-pistas
+												font-style: italic
+												padding: 6px
+												line-height: 25px
+												justify-content: center
+											span
+												flex: 1
+												padding: 6px
+												line-height: 25px
+												margin-left: 25px
+											.delete-hint
+												border: none
+												background: transparent
+												padding: 6px
+												color: white
+												@extend %scale-animation-up
+									.add-new-hint
+										background-color:  $textpurple
+										color: $darkerpurple
+										//min-height: 59px
+										form
+											display: flex
+											input
+												flex: 1
+												font-style: inherit
+												font-family: inherit
+												font-size: inherit
+												margin-left: 25px
+												border: none
+												background: transparent
+												color: $darkerpurple
+												height: 36px
+												-webkit-text-fill-color: $darkerpurple !important
+												&:focus, &:active
+													color: white
+													-webkit-text-fill-color: white !important
+									.add-hint
+										font-style: inherit
+										font-family: inherit
+										font-size: inherit
+										border: none
+										color: white
+										margin-left: -5px
+										padding: 6px
+										vertical-align: bottom
+										background-color: transparent
+										&:hover i
+											@extend %scale-animation-up
+					.operations-reto
+						position: absolute
+						left: 0
+						margin-left: -65px
+						margin-top: 8px
+						width: 62px
+						text-align: right
+						form
+							display: inline-block
+							.delete-reto
+								background: transparent
+								border: none
+								color: white
+								padding: 2px
+								@extend %scale-animation-up
+								&.hidden
+									display: none
 			#add-reto
 				background: none
 				border: none

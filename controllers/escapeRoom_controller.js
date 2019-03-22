@@ -21,6 +21,9 @@ exports.load = (req, res, next, escapeRoomId) => {
     models.escapeRoom.findById(escapeRoomId, {
         "include": [
             {"model": models.turno},
+            {"model": models.puzzle,
+                "include": [{"model": models.hint}]},
+
             models.attachment,
             {"model": models.user,
                 "as": "author"}
@@ -30,7 +33,13 @@ exports.load = (req, res, next, escapeRoomId) => {
                 {"model": models.turno},
                 "date",
                 "asc"
+            ],
+            [
+                {"model": models.puzzle},
+                "createdAt",
+                "asc"
             ]
+
         ]
     }).
         then((escapeRoom) => {
@@ -158,7 +167,6 @@ exports.new = (req, res) => {
     res.render("escapeRooms/new", {escapeRoom});
 
 };
-
 
 
 // POST /escapeRooms/create
@@ -422,9 +430,9 @@ exports.turnos = (req, res) => {
 
     const {escapeRoom} = req;
     const {turnos} = escapeRoom;
-    const turnosParsed = turnos;
 
-    res.render("escapeRooms/step2", {escapeRoom, "turnos": turnosParsed});
+    res.render("escapeRooms/step2", {escapeRoom,
+        turnos});
 
 };
 
@@ -449,18 +457,22 @@ exports.retos = (req, res) => {
 };
 
 // POST /escapeRooms/:escapeRoomId/step3
-exports.retosUpdate = (req, res, next) => {
+exports.retosUpdate = (req, res) => {
 
-    const {escapeRoom, body} = req;
+    const isPrevious = Boolean(req.body.previous);
+
+    res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "step2" : "step4"}`);
+    /*
+    Const {escapeRoom, body} = req;
     let retos = JSON.parse(body.retos).map(reto => {
        return reto;
     });
-    // escapeRoom.puzzle = retos;
+    escapeRoom.puzzle = retos;
     const isPrevious = Boolean(body.previous);
     console.log(retos);
 
 
-    const functionWithPromise = item => { 
+    const functionWithPromise = item => {
       return models.puzzle.build({...item, escapeRoomId: escapeRoom.id}).save()
     }
 
@@ -475,7 +487,7 @@ exports.retosUpdate = (req, res, next) => {
     const data = getData()
     console.log(data)
     res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "step2" : "step4"}`);
-   /* escapeRoom.save({"fields": ["puzzle"]}).then((er) => {
+    escapeRoom.save({"fields": ["puzzle"]}).then((er) => {
         console.log(er.puzzles)
         res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "step2" : "step4"}`);
 
@@ -493,6 +505,7 @@ exports.retosUpdate = (req, res, next) => {
 
         });
 */
+
 };
 
 // GET /escapeRooms/:escapeRoomId/step4
@@ -616,7 +629,6 @@ exports.destroy = (req, res, next) => {
         });
 
 };
-
 
 
 // Autoload the escape room with id equals to :escapeRoomId

@@ -316,9 +316,9 @@ button {
     border-radius: 50%;
     color: black; }
 
-#mainSection .main.step3 .flex-table-retos .flex-row-retos .delete-reto, #mainSection .main.step3 #add-reto {
+#mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .delete-hint, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint:hover i, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto, #mainSection .main.step3 #add-reto {
   transition: 0.2s all ease-in; }
-  #mainSection .main.step3 .flex-table-retos .flex-row-retos .delete-reto:hover, #mainSection .main.step3 #add-reto:hover, #mainSection .main.step3 .flex-table-retos .flex-row-retos .delete-reto:active, #mainSection .main.step3 #add-reto:active, #mainSection .main.step3 .flex-table-retos .flex-row-retos .delete-reto:focus, #mainSection .main.step3 #add-reto:focus {
+  #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .delete-hint:hover, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint:hover i:hover, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto:hover, #mainSection .main.step3 #add-reto:hover, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .delete-hint:active, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint:hover i:active, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto:active, #mainSection .main.step3 #add-reto:active, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .delete-hint:focus, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint:hover i:focus, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto:focus, #mainSection .main.step3 #add-reto:focus {
     -webkit-transform: scale(1.2);
     -ms-transform: scale(1.2);
     transform: scale(1.2); }
@@ -512,65 +512,142 @@ button {
       #mainSection .main.step2 .contenedor .flexBoxTurnos .turno .little-button.less {
         background: #F47E84; }
 
-#mainSection .main.step3 .flex-table-retos {
-  display: flex;
-  flex-direction: column;
-  background-color: #656683;
-  border: 3px solid white;
-  border-radius: 10px;
-  overflow: hidden;
-  font-size: 18px; }
-  #mainSection .main.step3 .flex-table-retos .flex-row-retos {
+#mainSection .main.step3 .flex-table-retos-wrapper {
+  position: relative;
+  overflow: visible; }
+  #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos {
     display: flex;
-    flex-direction: row;
-    border-top: 3px solid white; }
-    #mainSection .main.step3 .flex-table-retos .flex-row-retos.flex-row-retos-title {
-      background-color: #161938;
-      border-top: none; }
-      #mainSection .main.step3 .flex-table-retos .flex-row-retos.flex-row-retos-title .flex-cell {
-        font-family: 'Gugi', sans-serif !important;
-        padding: 20px; }
-    #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell {
-      text-align: center;
-      border-right: 3px solid white; }
-      #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell.flex-cell-retos {
-        width: 20%; }
-      #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell.flex-cell-sol {
-        width: 10%; }
-        #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell.flex-cell-sol .retoTextArea:empty:before {
-          content: 'xxxx'; }
-      #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell.flex-cell-desc {
-        width: 30%; }
-      #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell.flex-cell-pista {
-        width: 40%;
-        border-right: none; }
-      #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell .retoTextArea {
-        padding: 20px;
-        font-family: 'Lato', sans-serif !important;
-        font-size: 16px;
-        width: 100%;
-        border: none;
-        margin: 0px;
-        background: transparent;
-        height: auto;
-        height: 100%;
-        resize: none;
-        outline: none;
-        display: inline-block; }
-        #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell .retoTextArea:empty:before {
-          content: 'Escribe aquí...';
-          opacity: 0.5;
-          display: block; }
-        #mainSection .main.step3 .flex-table-retos .flex-row-retos .flex-cell .retoTextArea:focus:before {
-          content: '' !important; }
-    #mainSection .main.step3 .flex-table-retos .flex-row-retos .delete-reto {
+    flex-direction: column;
+    background-color: #9091A6;
+    color: #161938;
+    border: 3px solid white;
+    border-radius: 10px;
+    overflow: visible;
+    font-size: 18px;
+    word-break: break-word; }
+    #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos {
+      display: flex;
+      flex-direction: row;
+      border-top: 3px solid white; }
+      #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos.flex-row-retos-title {
+        background-color: #161938;
+        color: white;
+        border-top: none; }
+        #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos.flex-row-retos-title .flex-cell {
+          font-family: 'Gugi', sans-serif !important;
+          padding: 20px; }
+      #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell {
+        text-align: center;
+        border-right: 3px solid white; }
+        #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-retos {
+          width: 20%; }
+        #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-sol {
+          width: 10%; }
+          #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-sol .retoTextArea:empty:before {
+            content: 'xxxx'; }
+        #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-desc {
+          width: 30%; }
+        #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-pista {
+          width: 40%;
+          border-right: none; }
+        #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea {
+          padding: 20px;
+          font-family: 'Lato', sans-serif !important;
+          font-size: 16px;
+          width: 100%;
+          border: none;
+          margin: 0;
+          background: transparent;
+          height: 100%;
+          resize: none;
+          outline: none;
+          display: inline-block; }
+          #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.retoEditable, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea[contenteditable] {
+            background-color: #656683;
+            color: #9091A6; }
+            #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.retoEditable.no-pistas, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea[contenteditable].no-pistas {
+              cursor: not-allowed;
+              font-style: italic; }
+          #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea:empty:before {
+            content: 'Escribe aquí...';
+            opacity: 0.5;
+            display: block; }
+          #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea:focus:before {
+            content: '' !important; }
+          #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell {
+            padding: 0;
+            background-color: #656683; }
+            #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell *:not(.material-icons) {
+              font-family: inherit; }
+            #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints {
+              padding: 0;
+              list-style: none;
+              margin: 0px; }
+              #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li {
+                padding: 0px;
+                background-color: #9091A6;
+                border-bottom: 3px solid white;
+                display: flex; }
+                #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li.no-pistas {
+                  font-style: italic;
+                  padding: 6px;
+                  line-height: 25px;
+                  justify-content: center; }
+                #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li span {
+                  flex: 1;
+                  padding: 6px;
+                  line-height: 25px;
+                  margin-left: 25px; }
+                #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .delete-hint {
+                  border: none;
+                  background: transparent;
+                  padding: 6px;
+                  color: white; }
+            #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint {
+              background-color: #656683;
+              color: #161938; }
+              #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form {
+                display: flex; }
+                #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form input {
+                  flex: 1;
+                  font-style: inherit;
+                  font-family: inherit;
+                  font-size: inherit;
+                  margin-left: 25px;
+                  border: none;
+                  background: transparent;
+                  color: #161938;
+                  height: 36px;
+                  -webkit-text-fill-color: #161938 !important; }
+                  #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form input:focus, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form input:active {
+                    color: white;
+                    -webkit-text-fill-color: white !important; }
+            #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint {
+              font-style: inherit;
+              font-family: inherit;
+              font-size: inherit;
+              border: none;
+              color: white;
+              margin-left: -5px;
+              padding: 6px;
+              vertical-align: bottom;
+              background-color: transparent; }
+    #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto {
       position: absolute;
-      margin-left: -40px;
+      left: 0;
+      margin-left: -65px;
       margin-top: 8px;
-      float: right;
-      background: transparent;
-      border: none;
-      color: white; }
+      width: 62px;
+      text-align: right; }
+      #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto form {
+        display: inline-block; }
+        #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto {
+          background: transparent;
+          border: none;
+          color: white;
+          padding: 2px; }
+          #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto.hidden {
+            display: none; }
 
 #mainSection .main.step3 #add-reto {
   background: none;

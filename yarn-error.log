@@ -1,5 +1,5 @@
 Arguments: 
-  /home/slp/.nvm/versions/node/v8.11.4/bin/node /usr/bin/yarn start
+  /home/slp/.nvm/versions/node/v8.11.4/bin/node /usr/bin/yarn migrate_local
 
 PATH: 
   /home/slp/.rbenv/shims:/home/slp/.rbenv/bin:/home/slp/.nvm/versions/node/v8.11.4/bin:/home/slp/.rbenv/shims:/home/slp/.rbenv/bin:/home/slp/anaconda2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/home/slp/.rvm/bin:/home/slp/.rvm/bin
@@ -5009,7 +5009,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c node ./bin/www
+  Arguments: -c sequelize db:migrate --url sqlite://$(pwd)/escaperoom.sqlite
   Directory: /home/slp/Clase/TFGS/Maria/TFG
   Output:
   

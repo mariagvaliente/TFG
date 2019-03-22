@@ -10,7 +10,7 @@ module.exports = {
                 "autoIncrement": true,
                 "unique": true
             },
-            "escapeRoomId": {
+            "puzzleId": {
                 "type": Sequelize.INTEGER,
                 "allowNull": false
             },

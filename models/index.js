@@ -35,19 +35,19 @@ const {escapeRoom, turno, attachment, user, puzzle, hint} = sequelize.models;
 
 // Relation 1-to-N between Escape Room and Turn:
 turno.belongsTo(escapeRoom);
-escapeRoom.hasMany(turno);
+escapeRoom.hasMany(turno, {onDelete: 'CASCADE', hooks: true});
 
 // Relation 1-to-1 between Escape Room and Attachment:
 attachment.belongsTo(escapeRoom);
-escapeRoom.hasOne(attachment);
+escapeRoom.hasOne(attachment, {onDelete: 'CASCADE', hooks: true});
 
 // Relation 1-to-N between Escape Room and Puzzle:
 puzzle.belongsTo(escapeRoom);
-escapeRoom.hasMany(puzzle);
+escapeRoom.hasMany(puzzle, {onDelete: 'CASCADE', hooks: true});
 
 // Relation 1-to-N between Puzzle and Hint:
 hint.belongsTo(puzzle);
-escapeRoom.hasMany(hint);
+puzzle.hasMany(hint, {onDelete: 'CASCADE', hooks: true});
 
 // Relation 1-to-N between User and Quiz:
 user.hasMany(escapeRoom, {"foreignKey": "authorId"});

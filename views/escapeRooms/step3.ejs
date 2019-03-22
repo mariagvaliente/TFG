@@ -1,10 +1,9 @@
 <% include _header.ejs %>
 <div class="main step3">
   <h2>Retos   
-    <button style="float: right;" id="add-reto"><i class="material-icons">add_circle_outline</i></button>
   </h2>
-  <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/step3'  >
-    <div class="flex-table-retos">
+    <div class="flex-table-retos-wrapper">
+        <div class="flex-table-retos">
       <div class="flex-row-retos flex-row-retos-title">
         <div class="flex-cell flex-cell-retos">
           Título
@@ -19,24 +18,96 @@
           Pista
         </div>
       </div>
-      <div class="flex-row-retos">
+      <% for(var reto in escapeRoom.puzzles) { %>
+        <% var puzzle = escapeRoom.puzzles[reto] %>
+
+        <div class="flex-row-retos">
+          <div class="flex-cell flex-cell-retos">
+            <div class="retoTextArea editable" data-reto="<%=puzzle.id%>" data-id="title"><%= puzzle.title%></div>
+          </div>
+          <div class="flex-cell flex-cell-sol">
+            <div class="retoTextArea editable" data-reto="<%=puzzle.id%>" data-id="sol"><%= puzzle.sol%></div>
+          </div>
+          <div class="flex-cell flex-cell-desc">
+            <div class="retoTextArea editable" data-reto="<%=puzzle.id%>" data-id="desc"><%= puzzle.desc%></div>
+          </div>
+          <div class="flex-cell flex-cell-pista">
+            <div class="retoTextArea hints-cell" data-reto="<%=puzzle.id%>" data-id="hint">
+                <ul class="edit-hints">
+                    <%if (puzzle.hints && puzzle.hints.length > 0) {%>
+                        <% for (var p in puzzle.hints) { %>
+                            <% var hint = puzzle.hints[p] %>
+                            <li>
+                                <span><%= hint.content %></span>
+                                <form action="/escapeRooms/<%= escapeRoom.id %>/hints/<%=hint.id%>?_method=PUT" method="post">
+                                    <button type="button" class="delete-hint">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                </form>
+
+                                <form action="/escapeRooms/<%= escapeRoom.id %>/hints/<%=hint.id%>?_method=DELETE" method="post">
+                                    <button class="delete-hint">
+                                        <i class="material-icons">delete</i>
+                                    </button>
+                                </form>
+                            </li>
+                        <% } %>
+                    <% } else {%>
+                            <li class="no-pistas">No has definido ninguna pista todavía</li>
+                    <% } %>
+
+                </ul>
+                <div class="add-new-hint">
+                    <form action="/escapeRooms/<%= escapeRoom.id %>/puzzles/<%=puzzle.id%>/hints/new" method="POST">
+                        <input type="text" value="" placeholder="Nombre de la pista" name="content"/>
+                        <button class="add-hint">
+                            <i class="material-icons">add_circle_outline</i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+          </div>
+        <div class="operations-reto">
+            <form method='POST' class="editForm" action='/escapeRooms/<%= escapeRoom.id %>/puzzles/<%= puzzle.id %>?_method=PUT'>
+                <input type="hidden" name="reto" class="inputEdit" value="">
+                <button type="button" onclick="editReto(this)"  class="delete-reto edit-button"><i class="material-icons">edit</i></button>
+                <button class="delete-reto confirm-button hidden"><i class="material-icons">check</i></button>
+            </form>
+            <form method='POST' action='/escapeRooms/<%= escapeRoom.id %>/puzzles/<%= puzzle.id %>?_method=DELETE'>
+                <button class="delete-reto"><i class="material-icons">delete</i></button>
+            </form>
+        </div>
+        </div>
+      <% } %>
+
+      <div class="flex-row-retos new-reto">
         <div class="flex-cell flex-cell-retos">
-          <div contenteditable class="retoTextArea" data-id="title"></div>
+            <div contenteditable class="retoTextArea editable retoEditable" data-id="title" id="titleFocus"></div>
         </div>
-        <div class="flex-cell flex-cell-sol">
-          <div contenteditable class="retoTextArea" data-id="sol"></div>
-        </div>
-        <div class="flex-cell flex-cell-desc">
-          <div contenteditable class="retoTextArea" data-id="desc"></div>
-        </div>
-        <div class="flex-cell flex-cell-pista">
-          <div contenteditable class="retoTextArea" data-id="hint"></div>
-        </div>
-        <button type="button"  onclick="deleteReto(this)" class="delete-reto"><i class="material-icons">delete</i></button>
+          <div class="flex-cell flex-cell-sol">
+              <div contenteditable class="retoTextArea editable retoEditable" data-id="sol"></div>
+          </div>
+          <div class="flex-cell flex-cell-desc">
+              <div contenteditable class="retoTextArea editable retoEditable" data-id="desc"></div>
+          </div>
+          <div class="flex-cell flex-cell-pista">
+              <div  class="retoTextArea retoEditable no-pistas" data-id="hint">
+                Hasta que crees el reto no puedes asignarle pistas
+              </div>
+          </div>
+          <div class="operations-reto">
+              <form id="addForm" method='POST' action='/escapeRooms/<%= escapeRoom.id %>/puzzles/'>
+                  <input type="hidden" name="reto" id="reto" value="">
+                  <button class="delete-reto"><i class="material-icons">add_circle_outline</i></button>
+              </form>
+          </div>
       </div>
+
+    </div>
     </div>
     <br/>
     <input type="hidden" name="retos" id="retos" value="">
+  <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/step3'  >
     <div class="align-right">
       <a href="/escapeRooms/<%= escapeRoom.id %>">
         <button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button>
@@ -50,52 +121,44 @@
 <%- include('../partials/__progress', {progress: 3}) %>
 
 <script type="text/javascript">
-  var template = `
-       <div class="flex-row-retos">
-        <div class="flex-cell flex-cell-retos">
-          <div contenteditable class="retoTextArea" data-id="title"></div>
-        </div>
-        <div class="flex-cell flex-cell-sol">
-          <div contenteditable class="retoTextArea" data-id="sol"></div>
-        </div>
-        <div class="flex-cell flex-cell-desc">
-          <div contenteditable class="retoTextArea" data-id="desc"></div>
-        </div>
-        <div class="flex-cell flex-cell-pista">
-          <div contenteditable class="retoTextArea" data-id="hint"></div>
-        </div>
-        <button type="button" class="delete-reto" onclick="deleteReto(this)"><i class="material-icons">delete</i></button>
-      </div>
-  `;
+  const editReto = (el) => {
+    $(el).addClass('hidden')
+    $(el).parent().find('.confirm-button').removeClass('hidden');
+    var until = $(el).closest('.flex-row-retos')[0];
+    var contentEditable = $(until).find('.retoTextArea.editable');
+    contentEditable.attr("contenteditable", "true");
+    contentEditable.first().focus();
+  };
 
-  var addReto = function() {
-    $('.flex-table-retos').append(template);
-    $('.flex-row-retos:last .flex-cell-retos .retoTextArea').focus();
-  }
 
-  $('#add-reto').on('click', addReto);
 
-  $('#form').on("submit", e => {
-    var retos = [...$('.flex-row-retos:not(.flex-row-retos-title)')].map(reto => {
-       return Object.assign({}, ...[...$(reto).find('.retoTextArea')].map((el,i) => {
-          return {[$(el).data("id")]: i === 3 ? el.innerText.split("\n") : $(el).text()};
-       }));
+$(function(){
+  $('#titleFocus').focus();
+  $('#addForm').on("submit", e => {
+    var reto = [...$('.new-reto')].map(reto => {
+      return Object.assign({}, ...[...$(reto).find('.retoTextArea.editable')].map((el,i) => {
+        return {[$(el).data("id")]: i === 3 ? el.innerText.split("\n") : $(el).text()};
+      }));
     });
-    $('#retos').val(JSON.stringify(retos));
+    delete reto[0].hint;
+    $('#reto').val(JSON.stringify(reto[0]));
     return true;
   });
 
+  $('.editForm').on("submit", e => {
+    var retoRow = [...$(e.target).closest('.flex-row-retos')][0];
+    var res = Object.assign({}, ...[...$(retoRow).find('.retoTextArea.editable')].map((el,i) => {
+      return {[$(el).data("id")]: i === 3 ? el.innerText.split("\n") : $(el).text()};
+    }));
+    $($(retoRow).find('.inputEdit')[0]).val(JSON.stringify(res));
+    return true;
+  });
+
+
   var deleteReto = function (el) {
     let parent = el.parentNode;
-    parent.parentNode.removeChild(parent)
+    parent.parentNode.removeChild(parent);
   }
 
-  $(document).on('keydown', e=>{
-    if (e.keyCode == 9 && document.activeElement && $(document.activeElement).is($(".retoTextArea:last"))) {
-      e.stopPropagation();
-      e.preventDefault();
-      addReto();
-    }
-  })
-
+});
 </script>
