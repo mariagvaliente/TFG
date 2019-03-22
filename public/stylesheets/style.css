@@ -212,66 +212,70 @@ button {
 
 .escapeRooms .flexBoxEscapeRooms {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
+  -webkit-flex-flow: row;
   flex-wrap: wrap; }
   .escapeRooms .flexBoxEscapeRooms:after {
     content: "";
-    flex: auto;
-    width: auto; }
-  .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
-    background: white;
-    color: black;
-    width: 14vw;
-    height: 14vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    border-radius: 10px;
-    padding: 1vw;
-    margin: 1vw; }
-    .escapeRooms .flexBoxEscapeRooms .escapeRoomItem .erFoto {
+    flex: 1; }
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper {
+    width: 20%;
+    padding: 10px;
+    height: auto; }
+    .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper:before {
+      content: '';
+      float: left;
+      padding-top: 100%; }
+    .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem {
+      background: white;
+      color: black;
       width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
-      flex: 1 auto; }
-      .escapeRooms .flexBoxEscapeRooms .escapeRoomItem .erFoto .bckgFoto {
-        flex: 1;
-        background-position: center;
-        background-size: cover; }
-      .escapeRooms .flexBoxEscapeRooms .escapeRoomItem .erFoto .escapeRoomTitle {
-        white-space: nowrap;
+      justify-content: flex-end;
+      align-items: center;
+      border-radius: 10px;
+      padding: 1vw; }
+      .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem .erFoto {
         width: 100%;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        padding-top: 5px; }
-    .escapeRooms .flexBoxEscapeRooms .escapeRoomItem.addEscapeRoom {
-      background-color: #9196A9;
-      color: #D2D4DC;
-      font-size: 100px;
-      padding: 10px 20px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: #D2D4DC;
-      outline: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center; }
+        display: flex;
+        flex-direction: column;
+        flex: 1 auto; }
+        .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem .erFoto .bckgFoto {
+          flex: 1;
+          background-position: center;
+          background-size: cover; }
+        .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem .erFoto .escapeRoomTitle {
+          white-space: nowrap;
+          width: 100%;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          padding-top: 5px; }
+      .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom {
+        background-color: #9196A9;
+        color: #D2D4DC;
+        font-size: 100px;
+        padding: 10px 20px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #D2D4DC;
+        outline: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; }
 
 @media (max-width: 1200px) {
-  .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
-    width: 180px;
-    height: 180px; } }
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper {
+    width: 25%; } }
 
 @media (max-width: 992px) {
-  .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
-    width: 28vw;
-    height: 28vw; } }
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper {
+    width: 33.33%; } }
 
 @media (max-width: 576px) {
-  .escapeRooms .flexBoxEscapeRooms .escapeRoomItem {
-    width: 33vw;
-    height: 33vw; } }
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper {
+    width: 50%; } }
 
 .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker {
   width: 20em;
@@ -319,9 +323,9 @@ button {
     -ms-transform: scale(1.2);
     transform: scale(1.2); }
 
-.escapeRooms .flexBoxEscapeRooms .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItem.addEscapeRoom, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp {
+.escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp {
   transition: 0.2s all ease-in; }
-  .escapeRooms .flexBoxEscapeRooms .escapeRoomItem:hover, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItem:active, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItem:focus, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp:focus {
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp:focus {
     -webkit-transform: scale(0.8);
     -ms-transform: scale(0.8);
     transform: scale(0.8); }
@@ -397,6 +401,11 @@ button {
       color: #656683;
       font-family: 'Lato', sans-serif;
       line-height: 32px; }
+      #mainSection .main .flexShow .flexRow .flexShowRight .show_link {
+        font-family: inherit; }
+      #mainSection .main .flexShow .flexRow .flexShowRight em {
+        font-family: inherit;
+        opacity: 0.3; }
       #mainSection .main .flexShow .flexRow .flexShowRight img {
         width: 250px;
         border-radius: 5px; }
@@ -415,7 +424,10 @@ button {
 
 #mainSection .main.step1 .half-flex-container {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  text-align: center; }
+  #mainSection .main.step1 .half-flex-container h2 {
+    text-align: left; }
   #mainSection .main.step1 .half-flex-container .left-half-flex {
     width: 50%;
     padding: 0px; }
@@ -430,7 +442,8 @@ button {
       #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp.selected {
         border-color: #FAC855; }
   #mainSection .main.step1 .half-flex-container .right-half-flex {
-    width: 50%; }
+    width: 50%;
+    height: 60vh; }
     #mainSection .main.step1 .half-flex-container .right-half-flex .preview {
       width: 100%;
       height: 100%; }
@@ -440,7 +453,7 @@ button {
         overflow: auto;
         border: 3px solid white;
         border-radius: 20px;
-        margin-top: 20px;
+        margin-top: 10px;
         margin-bottom: 3%; }
 
 #mainSection .main.step2 {
@@ -598,6 +611,21 @@ button {
 #mainSection .main.step5 h2 {
   text-align: left; }
 
+#mainSection .main.step6 .editor-wrapper {
+  background-color: white;
+  margin-bottom: 20px;
+  color: black; }
+  #mainSection .main.step6 .editor-wrapper #editor {
+    min-height: 300px; }
+    #mainSection .main.step6 .editor-wrapper #editor.ql-container {
+      font-size: 18px; }
+    #mainSection .main.step6 .editor-wrapper #editor * {
+      font-family: 'Lato'; }
+    #mainSection .main.step6 .editor-wrapper #editor .ql-active, #mainSection .main.step6 .editor-wrapper #editor .ql-snow.ql-toolbar button:hover {
+      color: #F47E84; }
+      #mainSection .main.step6 .editor-wrapper #editor .ql-active *, #mainSection .main.step6 .editor-wrapper #editor .ql-snow.ql-toolbar button:hover * {
+        stroke: #F47E84; }
+
 #mainSection .main .progress-buttons {
   border-radius: 25px;
   padding: 10px 20px; }
@@ -633,6 +661,12 @@ button {
       line-height: 100%; }
       #mainSection .main .flexBoxTurnos .turno .indications .no-indications {
         color: #ddd; }
+
+@media (max-width: 992px) {
+  .half-flex-container {
+    flex-wrap: wrap; }
+    .half-flex-container .left-half-flex, .half-flex-container .right-half-flex {
+      width: 100% !important; } }
 
 * {
   font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;

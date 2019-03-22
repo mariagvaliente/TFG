@@ -7,7 +7,11 @@
             No has creado ninguna escape room, gestiónalas desde aquí...
         </h1>
         <div class="flexBoxEscapeRooms">
-            <a href="/escapeRooms/new"><div class="escapeRoomItem addEscapeRoom animated rubberBand" style="animation-delay: 1.5s"><span>+</span></div></a>
+            <a href="/escapeRooms/new" class="escapeRoomItemWrapper animated bounceIn">
+                <div class="escapeRoomItem addEscapeRoom" style="animation-delay: <%=escapeRooms ? (escapeRooms.length * 100 + 100): 0 %>ms;">
+                    <span>+</span>
+                </div>
+            </a>
         </div>
         <% } else {  %>
         <h1>
@@ -19,7 +23,7 @@
             <% for (var i in escapeRooms) { %>
                 <% var escapeRoom = escapeRooms[i]; %>
                 <% var attachment = escapeRoom.attachment; %>
-                <a href="/escapeRooms/<%= escapeRoom.id %>" class="animated bounceIn" style="animation-delay: <%=100*i%>ms;">
+                <a href="/escapeRooms/<%= escapeRoom.id %>" class="escapeRoomItemWrapper animated bounceIn" style="animation-delay: <%=100*i%>ms;">
                     <div class="escapeRoomItem">
                         <div class="erFoto" style="text-align: center">
                             <div class="bckgFoto" style="background-image: url(<% if (attachment) {%><%=attachment.url%><%} else {%>/images/placeholder.png<%}%>)"></div>
@@ -28,7 +32,7 @@
                     </div>
                 </a>
             <% } %>
-            <a href="/escapeRooms/new" class=" animated bounceIn">
+            <a href="/escapeRooms/new" class="escapeRoomItemWrapper animated bounceIn">
                 <div class="escapeRoomItem addEscapeRoom" style="animation-delay: <%=escapeRooms ? (escapeRooms.length * 100 + 100): 0 %>ms;">
                     <span>+</span>
                 </div>
@@ -37,5 +41,6 @@
         <% } %>
     </br>
     <% include ../partials/__footer %>
+    </div>
 </div>
 </div>

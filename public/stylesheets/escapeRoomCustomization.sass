@@ -64,7 +64,6 @@
 				padding-bottom: 20px
 				&:first-child
 					font-size: 26px
-
 				.flexShowLeft
 					width: 250px
 					line-height: 37px
@@ -75,6 +74,11 @@
 					color: $textpurple
 					font-family:  'Lato', sans-serif
 					line-height: 32px
+					.show_link
+						font-family: inherit
+					em
+						font-family: inherit
+						opacity: 0.3
 					img
 						width: 250px
 						border-radius:  5px
@@ -94,6 +98,9 @@
 			.half-flex-container
 				display: flex
 				flex-direction: row
+				text-align: center
+				h2
+					text-align: left
 				.left-half-flex
 					width: 50%
 					padding: 0px
@@ -110,6 +117,7 @@
 							border-color: $brightyellow
 				.right-half-flex
 					width: 50%
+					height: 60vh
 					.preview
 						width: 100%
 						height: 100%
@@ -119,7 +127,7 @@
 							overflow: auto
 							border: 3px solid white
 							border-radius: 20px
-							margin-top: 20px
+							margin-top: 10px
 							margin-bottom: 3%
 		&.step2
 			position: relative
@@ -278,6 +286,21 @@
 		&.step5
 			h2
 				text-align: left
+		&.step6
+			.editor-wrapper
+				background-color: white
+				margin-bottom: 20px
+				color: black
+				#editor
+					min-height: 300px
+					&.ql-container
+						font-size: 18px
+					*
+						font-family: 'Lato'
+					.ql-active, .ql-snow.ql-toolbar button:hover
+						color: $lightred
+						*
+							stroke: $lightred
 		.progress-buttons
 			border-radius: 25px
 			padding: 10px 20px
@@ -312,3 +335,8 @@
 					line-height: 100%
 					.no-indications
 						color: #ddd
+@media (max-width: 992px)
+	.half-flex-container
+		flex-wrap: wrap
+		.left-half-flex, .right-half-flex
+			width: 100% !important

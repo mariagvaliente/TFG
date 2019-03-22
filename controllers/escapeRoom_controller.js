@@ -43,7 +43,7 @@ exports.load = (req, res, next, escapeRoomId) => {
 
             } else {
 
-                throw new Error(`There is no escape room with id=${escapeRoomId}`);
+                throw new Error(`No hay escape room con id=${escapeRoomId}`);
 
             }
 
@@ -65,7 +65,7 @@ exports.adminOrAuthorRequired = (req, res, next) => {
 
     } else {
 
-        console.log("Prohibited operation: The logged in user is not the author of the escape room, nor an administrator.");
+        console.log("Operación prohibida: El usuario logueado no es el autor de la escape room ni el administrador");
         res.send(403);
 
     }
@@ -184,7 +184,7 @@ exports.create = (req, res, next) => {
     ]}).
         then((er) => {
 
-            req.flash("success", "Escape Room created successfully.");
+            req.flash("success", "Escape Room creada con éxito");
             if (!req.file) {
 
                 req.flash("info", "Escape Room without attachment.");
@@ -273,13 +273,13 @@ exports.update = (req, res, next) => {
     ]}).
         then((er) => {
 
-            req.flash("success", "Escape Room edited successfully.");
+            req.flash("success", "Escape Room editada con éxito");
             if (body.keepAttachment === "0") {
 
                 // There is no attachment: Delete old attachment.
                 if (!req.file) {
 
-                    req.flash("info", "This Escape Room has no attachment.");
+                    // req.flash("info", "This Escape Room has no attachment.");
                     if (er.attachment) {
 
                         attHelper.deleteResource(er.attachment.public_id);
@@ -330,7 +330,7 @@ exports.update = (req, res, next) => {
                             }).
                             catch((error) => { // Ignoring image validation errors
 
-                                req.flash("error", `Failed saving new image: ${error.message}`);
+                                req.flash("error", `Error al guardar el fichero: ${error.message}`);
                                 attHelper.deleteResource(uploadResult.public_id);
 
                             });
@@ -339,7 +339,7 @@ exports.update = (req, res, next) => {
                     }).
                     catch((error) => {
 
-                        req.flash("error", `Failed saving the new attachment: ${error.message}`);
+                        req.flash("error", `Error al guardar el fichero: ${error.message}`);
 
                     }).
                     then(() => {
@@ -365,7 +365,7 @@ exports.update = (req, res, next) => {
         }).
         catch((error) => {
 
-            req.flash("error", `Error editing the Escape Room: ${error.message}`);
+            req.flash("error", `Error al editar la escape room: ${error.message}`);
             next(error);
 
         });
@@ -402,7 +402,7 @@ exports.temasUpdate = (req, res, next) => {
         }).
         catch((error) => {
 
-            req.flash("error", `Error editing the Escape Room: ${error.message}`);
+            req.flash("error", `Error al editar la escape room: ${error.message}`);
             next(error);
 
         });
@@ -463,7 +463,7 @@ exports.retosUpdate = (req, res, next) => {
         }).
         catch((error) => {
 
-            req.flash("error", `Error editing the Escape Room: ${error.message}`);
+            req.flash("error", `Error al editar la escape room: ${error.message}`);
             next(error);
 
         });
@@ -500,7 +500,7 @@ exports.pistasUpdate = (req, res, next) => {
         }).
         catch((error) => {
 
-            req.flash("error", `Error editing the Escape Room: ${error.message}`);
+            req.flash("error", `Error al editar la escape room: ${error.message}`);
             next(error);
 
         });
@@ -544,10 +544,19 @@ exports.encuestasUpdate = (req, res, next) => {
         }).
         catch((error) => {
 
-            req.flash("error", `Error editing the Escape Room: ${error.message}`);
+            req.flash("error", `Error al editar la escape room: ${error.message}`);
             next(error);
 
         });
+
+};
+
+// GET /escapeRooms/:escapeRoomId/step6
+exports.instrucciones = (req, res) => {
+
+    const {escapeRoom} = req;
+
+    res.render("escapeRooms/step6", {escapeRoom});
 
 };
 
@@ -570,7 +579,7 @@ exports.destroy = (req, res, next) => {
     req.escapeRoom.destroy().
         then(() => {
 
-            req.flash("success", "Escape Room deleted successfully.");
+            req.flash("success", "Escape Room borrada con éxito");
             res.redirect("/escapeRooms");
 
         }).
