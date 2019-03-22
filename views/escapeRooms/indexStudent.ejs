@@ -1,0 +1,31 @@
+
+<% include _header.ejs %>
+<div class="main escapeRooms">
+
+    <div class="escapeRoomList">
+        <% if (escapeRoom==undefined) { %>
+            <h1>
+                No tienes ninguna escape room pendiente, espera a que tu profe te de acceso a alguna...
+            </h1>
+        <% } else {  %>
+            <h1>
+                Tienes las siguientes escape rooms activas...
+            </h1>
+
+            <div class="flexBoxEscapeRooms">
+
+                    <% var attachment = escapeRoom.attachment; %>
+                    <a href="/escapeRooms/<%= escapeRoom.id %>" class="animated bounceIn" >
+                        <div class="escapeRoomItem">
+                            <div class="erFoto" style="text-align: center">
+                                <div class="bckgFoto" style="background-image: url(<% if (attachment) {%><%=attachment.url%><%} else {%>/images/placeholder.png<%}%>)"></div>
+                                <div class="escapeRoomTitle"><%= escapeRoom.title %></div>
+                            </div>
+                        </div>
+                    </a>
+            </div>
+        <% } %>
+        </br>
+        <% include ../partials/__footer %>
+    </div>
+</div>

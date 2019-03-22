@@ -14,7 +14,7 @@ exports.load = (req, res, next, turnId) => {
 
             } else {
 
-                next(new Error(`There is no tip with turnId=${turnId}`));
+                next(new Error(`There is no turn with turnId=${turnId}`));
 
             }
 

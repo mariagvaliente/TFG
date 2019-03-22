@@ -1,6 +1,6 @@
 <% include _header.ejs %>
 <div class="main no-bckg">
- 
+
     <h1>
         Configuración básica de la escape room:
     </h1>
@@ -88,7 +88,9 @@
             </div>
             <div class="flexShowRight">
                 <% var invitationLink = "http://localhost:3000/escapeRooms/" + escapeRoom.id +"/join?token=" + escapeRoom.invitation; %>
+
                 <a class="show_link" href="<%= invitationLink %>"><%= invitationLink %></a>
+
                 <input id="joinUrl" value="<%= invitationLink %>"/>
                 <button class="copy" id="copyButton"><i class="material-icons">file_copy</i></button>
             </div>
@@ -108,7 +110,7 @@
             <div class="flexShowRight">
                 <% var turnos = escapeRoom.turnos; %>
                 <%  include ../turnos/index_show  %>
-            </div>
+            </div><% escapeRoom.invitation = Math.random().toString(36).substr(2)%>
         </div>
         <div class="flexRow animated bounceIn" id="pistas">
             <div class="flexShowLeft">
