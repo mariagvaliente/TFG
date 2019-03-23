@@ -4,7 +4,6 @@ const escapeRoomController = require("../controllers/escapeRoom_controller");
 const turnController = require("../controllers/turnos_controller");
 const userController = require("../controllers/user_controller");
 const sessionController = require("../controllers/session_controller");
-const participantsController = require('../controllers/participants_controller');
 
 const multer = require("multer"),
     upload = multer({"dest": "./uploads/"});
@@ -91,22 +90,13 @@ router.get("/escapeRooms/:escapeRoomId(\\d+)/step6", sessionController.loginRequ
 router.get("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequired, sessionController.studentOrAdminRequired, escapeRoomController.studentToken);
 router.post("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.indexStudent);
 
+router.put("/turnos/:turnoId(\\d+)/addParticipant", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.addParticipant);
+
 
 router.post("/escapeRooms/:escapeRoomId(\\d+)/turnos", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);
 router.delete("/escapeRooms/:escapeRoomId(\\d+)/turnos/:turnoId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.destroy);
 
+router.put("/escapeRooms/:escapeRoomId(\\d+)/turnos/:turnoId(\\d+)/addParticipant", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.addParticipant);
 
-
-//router.get("/turnos/:turnoId(\\d+)", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.turnosStudent);
-// Routes for the resource participants of a user
-
-router.put('/users/:userId(\\d+)/participants/:turnId(\\d+)',
-    sessionController.loginRequired,
-    sessionController.adminOrMyselfRequired,
-    participantsController.add);
-router.delete('/users/:userId(\\d+)/participants/:turnId(\\d+)',
-    sessionController.loginRequired,
-    sessionController.adminOrMyselfRequired,
-    participantsController.del);
 
 module.exports = router;

@@ -15,17 +15,17 @@
             <span id="currentDate"></span>
         </h2>
         <% include ../turnos/index %>
-        
+
     </div>
 </div>
 	<div class="contenedor" style="display: flex; height: 100%">
 	    <div class="turnosLeft" style="width: 50%; float: left">
 	    </div>
 	    <div class="loginRight" style=" width: 50%; float: left; flex: 1">
-	     
+
 	    </div>
 	</div>
-	<form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/step2'  >	
+	<form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/step2'  >
 		<div class="align-right">
 			<a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button></a>
 			<button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
@@ -41,7 +41,7 @@ var selectedDates = [
 <% for (var d = 0; d < turnos.length; d++) { %>
 	new Date("<%= turnos[d].date%>") <%if (d !== turnos.length -1) {%>,<% }%>
 <% } %>
-].map(d=>{d.setHours(0,0,0,0); return d.getTime()}); ;
+].map(d=>{d.setHours(0,0,0,0); return d.getTime()}); 
 
 </script>
 <script type="text/javascript" src="/js/turnos.js"></script>

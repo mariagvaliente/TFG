@@ -6,12 +6,9 @@ exports.load = (req, res, next, turnId) => {
 
     if (req.session.user) {
         include = [
-            {
-                model: models.user,
-                as: "participantes",
-                where: {id: req.session.user.id},
-                required: false  // OUTER JOIN
-            }];
+            {"model": models.user,
+                "as": "participant"}
+            ];
     }
 
     models.turno.findById(turnId).
@@ -37,11 +34,28 @@ exports.load = (req, res, next, turnId) => {
 exports.indexStudent = (req, res, next) => {
     models.turno.findAll()
     .then(turnos => {
-        res.render('turnos/index_student.ejs', {turnos});
+        res.render('turnos/_indexStudent.ejs', {turnos});
     })
     .catch(error => next(error));
 };
 
+// GET /escapeRooms/:escapeRoomId/turnos/:turnId/addParticipant
+exports.addParticipant = (req, res, next) => {
+
+    const turn = models.turno.build({
+        "participantId": req.session.user.id
+    });
+
+    turn.save(["participantId"])
+    .then(turno => {
+        req.flash('success', 'Participant added successfully.');
+        res.redirect('/escapeRoom/' + req.params.escapeRoomId + '/join');
+    })
+    .catch(error => {
+        req.flash('error', 'Error adding the participant: ' + error.message);
+        next(error);
+    });
+};
 
 
 // POST /escapeRooms/:escapeRoomId/turnos

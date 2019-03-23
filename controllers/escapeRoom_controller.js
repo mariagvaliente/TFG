@@ -605,3 +605,11 @@ exports.studentToken = (req, res) => {
 
 };
 
+// GET /escapeRooms/:escapeRoomId/turnos
+exports.indexStudent = (req, res, next) => {
+    const {escapeRoom} = req;
+
+    res.render("turnos/_indexStudent", {escapeRoom,
+        cloudinary});
+};
+
