@@ -594,7 +594,7 @@ exports.destroy = (req, res, next) => {
 
 
 
-// Autoload the escape room with id equals to :escapeRoomId
+// GET /escapeRooms/:escapeRoomId/join
 exports.studentToken = (req, res) => {
 
     const {escapeRoom} = req;
@@ -604,3 +604,4 @@ exports.studentToken = (req, res) => {
 
 
 };
+

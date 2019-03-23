@@ -29,6 +29,8 @@
     padding: 35px;
     padding-top: 70px !important;
     position: relative; }
+    #mainSection .main.student {
+      background-image: url("../images/puzzle_bg.png"); }
     #mainSection .main.no-bckg {
       background: none; }
     #mainSection .main footer {
@@ -141,6 +143,16 @@ button {
     font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
     border-radius: 5px;
     border-color: #F47E84;
+    border-style: solid;
+    padding: 10px;
+    text-align: center;
+    outline: 0; }
+  button.aceptButton {
+    background-color: #48C18E;
+    color: #161938;
+    font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
+    border-radius: 5px;
+    border-color: #48C18E;
     border-style: solid;
     padding: 10px;
     text-align: center;

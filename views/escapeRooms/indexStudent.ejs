@@ -1,31 +1,19 @@
 
-<% include _header.ejs %>
-<div class="main escapeRooms">
-
-    <div class="escapeRoomList">
-        <% if (escapeRoom==undefined) { %>
-            <h1>
-                No tienes ninguna escape room pendiente, espera a que tu profe te de acceso a alguna...
-            </h1>
-        <% } else {  %>
-            <h1>
-                Tienes las siguientes escape rooms activas...
-            </h1>
-
-            <div class="flexBoxEscapeRooms">
-
-                    <% var attachment = escapeRoom.attachment; %>
-                    <a href="/escapeRooms/<%= escapeRoom.id %>" class="animated bounceIn" >
-                        <div class="escapeRoomItem">
-                            <div class="erFoto" style="text-align: center">
-                                <div class="bckgFoto" style="background-image: url(<% if (attachment) {%><%=attachment.url%><%} else {%>/images/placeholder.png<%}%>)"></div>
-                                <div class="escapeRoomTitle"><%= escapeRoom.title %></div>
-                            </div>
-                        </div>
-                    </a>
+<% include ../escapeRooms/_header.ejs %>
+<div class="main student" style="font-size: xx-large; display: flex; justify-content: center; align-items: center;">
+        <div style="background-color: #2A2A52; width: 50%; text-align: center" >
+            </br>
+            ¿Quieres unirte a la Escape Room de <%= escapeRoom.title %>?
+            </br>
+            </br>
+            <div style="margin-bottom:50px; margin-left: 200px; float:left">
+                <button class="deleteButton" style="display:inline-block;">NO</button>
             </div>
-        <% } %>
-        </br>
-        <% include ../partials/__footer %>
-    </div>
+            <div style="margin-bottom:50px; margin-right:0px; margin-left:50px;float:left">
+                <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/join'  >
+                <button class="aceptButton" type="submit" style="display:inline-block;">SI</button>
+                </form>
+            </div>
+        </div>
 </div>
+

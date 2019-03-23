@@ -4,6 +4,16 @@ const {models} = require("../models");
 // Autoload the turn with id equals to :turnId
 exports.load = (req, res, next, turnId) => {
 
+    if (req.session.user) {
+        include = [
+            {
+                model: models.user,
+                as: "participantes",
+                where: {id: req.session.user.id},
+                required: false  // OUTER JOIN
+            }];
+    }
+
     models.turno.findById(turnId).
         then((turn) => {
 
@@ -22,6 +32,17 @@ exports.load = (req, res, next, turnId) => {
         catch((error) => next(error));
 
 };
+
+// GET /escapeRooms/:escapeRoomId/turnos
+exports.indexStudent = (req, res, next) => {
+    models.turno.findAll()
+    .then(turnos => {
+        res.render('turnos/index_student.ejs', {turnos});
+    })
+    .catch(error => next(error));
+};
+
+
 
 // POST /escapeRooms/:escapeRoomId/turnos
 exports.create = (req, res, next) => {

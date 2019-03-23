@@ -4,6 +4,7 @@ const escapeRoomController = require("../controllers/escapeRoom_controller");
 const turnController = require("../controllers/turnos_controller");
 const userController = require("../controllers/user_controller");
 const sessionController = require("../controllers/session_controller");
+const participantsController = require('../controllers/participants_controller');
 
 const multer = require("multer"),
     upload = multer({"dest": "./uploads/"});
@@ -59,13 +60,8 @@ router.post("/users", userController.create);
 router.get("/users/:userId(\\d+)/edit", sessionController.loginRequired, sessionController.notStudentRequired, sessionController.adminOrMyselfRequired, userController.edit);
 router.put("/users/:userId(\\d+)", sessionController.loginRequired, sessionController.notStudentRequired, sessionController.adminOrMyselfRequired, userController.update);
 router.delete("/users/:userId(\\d+)", sessionController.loginRequired, sessionController.notStudentRequired, sessionController.adminOrMyselfRequired, userController.destroy);
-
 router.get("/users/:userId(\\d+)/escapeRooms", sessionController.loginRequired, sessionController.notStudentRequired, sessionController.adminOrMyselfRequired, escapeRoomController.index);
-
-
 router.get("/users/:userId(\\d+)/student", sessionController.loginRequired, sessionController.studentOrAdminRequired, userController.student);
-
-router.get("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequired, sessionController.studentOrAdminRequired, escapeRoomController.studentToken);
 
 
 // Routes for the resource /escapeRooms
@@ -92,11 +88,25 @@ router.post("/escapeRooms/:escapeRoomId(\\d+)/step5", sessionController.loginReq
 router.get("/escapeRooms/:escapeRoomId(\\d+)/step6", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.instrucciones);
 
 
-router.post("/escapeRooms/:escapeRoomId(\\d+)/turnos", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);
-router.delete("/escapeRooms/:escapeRoomId(\\d+)/turnos/:turnoId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.destroy);
+router.get("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequired, sessionController.studentOrAdminRequired, escapeRoomController.studentToken);
+router.post("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.indexStudent);
+
 
 router.post("/escapeRooms/:escapeRoomId(\\d+)/turnos", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);
 router.delete("/escapeRooms/:escapeRoomId(\\d+)/turnos/:turnoId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.destroy);
 
+
+
+//router.get("/turnos/:turnoId(\\d+)", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.turnosStudent);
+// Routes for the resource participants of a user
+
+router.put('/users/:userId(\\d+)/participants/:turnId(\\d+)',
+    sessionController.loginRequired,
+    sessionController.adminOrMyselfRequired,
+    participantsController.add);
+router.delete('/users/:userId(\\d+)/participants/:turnId(\\d+)',
+    sessionController.loginRequired,
+    sessionController.adminOrMyselfRequired,
+    participantsController.del);
 
 module.exports = router;
