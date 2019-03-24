@@ -1,6 +1,6 @@
-<% include ../escapeRooms/_header.ejs %>
+<% include ../partials/_header.ejs %>
 <div class="main student" style="display: flex; justify-content: center; align-items: center;">
-    <div style="background-color: #2A2A52; width: 50%; text-align: center" >
+    <div class="dialog" >
         <div style="font-size: xx-large;">
             </br>
             Seleccione un turno:
@@ -51,13 +51,14 @@
             </div>
             <%}%>
         </div>
-        <div style="margin-bottom:50px; margin-left: 150px; float:left">
-            <button class="deleteButton" style="display:inline-block;">cancelar</button>
-        </div>
-        <div style="margin-bottom:50px; margin-right:0px; margin-left:30px;float:left">
-            <button class="aceptButton" type="submit" style="display:inline-block;">continuar</button>
-
-        </div>
+        <div class="join-button-flex-container">
+            <div>
+                <button class="deleteButton" style="display:inline-block;">cancelar</button>
+            </div>
+            <div>
+                <button class="aceptButton" type="submit" style="display:inline-block;">continuar</button>
+            </div>
         </a>
+        </div>
     </div>
 </div>

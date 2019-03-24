@@ -1,19 +1,21 @@
 
 <% include ../partials/_header.ejs %>
-<div class="main student" style="font-size: xx-large; display: flex; justify-content: center; align-items: center;">
-        <div style="background-color: #2A2A52; width: 50%; text-align: center" >
-            </br>
-            ¿Quieres unirte a la Escape Room de <%= escapeRoom.title %>?
-            </br>
-            </br>
-            <div style="margin-bottom:50px; margin-left: 200px; float:left">
+<div class="main student">
+    <div class="dialog" >
+        </br>
+        ¿Quieres unirte a la Escape Room de <%= escapeRoom.title %>?
+        </br>
+        </br>
+        <div class="join-button-flex-container">
+            <div class="delete-button-container">
                 <button class="deleteButton" style="display:inline-block;">NO</button>
             </div>
-            <div style="margin-bottom:50px; margin-right:0px; margin-left:50px;float:left">
+            <div style="accept-button-container">
                 <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/join'  >
-                <button class="aceptButton" type="submit" style="display:inline-block;">SI</button>
+                <button class="acceptButton" type="submit" style="display:inline-block;">SI</button>
                 </form>
             </div>
         </div>
+    </div>  
 </div>
 
