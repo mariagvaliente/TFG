@@ -58,5 +58,10 @@ user.hasMany(escapeRoom, {"foreignKey": "authorId"});
 escapeRoom.belongsTo(user, {"as": "author",
     "foreignKey": "authorId"});
 
+// Relation 1-to-N between User and Turno:
+user.hasMany(turno, {"foreignKey": "participantId"});
+turno.belongsTo(user, {"as": "participant",
+    "foreignKey": "participantId"});
+
 
 module.exports = sequelize;

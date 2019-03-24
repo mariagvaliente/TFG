@@ -207,7 +207,7 @@ exports.create = (req, res, next) => {
             if (!req.file) {
 
                 req.flash("info", "Escape Room without attachment.");
-                res.redirect(`/escapeRooms/${escapeRoom.id}/step1`);
+                res.redirect(`/escapeRooms/${escapeRoom.id}/appearance`);
 
                 return;
 
@@ -240,7 +240,7 @@ exports.create = (req, res, next) => {
                 then(() => {
 
                     fs.unlink(req.file.path); // Delete the file uploaded at./uploads
-                    res.redirect(`/escapeRooms/${er.id}/step1`);
+                    res.redirect(`/escapeRooms/${er.id}/appearance`);
 
                 });
 
@@ -364,7 +364,7 @@ exports.update = (req, res, next) => {
                     then(() => {
 
                         fs.unlink(req.file.path); // Delete the file uploaded at./uploads
-                        res.redirect(`/escapeRooms/${escapeRoom.id}/step1`);
+                        res.redirect(`/escapeRooms/${escapeRoom.id}/appearance`);
 
                     });
 
@@ -373,7 +373,7 @@ exports.update = (req, res, next) => {
         }).
         then(() => {
 
-            res.redirect(`/escapeRooms/${req.escapeRoom.id}/step1`);
+            res.redirect(`/escapeRooms/${req.escapeRoom.id}/appearance`);
 
         }).
         catch(Sequelize.ValidationError, (error) => {
@@ -391,16 +391,16 @@ exports.update = (req, res, next) => {
 
 };
 
-// GET /escapeRooms/:escapeRoomId/step1
+// GET /escapeRooms/:escapeRoomId/appearance
 exports.temas = (req, res) => {
 
     const {escapeRoom} = req;
 
-    res.render("escapeRooms/step1", {escapeRoom});
+    res.render("escapeRooms/steps/appearance", {escapeRoom});
 
 };
 
-// POST /escapeRooms/:escapeRoomId/step1
+// POST /escapeRooms/:escapeRoomId/appearance
 exports.temasUpdate = (req, res, next) => {
 
     const {escapeRoom, body} = req;
@@ -410,13 +410,13 @@ exports.temasUpdate = (req, res, next) => {
 
     escapeRoom.save({"fields": ["appearance"]}).then(() => {
 
-        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "edit" : "step2"}`);
+        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "edit" : "turnos"}`);
 
     }).
         catch(Sequelize.ValidationError, (error) => {
 
             error.errors.forEach(({message}) => req.flash("error", message));
-            res.redirect(`/escapeRooms/${escapeRoom.id}/step1`);
+            res.redirect(`/escapeRooms/${escapeRoom.id}/appearance`);
 
         }).
         catch((error) => {
@@ -429,43 +429,43 @@ exports.temasUpdate = (req, res, next) => {
 
 };
 
-// GET /escapeRooms/:escapeRoomId/step2
+// GET /escapeRooms/:escapeRoomId/turnos
 exports.turnos = (req, res) => {
 
     const {escapeRoom} = req;
     const {turnos} = escapeRoom;
 
-    res.render("escapeRooms/step2", {escapeRoom,
+    res.render("escapeRooms/steps/turnos", {escapeRoom,
         turnos});
 
 };
 
-// POST /escapeRooms/:escapeRoomId/step2
+// POST /escapeRooms/:escapeRoomId/turnos
 exports.turnosUpdate = (req, res /* , next*/) => {
 
     const {escapeRoom, body} = req;
 
     const isPrevious = Boolean(body.previous);
 
-    res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "step1" : "step3"}`);
+    res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "appearance" : "puzzles"}`);
 
 };
 
-// GET /escapeRooms/:escapeRoomId/step3
+// GET /escapeRooms/:escapeRoomId/puzzles
 exports.retos = (req, res) => {
 
     const {escapeRoom} = req;
 
-    res.render("escapeRooms/step3", {escapeRoom});
+    res.render("escapeRooms/steps/puzzles", {escapeRoom});
 
 };
 
-// POST /escapeRooms/:escapeRoomId/step3
+// POST /escapeRooms/:escapeRoomId/puzzles
 exports.retosUpdate = (req, res) => {
 
     const isPrevious = Boolean(req.body.previous);
 
-    res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "step2" : "step4"}`);
+    res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "turnos" : "hints"}`);
     /*
     Const {escapeRoom, body} = req;
     let retos = JSON.parse(body.retos).map(reto => {
@@ -490,16 +490,16 @@ exports.retosUpdate = (req, res) => {
 
     const data = getData()
     console.log(data)
-    res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "step2" : "step4"}`);
+    res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "turnos" : "hints"}`);
     escapeRoom.save({"fields": ["puzzle"]}).then((er) => {
         console.log(er.puzzles)
-        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "step2" : "step4"}`);
+        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "turnos" : "hints"}`);
 
     }).
         catch(Sequelize.ValidationError, (error) => {
 
             error.errors.forEach(({message}) => req.flash("error", message));
-            res.redirect(`/escapeRooms/${escapeRoom.id}/step3`);
+            res.redirect(`/escapeRooms/${escapeRoom.id}/puzzles`);
 
         }).
         catch((error) => {
@@ -512,16 +512,16 @@ exports.retosUpdate = (req, res) => {
 
 };
 
-// GET /escapeRooms/:escapeRoomId/step4
+// GET /escapeRooms/:escapeRoomId/hints
 exports.pistas = (req, res) => {
 
     const {escapeRoom} = req;
 
-    res.render("escapeRooms/step4", {escapeRoom});
+    res.render("escapeRooms/steps/hints", {escapeRoom});
 
 };
 
-// POST /escapeRooms/:escapeRoomId/step4
+// POST /escapeRooms/:escapeRoomId/hints
 exports.pistasUpdate = (req, res, next) => {
 
     const {escapeRoom, body} = req;
@@ -531,13 +531,13 @@ exports.pistasUpdate = (req, res, next) => {
 
     escapeRoom.save({"fields": ["retos"]}).then(() => {
 
-        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "step3" : "step5"}`);
+        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "puzzles" : "evaluation"}`);
 
     }).
         catch(Sequelize.ValidationError, (error) => {
 
             error.errors.forEach(({message}) => req.flash("error", message));
-            res.redirect(`/escapeRooms/${escapeRoom.id}/step4`);
+            res.redirect(`/escapeRooms/${escapeRoom.id}/hints`);
 
         }).
         catch((error) => {
@@ -550,16 +550,16 @@ exports.pistasUpdate = (req, res, next) => {
 
 };
 
-// GET /escapeRooms/:escapeRoomId/step5
+// GET /escapeRooms/:escapeRoomId/evaluation
 exports.encuestas = (req, res) => {
 
     const {escapeRoom} = req;
 
-    res.render("escapeRooms/step5", {escapeRoom});
+    res.render("escapeRooms/steps/evaluation", {escapeRoom});
 
 };
 
-// POST /escapeRooms/:escapeRoomId/step5
+// POST /escapeRooms/:escapeRoomId/evaluation
 exports.encuestasUpdate = (req, res, next) => {
 
     const {escapeRoom, body} = req;
@@ -575,13 +575,13 @@ exports.encuestasUpdate = (req, res, next) => {
         "posttest"
     ]}).then(() => {
 
-        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "step4" : ""}`);
+        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "hints" : ""}`);
 
     }).
         catch(Sequelize.ValidationError, (error) => {
 
             error.errors.forEach(({message}) => req.flash("error", message));
-            res.redirect(`/escapeRooms/${escapeRoom.id}/step5`);
+            res.redirect(`/escapeRooms/${escapeRoom.id}/evaluation`);
 
         }).
         catch((error) => {
@@ -593,12 +593,12 @@ exports.encuestasUpdate = (req, res, next) => {
 
 };
 
-// GET /escapeRooms/:escapeRoomId/step6
+// GET /escapeRooms/:escapeRoomId/instructions
 exports.instrucciones = (req, res) => {
 
     const {escapeRoom} = req;
 
-    res.render("escapeRooms/step6", {escapeRoom});
+    res.render("escapeRooms/steps/instructions", {escapeRoom});
 
 };
 
@@ -635,7 +635,7 @@ exports.destroy = (req, res, next) => {
 };
 
 
-// Autoload the escape room with id equals to :escapeRoomId
+// GET /escapeRooms/:escapeRoomId/join
 exports.studentToken = (req, res) => {
 
     const {escapeRoom} = req;
@@ -645,3 +645,14 @@ exports.studentToken = (req, res) => {
 
 
 };
+
+// GET /escapeRooms/:escapeRoomId/turnos
+exports.indexStudent = (req, res) => {
+
+    const {escapeRoom} = req;
+
+    res.render("turnos/_indexStudent", {escapeRoom,
+        cloudinary});
+
+};
+

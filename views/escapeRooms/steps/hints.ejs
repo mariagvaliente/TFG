@@ -1,11 +1,11 @@
-<% include _header.ejs %>
-<div class="main step4">
+<% include ../../partials/_header.ejs %>
+<div class="main step-hints">
   	<h2>Pistas</h2>
-  	<form class="basicConfig" method='POST' action='/escapeRooms/<%= escapeRoom.id %>/step4'  >
+  	<form class="basicConfig" method='POST' action='/escapeRooms/<%= escapeRoom.id %>/hints'  >
 	  	<h3 id="pistasQuestion">¿Va a haber pistas en tu escape room?</h3>
 	  	<label for="noHints" id="noHintsLabel">No quiero que haya pistas en mi escape room<input id="noHints" name="noHints" type="checkbox" checked/></label>
 	  	<input type="file" name="hints"/>
-	  	<p id="yourScorm">Crea tu propio paquete de pistas SCORM <button type="button" id="opener">crear</button></p>
+	  	<p id="yourScorm">Crea tu propio paquete de pistas SCORM <button type="button" class="progress-buttons" id="opener">crear</button></p>
 		<br/><br/><br/>
 	  	<div class="align-right">
 			<a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button></a>
@@ -18,8 +18,8 @@
 <div id="dialog-rescorm" title="Crea tu propio paquete SCORM">
   <iframe id="rescorm" src="https://sonsoleslp.github.io/rescorm-generator/"></iframe>
 </div>
-<% include ../partials/__footer %>
-<%- include('../partials/__progress', {progress: 4}) %>
+<% include ../../partials/__footer %>
+<%- include('../../partials/__progress', {progress: 4}) %>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 	$( function() {

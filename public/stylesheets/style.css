@@ -29,6 +29,8 @@
     padding: 35px;
     padding-top: 70px !important;
     position: relative; }
+    #mainSection .main.student {
+      background-image: url("../images/puzzle_bg.png"); }
     #mainSection .main.no-bckg {
       background: none; }
     #mainSection .main footer {
@@ -156,6 +158,16 @@ button {
     font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
     border-radius: 5px;
     border-color: #F47E84;
+    border-style: solid;
+    padding: 10px;
+    text-align: center;
+    outline: 0; }
+  button.aceptButton {
+    background-color: #48C18E;
+    color: #161938;
+    font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
+    border-radius: 5px;
+    border-color: #48C18E;
     border-style: solid;
     padding: 10px;
     text-align: center;
@@ -292,7 +304,7 @@ button {
   .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper {
     width: 50%; } }
 
-.main.step2 #datepicker .ui-datepicker-inline.ui-datepicker {
+.main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker {
   width: 20em;
   padding-left: 75px;
   padding-right: 75px;
@@ -300,47 +312,47 @@ button {
   padding-top: 25px;
   border-radius: 20px;
   line-height: 30px; }
-  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker th {
+  .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker th {
     color: #333; }
-  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker th:nth-child(6), .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker th:nth-child(7) {
+  .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker th:nth-child(6), .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker th:nth-child(7) {
     color: #F47E84; }
-  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker * {
+  .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker * {
     font-family: 'Lato', font-family;
     font-size: 16px; }
-  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker td, .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker a {
+  .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker td, .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker a {
     color: #92A3AB;
     text-align: center;
     font-weight: bold; }
-    .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker td.turn-day-highlight .ui-state-default, .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker a.turn-day-highlight .ui-state-default {
+    .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker td.turn-day-highlight .ui-state-default, .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker a.turn-day-highlight .ui-state-default {
       color: blue;
       background-color: #FAC855;
       border-radius: 50%;
       color: black; }
-  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker .ui-datepicker-header.ui-widget-header {
+  .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker .ui-datepicker-header.ui-widget-header {
     background-color: white;
     border-color: white; }
-  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker .ui-datepicker-header .ui-datepicker-title span {
+  .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker .ui-datepicker-header .ui-datepicker-title span {
     font-size: 20px; }
-  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker .ui-state-default {
+  .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker .ui-state-default {
     background-color: transparent;
     border-color: transparent; }
-  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker .ui-state-highlight:not(.ui-state-active) {
+  .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker .ui-state-highlight:not(.ui-state-active) {
     color: #F47E84; }
-  .main.step2 #datepicker .ui-datepicker-inline.ui-datepicker .ui-state-active {
+  .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker .ui-state-active {
     background-color: #48C18E !important;
     border-radius: 50%;
     color: black; }
 
-#mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .button-hint, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint:hover i, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto, #mainSection .main.step3 #add-reto {
+#mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .button-hint, #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint:hover i, #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto, #mainSection .main.step-puzzles #add-reto {
   transition: 0.2s all ease-in; }
-  #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .button-hint:hover, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint:hover i:hover, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto:hover, #mainSection .main.step3 #add-reto:hover, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .button-hint:active, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint:hover i:active, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto:active, #mainSection .main.step3 #add-reto:active, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .button-hint:focus, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint:hover i:focus, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto:focus, #mainSection .main.step3 #add-reto:focus {
+  #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .button-hint:hover, #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint:hover i:hover, #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto:hover, #mainSection .main.step-puzzles #add-reto:hover, #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .button-hint:active, #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint:hover i:active, #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto:active, #mainSection .main.step-puzzles #add-reto:active, #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .button-hint:focus, #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint:hover i:focus, #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto:focus, #mainSection .main.step-puzzles #add-reto:focus {
     -webkit-transform: scale(1.2);
     -ms-transform: scale(1.2);
     transform: scale(1.2); }
 
-.escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp {
+.escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp {
   transition: 0.2s all ease-in; }
-  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp:focus {
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus {
     -webkit-transform: scale(0.8);
     -ms-transform: scale(0.8);
     transform: scale(0.8); }
@@ -352,17 +364,17 @@ button {
 #mainSection .main .align-right {
   text-align: right; }
 
-#mainSection .main .basicConfig, #mainSection .main.step5 {
+#mainSection .main .basicConfig, #mainSection .main.step-evaluation {
   font-size: 26px;
   text-align: center; }
-  #mainSection .main .basicConfig .erFormField, #mainSection .main.step5 .erFormField {
+  #mainSection .main .basicConfig .erFormField, #mainSection .main.step-evaluation .erFormField {
     padding: 40px;
     text-align: left; }
-    #mainSection .main .basicConfig .erFormField:focus-within, #mainSection .main.step5 .erFormField:focus-within {
+    #mainSection .main .basicConfig .erFormField:focus-within, #mainSection .main.step-evaluation .erFormField:focus-within {
       color: white !important; }
-      #mainSection .main .basicConfig .erFormField:focus-within label, #mainSection .main.step5 .erFormField:focus-within label {
+      #mainSection .main .basicConfig .erFormField:focus-within label, #mainSection .main.step-evaluation .erFormField:focus-within label {
         color: white; }
-    #mainSection .main .basicConfig .erFormField .customInput, #mainSection .main.step5 .erFormField .customInput {
+    #mainSection .main .basicConfig .erFormField .customInput, #mainSection .main.step-evaluation .erFormField .customInput {
       border: none;
       border-radius: 0px;
       text-align: left;
@@ -376,16 +388,16 @@ button {
       font-family: Lato, sans-serif;
       font-weight: normal;
       padding-left: 5px; }
-      #mainSection .main .basicConfig .erFormField .customInput .fileUploadButton, #mainSection .main.step5 .erFormField .customInput .fileUploadButton {
+      #mainSection .main .basicConfig .erFormField .customInput .fileUploadButton, #mainSection .main.step-evaluation .erFormField .customInput .fileUploadButton {
         background-color: transparent;
         color: white;
         border: none;
         padding: 0px; }
-      #mainSection .main .basicConfig .erFormField .customInput #imgLabel, #mainSection .main.step5 .erFormField .customInput #imgLabel {
+      #mainSection .main .basicConfig .erFormField .customInput #imgLabel, #mainSection .main.step-evaluation .erFormField .customInput #imgLabel {
         font-size: 1em;
         margin-top: 0.4em;
         font-family: Lato, sans-serif; }
-    #mainSection .main .basicConfig .erFormField input[type=file], #mainSection .main.step5 .erFormField input[type=file] {
+    #mainSection .main .basicConfig .erFormField input[type=file], #mainSection .main.step-evaluation .erFormField input[type=file] {
       font-family: Lato, sans-serif;
       width: 0.1px;
       height: 0.1px;
@@ -393,7 +405,7 @@ button {
       overflow: hidden;
       position: absolute;
       z-index: -1; }
-    #mainSection .main .basicConfig .erFormField label.itemNarrow, #mainSection .main.step5 .erFormField label.itemNarrow {
+    #mainSection .main .basicConfig .erFormField label.itemNarrow, #mainSection .main.step-evaluation .erFormField label.itemNarrow {
       display: block; }
 
 #mainSection .main .flexShow {
@@ -438,16 +450,16 @@ button {
         color: white;
         vertical-align: middle; }
 
-#mainSection .main.step1 .half-flex-container {
+#mainSection .main.step-appearance .half-flex-container {
   display: flex;
   flex-direction: row;
   text-align: center; }
-  #mainSection .main.step1 .half-flex-container h2 {
+  #mainSection .main.step-appearance .half-flex-container h2 {
     text-align: left; }
-  #mainSection .main.step1 .half-flex-container .left-half-flex {
+  #mainSection .main.step-appearance .half-flex-container .left-half-flex {
     width: 50%;
     padding: 0px; }
-    #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp {
+    #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp {
       width: 40%;
       margin: 2%;
       margin-left: 0px;
@@ -455,15 +467,15 @@ button {
       border: 3px solid white;
       cursor: pointer;
       background-color: white; }
-      #mainSection .main.step1 .half-flex-container .left-half-flex .buttonApp.selected {
+      #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp.selected {
         border-color: #FAC855; }
-  #mainSection .main.step1 .half-flex-container .right-half-flex {
+  #mainSection .main.step-appearance .half-flex-container .right-half-flex {
     width: 50%;
     height: 60vh; }
-    #mainSection .main.step1 .half-flex-container .right-half-flex .preview {
+    #mainSection .main.step-appearance .half-flex-container .right-half-flex .preview {
       width: 100%;
       height: 100%; }
-      #mainSection .main.step1 .half-flex-container .right-half-flex .preview #previewIframe {
+      #mainSection .main.step-appearance .half-flex-container .right-half-flex .preview #previewIframe {
         width: 100%;
         height: 94%;
         overflow: auto;
@@ -472,18 +484,18 @@ button {
         margin-top: 10px;
         margin-bottom: 3%; }
 
-#mainSection .main.step2 {
+#mainSection .main.step-turnos {
   position: relative; }
-  #mainSection .main.step2 .contenedor {
+  #mainSection .main.step-turnos .contenedor {
     display: flex;
     height: 100%; }
-    #mainSection .main.step2 .contenedor h2 {
+    #mainSection .main.step-turnos .contenedor h2 {
       color: #656683; }
-    #mainSection .main.step2 .contenedor .turnosLeft {
+    #mainSection .main.step-turnos .contenedor .turnosLeft {
       width: 50%; }
-    #mainSection .main.step2 .contenedor .turnosRight {
+    #mainSection .main.step-turnos .contenedor .turnosRight {
       width: 50%; }
-      #mainSection .main.step2 .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker {
+      #mainSection .main.step-turnos .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker {
         background: transparent;
         padding: 0px;
         margin: 0px;
@@ -496,23 +508,23 @@ button {
         caret-color: #a1a3af;
         color: #a1a3af !important;
         -webkit-text-fill-color: #a1a3af !important; }
-        #mainSection .main.step2 .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker:focus, #mainSection .main.step2 .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker:active, #mainSection .main.step2 .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill:focus, #mainSection .main.step2 .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill:active {
+        #mainSection .main.step-turnos .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker:focus, #mainSection .main.step-turnos .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker:active, #mainSection .main.step-turnos .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill:focus, #mainSection .main.step-turnos .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill:active {
           color: #a1a3af !important;
           -webkit-text-fill-color: #a1a3af !important; }
-        #mainSection .main.step2 .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill {
+        #mainSection .main.step-turnos .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker:-webkit-autofill {
           -webkit-box-shadow: 0 0 0 30px #232951 inset !important;
           -webkit-text-fill-color: #a1a3af !important; }
-        #mainSection .main.step2 .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker {
+        #mainSection .main.step-turnos .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker {
           width: 150%;
           margin-top: -1em;
           margin-bottom: -1em; }
-          #mainSection .main.step2 .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker::-webkit-clear-button, #mainSection .main.step2 .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker::-ms-clear {
+          #mainSection .main.step-turnos .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker::-webkit-clear-button, #mainSection .main.step-turnos .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-time-picker::-ms-clear {
             display: none; }
-        #mainSection .main.step2 .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-indications-picker {
+        #mainSection .main.step-turnos .contenedor .turnosRight .flexBoxTurnos .turno.add-turno .turnos-picker.turnos-indications-picker {
           resize: none;
           height: 40px;
           outline: none !important; }
-      #mainSection .main.step2 .contenedor .turnosRight .flexBoxTurnos .turno .little-button {
+      #mainSection .main.step-turnos .contenedor .turnosRight .flexBoxTurnos .turno .little-button {
         padding: 3px;
         padding-left: 4px;
         font-size: 14px;
@@ -526,17 +538,17 @@ button {
         position: absolute;
         bottom: 0;
         right: 10px; }
-        #mainSection .main.step2 .contenedor .turnosRight .flexBoxTurnos .turno .little-button .material-icons {
+        #mainSection .main.step-turnos .contenedor .turnosRight .flexBoxTurnos .turno .little-button .material-icons {
           font-size: 16px; }
-        #mainSection .main.step2 .contenedor .turnosRight .flexBoxTurnos .turno .little-button.more {
+        #mainSection .main.step-turnos .contenedor .turnosRight .flexBoxTurnos .turno .little-button.more {
           background: #FAC855; }
-        #mainSection .main.step2 .contenedor .turnosRight .flexBoxTurnos .turno .little-button.less {
+        #mainSection .main.step-turnos .contenedor .turnosRight .flexBoxTurnos .turno .little-button.less {
           background: #F47E84; }
 
-#mainSection .main.step3 .flex-table-retos-wrapper {
+#mainSection .main.step-puzzles .flex-table-retos-wrapper {
   position: relative;
   overflow: visible; }
-  #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos {
+  #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos {
     display: flex;
     flex-direction: column;
     background-color: #9091A6;
@@ -546,32 +558,32 @@ button {
     overflow: visible;
     font-size: 18px;
     word-break: break-word; }
-    #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos {
+    #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos {
       display: flex;
       flex-direction: row;
       border-top: 3px solid white; }
-      #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos.flex-row-retos-title {
+      #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos.flex-row-retos-title {
         background-color: #161938;
         color: white;
         border-top: none; }
-        #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos.flex-row-retos-title .flex-cell {
+        #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos.flex-row-retos-title .flex-cell {
           font-family: 'Gugi', sans-serif !important;
           padding: 20px; }
-      #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell {
+      #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell {
         text-align: center;
         border-right: 3px solid white; }
-        #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-retos {
+        #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-retos {
           width: 15%; }
-        #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-sol {
+        #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-sol {
           width: 15%; }
-          #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-sol .retoTextArea:empty:before {
+          #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-sol .retoTextArea:empty:before {
             content: 'xxxx'; }
-        #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-desc {
+        #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-desc {
           width: 30%; }
-        #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-pista {
+        #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-cell-pista {
           width: 40%;
           border-right: none; }
-        #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea {
+        #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea {
           padding: 20px;
           font-family: 'Lato', sans-serif !important;
           font-size: 16px;
@@ -583,71 +595,71 @@ button {
           resize: none;
           outline: none;
           display: inline-block; }
-          #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.retoEditable, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea[contenteditable] {
+          #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.retoEditable, #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea[contenteditable] {
             background-color: #656683;
             color: #9091A6; }
-            #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.retoEditable.no-pistas, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea[contenteditable].no-pistas {
+            #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.retoEditable.no-pistas, #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea[contenteditable].no-pistas {
               cursor: not-allowed;
               font-style: italic; }
-          #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea:empty:before {
+          #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea:empty:before {
             content: 'Escribe aquí...';
             opacity: 0.5;
             display: block; }
-          #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea:focus:before {
+          #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea:focus:before {
             content: '' !important; }
-          #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell {
+          #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell {
             padding: 0;
             background-color: #656683; }
-            #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell *:not(.material-icons) {
+            #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell *:not(.material-icons) {
               font-family: inherit; }
-            #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints {
+            #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints {
               padding: 0;
               list-style: none;
               margin: 0px; }
-              #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li {
+              #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li {
                 padding: 0px;
                 background-color: #9091A6;
                 border-bottom: 3px solid white;
                 display: flex; }
-                #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li.editable {
+                #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li.editable {
                   background-color: #656683;
                   color: #9091A6; }
-                #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li.no-pistas {
+                #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li.no-pistas {
                   font-style: italic;
                   padding: 6px;
                   line-height: 25px;
                   justify-content: center; }
-                #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li form.formLeft {
+                #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li form.formLeft {
                   display: flex;
                   flex: 1;
                   align-items: flex-start; }
-                #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li form span {
+                #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li form span {
                   flex: 1;
                   padding: 6px;
                   line-height: 25px;
                   margin-left: 50px; }
-                #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .button-hint {
+                #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .button-hint {
                   border: none;
                   background: transparent;
                   padding: 6px;
                   color: white; }
-                #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .hidden {
+                #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .hidden {
                   display: none; }
-                #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .hiddenInputPistaEdit {
+                #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .hiddenInputPistaEdit {
                   flex: 1;
                   border: none;
                   background: transparent;
                   font-size: 16px;
                   -webkit-text-fill-color: #9091A6 !important; }
-                  #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .hiddenInputPistaEdit:focus, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .hiddenInputPistaEdit:active {
+                  #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .hiddenInputPistaEdit:focus, #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .edit-hints li .hiddenInputPistaEdit:active {
                     color: white;
                     -webkit-text-fill-color: white !important; }
-            #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint {
+            #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint {
               background-color: #656683;
               color: #161938; }
-              #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form {
+              #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form {
                 display: flex; }
-                #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form input {
+                #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form input {
                   flex: 1;
                   font-style: inherit;
                   font-family: inherit;
@@ -660,17 +672,17 @@ button {
                   min-width: 0px;
                   -webkit-text-fill-color: #9091A6 !important;
                   color: #9091A6; }
-                  #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form input:-webkit-autofill {
+                  #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form input:-webkit-autofill {
                     -webkit-box-shadow: 0 0 0 30px #656683 inset !important;
                     -webkit-text-fill-color: #9091A6 !important; }
-                  #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form input:focus, #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form input:active {
+                  #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form input:focus, #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form input:active {
                     color: white;
                     -webkit-text-fill-color: white !important; }
-                  #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form input::placeholder {
+                  #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-new-hint form input::placeholder {
                     content: 'Escribe aquí...';
                     opacity: 0.5;
                     display: block; }
-            #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint {
+            #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell .retoTextArea.hints-cell .add-hint {
               font-style: inherit;
               font-family: inherit;
               font-size: inherit;
@@ -680,75 +692,75 @@ button {
               padding: 6px;
               vertical-align: bottom;
               background-color: transparent; }
-    #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto {
+    #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .operations-reto {
       position: absolute;
       left: 0;
       margin-left: -65px;
       margin-top: 8px;
       width: 62px;
       text-align: right; }
-      #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto form {
+      #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .operations-reto form {
         display: inline-block; }
-        #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto {
+        #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto {
           background: transparent;
           border: none;
           color: white;
           padding: 2px; }
-          #mainSection .main.step3 .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto.hidden {
+          #mainSection .main.step-puzzles .flex-table-retos-wrapper .flex-table-retos .operations-reto form .delete-reto.hidden {
             display: none; }
 
-#mainSection .main.step3 #add-reto {
+#mainSection .main.step-puzzles #add-reto {
   background: none;
   border: none;
   color: white;
   font-size: 38px; }
-  #mainSection .main.step3 #add-reto .material-icons {
+  #mainSection .main.step-puzzles #add-reto .material-icons {
     font-size: 32px; }
 
-#mainSection .main.step4 #noHintsLabel {
+#mainSection .main.step-hints #noHintsLabel {
   font-family: 'Lato', sans-serif !important;
   display: block; }
 
-#mainSection .main.step4 #noHints {
+#mainSection .main.step-hints #noHints {
   vertical-align: middle;
   margin-left: 10px; }
 
-#mainSection .main.step4 #yourScorm {
+#mainSection .main.step-hints #yourScorm {
   color: #656683;
   font-size: 18px;
   display: block;
   height: 0px; }
 
-#mainSection .main.step4 .ui-dialog .ui-dialog-titlebar {
+#mainSection .main.step-hints .ui-dialog .ui-dialog-titlebar {
   background: white !important;
   border-color: white !important;
   color: #F47E84; }
 
-#mainSection .main.step4 #dialog-rescorm {
+#mainSection .main.step-hints #dialog-rescorm {
   padding: 0;
   background-color: white; }
-  #mainSection .main.step4 #dialog-rescorm #rescorm {
+  #mainSection .main.step-hints #dialog-rescorm #rescorm {
     width: 100%;
     border: none;
     margin: 0px;
     height: calc(100% - 16px); }
 
-#mainSection .main.step5 h2 {
+#mainSection .main.step-evaluation h2 {
   text-align: left; }
 
-#mainSection .main.step6 .editor-wrapper {
+#mainSection .main.step-instructions .editor-wrapper {
   background-color: white;
   margin-bottom: 20px;
   color: black; }
-  #mainSection .main.step6 .editor-wrapper #editor {
+  #mainSection .main.step-instructions .editor-wrapper #editor {
     min-height: 300px; }
-    #mainSection .main.step6 .editor-wrapper #editor.ql-container {
+    #mainSection .main.step-instructions .editor-wrapper #editor.ql-container {
       font-size: 18px; }
-    #mainSection .main.step6 .editor-wrapper #editor * {
+    #mainSection .main.step-instructions .editor-wrapper #editor * {
       font-family: 'Lato'; }
-    #mainSection .main.step6 .editor-wrapper #editor .ql-active, #mainSection .main.step6 .editor-wrapper #editor .ql-snow.ql-toolbar button:hover {
+    #mainSection .main.step-instructions .editor-wrapper #editor .ql-active, #mainSection .main.step-instructions .editor-wrapper #editor .ql-snow.ql-toolbar button:hover {
       color: #F47E84; }
-      #mainSection .main.step6 .editor-wrapper #editor .ql-active *, #mainSection .main.step6 .editor-wrapper #editor .ql-snow.ql-toolbar button:hover * {
+      #mainSection .main.step-instructions .editor-wrapper #editor .ql-active *, #mainSection .main.step-instructions .editor-wrapper #editor .ql-snow.ql-toolbar button:hover * {
         stroke: #F47E84; }
 
 #mainSection .main .progress-buttons {

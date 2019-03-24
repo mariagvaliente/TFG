@@ -37,7 +37,7 @@ exports.create = (req, res, next) => {
         "escapeRoomId": escapeRoom.id
     });
 
-    const back = `/escapeRooms/${req.escapeRoom.id}/step3`;
+    const back = `/escapeRooms/${req.escapeRoom.id}/puzzles`;
 
     puzzle.save().
         then((puz) => {
@@ -68,7 +68,7 @@ exports.update = (req, res, next) => {
 
     const {body, escapeRoom} = req;
     const {reto} = body;
-    const back = `/escapeRooms/${escapeRoom.id}/step3`;
+    const back = `/escapeRooms/${escapeRoom.id}/puzzles`;
 
     console.log(body);
     const {title, sol, desc, hint} = JSON.parse(reto);
@@ -110,7 +110,7 @@ exports.destroy = (req, res, next) => {
     req.puzzle.destroy().
         then(() => {
 
-            const back = `/escapeRooms/${req.escapeRoom.id}/step3`;
+            const back = `/escapeRooms/${req.escapeRoom.id}/puzzles`;
 
             req.flash("success", "Reto borrado correctamente");
             res.redirect(back);

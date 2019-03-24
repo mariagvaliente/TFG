@@ -4,6 +4,16 @@ const {models} = require("../models");
 // Autoload the turn with id equals to :turnId
 exports.load = (req, res, next, turnId) => {
 
+    if (req.session.user) {
+
+        /*
+        Include = [
+            {"model": models.user,
+                "as": "participant"}
+        ]; */
+
+    }
+
     models.turno.findById(turnId).
         then((turn) => {
 
@@ -23,6 +33,43 @@ exports.load = (req, res, next, turnId) => {
 
 };
 
+// GET /escapeRooms/:escapeRoomId/turnos
+exports.indexStudent = (req, res, next) => {
+
+    models.turno.findAll().
+        then((turnos) => {
+
+            res.render("turnos/_indexStudent.ejs", {turnos});
+
+        }).
+        catch((error) => next(error));
+
+};
+
+// GET /escapeRooms/:escapeRoomId/turnos/:turnId/addParticipant
+exports.addParticipant = (req, res, next) => {
+
+    const turn = models.turno.build({
+        "participantId": req.session.user.id
+    });
+
+    turn.save(["participantId"]).
+        then(() => {
+
+            req.flash("success", "Participant added successfully.");
+            res.redirect(`/escapeRoom/${req.params.escapeRoomId}/join`);
+
+        }).
+        catch((error) => {
+
+            req.flash("error", `Error adding the participant: ${error.message}`);
+            next(error);
+
+        });
+
+};
+
+
 // POST /escapeRooms/:escapeRoomId/turnos
 exports.create = (req, res, next) => {
 
@@ -34,7 +81,7 @@ exports.create = (req, res, next) => {
         "escapeRoomId": req.escapeRoom.id
     });
 
-    const back = `/escapeRooms/${req.escapeRoom.id}/step2?date=${modDate.getFullYear()}-${modDate.getMonth() + 1}-${modDate.getDate()}`;
+    const back = `/escapeRooms/${req.escapeRoom.id}/turnos?date=${modDate.getFullYear()}-${modDate.getMonth() + 1}-${modDate.getDate()}`;
 
     turn.save().
         then(() => {
@@ -66,7 +113,7 @@ exports.destroy = (req, res, next) => {
     req.turn.destroy().
         then(() => {
 
-            const back = `/escapeRooms/${req.params.escapeRoomId}/step2?date=${modDate.getFullYear()}-${modDate.getMonth() + 1}-${modDate.getDate()}`;
+            const back = `/escapeRooms/${req.params.escapeRoomId}/turnos?date=${modDate.getFullYear()}-${modDate.getMonth() + 1}-${modDate.getDate()}`;
 
             req.flash("success", "Turno borrado correctamente");
             res.redirect(back);

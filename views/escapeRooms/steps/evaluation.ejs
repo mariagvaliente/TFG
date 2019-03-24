@@ -1,7 +1,7 @@
-<% include _header.ejs %>
-<div class="main step5">
+<% include ../../partials/_header.ejs %>
+<div class="main step-evaluation">
   <h2>Evaluación</h2>
-  <form method='POST' action='/escapeRooms/<%= escapeRoom.id %>/step5'  >
+  <form method='POST' action='/escapeRooms/<%= escapeRoom.id %>/evaluation'  >
   	<div class="wideRow erFormField">
   	    <label for="tit"  class="itemNarrow">1. Pre-test:</label>
   	    <input autofocus type="text" class="customInput itemWide" id="pretest" name="pretest" value="<%= escapeRoom.pretest %>" placeholder="Escribe el enlace al pre-test" autocomplete="off"/>
@@ -22,5 +22,5 @@
   	</div>
   </form>
 </div>
-<% include ../partials/__footer %>
-<%- include('../partials/__progress', {progress: 5}) %>
+<% include ../../partials/__footer %>
+<%- include('../../partials/__progress', {progress: 5}) %>

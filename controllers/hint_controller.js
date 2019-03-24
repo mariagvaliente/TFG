@@ -33,7 +33,7 @@ exports.create = (req, res, next) => {
         "puzzleId": puzzle.id
     });
 
-    const back = `/escapeRooms/${escapeRoom.id}/step3`;
+    const back = `/escapeRooms/${escapeRoom.id}/puzzles`;
 
     hint.save().
         then(() => {
@@ -62,7 +62,7 @@ exports.update = (req, res, next) => {
 
     const {body, hint, escapeRoom} = req;
     const {content} = body;
-    const back = `/escapeRooms/${escapeRoom.id}/step3`;
+    const back = `/escapeRooms/${escapeRoom.id}/puzzles`;
 
     hint.content = content;
     console.log(hint, content);
@@ -94,7 +94,7 @@ exports.destroy = (req, res, next) => {
     req.hint.destroy().
         then(() => {
 
-            const back = `/escapeRooms/${req.escapeRoom.id}/step3`;
+            const back = `/escapeRooms/${req.escapeRoom.id}/puzzles`;
 
             req.flash("success", "Reto borrado correctamente");
             res.redirect(back);

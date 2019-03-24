@@ -1,5 +1,5 @@
-<% include _header.ejs %>
-<div class="main step1">
+<% include ../../partials/_header.ejs %>
+<div class="main step-appearance">
   <h2 >Apariencia</h2>  
   <div class="half-flex-container">
     <div class="left-half-flex">
@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  <form method='POST' action='/escapeRooms/<%= escapeRoom.id %>/step1'  >
+  <form method='POST' action='/escapeRooms/<%= escapeRoom.id %>/appearance'  >
     <input type="hidden" id="appearance" name="appearance" value="<%= escapeRoom.appearance  || "litera" %>" />
     <div class="align-right">
         <a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button></a>
@@ -46,5 +46,5 @@
   <br/><br/><br/><br/>
 </div>
 
-<% include ../partials/__footer %>
-<%- include('../partials/__progress', {progress: 1}) %>
+<% include ../../partials/__footer %>
+<%- include('../../partials/__progress', {progress: 1}) %>

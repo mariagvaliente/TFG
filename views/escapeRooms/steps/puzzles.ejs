@@ -1,5 +1,5 @@
-<% include _header.ejs %>
-<div class="main step3">
+<% include ../../partials/_header.ejs %>
+<div class="main step-puzzles">
   <h2>Retos   
   </h2>
     <div class="flex-table-retos-wrapper">
@@ -99,7 +99,7 @@
               </div>
           </div>
           <div class="operations-reto">
-              <form id="addForm" method='POST' action='/escapeRooms/<%= escapeRoom.id %>/puzzles/'>
+              <form id="addForm" method='POST' action='/escapeRooms/<%= escapeRoom.id %>/puzzles/new'>
                   <input type="hidden" name="reto" id="reto" value="">
                   <button class="delete-reto"><i class="material-icons">add_circle_outline</i></button>
               </form>
@@ -110,7 +110,7 @@
     </div>
     <br/>
     <input type="hidden" name="retos" id="retos" value="">
-  <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/step3'  >
+  <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/puzzles'  >
     <div class="align-right">
       <a href="/escapeRooms/<%= escapeRoom.id %>">
         <button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button>
@@ -120,8 +120,8 @@
     </div>
   </form>
 </div>
-<% include ../partials/__footer %>
-<%- include('../partials/__progress', {progress: 3}) %>
+<% include ../../partials/__footer %>
+<%- include('../../partials/__progress', {progress: 3}) %>
 
 <script type="text/javascript">
   const editReto = (el) => {

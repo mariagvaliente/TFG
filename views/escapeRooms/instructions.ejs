@@ -1,10 +1,10 @@
 <script src="/js/quill.min.js"></script>
 <script src="/js/image-resize.min.js"></script>
 <!-- Theme included stylesheets -->
- <% include _header.ejs %>
-<div class="main step6">
+ <% include ../partials/_header.ejs %>
+<div class="main step-instrucciones">
   <h2>Instrucciones</h2>
-  <form method='POST' action='/escapeRooms/<%= escapeRoom.id %>/step6'  >
+  <form method='POST' action='/escapeRooms/<%= escapeRoom.id %>/instrucciones'  >
   	<div class="editor-wrapper">
   		<div id="editor" style="background-color: white;">
   			<h1>Bienvenido a la Escape Room</h1>
