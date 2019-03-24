@@ -65,7 +65,8 @@ exports.update = (req, res, next) => {
     const back = `/escapeRooms/${escapeRoom.id}/step3`;
 
     hint.content = content;
-    req.hint.save({"fields": ["content"]}).
+    console.log(hint, content);
+    hint.save({"fields": ["content"]}).
         then(() => {
 
             req.flash("success", "Pista modificada correctamente.");

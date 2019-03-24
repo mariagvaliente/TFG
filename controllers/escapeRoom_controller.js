@@ -23,7 +23,6 @@ exports.load = (req, res, next, escapeRoomId) => {
             {"model": models.turno},
             {"model": models.puzzle,
                 "include": [{"model": models.hint}]},
-
             models.attachment,
             {"model": models.user,
                 "as": "author"}
@@ -38,8 +37,13 @@ exports.load = (req, res, next, escapeRoomId) => {
                 {"model": models.puzzle},
                 "createdAt",
                 "asc"
+            ],
+            [
+                {"model": models.puzzle},
+                {"model": models.hint},
+                "createdAt",
+                "asc"
             ]
-
         ]
     }).
         then((escapeRoom) => {

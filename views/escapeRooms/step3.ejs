@@ -38,15 +38,19 @@
                         <% for (var p in puzzle.hints) { %>
                             <% var hint = puzzle.hints[p] %>
                             <li>
-                                <span><%= hint.content %></span>
-                                <form action="/escapeRooms/<%= escapeRoom.id %>/hints/<%=hint.id%>?_method=PUT" method="post">
-                                    <button type="button" class="delete-hint">
-                                        <i class="material-icons">edit</i>
-                                    </button>
+                                <form action="/escapeRooms/<%= escapeRoom.id %>/hints/<%=hint.id%>?_method=PUT" method="post" class="formLeft">
+                                  <span class="hint-text"><%= hint.content %></span>
+                                  <input type="text" value="<%= hint.content %>" name="content" class="hiddenInputPistaEdit hidden"/>
+                                  <button type="button" onclick="editHint(this)" class="button-hint edit-hint">
+                                      <i class="material-icons">edit</i>
+                                  </button>
+                                  <button class="button-hint confirm-hint hidden">
+                                      <i class="material-icons">check</i>
+                                  </button>
                                 </form>
 
                                 <form action="/escapeRooms/<%= escapeRoom.id %>/hints/<%=hint.id%>?_method=DELETE" method="post">
-                                    <button class="delete-hint">
+                                    <button class="button-hint">
                                         <i class="material-icons">delete</i>
                                     </button>
                                 </form>
@@ -55,7 +59,6 @@
                     <% } else {%>
                             <li class="no-pistas">No has definido ninguna pista todavía</li>
                     <% } %>
-
                 </ul>
                 <div class="add-new-hint">
                     <form action="/escapeRooms/<%= escapeRoom.id %>/puzzles/<%=puzzle.id%>/hints/new" method="POST">
@@ -122,7 +125,7 @@
 
 <script type="text/javascript">
   const editReto = (el) => {
-    $(el).addClass('hidden')
+    $(el).addClass('hidden');
     $(el).parent().find('.confirm-button').removeClass('hidden');
     var until = $(el).closest('.flex-row-retos')[0];
     var contentEditable = $(until).find('.retoTextArea.editable');
@@ -130,7 +133,16 @@
     contentEditable.first().focus();
   };
 
+  const editHint = (el) => {
+    $(el).addClass('hidden');
+    $(el).parent().find('.hint-text').addClass('hidden');
+    $(el).parent().find('.confirm-hint').removeClass('hidden');
+    $(el).parent().find('.hiddenInputPistaEdit').removeClass('hidden');
+    $(el).closest('li').addClass('editable');
 
+
+     
+  }
 
 $(function(){
   $('#titleFocus').focus();
