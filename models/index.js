@@ -27,7 +27,7 @@ sequelize.import(path.join(__dirname, "user"));
 
 const {escapeRoom, turno, attachment, user} = sequelize.models;
 
-// Relation 1-to-1 between Escape Room and Turn:
+// Relation 1-to-N between Escape Room and Turn:
 turno.belongsTo(escapeRoom);
 escapeRoom.hasMany(turno);
 
@@ -41,10 +41,22 @@ user.hasMany(escapeRoom, {"foreignKey": "authorId"});
 escapeRoom.belongsTo(user, {"as": "author",
     "foreignKey": "authorId"});
 
-// Relation 1-to-N between User and Turno:
-user.hasMany(turno, {"foreignKey": "participantId"});
-turno.belongsTo(user, {"as": "participant",
-    "foreignKey": "participantId"});
+
+// Relation N-to-N between Turno and User:
+//    A User participates in many turnos.
+//    A turn has many participants (the users who have added it as participant)
+
+turno.belongsToMany(user, {
+    as: 'participantes',
+    through: 'participants',
+    foreignKey: 'turnId'
+});
+
+user.belongsToMany(turno, {
+    as: 'participante',
+    through: 'participants',
+    foreignKey: 'userId'
+});
 
 
 module.exports = sequelize;

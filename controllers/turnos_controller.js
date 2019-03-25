@@ -4,14 +4,18 @@ const {models} = require("../models");
 // Autoload the turn with id equals to :turnId
 exports.load = (req, res, next, turnId) => {
 
+    const options = {
+        include: []};
+
     if (req.session.user) {
-        include = [
-            {"model": models.user,
-                "as": "participant"}
-            ];
+        options.include.push({
+            model: models.user,
+            as: "participantes",
+            where: {id: req.session.user.id},
+            required: false});
     }
 
-    models.turno.findById(turnId).
+    models.turno.findById(turnId, options).
         then((turn) => {
 
             if (turn) {
@@ -37,24 +41,6 @@ exports.indexStudent = (req, res, next) => {
         res.render('turnos/_indexStudent.ejs', {turnos});
     })
     .catch(error => next(error));
-};
-
-// GET /escapeRooms/:escapeRoomId/turnos/:turnId/addParticipant
-exports.addParticipant = (req, res, next) => {
-
-    const turn = models.turno.build({
-        "participantId": req.session.user.id
-    });
-
-    turn.save(["participantId"])
-    .then(turno => {
-        req.flash('success', 'Participant added successfully.');
-        res.redirect('/escapeRoom/' + req.params.escapeRoomId + '/join');
-    })
-    .catch(error => {
-        req.flash('error', 'Error adding the participant: ' + error.message);
-        next(error);
-    });
 };
 
 
@@ -114,5 +100,6 @@ exports.destroy = (req, res, next) => {
         catch((error) => next(error));
 
 };
+
 
 
