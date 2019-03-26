@@ -56,30 +56,14 @@
 
             <%}%>
         </div>
-<<<<<<< HEAD
-        <div class="join-button-flex-container">
-            <div>
-                <button class="deleteButton" style="display:inline-block;">cancelar</button>
-            </div>
-            <div>
-                <button class="aceptButton" type="submit" style="display:inline-block;">continuar</button>
-            </div>
-        </a>
-        </div>
-=======
         </form>
-        <div style="margin-bottom:50px; margin-left: 150px; float:left">
+        <div class="join-button-flex-container">
             <form method='GET' id="form" action='/users/<%= session.user.id %>/student'>
-            <button class="deleteButton" type="submit" style="display:inline-block;">cancelar</button>
+                <button class="deleteButton" type="submit" style="display:inline-block;">cancelar</button>
             </form>
-        </div>
-        <div style="margin-bottom:50px; margin-right:0px; margin-left:30px;float:left">
             <form method='GET' id="form" action='/users/index'>
-            <button class="aceptButton" type="submit" style="display:inline-block;">continuar</button>
+                <button class="aceptButton" type="submit" style="display:inline-block;">continuar</button>
             </form>
-
         </div>
-
->>>>>>> 03db2f2203337ad6b5c0678a5ce0553e215b6465
     </div>
 </div>

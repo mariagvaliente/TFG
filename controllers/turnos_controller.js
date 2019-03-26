@@ -7,10 +7,12 @@ exports.load = (req, res, next, turnId) => {
     const options = {"include": []};
 
     if (req.session.user) {
+
         options.include.push({"model": models.user,
             "as": "participantes",
             "where": {"id": req.session.user.id},
             "required": false});
+
     }
 
     models.turno.findById(turnId, options).
@@ -42,20 +44,6 @@ exports.indexStudent = (req, res, next) => {
 
         }).
         catch((error) => next(error));
-
-    turn.save(["participantId"]).
-        then(() => {
-
-            req.flash("success", "Participant added successfully.");
-            res.redirect(`/escapeRoom/${req.params.escapeRoomId}/join`);
-
-        }).
-        catch((error) => {
-
-            req.flash("error", `Error adding the participant: ${error.message}`);
-            next(error);
-
-        });
 
 };
 
