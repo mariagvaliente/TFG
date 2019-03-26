@@ -7,10 +7,12 @@
             </br>
             </br>
             <div style="margin-bottom:50px; margin-left: 200px; float:left">
-                <button class="deleteButton" style="display:inline-block;">NO</button>
+                <form method='GET' id="form" action='/users/<%= session.user.id %>/student'>
+                <button class="deleteButton" type="submit" style="display:inline-block;">NO</button>
+                </form>
             </div>
             <div style="margin-bottom:50px; margin-right:0px; margin-left:50px;float:left">
-                <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/join'  >
+                <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/join'>
                 <button class="aceptButton" type="submit" style="display:inline-block;">SI</button>
                 </form>
             </div>

@@ -153,7 +153,6 @@ exports.new = (req, res) => {
 };
 
 
-
 // POST /escapeRooms/create
 exports.create = (req, res, next) => {
 
@@ -279,7 +278,7 @@ exports.update = (req, res, next) => {
                 // There is no attachment: Delete old attachment.
                 if (!req.file) {
 
-                    // req.flash("info", "This Escape Room has no attachment.");
+                    // Req.flash("info", "This Escape Room has no attachment.");
                     if (er.attachment) {
 
                         attHelper.deleteResource(er.attachment.public_id);
@@ -593,7 +592,6 @@ exports.destroy = (req, res, next) => {
 };
 
 
-
 // GET /escapeRooms/:escapeRoomId/join
 exports.studentToken = (req, res) => {
 
@@ -607,9 +605,11 @@ exports.studentToken = (req, res) => {
 
 // GET /escapeRooms/:escapeRoomId/turnos
 exports.indexStudent = (req, res, next) => {
+
     const {escapeRoom} = req;
 
     res.render("turnos/_indexStudent", {escapeRoom,
         cloudinary});
+
 };
 

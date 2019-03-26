@@ -26,10 +26,10 @@ module.exports = {
                     "validate": {"notEmpty": {"msg": "La duración no puede estar vacía."}}
                 },
                 "description": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.STRING
                 },
                 "video": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.STRING
                 },
                 "nmax": {
                     "type": Sequelize.STRING,
@@ -37,14 +37,17 @@ module.exports = {
                 },
                 "invitation": {
                     "type": Sequelize.STRING,
-                    "defaultValue": function(){
-                        return Math.random().toString(36).substr(2);
+                    "defaultValue" () {
+
+                        return Math.random().toString(36).
+                            substr(2);
+
                     },
                     "validate": {"notEmpty": {"msg": "La URL de la invitación no puede estar vacía."}}
                 },
                 "appearance": {
                     "type": Sequelize.STRING,
-                    "defaultValue": "litera",
+                    "defaultValue": "litera"
                 },
                 "createdAt": {
                     "type": Sequelize.DATE,

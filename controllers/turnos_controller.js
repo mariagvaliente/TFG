@@ -4,15 +4,15 @@ const {models} = require("../models");
 // Autoload the turn with id equals to :turnId
 exports.load = (req, res, next, turnId) => {
 
-    const options = {
-        include: []};
+    const options = {"include": []};
 
     if (req.session.user) {
-        options.include.push({
-            model: models.user,
-            as: "participantes",
-            where: {id: req.session.user.id},
-            required: false});
+
+        options.include.push({"model": models.user,
+            "as": "participantes",
+            "where": {"id": req.session.user.id},
+            "required": false});
+
     }
 
     models.turno.findById(turnId, options).
@@ -36,11 +36,15 @@ exports.load = (req, res, next, turnId) => {
 
 // GET /escapeRooms/:escapeRoomId/turnos
 exports.indexStudent = (req, res, next) => {
-    models.turno.findAll()
-    .then(turnos => {
-        res.render('turnos/_indexStudent.ejs', {turnos});
-    })
-    .catch(error => next(error));
+
+    models.turno.findAll().
+        then((turnos) => {
+
+            res.render("turnos/_indexStudent.ejs", {turnos});
+
+        }).
+        catch((error) => next(error));
+
 };
 
 
@@ -100,6 +104,5 @@ exports.destroy = (req, res, next) => {
         catch((error) => next(error));
 
 };
-
 
 

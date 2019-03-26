@@ -16,10 +16,10 @@ module.exports = function (sequelize, DataTypes) {
                 "validate": {"notEmpty": {"msg": "La duración no puede estar vacía."}}
             },
             "description": {
-                "type": DataTypes.STRING,
+                "type": DataTypes.STRING
             },
             "video": {
-                "type": DataTypes.STRING,
+                "type": DataTypes.STRING
             },
             "nmax": {
                 "type": DataTypes.STRING,
@@ -27,14 +27,17 @@ module.exports = function (sequelize, DataTypes) {
             },
             "invitation": {
                 "type": DataTypes.STRING,
-                "defaultValue": function(){
-                    return Math.random().toString(36).substr(2);
+                "defaultValue" () {
+
+                    return Math.random().toString(36).
+                        substr(2);
+
                 },
                 "validate": {"notEmpty": {"msg": "La URL de la invitación no puede estar vacía."}}
             },
             "appearance": {
                 "type": DataTypes.STRING,
-                "defaultValue": "litera",
+                "defaultValue": "litera"
             },
             "survey": {
                 "type": DataTypes.STRING

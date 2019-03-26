@@ -19,7 +19,7 @@ router.all("*", sessionController.deleteExpiredUserSession);
 // Redirection to the saved restoration route.
 const redirectBack = (req, res) => {
 
-    const url = req.session.backURL || "/";
+    const url = req.session.backURL;
 
     delete req.session.backURL;
     res.redirect(url);
@@ -55,13 +55,14 @@ router.post("/", sessionController.create); // Create sesion
 router.delete("/", sessionController.destroy); // Close sesion
 
 // Routes for the resource /users
-router.get("/users/:userId(\\d+)", sessionController.loginRequired, sessionController.notStudentRequired, sessionController.adminOrMyselfRequired, userController.show);
+router.get("/users/:userId(\\d+)", sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.show);
 router.get("/users/new", userController.new);
 router.post("/users", userController.create);
-router.get("/users/:userId(\\d+)/edit", sessionController.loginRequired, sessionController.notStudentRequired, sessionController.adminOrMyselfRequired, userController.edit);
-router.put("/users/:userId(\\d+)", sessionController.loginRequired, sessionController.notStudentRequired, sessionController.adminOrMyselfRequired, userController.update);
-router.delete("/users/:userId(\\d+)", sessionController.loginRequired, sessionController.notStudentRequired, sessionController.adminOrMyselfRequired, userController.destroy);
-router.get("/users/:userId(\\d+)/escapeRooms", sessionController.loginRequired, sessionController.notStudentRequired, sessionController.adminOrMyselfRequired, escapeRoomController.index);
+router.get("/users/index", userController.index);
+router.get("/users/:userId(\\d+)/edit", sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.edit);
+router.put("/users/:userId(\\d+)", sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.update);
+router.delete("/users/:userId(\\d+)", sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.destroy);
+router.get("/users/:userId(\\d+)/escapeRooms", sessionController.loginRequired, sessionController.adminOrMyselfRequired, escapeRoomController.index);
 router.get("/users/:userId(\\d+)/student", sessionController.loginRequired, sessionController.studentOrAdminRequired, userController.student);
 
 
@@ -93,21 +94,21 @@ router.get("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequi
 router.post("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.indexStudent);
 
 
-
 router.post("/escapeRooms/:escapeRoomId(\\d+)/turnos", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);
 router.delete("/escapeRooms/:escapeRoomId(\\d+)/turnos/:turnoId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.destroy);
 
 // Routes for the resource participants of a user
-router.put('/users/:userId(\\d+)/participants/:turnId(\\d+)',
-    sessionController.loginRequired,
-    sessionController.adminOrMyselfRequired,
-    participantController.add);
+router.put(
+    "/users/:userId(\\d+)/participants/:turnId(\\d+)",
+    sessionController.loginRequired, sessionController.studentOrAdminRequired,
+    participantController.add
+);
 
-// Routes for the resource participants of a user
-router.get('/users/:userId(\\d+)/participants',
-    sessionController.loginRequired,
-    sessionController.adminOrMyselfRequired,
-    participantController.show);
+router.get(
+    "/users/:userId(\\d+)/participants",
+    sessionController.loginRequired, sessionController.studentOrAdminRequired,
+    participantController.show
+);
 
 
 module.exports = router;
