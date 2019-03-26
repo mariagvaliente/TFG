@@ -8,11 +8,14 @@
         </br>
         <div class="join-button-flex-container">
             <div class="delete-button-container">
-                <button class="deleteButton" style="display:inline-block;">NO</button>
+                <form method='GET' id="form" action='/users/<%= session.user.id %>/student'>
+                    <button class="deleteButton" type="submit" style="display:inline-block;">NO</button>
+                </form>
             </div>
-            <div style="accept-button-container">
+            <div class="accept-button-container">
                 <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/join'  >
                 <button class="acceptButton" type="submit" style="display:inline-block;">SI</button>
+
                 </form>
             </div>
         </div>

@@ -33,8 +33,11 @@
                 <%	if (pastDates.indexOf(dateNoTime.getTime()) === -1) {
                     pastDates.push(dateNoTime.getTime()); %>
         </div>
-        <a href="/turnos/<%= turn.id %>/addParticipant?_method=PUT">
+
         <p class="turno-date-title-show"><%=formatDate(dateNoTime)%></p>
+
+        <form method="POST" action="/users/<%= session.user.id %>/participants/<%= turn.id %>?_method=put">
+
         <div class="flexBoxTurnos">
             <%}%>
             <div class="turno" data-date="<%=dateNoTime.getTime()%>">
@@ -48,9 +51,12 @@
                         <em class="no-indications"> Sin indicaciones</em>
                     <% } %>
                 </div>
+                <button type="submit" class="little-button more"><i class="material-icons">add</i></button>
             </div>
+
             <%}%>
         </div>
+<<<<<<< HEAD
         <div class="join-button-flex-container">
             <div>
                 <button class="deleteButton" style="display:inline-block;">cancelar</button>
@@ -60,5 +66,20 @@
             </div>
         </a>
         </div>
+=======
+        </form>
+        <div style="margin-bottom:50px; margin-left: 150px; float:left">
+            <form method='GET' id="form" action='/users/<%= session.user.id %>/student'>
+            <button class="deleteButton" type="submit" style="display:inline-block;">cancelar</button>
+            </form>
+        </div>
+        <div style="margin-bottom:50px; margin-right:0px; margin-left:30px;float:left">
+            <form method='GET' id="form" action='/users/index'>
+            <button class="aceptButton" type="submit" style="display:inline-block;">continuar</button>
+            </form>
+
+        </div>
+
+>>>>>>> 03db2f2203337ad6b5c0678a5ce0553e215b6465
     </div>
 </div>
