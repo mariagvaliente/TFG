@@ -64,15 +64,18 @@ escapeRoom.belongsTo(user, {"as": "author",
 //    A turn has many participants (the users who have added it as participant)
 
 turno.belongsToMany(user, {
-    "as": "Participantes",
+    "as": "students",
     "through": "participants",
-    "foreignKey": "turnId"
+    "foreignKey": "turnId",
+    "otherKey": "userId"
 });
 
 user.belongsToMany(turno, {
-    "as": "TurnosAgregados",
+    "as": "turnosAgregados",
     "through": "participants",
-    "foreignKey": "userId"
+    "foreignKey": "userId",
+    "otherKey": "turnId"
+
 });
 
 

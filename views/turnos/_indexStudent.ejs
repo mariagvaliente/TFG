@@ -25,7 +25,8 @@
         %>
 
         <div>
-            <% for (var i in turnos) { %>
+            <%
+            for (var i in turnos) { %>
                 <% 	var turn = turnos[i];
                     var date = new Date(turn.date);
                     var dateNoTime = new Date(turn.date);
@@ -36,11 +37,10 @@
 
         <p class="turno-date-title-show"><%=formatDate(dateNoTime)%></p>
 
-        <form method="POST" action="/users/<%= session.user.id %>/participants/<%= turn.id %>?_method=put">
 
         <div class="flexBoxTurnos">
             <%}%>
-            <div class="turno" data-date="<%=dateNoTime.getTime()%>">
+            <div class="turno turnoAlumno" data-date="<%=dateNoTime.getTime()%>" id="turno-<%=turn.id%>" data-id="<%=turn.id%>">
                 <div class="hora">
                     <%= formatTime(date) %>
                 </div>
@@ -51,19 +51,31 @@
                         <em class="no-indications"> Sin indicaciones</em>
                     <% } %>
                 </div>
-                <button type="submit" class="little-button more"><i class="material-icons">add</i></button>
             </div>
 
             <%}%>
         </div>
-        </form>
         <div class="join-button-flex-container">
             <form method='GET' id="form" action='/users/<%= session.user.id %>/student'>
                 <button class="deleteButton" type="submit" style="display:inline-block;">cancelar</button>
             </form>
-            <form method='GET' id="form" action='/users/index'>
+            <form method='POST' id="form" action='/users/<%= session.user.id %>/participants?_method=put'>
+                <input type="hidden" id="turnSelected" name="turnSelected" value="">
                 <button class="aceptButton" type="submit" style="display:inline-block;">continuar</button>
             </form>
         </div>
     </div>
 </div>
+<script>
+
+    $(function(){
+      $('.turno').on('click', function(e) {
+        var currentClicked = $(this);
+        var turnId = currentClicked.data('id');
+        $('.selected').removeClass('selected');
+        currentClicked.addClass('selected');
+        $('#turnSelected').val(turnId);
+      });
+    });
+
+</script>

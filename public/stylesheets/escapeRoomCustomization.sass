@@ -431,6 +431,7 @@
 			margin-bottom: 20px
 			.turno
 				background-color: white
+				border: 3px solid transparent
 				width: 100px
 				height: 100px
 				position: relative
@@ -439,6 +440,11 @@
 				text-align: center
 				padding: 12px
 				border-radius: 20px
+				&.selected
+					border: 3px solid $brightyellow
+				&.turnoAlumno
+					&:hover
+						@extend %scale-animation-down
 				&.hidden
 					display: none
 				.hora

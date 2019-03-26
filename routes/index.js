@@ -107,7 +107,7 @@ router.put("/escapeRooms/:escapeRoomId(\\d+)/hints/:hintId(\\d+)", sessionContro
 router.delete("/escapeRooms/:escapeRoomId(\\d+)/hints/:hintId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, hintController.destroy);
 // Routes for the resource participants of a user
 router.put(
-    "/users/:userId(\\d+)/participants/:turnId(\\d+)",
+    "/users/:userId(\\d+)/participants",
     sessionController.loginRequired, sessionController.studentOrAdminRequired,
     participantController.add
 );

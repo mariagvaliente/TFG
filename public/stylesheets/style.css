@@ -348,9 +348,9 @@ button {
     -ms-transform: scale(1.2);
     transform: scale(1.2); }
 
-.escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp {
+.escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover {
   transition: 0.2s all ease-in; }
-  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus {
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover {
     -webkit-transform: scale(0.8);
     -ms-transform: scale(0.8);
     transform: scale(0.8); }
@@ -776,6 +776,7 @@ button {
   margin-bottom: 20px; }
   #mainSection .main .flexBoxTurnos .turno {
     background-color: white;
+    border: 3px solid transparent;
     width: 100px;
     height: 100px;
     position: relative;
@@ -784,6 +785,8 @@ button {
     text-align: center;
     padding: 12px;
     border-radius: 20px; }
+    #mainSection .main .flexBoxTurnos .turno.selected {
+      border: 3px solid #FAC855; }
     #mainSection .main .flexBoxTurnos .turno.hidden {
       display: none; }
     #mainSection .main .flexBoxTurnos .turno .hora {

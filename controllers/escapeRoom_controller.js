@@ -466,49 +466,6 @@ exports.retosUpdate = (req, res) => {
     const isPrevious = Boolean(req.body.previous);
 
     res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "turnos" : "hints"}`);
-    /*
-    Const {escapeRoom, body} = req;
-    let retos = JSON.parse(body.retos).map(reto => {
-       return reto;
-    });
-    escapeRoom.puzzle = retos;
-    const isPrevious = Boolean(body.previous);
-    console.log(retos);
-
-
-    const functionWithPromise = item => {
-      return models.puzzle.build({...item, escapeRoomId: escapeRoom.id}).save()
-    }
-
-    const anAsyncFunction = async item => {
-      return await functionWithPromise(item)
-    }
-
-    const getData = async () => {
-      return await Promise.all(retos.map(item => anAsyncFunction(item)));
-    }
-
-    const data = getData()
-    console.log(data)
-    res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "turnos" : "hints"}`);
-    escapeRoom.save({"fields": ["puzzle"]}).then((er) => {
-        console.log(er.puzzles)
-        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "turnos" : "hints"}`);
-
-    }).
-        catch(Sequelize.ValidationError, (error) => {
-
-            error.errors.forEach(({message}) => req.flash("error", message));
-            res.redirect(`/escapeRooms/${escapeRoom.id}/puzzles`);
-
-        }).
-        catch((error) => {
-
-            req.flash("error", `Error al editar la escape room: ${error.message}`);
-            next(error);
-
-        });
-*/
 
 };
 
