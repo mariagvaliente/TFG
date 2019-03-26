@@ -37,12 +37,14 @@ module.exports = {
                 },
                 "invitation": {
                     "type": Sequelize.STRING,
+                    "allowNull": false,
                     "defaultValue" () {
 
                         return Math.random().toString(36).
                             substr(2);
 
                     },
+                    "unique": true,
                     "validate": {"notEmpty": {"msg": "La URL de la invitación no puede estar vacía."}}
                 },
                 "appearance": {

@@ -199,7 +199,8 @@ exports.create = (req, res, next) => {
         "description",
         "video",
         "nmax",
-        "authorId"
+        "authorId",
+        "invitation"
     ]}).
         then((er) => {
 
