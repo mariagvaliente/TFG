@@ -195,17 +195,21 @@ exports.destroy = (req, res, next) => {
 
 exports.index = (req, res, next) => {
 
-    models.user.count()
-    .then(count => {
+    models.user.count().
+        then(() => {
 
-        const findOptions = {
-            order: ['username']
-        };
+            const findOptions = {
+                "order": ["username"]
+            };
 
-        return models.user.findAll(findOptions);
-    })
-    .then(users => {
-        res.render('users/index', {users});
-    })
-    .catch(error => next(error));
+            return models.user.findAll(findOptions);
+
+        }).
+        then((users) => {
+
+            res.render("users/index", {users});
+
+        }).
+        catch((error) => next(error));
+
 };

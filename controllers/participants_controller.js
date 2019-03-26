@@ -29,9 +29,10 @@ exports.show = function (req, res, next) {
         turnos.forEach(function (turno) {
 
             turno.isAdd = true;
-             console.log("turno");
+            console.log("turno");
+
         });
-        res.render("turnos/_indexStudent.ejs", {"turnos": turnos,
+        res.render("turnos/_indexStudent.ejs", {turnos,
             "errors": []});
 
     }).
@@ -40,6 +41,7 @@ exports.show = function (req, res, next) {
             next(error);
 
         });
+
 };
 
 
