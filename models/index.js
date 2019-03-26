@@ -28,10 +28,13 @@ sequelize.import(path.join(__dirname, "puzzle"));
 // Import the definition of the User Table from hint.js (Pistas)
 sequelize.import(path.join(__dirname, "hint"));
 
+// Import the definition of the Attachment Table from attachment.js
+sequelize.import(path.join(__dirname, "hintApp"));
+
 
 // Relation between models
 
-const {escapeRoom, turno, attachment, user, puzzle, hint} = sequelize.models;
+const {escapeRoom, turno, attachment, user, puzzle, hint, hintApp} = sequelize.models;
 
 // Relation 1-to-N between Escape Room and Turn:
 turno.belongsTo(escapeRoom);
@@ -78,5 +81,10 @@ user.belongsToMany(turno, {
 
 });
 
+
+// Relation 1-to-1 between Escape Room and HintApp:
+hintApp.belongsTo(escapeRoom);
+escapeRoom.hasOne(hintApp, {"onDelete": "CASCADE",
+    "hooks": true});
 
 module.exports = sequelize;
