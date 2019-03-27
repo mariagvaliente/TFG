@@ -493,91 +493,114 @@ exports.pistasUpdate = (req, res, next) => {
 
     const {escapeRoom, body} = req;
     const isPrevious = Boolean(body.previous);
-
-    escapeRoom.pistas = body.pistas;
+    console.log(body)
+    const {numQuestions, numRight, feedback} = body;
+    escapeRoom.numQuestions = numQuestions;
+    escapeRoom.numRight = numRight;
+    escapeRoom.feedback = !!feedback;
 
     const back = `/escapeRooms/${escapeRoom.id}/${isPrevious ? "puzzles" : "evaluation"}`;
+    escapeRoom.save({"fields": [
+        "numQuestions",
+        "numRight",
+        "feedback",
+    ]}).
+        then((er) => {
+            if (body.keepAttachment === "0") {
 
-    console.log(body, req.file);
-    if (body.keepAttachment === "0") {
+                // There is no attachment: Delete old attachment.
+                if (!req.file) {
 
-        // There is no attachment: Delete old attachment.
-        if (!req.file) {
+                    // Req.flash("info", "This Escape Room has no attachment.");
+                    if (escapeRoom.hintApp) {
 
-            // Req.flash("info", "This Escape Room has no attachment.");
-            if (escapeRoom.hintApp) {
+                        attHelper.deleteResource(escapeRoom.hintApp.public_id);
+                        escapeRoom.hintApp.destroy();
+                        return;
 
-                attHelper.deleteResource(escapeRoom.hintApp.public_id);
-                escapeRoom.hintApp.destroy();
-                res.redirect(back);
+                    }
 
-                return;
-
-            }
-
-        }
-        attHelper.checksCloudinaryEnv().
+                }
+                return attHelper.checksCloudinaryEnv().
 
 
-        // Save the new attachment into Cloudinary:
-            then(() => attHelper.uploadResource(req.file.path, cloudinary_upload_options_zip)).
-            then((uploadResult) => {
+                // Save the new attachment into Cloudinary:
+                    then(() => attHelper.uploadResource(req.file.path, cloudinary_upload_options_zip)).
+                    then((uploadResult) => {
 
-                // Remenber the public_id of the old image.
-                const old_public_id = escapeRoom.hintApp ? escapeRoom.hintApp.public_id : null;
+                        // Remenber the public_id of the old image.
+                        const old_public_id = escapeRoom.hintApp ? escapeRoom.hintApp.public_id : null;
 
-                // Update the attachment into the data base.
-                return escapeRoom.getHintApp().
-                    then((att) => {
+                        // Update the attachment into the data base.
+                        return escapeRoom.getHintApp().
+                            then((att) => {
 
-                        let hintApp = att;
+                                let hintApp = att;
 
-                        if (!hintApp) {
+                                if (!hintApp) {
 
-                            hintApp = models.hintApp.build({"escapeRoomId": escapeRoom.id});
+                                    hintApp = models.hintApp.build({"escapeRoomId": escapeRoom.id});
 
-                        }
-                        hintApp.public_id = uploadResult.public_id;
-                        hintApp.url = uploadResult.url;
-                        hintApp.filename = req.file.originalname;
-                        hintApp.mime = req.file.mimetype;
+                                }
+                                hintApp.public_id = uploadResult.public_id;
+                                hintApp.url = uploadResult.url;
+                                hintApp.filename = req.file.originalname;
+                                hintApp.mime = req.file.mimetype;
 
-                        return hintApp.save();
+                                return hintApp.save();
+
+                            }).
+                            then(() => {
+
+                                req.flash("success", "Fichero guardado con éxito.");
+                                if (old_public_id) {
+
+                                    attHelper.deleteResource(old_public_id);
+
+                                }
+
+                            }).
+                            catch((error) => { // Ignoring image validation errors
+
+                                req.flash("error", `Error al guardar el fichero: ${error.message}`);
+                                attHelper.deleteResource(uploadResult.public_id);
+
+                            });
+
+
+                    }).
+                    catch((error) => {
+
+                        req.flash("error", `Error al guardar el fichero: ${error.message}`);
 
                     }).
                     then(() => {
 
-                        req.flash("success", "Fichero guardado con éxito.");
-                        if (old_public_id) {
-
-                            attHelper.deleteResource(old_public_id);
-
-                        }
-
-                    }).
-                    catch((error) => { // Ignoring image validation errors
-
-                        req.flash("error", `Error al guardar el fichero: ${error.message}`);
-                        attHelper.deleteResource(uploadResult.public_id);
+                        fs.unlink(req.file.path); // Delete the file uploaded at./uploads
+                        res.redirect(back);
 
                     });
 
 
-            }).
-            catch((error) => {
+            }
+        }).
+        then(() => {
 
-                req.flash("error", `Error al guardar el fichero: ${error.message}`);
+            res.redirect(back);
 
-            }).
-            then(() => {
+        }).
+        catch(Sequelize.ValidationError, (error) => {
 
-                fs.unlink(req.file.path); // Delete the file uploaded at./uploads
-                res.redirect(back);
+            error.errors.forEach(({message}) => req.flash("error", message));
+            res.render("escapeRooms/hints", {escapeRoom});
 
-            });
+        }).
+        catch((error) => {
 
+            req.flash("error", `Error al editar la escape room: ${error.message}`);
+            next(error);
 
-    }
+        });
 
 
 };

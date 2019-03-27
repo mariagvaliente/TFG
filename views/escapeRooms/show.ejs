@@ -110,7 +110,7 @@
             <div class="flexShowRight">
                 <% var turnos = escapeRoom.turnos; %>
                 <%  include ../turnos/index_show  %>
-            </div><% escapeRoom.invitation = Math.random().toString(36).substr(2)%>
+            </div>
         </div>
         <div class="flexRow animated bounceIn" id="pistas">
             <div class="flexShowLeft">
@@ -125,7 +125,12 @@
                 Pistas:
             </div>
             <div class="flexShowRight">
-
+                <% if (escapeRoom.hintApp) { %>
+                    <a class="show_link" download="quiz.xml" href="<%= escapeRoom.hintApp.url%>"><%=escapeRoom.hintApp.filename%></a>
+                    <button class="copy" onclick="previewHintApp()"><i class="material-icons">remove_red_eye</i></button>
+                <% } else { %>
+                    Esta Escape Room no utiliza ningún mecanismo de control de pistas
+                <% } %>
             </div>
         </div>
         <div class="flexRow animated bounceIn" id="pretest">
@@ -192,7 +197,13 @@
     $( "#previewVideo" ).on( "click", function() {
       $( "#dialog-preview-video" ).dialog( "open" );
     });
+
+    window.previewHintApp = () => {
+        window.open('http://localhost:3000/escapeRooms/1/hintApp','','width='+screen.width*0.7+',height='+screen.height*0.7);
+    }
   });
+
+
 </script>
 <%
 const parseURL = (url) => {

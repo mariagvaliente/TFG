@@ -12,7 +12,7 @@ module.exports = function (sequelize, DataTypes) {
                 "validate": {"notEmpty": {"msg": "El nombre de la asignatura no puede estar vacío."}}
             },
             "duration": {
-                "type": DataTypes.STRING,
+                "type": DataTypes.INTEGER,
                 "validate": {"notEmpty": {"msg": "La duración no puede estar vacía."}}
             },
             "description": {
@@ -22,7 +22,7 @@ module.exports = function (sequelize, DataTypes) {
                 "type": DataTypes.STRING
             },
             "nmax": {
-                "type": DataTypes.STRING,
+                "type": DataTypes.INTEGER,
                 "validate": {"notEmpty": {"msg": "El número de participantes no puede estar vacío."}}
             },
             "invitation": {
@@ -48,6 +48,15 @@ module.exports = function (sequelize, DataTypes) {
             },
             "posttest": {
                 "type": DataTypes.STRING
+            },
+            "numQuestions": {
+                "type": DataTypes.INTEGER
+            },
+            "numRight": {
+                "type": DataTypes.INTEGER
+            },
+            "feedback": {
+                "type": DataTypes.BOOLEAN
             }
 
         }

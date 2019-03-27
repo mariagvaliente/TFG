@@ -2,35 +2,50 @@
 <div class="main step-hints">
   	<h2>Pistas</h2>
   	<form class="basicConfig" method='POST' action='/escapeRooms/<%= escapeRoom.id %>/hints' enctype="multipart/form-data" >
-	  	<h3 id="pistasQuestion">¿Va a haber pistas en tu escape room?</h3>
-	  	<input class="attach" style="display: none;" type="file" id="hints" name="hints"/>
-	  	<label for="hints" class="fileUpload customInput itemWide">
-	  	  <span id="hintsLabel" >
-	  	    <% if (escapeRoom.id && escapeRoom.hintApp) { %>
-	  	      <%= escapeRoom.hintApp.filename ||  "file" %>
-	  	    <% } else { %>
-	  	      No has subido ningún fichero
-	  	    <% } %>
-	  	  </span>
-	  	  <span id="upload"
-	  	    <% if (escapeRoom.id && escapeRoom.hintApp) { %>
-	  	      style="display: none;"
-	  	    <% } %>
-	  	    class="fileUploadButton">
-	  	      <i class="material-icons">file_upload</i>
-	  	  </span>
-	  	  <span id="delete"
-	  	    <% if (!escapeRoom.id && !escapeRoom.hintApp) { %>
-	  	      style="display: none;"
-	  	    <% } %>
-	  	    class="fileUploadButton">
-	  	      <i class="material-icons">delete</i>
-	  	    </span>
-	  	  <input type="hidden" name="keepAttachment" id="keepAttachment" value="<%= (escapeRoom.id && escapeRoom.hintApp) ? "1" : "0" %>" >
-	  	</label>
-	  	<p id="yourScorm">Crea tu propio paquete de pistas SCORM <button type="button" class="progress-buttons" id="opener">crear</button></p>
+  		<div class="wideRow erFormField">
+		    <label class="itemNarrow">1. MoodleXML:</label>
+		    <p class="explanation">Si quieres que los alumnos tengan que responder a una serie de preguntas para obtener una pista, sube un fichero MoodleXML que incluya una batería de preguntas</p>
+		  	<input class="attach" style="display: none;" type="file" id="hints" name="hints" accept="text/xml"/>
+		  	<label for="hints" class="fileUpload customInput itemWide">
+		  	  <span id="hintsLabel" >
+		  	    <% if (escapeRoom.id && escapeRoom.hintApp) { %>
+		  	      Fichero de preguntas: <%= escapeRoom.hintApp.filename ||  "file" %>
+		  	    <% } else { %>
+		  	      Sube un fichero MoodleXML
+		  	    <% } %>
+		  	  </span>
+		  	  <span id="upload"
+		  	    <% if (escapeRoom.id && escapeRoom.hintApp) { %>
+		  	      style="display: none;"
+		  	    <% } %>
+		  	    class="fileUploadButton">
+		  	      <i class="material-icons">file_upload</i>
+		  	  </span>
+		  	  <span id="delete"
+		  	    <% if (!escapeRoom.id && !escapeRoom.hintApp) { %>
+		  	      style="display: none;"
+		  	    <% } %>
+		  	    class="fileUploadButton">
+		  	      <i class="material-icons">delete</i>
+		  	    </span>
+		  	  <input type="hidden" name="keepAttachment" id="keepAttachment" value="<%= (escapeRoom.id && escapeRoom.hintApp) ? "1" : "0" %>" >
+		  	</label>
+	  </div>
+		<div class="wideRow erFormField">
+		  <label for="vid"  class="itemNarrow">2. Número de preguntas:</label>
+		  <p class="explanation">Se seleccionarán aleatoriamente del fichero MoodleXML</p>
+		  <input type="number" min="1" class="customInput itemWide" id="numQuestions" name="numQuestions" value="<%= escapeRoom.numQuestions %>" placeholder="¿Cuántas preguntas va a haber en cada intento?" autocomplete="off"/>
+		</div>
+		<div class="wideRow erFormField">
+		    <label for="vid"  class="itemNarrow">3. Porcentaje de aciertos:</label>
+		    <input type="number" min="0" max="100" class="customInput itemWide" id="numRight" name="numRight" value="<%= escapeRoom.numRight %>" placeholder="¿Qué % de preguntas hay que acertar para obtener una pista?" autocomplete="off"/>
+		</div>
+		<div class="wideRow erFormField">
+		    <label for="vid"  class="itemNarrow">4. Feedback:
+		    <input type="checkbox" class="customCheckbox" id="feedback" name="feedback" <%= escapeRoom.feedback ? "checked" : "" %> autocomplete="off"/></label>
+		</div>		
 		<br/><br/><br/>
-	  	<div class="align-right">
+	  	<div class="align-right" style="margin-bottom: 60px;">
 			<a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button></a>
 			<button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
 			<button class="progress-buttons" type="submit" value="next" id="next" name="next">siguiente</button>
@@ -38,59 +53,58 @@
   	</form>
 
 </div>
-<div id="dialog-rescorm" title="Crea tu propio paquete SCORM">
-  <iframe id="rescorm" src="https://sonsoleslp.github.io/rescorm-generator/"></iframe>
-</div>
 <% include ../../partials/__footer %>
 <%- include('../../partials/__progress', {progress: 4}) %>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
-	$( function() {
-		$( "#dialog-rescorm" ).dialog({
-		  autoOpen: false,
-		  resizable: false,
-		  width: screen.width*0.8,
-		  height: screen.height*0.75,
-		  show: {
-			effect: "blind",
-			duration: 100
-		  },
-		  hide: {
-			effect: "blind",
-			duration: 400
-		  },
-		  appendTo: '.main',
-          modal: true,
-		});
+$(function(){
 
-		$( "#opener" ).on( "click", function() {
-		  $( "#dialog-rescorm" ).dialog( "open" );
-		});
-
-
-		$('#hints').on("change", function(e){
-		  let path = $(this).val();
-		  try {
-		    let fileNameArr = path.split("\\");
-		    let fileName = fileNameArr[fileNameArr.length - 1];
-		    if(fileName) {
-		      $('#delete').show();
-		      $('#upload').hide();
-		      $('#hintsLabel').html(fileName);
-		    }
-		  } catch (e) {
-		      $('#delete').hide();
-		      $('#upload').show();
-		      $('#imgLabel').html("No has subido ningún fichero");
-		  }
-		});
-
-		$('#delete').on('click', function(e){
-		    e.preventDefault();
-		    $('#delete').hide();
-		    $('#upload').show();
-		    $('#hintsLabel').html("No has subido ningún fichero");
-		    $('#keepAttachment').val("0");
-		})
+	$('#hints').on("change", function(e){
+	  let path = $(this).val();
+	  try {
+	    let fileNameArr = path.split("\\");
+	    let fileName = fileNameArr[fileNameArr.length - 1];
+	    if(fileName) {
+	      $('#delete').show();
+	      $('#upload').hide();
+	      $('#hintsLabel').html(fileName);
+	    }
+	  } catch (e) {
+	      $('#delete').hide();
+	      $('#upload').show();
+	      $('#imgLabel').html("No has subido ningún fichero");
+	  }
 	});
+
+	$('#delete').on('click', function(e){
+	    e.preventDefault();
+	    $('#delete').hide();
+	    $('#upload').show();
+	    $('#hintsLabel').html("No has subido ningún fichero");
+	    $('#keepAttachment').val("0");
+	});
+
+	var last_known_scroll_position = 0;
+	var ticking = false;
+
+	window.addEventListener('scroll', function(e) {
+	  last_known_scroll_position = window.scrollY;
+	  if (!ticking) {
+	    window.requestAnimationFrame(function() {
+	      // doSomething(last_known_scroll_position);
+	      ticking = false;
+	      var x = e.clientX, y = e.clientY,
+	        elementMouseIsOver = document.querySelectorAll( ":hover" );
+	        try {
+	            [...elementMouseIsOver].filter(a=>a.classList.contains('erFormField'))[0].children[1].focus()
+	        } catch(e) {
+
+	        }
+	    });
+	  }
+	  ticking = true;
+	});
+});
+
+
 </script>

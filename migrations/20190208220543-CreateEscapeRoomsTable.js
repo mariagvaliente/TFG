@@ -22,7 +22,7 @@ module.exports = {
                     "validate": {"notEmpty": {"msg": "El nombre de la asignatura no puede estar vacío."}}
                 },
                 "duration": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.INTEGER,
                     "validate": {"notEmpty": {"msg": "La duración no puede estar vacía."}}
                 },
                 "description": {
@@ -32,7 +32,7 @@ module.exports = {
                     "type": Sequelize.STRING
                 },
                 "nmax": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.INTEGER,
                     "allowNull": false
                 },
                 "invitation": {

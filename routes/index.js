@@ -123,4 +123,6 @@ router.get(
 router.post("/escapeRooms/:escapeRoomId(\\d+)/turnos/new", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);
 router.delete("/escapeRooms/:escapeRoomId(\\d+)/turnos", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.destroy);
 
+router.get("/escapeRooms/:escapeRoomId(\\d+)/hintApp", sessionController.loginRequired,/*escapeRoomController.isParticipantRequired,*/ hintController.hintApp);
+
 module.exports = router;

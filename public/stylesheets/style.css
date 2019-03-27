@@ -370,8 +370,13 @@ button {
     text-align: left; }
     #mainSection .main .basicConfig .erFormField:focus-within, #mainSection .main.step-evaluation .erFormField:focus-within {
       color: white !important; }
-      #mainSection .main .basicConfig .erFormField:focus-within label, #mainSection .main.step-evaluation .erFormField:focus-within label {
+      #mainSection .main .basicConfig .erFormField:focus-within label, #mainSection .main .basicConfig .erFormField:focus-within .explanation, #mainSection .main.step-evaluation .erFormField:focus-within label, #mainSection .main.step-evaluation .erFormField:focus-within .explanation {
         color: white; }
+    #mainSection .main .basicConfig .erFormField .customCheckbox, #mainSection .main.step-evaluation .erFormField .customCheckbox {
+      vertical-align: middle;
+      width: 20px;
+      border: 0px;
+      background: white; }
     #mainSection .main .basicConfig .erFormField .customInput, #mainSection .main.step-evaluation .erFormField .customInput {
       border: none;
       border-radius: 0px;
@@ -391,7 +396,7 @@ button {
         color: white;
         border: none;
         padding: 0px; }
-      #mainSection .main .basicConfig .erFormField .customInput #imgLabel, #mainSection .main.step-evaluation .erFormField .customInput #imgLabel {
+      #mainSection .main .basicConfig .erFormField .customInput #imgLabel, #mainSection .main .basicConfig .erFormField .customInput #hintsLabel, #mainSection .main.step-evaluation .erFormField .customInput #imgLabel, #mainSection .main.step-evaluation .erFormField .customInput #hintsLabel {
         font-size: 1em;
         margin-top: 0.4em;
         font-family: Lato, sans-serif; }
@@ -405,6 +410,10 @@ button {
       z-index: -1; }
     #mainSection .main .basicConfig .erFormField label.itemNarrow, #mainSection .main.step-evaluation .erFormField label.itemNarrow {
       display: block; }
+    #mainSection .main .basicConfig .erFormField .explanation, #mainSection .main.step-evaluation .erFormField .explanation {
+      color: #656683;
+      font-size: 0.6em;
+      padding-left: 30px; }
 
 #mainSection .main .flexShow {
   width: 100%; }

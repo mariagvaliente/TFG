@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const {models} = require("../models");
+const cloudinary = require("cloudinary");
 
 // Autoload the hint with id equals to :hintId
 exports.load = (req, res, next, hintId) => {
@@ -103,3 +104,10 @@ exports.destroy = (req, res, next) => {
         catch((error) => next(error));
 
 };
+
+
+exports.hintApp = (req, res, next) => {
+
+    res.render("escapeRooms/hintApp", {escapeRoom: req.escapeRoom, cloudinary});
+
+}

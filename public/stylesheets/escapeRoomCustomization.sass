@@ -19,8 +19,13 @@
 				text-align: left
 				&:focus-within
 					color: white !important
-					label
+					label, .explanation
 						color: white
+				.customCheckbox
+					vertical-align: middle
+					width: 20px
+					border: 0px
+					background: white
 				.customInput
 					border: none
 					border-radius: 0px
@@ -40,7 +45,7 @@
 						color: white
 						border: none
 						padding: 0px
-					#imgLabel
+					#imgLabel, #hintsLabel
 						font-size: 1em
 						margin-top: 0.4em
 						font-family: Lato, sans-serif
@@ -54,6 +59,10 @@
 					z-index: -1
 				label.itemNarrow
 					display: block
+				.explanation
+					color: $textpurple
+					font-size: 0.6em
+					padding-left: 30px
 		.flexShow
 			width: 100%
 			.flexRow
