@@ -22,7 +22,7 @@ arrDates[3].setHours(11);
 arrDates[3].setMinutes(0);
 
 module.exports = {
-    "up": (queryInterface, Sequelize) => queryInterface.bulkInsert("turnos", [
+    "up": (queryInterface) => queryInterface.bulkInsert("turnos", [
         {
             "escapeRoomId": 1,
             "date": arrDates[0],
@@ -54,5 +54,5 @@ module.exports = {
 
     ]),
 
-    "down": (queryInterface, Sequelize) => queryInterface.bulkDelete("turnos", null, {})
+    "down": (queryInterface) => queryInterface.bulkDelete("turnos", null, {})
 };

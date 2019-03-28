@@ -10,4 +10,3 @@ module.exports = {
             then(() => queryInterface.removeColumn("escapeRooms", "feedback")))
 };
 
- 

@@ -9,7 +9,7 @@ module.exports = {
                 "subject": "IWEB",
                 "duration": "120",
                 "description": "Escape room educativa sobre React y Redux en la que los alumnos tendrán que encontrar los errores en el código que les damos.",
-                "video": "https://www.youtube.com/watch?v=QYh6mYIJG2Y",
+                "video": "https://www.youtube.com/watch?v=oOPEryIYkm4",
                 "nmax": "50",
                 "invitation": "assfdtWeQv",
                 "appearance": "litera",

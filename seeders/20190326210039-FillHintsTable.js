@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-    "up": (queryInterface, Sequelize) => queryInterface.bulkInsert("hints", [
+    "up": (queryInterface) => queryInterface.bulkInsert("hints", [
         {
             "puzzleId": 1,
             "content": "Primera pista del primer reto",
@@ -35,5 +35,5 @@ module.exports = {
 
     ]),
 
-    "down": (queryInterface, Sequelize) => queryInterface.bulkDelete("hints", null, {})
+    "down": (queryInterface) => queryInterface.bulkDelete("hints", null, {})
 };

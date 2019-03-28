@@ -1,27 +1,36 @@
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-<div id="root"></div>
-<script> 
-window.config= {
-	"title":"Quiz",
-	"primaryColor":"#20BEB8",
-	"primaryColorText":"#ffffff",
-	"secondaryColor":"#333333",
-	"secondaryColorText":"#ffffff",
-	"backgroundColor":"#ffffff",
-	"generalTextColor":"#000000",
-	"finish_screen":true,
-	"feedback":<%=escapeRoom.feedback%>,
-	"randomQuestions":true,
-	"n": <%= escapeRoom.numQuestions || 1 %>,
-	"scormVersion":"1.2",
-	"showInfoModal":false,
-	"threshold": <%= escapeRoom.numRight || 50 %>,
-	"successMessage":"Congratulations! You have passed",
-	"failMessage":"Keep trying...",
-	"moodleXMLPath": "<%- cloudinary.url(escapeRoom.hintApp.public_id, {secure: true}) %>",
-	"dev": true
-}
-</script>
-<script type="text/javascript" src="/js/hintApp.js"></script>
-</body>
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    <title>Escape room</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" id="theme" href="https://bootswatch.com/4/<%=escapeRoom.appearance || "litera" %>/bootstrap.min.css">
+	</head>
+	<body>
+		<div id="root"></div>
+		<script> 
+			window.config= {
+				"title":"Quiz",
+				"primaryColor":"#20BEB8",
+				"primaryColorText":"#ffffff",
+				"secondaryColor":"#333333",
+				"secondaryColorText":"#ffffff",
+				"backgroundColor":"#ffffff",
+				"generalTextColor":"#000000",
+				"finish_screen":true,
+				"feedback":<%=escapeRoom.feedback%>,
+				"randomQuestions":true,
+				"n": <%= escapeRoom.numQuestions || 1 %>,
+				"scormVersion":"1.2",
+				"showInfoModal":false,
+				"threshold": <%= escapeRoom.numRight || 50 %>,
+				"successMessage":"Enhorabuena! Has conseguido una nueva pista",
+				"failMessage":"Lo siento, tendrás que seguir intentándolo",
+				"moodleXmlPath": "<%=escapeRoom.hintApp.url %>",
+				"dev": false
+			}
+		</script>
+		<script type="text/javascript" src="/js/hintApp.js"></script>
+	</body>
 </html>

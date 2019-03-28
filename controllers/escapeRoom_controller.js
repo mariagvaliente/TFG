@@ -493,19 +493,23 @@ exports.pistasUpdate = (req, res, next) => {
 
     const {escapeRoom, body} = req;
     const isPrevious = Boolean(body.previous);
-    console.log(body)
+
+    console.log(body);
     const {numQuestions, numRight, feedback} = body;
+
     escapeRoom.numQuestions = numQuestions;
     escapeRoom.numRight = numRight;
-    escapeRoom.feedback = !!feedback;
+    escapeRoom.feedback = Boolean(feedback);
 
     const back = `/escapeRooms/${escapeRoom.id}/${isPrevious ? "puzzles" : "evaluation"}`;
+
     escapeRoom.save({"fields": [
         "numQuestions",
         "numRight",
-        "feedback",
+        "feedback"
     ]}).
-        then((er) => {
+        then(() => {
+
             if (body.keepAttachment === "0") {
 
                 // There is no attachment: Delete old attachment.
@@ -516,11 +520,13 @@ exports.pistasUpdate = (req, res, next) => {
 
                         attHelper.deleteResource(escapeRoom.hintApp.public_id);
                         escapeRoom.hintApp.destroy();
+
                         return;
 
                     }
 
                 }
+
                 return attHelper.checksCloudinaryEnv().
 
 
@@ -583,6 +589,7 @@ exports.pistasUpdate = (req, res, next) => {
 
 
             }
+
         }).
         then(() => {
 

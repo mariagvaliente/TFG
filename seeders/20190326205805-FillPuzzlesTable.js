@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-    "up": (queryInterface, Sequelize) => queryInterface.bulkInsert("puzzles", [
+    "up": (queryInterface) => queryInterface.bulkInsert("puzzles", [
         {
             "escapeRoomId": 1,
             "title": "Reto 1",
@@ -28,5 +28,5 @@ module.exports = {
         }
     ]),
 
-    "down": (queryInterface, Sequelize) => queryInterface.bulkDelete("puzzles", null, {})
+    "down": (queryInterface) => queryInterface.bulkDelete("puzzles", null, {})
 };
