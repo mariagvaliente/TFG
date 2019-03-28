@@ -27,6 +27,7 @@ module.exports = function (sequelize, DataTypes) {
             },
             "invitation": {
                 "type": DataTypes.STRING,
+                "allowNull": false,
                 "defaultValue" () {
 
                     return Math.random().toString(36).

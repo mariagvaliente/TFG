@@ -1,10 +1,10 @@
 "use strict";
 
 module.exports = {
-    up (queryInterface, Sequelize) {
+    "up" (queryInterface, Sequelize) {
 
         return queryInterface.createTable(
-            "turnos",
+            "hintApps",
             {
                 "id": {
                     "type": Sequelize.INTEGER,
@@ -17,12 +17,21 @@ module.exports = {
                     "type": Sequelize.INTEGER,
                     "allowNull": false
                 },
-                "date": {
-                    "type": Sequelize.DATE,
-                    "validate": {"notEmpty": {"msg": "La fecha no puede estar vacía."}}
+                "public_id": {
+                    "type": Sequelize.STRING,
+                    "allowNull": false
                 },
-                "indications": {
-                    "type": Sequelize.STRING
+                "url": {
+                    "type": Sequelize.STRING,
+                    "allowNull": false
+                },
+                "filename": {
+                    "type": Sequelize.STRING,
+                    "allowNull": false
+                },
+                "mime": {
+                    "type": Sequelize.STRING,
+                    "allowNull": false
                 },
                 "createdAt": {
                     "type": Sequelize.DATE,
@@ -39,9 +48,10 @@ module.exports = {
         );
 
     },
-    down (queryInterface) {
 
-        return queryInterface.dropTable("turnos");
+    "down" (queryInterface) {
+
+        return queryInterface.dropTable("hintApps");
 
     }
 };

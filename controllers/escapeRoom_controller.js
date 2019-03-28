@@ -12,6 +12,14 @@ const attHelper = require("../helpers/attachments"),
             "tfg",
             "escapeRoom"
         ]
+    },
+    cloudinary_upload_options_zip = {
+        "folder": "/escapeRoom/attachments",
+        "resource_type": "auto",
+        "tags": [
+            "tfg",
+            "escapeRoom"
+        ]
     };
 
 
@@ -24,6 +32,7 @@ exports.load = (req, res, next, escapeRoomId) => {
             {"model": models.puzzle,
                 "include": [{"model": models.hint}]},
             models.attachment,
+            models.hintApp,
             {"model": models.user,
                 "as": "author"}
         ],
@@ -199,7 +208,8 @@ exports.create = (req, res, next) => {
         "description",
         "video",
         "nmax",
-        "authorId"
+        "authorId",
+        "invitation"
     ]}).
         then((er) => {
 
@@ -339,7 +349,7 @@ exports.update = (req, res, next) => {
                             }).
                             then(() => {
 
-                                req.flash("success", "Image saved successfully.");
+                                req.flash("success", "Imagen guardada con éxito.");
                                 if (old_public_id) {
 
                                     attHelper.deleteResource(old_public_id);
@@ -486,23 +496,88 @@ exports.pistasUpdate = (req, res, next) => {
 
     escapeRoom.pistas = body.pistas;
 
-    escapeRoom.save({"fields": ["retos"]}).then(() => {
+    const back = `/escapeRooms/${escapeRoom.id}/${isPrevious ? "puzzles" : "evaluation"}`;
 
-        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "puzzles" : "evaluation"}`);
+    console.log(body, req.file);
+    if (body.keepAttachment === "0") {
 
-    }).
-        catch(Sequelize.ValidationError, (error) => {
+        // There is no attachment: Delete old attachment.
+        if (!req.file) {
 
-            error.errors.forEach(({message}) => req.flash("error", message));
-            res.redirect(`/escapeRooms/${escapeRoom.id}/hints`);
+            // Req.flash("info", "This Escape Room has no attachment.");
+            if (escapeRoom.hintApp) {
 
-        }).
-        catch((error) => {
+                attHelper.deleteResource(escapeRoom.hintApp.public_id);
+                escapeRoom.hintApp.destroy();
+                res.redirect(back);
 
-            req.flash("error", `Error al editar la escape room: ${error.message}`);
-            next(error);
+                return;
 
-        });
+            }
+
+        }
+        attHelper.checksCloudinaryEnv().
+
+
+        // Save the new attachment into Cloudinary:
+            then(() => attHelper.uploadResource(req.file.path, cloudinary_upload_options_zip)).
+            then((uploadResult) => {
+
+                // Remenber the public_id of the old image.
+                const old_public_id = escapeRoom.hintApp ? escapeRoom.hintApp.public_id : null;
+
+                // Update the attachment into the data base.
+                return escapeRoom.getHintApp().
+                    then((att) => {
+
+                        let hintApp = att;
+
+                        if (!hintApp) {
+
+                            hintApp = models.hintApp.build({"escapeRoomId": escapeRoom.id});
+
+                        }
+                        hintApp.public_id = uploadResult.public_id;
+                        hintApp.url = uploadResult.url;
+                        hintApp.filename = req.file.originalname;
+                        hintApp.mime = req.file.mimetype;
+
+                        return hintApp.save();
+
+                    }).
+                    then(() => {
+
+                        req.flash("success", "Fichero guardado con éxito.");
+                        if (old_public_id) {
+
+                            attHelper.deleteResource(old_public_id);
+
+                        }
+
+                    }).
+                    catch((error) => { // Ignoring image validation errors
+
+                        req.flash("error", `Error al guardar el fichero: ${error.message}`);
+                        attHelper.deleteResource(uploadResult.public_id);
+
+                    });
+
+
+            }).
+            catch((error) => {
+
+                req.flash("error", `Error al guardar el fichero: ${error.message}`);
+
+            }).
+            then(() => {
+
+                fs.unlink(req.file.path); // Delete the file uploaded at./uploads
+                res.redirect(back);
+
+            });
+
+
+    }
 
 
 };
