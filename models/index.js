@@ -28,21 +28,15 @@ sequelize.import(path.join(__dirname, "puzzle"));
 // Import the definition of the User Table from hint.js (Pistas)
 sequelize.import(path.join(__dirname, "hint"));
 
-<<<<<<< HEAD
 // Import the definition of the Team Table from team.js
 sequelize.import(path.join(__dirname, "team"));
 // Relation between models
 
-const {escapeRoom, turno, attachment, user, puzzle, hint, team} = sequelize.models;
-=======
 // Import the definition of the Attachment Table from attachment.js
 sequelize.import(path.join(__dirname, "hintApp"));
 
-
 // Relation between models
-
-const {escapeRoom, turno, attachment, user, puzzle, hint, hintApp} = sequelize.models;
->>>>>>> b1cef3e9808d471d1737aa8190dd104c243508f8
+const {escapeRoom, turno, attachment, user, puzzle, hint, hintApp, team} = sequelize.models;
 
 // Relation 1-to-N between Escape Room and Turn:
 turno.belongsTo(escapeRoom);
