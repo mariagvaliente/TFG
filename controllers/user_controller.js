@@ -37,16 +37,6 @@ exports.show = (req, res) => {
 
 };
 
-// GET /users/:userId/student
-
-exports.student = (req, res) => {
-
-    const {user} = req;
-
-    res.render("users/student", {user});
-
-};
-
 
 // GET /users/new
 exports.new = (req, res) => {

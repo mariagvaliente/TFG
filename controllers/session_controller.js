@@ -222,7 +222,7 @@ exports.new = (req, res) => {
 
         if (req.session.user.isStudent) {
 
-            res.redirect(`/users/${req.session.user.id}/student/`);
+            res.redirect(`/users/${req.session.user.id}/escapeRooms/student`);
 
         } else {
 
@@ -272,7 +272,7 @@ exports.create = (req, res, next) => {
 
                 } else {
 
-                    res.redirect(`users/${user.id}/student`);
+                    res.redirect(`users/${user.id}/escapeRooms/student`);
 
                 }
 

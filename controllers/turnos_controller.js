@@ -34,7 +34,7 @@ exports.load = (req, res, next, turnId) => {
 
 };
 
-// GET /escapeRooms/:escapeRoomId/turnos
+// POST /escapeRooms/:escapeRoomId/join
 exports.indexStudent = (req, res, next) => {
 
     models.turno.findAll().
@@ -49,6 +49,7 @@ exports.indexStudent = (req, res, next) => {
 
 
 // POST /escapeRooms/:escapeRoomId/turnos
+
 exports.create = (req, res, next) => {
 
     const {date, indications} = req.body;

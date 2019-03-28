@@ -1,0 +1,8 @@
+<div>
+    <form method="POST" id="newForm" action="/users/<%= session.user.id %>/teams/index">
+        <div>
+            <input type="text" id="nam" required name="name" autocomplete="off"/>
+        </div>
+        <button type="submit">add</button>
+    </form>
+</div>

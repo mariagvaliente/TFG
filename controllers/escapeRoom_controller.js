@@ -603,7 +603,7 @@ exports.studentToken = (req, res) => {
 
 };
 
-// GET /escapeRooms/:escapeRoomId/turnos
+// GET /escapeRooms/:escapeRoomId/join
 exports.indexStudent = (req, res) => {
 
     const {escapeRoom} = req;
@@ -613,3 +613,43 @@ exports.indexStudent = (req, res) => {
 
 };
 
+// GET /escapeRooms/:escapeRoomId/student
+exports.student = (req, res) => {
+
+
+    const countOptions = {
+        "where": {}
+    };
+
+    // If there exists "req.user", then only the escape rooms of that user are shown
+    if (req.user) {
+
+        countOptions.where.authorId = req.user.id;
+
+    }
+
+    models.escapeRoom.count(countOptions).
+        then(() => {
+
+            const findOptions = {
+                ...countOptions,
+                "include": [
+                    models.attachment,
+                    {"model": models.user,
+                        "as": "author"}
+                ]
+            };
+
+
+            return models.escapeRoom.findAll(findOptions);
+
+        }).
+        then((escapeRooms) => {
+
+            res.render("escapeRooms/student.ejs", {escapeRooms,
+                cloudinary});
+
+        }).
+        catch((error) => next(error));
+
+};
