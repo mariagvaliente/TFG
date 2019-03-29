@@ -3,6 +3,8 @@ const Sequelize = require("sequelize");
 const {models} = require("../models");
 const cloudinary = require("cloudinary");
 const fs = require("fs");
+const {parseURL}= require("../helpers/video")
+
 const attHelper = require("../helpers/attachments"),
     // Options for the files uploaded to Cloudinary
     cloudinary_upload_options = {
@@ -160,7 +162,8 @@ exports.preview = (req, res) => {
     res.render("escapeRooms/preview", {escapeRoom,
         "layout": false,
         cloudinary,
-        "theme": req.query.appearance});
+        parseURL,
+        "appearance": req.query.appearance});
 
 };
 
@@ -490,11 +493,9 @@ exports.pistas = (req, res) => {
 
 // POST /escapeRooms/:escapeRoomId/hints
 exports.pistasUpdate = (req, res, next) => {
-
     const {escapeRoom, body} = req;
     const isPrevious = Boolean(body.previous);
 
-    console.log(body);
     const {numQuestions, numRight, feedback} = body;
 
     escapeRoom.numQuestions = numQuestions;
@@ -637,7 +638,7 @@ exports.encuestasUpdate = (req, res, next) => {
         "posttest"
     ]}).then(() => {
 
-        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "hints" : ""}`);
+        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "hints" : "instructions"}`);
 
     }).
         catch(Sequelize.ValidationError, (error) => {
@@ -656,7 +657,7 @@ exports.encuestasUpdate = (req, res, next) => {
 };
 
 // GET /escapeRooms/:escapeRoomId/instructions
-exports.instrucciones = (req, res) => {
+exports.instructions = (req, res) => {
 
     const {escapeRoom} = req;
 
@@ -664,6 +665,37 @@ exports.instrucciones = (req, res) => {
 
 };
 
+
+// GET /escapeRooms/:escapeRoomId/instructions
+exports.instructionsUpdate = (req, res) => {
+
+  const {escapeRoom, body} = req;
+  const isPrevious = Boolean(body.previous);
+  console.log("*******************************************")
+  console.log(body)
+  escapeRoom.instructions = body.instructions;
+
+  escapeRoom.save({"fields": [
+    "instructions",
+  ]}).then(() => {
+
+    res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "evaluation" : ""}`);
+
+  }).
+  catch(Sequelize.ValidationError, (error) => {
+
+    error.errors.forEach(({message}) => req.flash("error", message));
+    res.redirect(`/escapeRooms/${escapeRoom.id}/instructions`);
+
+  }).
+  catch((error) => {
+
+    req.flash("error", `Error al editar la escape room: ${error.message}`);
+    next(error);
+
+  });
+
+};
 
 // DELETE /escapeRooms/:escapeRoomId
 exports.destroy = (req, res, next) => {

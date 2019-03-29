@@ -63,6 +63,12 @@
 					color: $textpurple
 					font-size: 0.6em
 					padding-left: 30px
+					font-family: 'Lato', sans-serif
+		.intro-paragraph
+			font-family: 'Lato', sans-serif
+			text-align: left
+			a
+				font-family: inherit
 		.flexShow
 			width: 100%
 			.flexRow
@@ -84,6 +90,10 @@
 					font-family:  'Lato', sans-serif
 					line-height: 32px
 					word-break: break-word
+					&.instructionsPreview
+						font-family: 'Lato', sans-serif
+						*
+							font-family: inherit
 					.show_link
 						font-family: inherit
 					em
@@ -203,7 +213,7 @@
 								&.less
 									background: $lightred
 
-		&.step-puzzles
+		&.step-puzzles, .previewPuzzles
 			.flex-table-retos-wrapper
 				position: relative
 				overflow: visible
@@ -258,9 +268,9 @@
 								&.retoEditable, &[contenteditable]
 									background-color:  $textpurple
 									color: $purpleedit
-									&.no-pistas
-										cursor: not-allowed
-										font-style: italic
+								.no-pistas
+									cursor: not-allowed
+									font-style: italic
 								&:empty:before
 									content: 'Escribe aquí...'
 									opacity: 0.5
@@ -269,16 +279,23 @@
 									content: '' !important
 
 								&.hints-cell
+									&.hints-cell-preview
+										background-color:  inherit
 									padding: 0
 									background-color:  $textpurple
 									*:not(.material-icons)
 										font-family: inherit
-
+									.hint-text-preview
+										text-align: left
+									.no-pistas-preview
+										padding: 0px
+										font-style: italic
 									.edit-hints
 										padding: 0
 										list-style: none
 										margin: 0px
-										li
+
+										.hint-li
 											padding: 0px
 											background-color: $purpleedit
 											border-bottom: 3px solid white
@@ -291,6 +308,8 @@
 												padding: 6px
 												line-height: 25px
 												justify-content: center
+											.hint-text-preview
+												padding: 5px
 											form
 												&.formLeft
 													display: flex

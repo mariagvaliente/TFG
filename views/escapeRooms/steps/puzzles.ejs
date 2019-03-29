@@ -37,7 +37,7 @@
                     <%if (puzzle.hints && puzzle.hints.length > 0) {%>
                         <% for (var p in puzzle.hints) { %>
                             <% var hint = puzzle.hints[p] %>
-                            <li>
+                            <li class="hint-li">
                                 <form action="/escapeRooms/<%= escapeRoom.id %>/hints/<%=hint.id%>?_method=PUT" method="post" class="formLeft">
                                   <span class="hint-text"><%= hint.content %></span>
                                   <input type="text" value="<%= hint.content %>" name="content" class="hiddenInputPistaEdit hidden"/>

@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Digital';
+    src: url('/fonts/ds-digib.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+.previewContainer {
+    text-align: center;
+    padding: 20px;
+}
+p {
+    text-align: left;
+}
+.countdown {
+    font-family: 'Digital';
+    font-size: 20vw;
+}
+
+.previewImage img {
+    max-width: 40%;
+}

@@ -57,6 +57,9 @@ module.exports = function (sequelize, DataTypes) {
             },
             "feedback": {
                 "type": DataTypes.BOOLEAN
+            },
+            "instructions": {
+                "type": DataTypes.STRING
             }
 
         }
