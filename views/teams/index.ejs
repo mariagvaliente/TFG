@@ -8,18 +8,15 @@
         <div class="join-button-flex-container">
             <% for (var i in teams) { %>
                 <% var team = teams[i]; %>
-                <form method='POST' id="form" action='/users/<%= session.user.id %>/members/<%= team.id %>/?_method=put'>
+                <form method='POST' id="form" action='/users/<%= session.user.id %>/members/<%= team.id %>?_method=put'>
                     <button type="submit"> <%= team.name %></button>
                 </form>
             <% } %>
 
                 <div>
-                    <form method="POST" id="newForm" action="/users/<%= session.user.id %>/teams/new">
-                        <div>
-                            <input type="text"  style="width:100px;height:50px" id="nam" required name="name" autocomplete="off"/>
-                        </div>
-                        <button type="submit"style="width:100px;height:50px">add</button>
-                    </form>
+                    <a href="/teams/new">
+                        <button style="width:100px;height:50px">+</button>
+                    </a>
                 </div>
 
         </div>

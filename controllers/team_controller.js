@@ -5,7 +5,7 @@ const {models} = require("../models");
 // Autoload the team with id equals to :teamId
 exports.load = (req, res, next, teamId) => {
 
-    models.user.findById(teamId
+    models.team.findById(teamId
     ).
         then((team) => {
 
@@ -27,7 +27,21 @@ exports.load = (req, res, next, teamId) => {
 };
 
 
-// POST /users/:userId/teams/new
+// GET /users/:userId/teams/new
+
+exports.new = (req, res) => {
+
+    const team = {
+        "name": ""
+    };
+
+    res.render("teams/new", {team});
+
+};
+
+
+// POST /teams
+
 exports.create = (req, res, next) => {
 
     const {name} = req.body;
@@ -37,12 +51,12 @@ exports.create = (req, res, next) => {
 
     const back = `/users/${req.session.user.id}/teams/index`;
 
+
     team.save().
         then(() => {
 
             req.flash("success", "Team creado correctamente.");
             res.redirect(back);
-
         }).
         catch(Sequelize.ValidationError, (error) => {
 
@@ -61,6 +75,7 @@ exports.create = (req, res, next) => {
 };
 
 // GET /users/:userId/teams/index
+
 exports.index = (req, res, next) => {
 
     models.team.findAll().
