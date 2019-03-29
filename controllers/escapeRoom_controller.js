@@ -3,60 +3,51 @@ const Sequelize = require("sequelize");
 const {models} = require("../models");
 const cloudinary = require("cloudinary");
 const fs = require("fs");
-const {parseURL}= require("../helpers/video")
+const {parseURL} = require("../helpers/video");
 
 const attHelper = require("../helpers/attachments"),
     // Options for the files uploaded to Cloudinary
-    cloudinary_upload_options = {
-        "folder": "/escapeRoom/attachments",
+    cloudinary_upload_options = {"folder": "/escapeRoom/attachments",
         "resource_type": "auto",
         "tags": [
             "tfg",
             "escapeRoom"
-        ]
-    },
-    cloudinary_upload_options_zip = {
-        "folder": "/escapeRoom/attachments",
+        ]},
+    cloudinary_upload_options_zip = {"folder": "/escapeRoom/attachments",
         "resource_type": "auto",
         "tags": [
             "tfg",
             "escapeRoom"
-        ]
-    };
-
-
-// Autoload the escape room with id equals to :escapeRoomId
+        ]};// Autoload the escape room with id equals to :escapeRoomId
 exports.load = (req, res, next, escapeRoomId) => {
 
-    models.escapeRoom.findById(escapeRoomId, {
-        "include": [
+    models.escapeRoom.findById(escapeRoomId, {"include": [
+        {"model": models.turno},
+        {"model": models.puzzle,
+            "include": [{"model": models.hint}]},
+        models.attachment,
+        models.hintApp,
+        {"model": models.user,
+            "as": "author"}
+    ],
+    "order": [
+        [
             {"model": models.turno},
-            {"model": models.puzzle,
-                "include": [{"model": models.hint}]},
-            models.attachment,
-            models.hintApp,
-            {"model": models.user,
-                "as": "author"}
+            "date",
+            "asc"
         ],
-        "order": [
-            [
-                {"model": models.turno},
-                "date",
-                "asc"
-            ],
-            [
-                {"model": models.puzzle},
-                "createdAt",
-                "asc"
-            ],
-            [
-                {"model": models.puzzle},
-                {"model": models.hint},
-                "createdAt",
-                "asc"
-            ]
+        [
+            {"model": models.puzzle},
+            "createdAt",
+            "asc"
+        ],
+        [
+            {"model": models.puzzle},
+            {"model": models.hint},
+            "createdAt",
+            "asc"
         ]
-    }).
+    ]}).
         then((escapeRoom) => {
 
             if (escapeRoom) {
@@ -81,7 +72,6 @@ exports.adminOrAuthorRequired = (req, res, next) => {
 
     const isAdmin = Boolean(req.session.user.isAdmin),
         isAuthor = req.escapeRoom.authorId === req.session.user.id;
-
     if (isAdmin || isAuthor) {
 
         next();
@@ -98,36 +88,30 @@ exports.adminOrAuthorRequired = (req, res, next) => {
 // GET /escapeRooms
 exports.index = (req, res, next) => {
 
+    const findOptions = req.user ? req.user.isStudent ? {"include": [
+        {"model": models.turno,
+            "duplicating": false,
+            "required": true,
+            "include": [
+                {"model": models.user,
+                    "as": "students",
+                    "duplicating": false,
+                    "required": true,
+                    // "association": models.turno.associations.turnosAgregados,
+                    "where": {"id": req.user.id}}
+            ]},
 
-    const countOptions = {
-        "where": {}
-    };
-
-    // If there exists "req.user", then only the escape rooms of that user are shown
-    if (req.user) {
-
-        countOptions.where.authorId = req.user.id;
-
-    }
-
-    models.escapeRoom.count(countOptions).
-        then(() => {
-
-            const findOptions = {
-                ...countOptions,
-                "include": [
-                    models.attachment,
-                    {"model": models.user,
-                        "as": "author"}
-                ]
-            };
-
-
-            return models.escapeRoom.findAll(findOptions);
-
-        }).
+        models.attachment
+    ]} : {"include": [
+        models.attachment,
+        {"model": models.user,
+            "as": "author",
+            "where": {"id": req.user.id}}
+    ]} : {};
+    models.escapeRoom.findAll(findOptions).
         then((escapeRooms) => {
 
+            console.log(escapeRooms);
             res.render("escapeRooms/index.ejs", {escapeRooms,
                 cloudinary});
 
@@ -148,7 +132,6 @@ exports.indexBreakDown = (req, res) => {
 exports.show = (req, res) => {
 
     const {escapeRoom} = req;
-
     res.render("escapeRooms/show", {escapeRoom,
         cloudinary});
 
@@ -158,7 +141,6 @@ exports.show = (req, res) => {
 exports.preview = (req, res) => {
 
     const {escapeRoom} = req;
-
     res.render("escapeRooms/preview", {escapeRoom,
         "layout": false,
         cloudinary,
@@ -170,16 +152,13 @@ exports.preview = (req, res) => {
 // GET /escapeRooms/new
 exports.new = (req, res) => {
 
-    const escapeRoom = {
-        "title": "",
+    const escapeRoom = {"title": "",
         "teacher": "",
         "subject": "",
         "duration": "",
         "description": "",
         "video": "",
-        "nmax": ""
-    };
-
+        "nmax": ""};
     res.render("escapeRooms/new", {escapeRoom});
 
 };
@@ -192,17 +171,13 @@ exports.create = (req, res, next) => {
 
         authorId = req.session.user && req.session.user.id || 0,
 
-        escapeRoom = models.escapeRoom.build({
-            title,
+        escapeRoom = models.escapeRoom.build({title,
             subject,
             duration,
             description,
             video,
             nmax,
-            authorId
-        });
-
-    // Saves only the fields question and answer into the DDBB
+            authorId}); // Saves only the fields question and answer into the DDBB
     escapeRoom.save({"fields": [
         "title",
         "teacher",
@@ -229,13 +204,11 @@ exports.create = (req, res, next) => {
 
             return attHelper.checksCloudinaryEnv().
                 then(() => attHelper.uploadResource(req.file.path, cloudinary_upload_options)).
-                then((uploadResult) => models.attachment.create({
-                    "public_id": uploadResult.public_id,
+                then((uploadResult) => models.attachment.create({"public_id": uploadResult.public_id,
                     "url": uploadResult.url,
                     "filename": req.file.originalname,
                     "mime": req.file.mimetype,
-                    "escapeRoomId": er.id
-                }).
+                    "escapeRoomId": er.id}).
                     catch((error) => { // Ignoring validation errors
 
                         console.error(error);
@@ -277,7 +250,6 @@ exports.create = (req, res, next) => {
 exports.edit = (req, res) => {
 
     const {escapeRoom} = req;
-
     res.render("escapeRooms/edit", {escapeRoom});
 
 };
@@ -286,7 +258,6 @@ exports.edit = (req, res) => {
 exports.update = (req, res, next) => {
 
     const {escapeRoom, body} = req;
-
     escapeRoom.title = body.title;
     escapeRoom.subject = body.subject;
     escapeRoom.duration = body.duration;
@@ -329,14 +300,11 @@ exports.update = (req, res, next) => {
                     then((uploadResult) => {
 
                         // Remenber the public_id of the old image.
-                        const old_public_id = er.attachment ? er.attachment.public_id : null;
-
-                        // Update the attachment into the data base.
+                        const old_public_id = er.attachment ? er.attachment.public_id : null; // Update the attachment into the data base.
                         return er.getAttachment().
                             then((att) => {
 
                                 let attachment = att;
-
                                 if (!attachment) {
 
                                     attachment = models.attachment.build({"escapeRoomId": er.id});
@@ -408,7 +376,6 @@ exports.update = (req, res, next) => {
 exports.temas = (req, res) => {
 
     const {escapeRoom} = req;
-
     res.render("escapeRooms/steps/appearance", {escapeRoom});
 
 };
@@ -417,10 +384,8 @@ exports.temas = (req, res) => {
 exports.temasUpdate = (req, res, next) => {
 
     const {escapeRoom, body} = req;
-
     escapeRoom.appearance = body.appearance;
     const isPrevious = Boolean(body.previous);
-
     escapeRoom.save({"fields": ["appearance"]}).then(() => {
 
         res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "instructions" : "evaluation"}`);
@@ -447,7 +412,6 @@ exports.turnos = (req, res) => {
 
     const {escapeRoom} = req;
     const {turnos} = escapeRoom;
-
     res.render("escapeRooms/steps/turnos", {escapeRoom,
         turnos});
 
@@ -459,7 +423,6 @@ exports.turnosUpdate = (req, res /* , next*/) => {
     const {escapeRoom, body} = req;
 
     const isPrevious = Boolean(body.previous);
-
     res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "edit" : "puzzles"}`);
 
 };
@@ -468,7 +431,6 @@ exports.turnosUpdate = (req, res /* , next*/) => {
 exports.retos = (req, res) => {
 
     const {escapeRoom} = req;
-
     res.render("escapeRooms/steps/puzzles", {escapeRoom});
 
 };
@@ -477,7 +439,6 @@ exports.retos = (req, res) => {
 exports.retosUpdate = (req, res) => {
 
     const isPrevious = Boolean(req.body.previous);
-
     res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "turnos" : "hints"}`);
 
 };
@@ -486,24 +447,22 @@ exports.retosUpdate = (req, res) => {
 exports.pistas = (req, res) => {
 
     const {escapeRoom} = req;
-
     res.render("escapeRooms/steps/hints", {escapeRoom});
 
 };
 
 // POST /escapeRooms/:escapeRoomId/hints
 exports.pistasUpdate = (req, res, next) => {
+
     const {escapeRoom, body} = req;
     const isPrevious = Boolean(body.previous);
 
     const {numQuestions, numRight, feedback} = body;
-
     escapeRoom.numQuestions = numQuestions;
     escapeRoom.numRight = numRight;
     escapeRoom.feedback = Boolean(feedback);
 
     const back = `/escapeRooms/${escapeRoom.id}/${isPrevious ? "puzzles" : "instructions"}`;
-
     escapeRoom.save({"fields": [
         "numQuestions",
         "numRight",
@@ -536,14 +495,11 @@ exports.pistasUpdate = (req, res, next) => {
                     then((uploadResult) => {
 
                         // Remenber the public_id of the old image.
-                        const old_public_id = escapeRoom.hintApp ? escapeRoom.hintApp.public_id : null;
-
-                        // Update the attachment into the data base.
+                        const old_public_id = escapeRoom.hintApp ? escapeRoom.hintApp.public_id : null; // Update the attachment into the data base.
                         return escapeRoom.getHintApp().
                             then((att) => {
 
                                 let hintApp = att;
-
                                 if (!hintApp) {
 
                                     hintApp = models.hintApp.build({"escapeRoomId": escapeRoom.id});
@@ -617,7 +573,6 @@ exports.pistasUpdate = (req, res, next) => {
 exports.encuestas = (req, res) => {
 
     const {escapeRoom} = req;
-
     res.render("escapeRooms/steps/evaluation", {escapeRoom});
 
 };
@@ -627,7 +582,6 @@ exports.encuestasUpdate = (req, res, next) => {
 
     const {escapeRoom, body} = req;
     const isPrevious = Boolean(body.previous);
-
     escapeRoom.survey = body.survey;
     escapeRoom.pretest = body.pretest;
     escapeRoom.posttest = body.posttest;
@@ -660,7 +614,6 @@ exports.encuestasUpdate = (req, res, next) => {
 exports.instructions = (req, res) => {
 
     const {escapeRoom} = req;
-
     res.render("escapeRooms/steps/instructions", {escapeRoom});
 
 };
@@ -669,29 +622,27 @@ exports.instructions = (req, res) => {
 // GET /escapeRooms/:escapeRoomId/instructions
 exports.instructionsUpdate = (req, res) => {
 
-  const {escapeRoom, body} = req;
-  const isPrevious = Boolean(body.previous);
-  escapeRoom.instructions = body.instructions;
+    const {escapeRoom, body} = req;
+    const isPrevious = Boolean(body.previous);
+    escapeRoom.instructions = body.instructions;
 
-  escapeRoom.save({"fields": [
-    "instructions",
-  ]}).then(() => {
+    escapeRoom.save({"fields": ["instructions"]}).then(() => {
 
-    res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "hints" : "appearance"}`);
+        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "hints" : "appearance"}`);
 
-  }).
-  catch(Sequelize.ValidationError, (error) => {
+    }).
+        catch(Sequelize.ValidationError, (error) => {
 
-    error.errors.forEach(({message}) => req.flash("error", message));
-    res.redirect(`/escapeRooms/${escapeRoom.id}/instructions`);
+            error.errors.forEach(({message}) => req.flash("error", message));
+            res.redirect(`/escapeRooms/${escapeRoom.id}/instructions`);
 
-  }).
-  catch((error) => {
+        }).
+        catch((error) => {
 
-    req.flash("error", `Error al editar la escape room: ${error.message}`);
-    next(error);
+            req.flash("error", `Error al editar la escape room: ${error.message}`);
+            next(error);
 
-  });
+        });
 
 };
 
@@ -731,7 +682,6 @@ exports.destroy = (req, res, next) => {
 exports.studentToken = (req, res) => {
 
     const {escapeRoom} = req;
-
     res.render("escapeRooms/indexStudent", {escapeRoom,
         cloudinary});
 
@@ -742,49 +692,8 @@ exports.studentToken = (req, res) => {
 exports.indexStudent = (req, res) => {
 
     const {escapeRoom} = req;
-
     res.render("turnos/_indexStudent", {escapeRoom,
         cloudinary});
 
 };
 
-// GET /escapeRooms/:escapeRoomId/student
-exports.student = (req, res) => {
-
-
-    const countOptions = {
-        "where": {}
-    };
-
-    // If there exists "req.user", then only the escape rooms of that user are shown
-    if (req.user) {
-
-        countOptions.where.authorId = req.user.id;
-
-    }
-
-    models.escapeRoom.count(countOptions).
-        then(() => {
-
-            const findOptions = {
-                ...countOptions,
-                "include": [
-                    models.attachment,
-                    {"model": models.user,
-                        "as": "author"}
-                ]
-            };
-
-
-            return models.escapeRoom.findAll(findOptions);
-
-        }).
-        then((escapeRooms) => {
-
-            res.render("escapeRooms/student.ejs", {escapeRooms,
-                cloudinary});
-
-        }).
-        catch((error) => next(error));
-
-};

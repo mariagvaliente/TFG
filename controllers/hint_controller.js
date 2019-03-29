@@ -1,8 +1,6 @@
 const Sequelize = require("sequelize");
 const {models} = require("../models");
-const cloudinary = require("cloudinary");
-
-// Autoload the hint with id equals to :hintId
+const cloudinary = require("cloudinary");// Autoload the hint with id equals to :hintId
 exports.load = (req, res, next, hintId) => {
 
     models.hint.findById(hintId).
@@ -29,13 +27,10 @@ exports.create = (req, res, next) => {
 
     const {puzzle, body, escapeRoom} = req;
     const {content} = body;
-    const hint = models.hint.build({
-        content,
-        "puzzleId": puzzle.id
-    });
+    const hint = models.hint.build({content,
+        "puzzleId": puzzle.id});
 
     const back = `/escapeRooms/${escapeRoom.id}/puzzles`;
-
     hint.save().
         then(() => {
 
@@ -64,7 +59,6 @@ exports.update = (req, res, next) => {
     const {body, hint, escapeRoom} = req;
     const {content} = body;
     const back = `/escapeRooms/${escapeRoom.id}/puzzles`;
-
     hint.content = content;
     console.log(hint, content);
     hint.save({"fields": ["content"]}).
@@ -96,7 +90,6 @@ exports.destroy = (req, res, next) => {
         then(() => {
 
             const back = `/escapeRooms/${req.escapeRoom.id}/puzzles`;
-
             req.flash("success", "Reto borrado correctamente");
             res.redirect(back);
 
@@ -116,7 +109,7 @@ exports.hintApp = (req, res) => {
 
 exports.hintAppWrapper = (req, res) => {
 
-  res.render("escapeRooms/hintApp/hintAppScormWrapper", {"layout": false,
-    "escapeRoom": req.escapeRoom});
+    res.render("escapeRooms/hintApp/hintAppScormWrapper", {"layout": false,
+        "escapeRoom": req.escapeRoom});
 
 };

@@ -56,7 +56,7 @@
             <%}%>
         </div>
         <div class="join-button-flex-container">
-            <form method='GET' id="form" action='/users/<%= session.user.id %>/student'>
+            <form method='GET' id="form" action='/users/<%= session.user.id %>'>
                 <button class="deleteButton" type="submit" style="display:inline-block;">cancelar</button>
             </form>
             <form method='POST' id="form" action='/users/<%= session.user.id %>/participants?_method=put'>

@@ -1,10 +1,7 @@
 
 
 const Sequelize = require("sequelize");
-const {models} = require("../models");
-
-
-// Autoload the user with id equals to :userId
+const {models} = require("../models");// Autoload the user with id equals to :userId
 exports.load = (req, res, next, userId) => {
 
     models.user.findById(userId).
@@ -32,7 +29,6 @@ exports.load = (req, res, next, userId) => {
 exports.show = (req, res) => {
 
     const {user} = req;
-
     res.render("users/show", {user});
 
 };
@@ -41,14 +37,11 @@ exports.show = (req, res) => {
 // GET /users/new
 exports.new = (req, res) => {
 
-    const user = {
-        "name": "",
+    const user = {"name": "",
         "surname": "",
         "gender": "",
         "username": "",
-        "password": ""
-    };
-
+        "password": ""};
     res.render("index", {user,
         "register": true});
 
@@ -60,17 +53,14 @@ exports.create = (req, res, next) => {
 
     const {name, surname, gender, username, password} = req.body,
 
-        user = models.user.build({
-            name,
+        user = models.user.build({name,
             surname,
             gender,
             username,
-            password
-        }),
+            password}),
 
         expresion = /(@upm\.es)/,
         hallado = user.username.match(expresion);
-
     console.log(hallado);
 
     user.isStudent = !hallado;
@@ -117,7 +107,6 @@ exports.create = (req, res, next) => {
 exports.edit = (req, res) => {
 
     const {user} = req;
-
     res.render("users/edit", {user});
 
 };
@@ -143,7 +132,6 @@ exports.update = (req, res, next) => {
         return res.render("users/edit", {user});
 
     }
-
     user.save({"fields": [
         "password",
         "salt",
@@ -195,10 +183,7 @@ exports.index = (req, res, next) => {
     models.user.count().
         then(() => {
 
-            const findOptions = {
-                "order": ["username"]
-            };
-
+            const findOptions = {"order": ["username"]};
             return models.user.findAll(findOptions);
 
         }).

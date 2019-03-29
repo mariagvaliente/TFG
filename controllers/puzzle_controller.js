@@ -1,7 +1,5 @@
 const Sequelize = require("sequelize");
-const {models} = require("../models");
-
-// Autoload the puzzle with id equals to :puzzleId
+const {models} = require("../models");// Autoload the puzzle with id equals to :puzzleId
 exports.load = (req, res, next, puzzleId) => {
 
     models.puzzle.findById(puzzleId).
@@ -29,16 +27,13 @@ exports.create = (req, res, next) => {
     const {escapeRoom, body} = req;
     const {reto} = body;
     const {title, sol, desc, hint} = JSON.parse(reto);
-    const puzzle = models.puzzle.build({
-        title,
+    const puzzle = models.puzzle.build({title,
         sol,
         desc,
         hint,
-        "escapeRoomId": escapeRoom.id
-    });
+        "escapeRoomId": escapeRoom.id});
 
     const back = `/escapeRooms/${req.escapeRoom.id}/puzzles`;
-
     puzzle.save().
         then((puz) => {
 
@@ -69,10 +64,8 @@ exports.update = (req, res, next) => {
     const {body, escapeRoom} = req;
     const {reto} = body;
     const back = `/escapeRooms/${escapeRoom.id}/puzzles`;
-
     console.log(body);
     const {title, sol, desc, hint} = JSON.parse(reto);
-
     req.puzzle.title = title;
     req.puzzle.sol = sol;
     req.puzzle.desc = desc;
@@ -111,7 +104,6 @@ exports.destroy = (req, res, next) => {
         then(() => {
 
             const back = `/escapeRooms/${req.escapeRoom.id}/puzzles`;
-
             req.flash("success", "Reto borrado correctamente");
             res.redirect(back);
 

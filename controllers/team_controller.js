@@ -1,12 +1,8 @@
 const Sequelize = require("sequelize");
-const {models} = require("../models");
-
-
-// Autoload the team with id equals to :teamId
+const {models} = require("../models");// Autoload the team with id equals to :teamId
 exports.load = (req, res, next, teamId) => {
 
-    models.team.findById(teamId
-    ).
+    models.team.findById(teamId).
         then((team) => {
 
             if (team) {
@@ -31,10 +27,7 @@ exports.load = (req, res, next, teamId) => {
 
 exports.new = (req, res) => {
 
-    const team = {
-        "name": ""
-    };
-
+    const team = {"name": ""};
     res.render("teams/new", {team});
 
 };
@@ -45,18 +38,15 @@ exports.new = (req, res) => {
 exports.create = (req, res, next) => {
 
     const {name} = req.body;
-    const team = models.team.build({
-        name
-    });
+    const team = models.team.build({name});
 
     const back = `/users/${req.session.user.id}/teams/index`;
-
-
     team.save().
         then(() => {
 
             req.flash("success", "Team creado correctamente.");
             res.redirect(back);
+
         }).
         catch(Sequelize.ValidationError, (error) => {
 

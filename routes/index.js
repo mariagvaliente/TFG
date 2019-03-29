@@ -13,9 +13,7 @@ const playController = require("../controllers/play_controller");
 const membersController = require("../controllers/members_controller");
 
 const multer = require("multer"),
-    upload = multer({"dest": "./uploads/"});
-
-// Autologout
+    upload = multer({"dest": "./uploads/"});// Autologout
 router.all("*", sessionController.deleteExpiredUserSession);
 
 
@@ -25,7 +23,6 @@ router.all("*", sessionController.deleteExpiredUserSession);
 const redirectBack = (req, res) => {
 
     const url = req.session.backURL;
-
     delete req.session.backURL;
     res.redirect(url);
 
@@ -38,8 +35,6 @@ const saveBack = (req, res, next) => {
     next();
 
 };
-
-
 router.get([
     "/",
     "/users",
@@ -72,7 +67,6 @@ router.get("/users/:userId(\\d+)/edit", sessionController.loginRequired, session
 router.put("/users/:userId(\\d+)", sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.update);
 router.delete("/users/:userId(\\d+)", sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.destroy);
 router.get("/users/:userId(\\d+)/escapeRooms", sessionController.loginRequired, sessionController.adminOrMyselfRequired, escapeRoomController.index);
-router.get("/users/:userId(\\d+)/escapeRooms/student", sessionController.loginRequired, sessionController.studentOrAdminRequired, escapeRoomController.student);
 
 // Routes for the resource /escapeRooms
 router.get("/escapeRooms", sessionController.loginRequired, escapeRoomController.indexBreakDown);
@@ -113,25 +107,19 @@ router.put("/escapeRooms/:escapeRoomId(\\d+)/hints/:hintId(\\d+)", sessionContro
 router.delete("/escapeRooms/:escapeRoomId(\\d+)/hints/:hintId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, hintController.destroy);
 
 
-
 // Routes for the resource participants of a turn
-router.put( "/users/:userId(\\d+)/participants",
+router.put("/users/:userId(\\d+)/participants",
     sessionController.loginRequired, sessionController.studentOrAdminRequired,
-    participantController.add
-);
+    participantController.add);
 
 // Routes for the resource members of a user
-router.put(
-    "/users/:userId(\\d+)/members/:teamId(\\d+)",
+router.put("/users/:userId(\\d+)/members/:teamId(\\d+)",
     sessionController.loginRequired, sessionController.studentOrAdminRequired,
-    membersController.add
-);
+    membersController.add);
 
-router.get(
-    "/users/:userId(\\d+)/members/:teamId(\\d+)",
+router.get("/users/:userId(\\d+)/members/:teamId(\\d+)",
     sessionController.loginRequired, sessionController.studentOrAdminRequired,
-    membersController.show
-);
+    membersController.show);
 
 router.get("/teams/new", teamController.new);
 router.post("/teams", teamController.create);

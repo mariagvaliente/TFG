@@ -125,6 +125,7 @@
                 Retos:
             </div>
             <div class="flexShowRight previewPuzzles">
+                <%if (escapeRoom.puzzles && escapeRoom.puzzles.length > 0) {%>
                 <div class="flex-table-retos-wrapper">
                     <div class="flex-table-retos">
                         <div class="flex-row-retos flex-row-retos-title">
@@ -174,6 +175,9 @@
                         <% } %>
                     </div>
                 </div>
+                <%} else {%>
+                No se ha definido ningún reto todavía
+                <%}%>
             </div>
         </div>
         <div class="flexRow animated bounceIn" id="pistas">

@@ -21,7 +21,7 @@
                 <% } else { %>
                     <div class="previewImage">
                         <% var attachment = escapeRoom.attachment; %>
-                        <% include ../../attachments/_show %>
+                        <%- include("../../attachments/_show", {attachment})%>
                     </div>
                 <% } %>
 

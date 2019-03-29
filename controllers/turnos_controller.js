@@ -1,11 +1,8 @@
 const Sequelize = require("sequelize");
-const {models} = require("../models");
-
-// Autoload the turn with id equals to :turnId
+const {models} = require("../models");// Autoload the turn with id equals to :turnId
 exports.load = (req, res, next, turnId) => {
 
     const options = {"include": []};
-
     if (req.session.user) {
 
         options.include.push({"model": models.user,
@@ -54,14 +51,11 @@ exports.create = (req, res, next) => {
 
     const {date, indications} = req.body;
     const modDate = new Date(date);
-    const turn = models.turno.build({
-        "date": modDate,
+    const turn = models.turno.build({"date": modDate,
         indications,
-        "escapeRoomId": req.escapeRoom.id
-    });
+        "escapeRoomId": req.escapeRoom.id});
 
     const back = `/escapeRooms/${req.escapeRoom.id}/turnos?date=${modDate.getFullYear()}-${modDate.getMonth() + 1}-${modDate.getDate()}`;
-
     turn.save().
         then(() => {
 
@@ -88,12 +82,10 @@ exports.create = (req, res, next) => {
 exports.destroy = (req, res, next) => {
 
     const modDate = new Date(req.turn.date);
-
     req.turn.destroy().
         then(() => {
 
             const back = `/escapeRooms/${req.params.escapeRoomId}/turnos?date=${modDate.getFullYear()}-${modDate.getMonth() + 1}-${modDate.getDate()}`;
-
             req.flash("success", "Turno borrado correctamente");
             res.redirect(back);
 

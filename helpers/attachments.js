@@ -5,17 +5,14 @@ const crypto = require("crypto");
 
 const uploadResourceToCloudinary = (src, options) => new Promise((resolve, reject) => {
 
-    cloudinary.v2.uploader.upload(
-        src,
+    cloudinary.v2.uploader.upload(src,
         options,
         (error, result) => {
 
             if (!error) {
 
-                resolve({
-                    "public_id": result.public_id,
-                    "url": result.secure_url
-                });
+                resolve({"public_id": result.public_id,
+                    "url": result.secure_url});
 
             } else {
 
@@ -23,8 +20,7 @@ const uploadResourceToCloudinary = (src, options) => new Promise((resolve, rejec
 
             }
 
-        }
-    );
+        });
 
 });
 
@@ -37,7 +33,6 @@ const uploadResourceToFileSystem = (src) => new Promise(function (resolve, rejec
     const url = path.join("/uploads", public_id);
 
     const destination = path.join("public", "uploads", public_id);
-
     fs.copyFile(src, destination, fs.constants.COPYFILE_EXCL, function (error) {
 
         if (error) {
@@ -46,17 +41,14 @@ const uploadResourceToFileSystem = (src) => new Promise(function (resolve, rejec
 
         } else {
 
-            resolve({
-                public_id,
-                url
-            });
+            resolve({public_id,
+                url});
 
         }
 
     });
 
 });
-
 exports.uploadResource = function (src, options) {
 
     return new Promise(function (resolve) {
@@ -84,9 +76,7 @@ exports.deleteResource = function (public_id) {
 
     } else {
 
-        const destination = path.join("public", "uploads", public_id);
-
-        // Delete from local file system.
+        const destination = path.join("public", "uploads", public_id); // Delete from local file system.
         fs.unlink(destination, function (error) {
 
             console.error("Error al borrar el archivo del sistema de ficheros:", error);
@@ -115,7 +105,6 @@ exports.image = function (public_id, options) {
 
     const src = path.join("/uploads", public_id);
     const width = options.width || "";
-
     return `<img src='${src}' width='${width}' >`;
 
 };
@@ -139,7 +128,6 @@ exports.video = function (public_id, options) {
     const src = path.join("/uploads", public_id);
     const width = options.width || "";
     const controls = options.controls ? "controls" : "";
-
     return `<video width='${width}' ${controls} >` +
             `   <source src='${src}' type='video/mp4' >` +
             "</video>";

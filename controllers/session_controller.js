@@ -12,14 +12,7 @@ const {models} = require("../models"),
      * 5 minutes.
      */
 
-    maxIdleTime = 50 * 60 * 1000;
-
-/*
- *
- * Middleware used to destroy the user's session if the inactivity time
- * has been exceeded.
- *
- */
+    maxIdleTime = 50 * 60 * 1000;/* * * Middleware used to destroy the user's session if the inactivity time * has been exceeded. * */
 exports.deleteExpiredUserSession = (req, res, next) => {
 
     if (req.session.user) { // There exista user's session
@@ -74,7 +67,6 @@ exports.loginRequired = (req, res, next) => {
 exports.adminRequired = (req, res, next) => {
 
     const isAdmin = Boolean(req.session.user.isAdmin);
-
     if (isAdmin) {
 
         next();
@@ -94,7 +86,6 @@ exports.notStudentRequired = (req, res, next) => {
 
 
     const isStudent = !req.session.user.isStudent;
-
     if (isStudent) {
 
         next();
@@ -115,7 +106,6 @@ exports.studentOrAdminRequired = (req, res, next) => {
 
     const isStudent = Boolean(req.session.user.isStudent),
         isAdmin = Boolean(req.session.user.isAdmin);
-
     if (isStudent || isAdmin) {
 
         next();
@@ -136,7 +126,6 @@ exports.studentOrAdminRequired = (req, res, next) => {
 exports.myselfRequired = (req, res, next) => {
 
     const isMyself = req.user.id === req.session.user.id;
-
     if (isMyself) {
 
         next();
@@ -160,7 +149,6 @@ exports.adminOrMyselfRequired = (req, res, next) => {
 
     const isAdmin = Boolean(req.session.user.isAdmin),
         isMyself = req.user.id === req.session.user.id;
-
     if (isAdmin || isMyself) {
 
         next();
@@ -183,7 +171,6 @@ exports.adminAndNotMyselfRequired = function (req, res, next) {
 
     const {isAdmin} = req.session.user,
         isAnother = req.user.id !== req.session.user.id;
-
     if (isAdmin && isAnother) {
 
         next();
@@ -209,26 +196,14 @@ exports.adminAndNotMyselfRequired = function (req, res, next) {
  * returns null.
  */
 const authenticate = (login, password) => models.user.findOne({"where": {"username": login}}).
-    then((user) => user && user.verifyPassword(password) ? user : null);
-
-
-// GET /   -- Login form
+    then((user) => user && user.verifyPassword(password) ? user : null);// GET /   -- Login form
 exports.new = (req, res) => {
 
     // Page to go/show after login:
     const {redir} = req.query;
-
     if (req.session && req.session.user) {
 
-        if (req.session.user.isStudent) {
-
-            res.redirect(`/users/${req.session.user.id}/escapeRooms/student`);
-
-        } else {
-
-            res.redirect(`/users/${req.session.user.id}/escapeRooms/`);
-
-        }
+        res.redirect(`/users/${req.session.user.id}/escapeRooms/`);
 
         return;
 
@@ -244,7 +219,6 @@ exports.create = (req, res, next) => {
     const {redir} = req.body,
         {login} = req.body,
         {password} = req.body;
-
     authenticate(login, password).
         then((user) => {
 
@@ -255,27 +229,20 @@ exports.create = (req, res, next) => {
                  * The existence of req.session.user indicates that the session exists.
                  * I also save the moment when the session will expire due to inactivity.
                  */
-                req.session.user = {
-                    "id": user.id,
+                req.session.user = {"id": user.id,
                     "username": user.username,
                     "isAdmin": user.isAdmin,
                     "isStudent": user.isStudent,
-                    "expires": Date.now() + maxIdleTime
-                };
+                    "expires": Date.now() + maxIdleTime};
                 if (req.body.redir) {
 
                     res.redirect(req.body.redir);
 
-                } else if (!user.isStudent) {
+                } else {
 
                     res.redirect(`users/${user.id}/escapeRooms`);
 
-                } else {
-
-                    res.redirect(`users/${user.id}/escapeRooms/student`);
-
                 }
-
 
             } else {
 
