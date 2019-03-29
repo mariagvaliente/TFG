@@ -7,22 +7,22 @@
 <div class="previewContainer">
     <div class="container">
     <h1><%=escapeRoom.title%></h1>
-
-    <% if (escapeRoom.video) { %>
-        <% if (parseURL(escapeRoom.video)) { %>
-        <iframe id="previewVideoContent" width="560" height="315" style="max-width: 100%;" src="<%=parseURL(escapeRoom.video)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <% } else { %>
-        <video id="previewVideoContent" width="560" height="315" style="max-width: 100%;" src="<%= escapeRoom.video %>">"></video>
-        <% } %>
-    <% } else { %>
-        <div class="previewImage">
-            <% var attachment = escapeRoom.attachment; %>
-            <% include ../../attachments/_show %>
+        <div class="row" style="justify-content: center;">
+                <% if (escapeRoom.video) { %>
+                    <% if (parseURL(escapeRoom.video)) { %>
+                    <iframe id="previewVideoContent" width="560" height="315" style="max-width: 100%;" src="<%=parseURL(escapeRoom.video)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <% } else { %>
+                    <video id="previewVideoContent" width="560" height="315" style="max-width: 100%;" src="<%= escapeRoom.video %>">"></video>
+                    <% } %>
+                <% } else { %>
+                    <div class="previewImage">
+                        <% var attachment = escapeRoom.attachment; %>
+                        <% include ../../attachments/_show %>
+                    </div>
+                <% } %>
         </div>
-    <% } %>
-
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12 text-left">
                 <%if (escapeRoom.instructions) {%>
                     <%-escapeRoom.instructions %>
                 <%} else {%>
@@ -30,9 +30,12 @@
                 <%}%>
             </div>
         </div>
-
-    <p class="countdown text-danger">00:00:49</p>
-    <button type="button" class="btn btn-warning">finish</button>
+        <div class="row">
+            <div class="col-xs-12">
+            <p class="countdown text-danger">00:00:49</p>
+            <button type="button" class="btn btn-warning">finish</button>
+            </div>
+        </div>
     </div>
 </div>
 
