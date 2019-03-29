@@ -1,17 +1,39 @@
-// PUT /users/:userId/members/
+// PUT /users/:userId/members/:teamId
 
 exports.add = (req, res, next) => {
 
-    console.log("Marcado como team");
-    const direccion = req.body.redir || `/users/${req.user.id}/teams/index`;
+    console.log("Usuario agregado al team");
+    const direccion = req.body.redir || `/users/${req.user.id}/members/${req.team.id}`;
 
 
-    req.user.addTeamsAgregados(req.team.id).then(function () {
+    req.team.addTeamMembers(req.user.id).then(function () {
 
 
         res.redirect(direccion);
 
     }).
+        catch(function (error) {
+
+            next(error);
+
+        });
+
+};
+
+// GET /users/:userId/members/:teamId
+
+exports.show = (req, res, next) => {
+
+    req.team.getTeamMembers().then(function (usuarios) {
+
+        usuarios.forEach(function (usuario) {
+
+            usuario.isAdd = true;
+        });
+
+        res.render("teams/show", {"usuarios": usuarios, "team": req.team,
+            "errors": []});
+        }).
         catch(function (error) {
 
             next(error);

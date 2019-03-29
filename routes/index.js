@@ -127,8 +127,14 @@ router.put(
     membersController.add
 );
 
+router.get(
+    "/users/:userId(\\d+)/members/:teamId(\\d+)",
+    sessionController.loginRequired, sessionController.studentOrAdminRequired,
+    membersController.show
+);
 
-router.post("/users/:userId(\\d+)/teams/new", teamController.create);
+router.get("/teams/new", teamController.new);
+router.post("/teams", teamController.create);
 router.get("/users/:userId(\\d+)/teams/index", teamController.index);
 
 router.post("/escapeRooms/:escapeRoomId(\\d+)/turnos/new", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);
