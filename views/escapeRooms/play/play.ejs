@@ -1,6 +1,10 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/<%=escapeRoom.appearance%>/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>Escape room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootswatch/<%=escapeRoom.appearance%>.bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/play.css">
 </head>
 <body>
@@ -20,8 +24,11 @@
                         <% include ../../attachments/_show %>
                     </div>
                 <% } %>
+
         </div>
-        <div class="row">
+        <br/>
+        <br/>
+        <div class=" row-centered">
             <div class="col-xs-12 text-left">
                 <%if (escapeRoom.instructions) {%>
                     <%-escapeRoom.instructions %>
@@ -30,9 +37,9 @@
                 <%}%>
             </div>
         </div>
-        <div class="row">
+        <div class=" row-centered">
             <div class="col-xs-12">
-            <p class="countdown text-danger">00:00:49</p>
+            <% include ../../partials/_countdown.ejs %>
             <button type="button" class="btn btn-warning">finish</button>
             </div>
         </div>

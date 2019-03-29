@@ -19,7 +19,7 @@
           <input id="instructions" name="instructions" type="hidden" value=""/>
           <a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button></a>
         <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
-        <button class="progress-buttons" type="submit" value="next" id="next" name="next">finalizar</button>
+        <button class="progress-buttons" type="submit" value="next" id="next" name="next">siguiente</button>
     </div>
   </form>
 </div>
@@ -27,7 +27,7 @@
 <br/>
 <br/>
 <% include ../../partials/__footer %>
-<%- include('../../partials/__progress', {progress: 5}) %>
+<%- include('../../partials/__progress', {progress: 4}) %>
 
 <script>
 $(function(){
@@ -53,17 +53,36 @@ $(function(){
     var options = {
       modules: {
         toolbar: toolbarOptions,
-        imageResize: {}
+        imageResize: {},
+        clipboard: {}
       },
       placeholder: 'Write here your escape room instructions',
       readOnly: false,
       theme: 'snow'
     };
+
     var editor = new Quill('#editor', options);
       $('#instructionsForm').on("submit", e => {
-        var content = document.getElementsByClassName('ql-editor')[0].innerHTML;
+        let content = document.getElementsByClassName('ql-editor')[0].innerHTML;
         $('#instructions').val( (content));
         return true;
       });
+    editor.clipboard.addMatcher (Node.ELEMENT_NODE, function (node, delta) {
+        const attributes = {
+            'font': false,
+            'strike': false,
+            'direction': false,
+            'color': false
+        };
+        delta.ops = delta.ops.map(op=>{
+            return {
+                insert: op.insert,
+                attributes: {
+                    ...op.attributes, ...attributes
+                }
+            }
+        });
+        return delta;
+    });
 });
 </script>

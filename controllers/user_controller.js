@@ -130,6 +130,10 @@ exports.update = (req, res, next) => {
     // User.username  = body.user.username; // edition not allowed
 
     user.password = body.password;
+    user.name = body.name;
+    user.surname = body.surname;
+    user.gender = body.gender;
+    user.password = body.password;
 
     // Password can not be empty
     if (!body.password) {
@@ -142,12 +146,15 @@ exports.update = (req, res, next) => {
 
     user.save({"fields": [
         "password",
-        "salt"
+        "salt",
+        "name",
+        "surname",
+        "gender"
     ]}).
         then((user_saved) => {
 
             req.flash("success", "Usuario actualizado correctamente");
-            res.redirect(`/users/${user_saved.id}`);
+            res.redirect(`/users/${user_saved.id}/escapeRooms`);
 
         }).
         catch(Sequelize.ValidationError, (error) => {

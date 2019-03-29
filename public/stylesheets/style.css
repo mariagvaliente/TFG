@@ -2,6 +2,15 @@
 #mainSection {
   min-height: 100%;
   position: relative; }
+  #mainSection #mainHeader #logoImg, #mainSection #mainFooter #logoImg {
+    width: 12%;
+    margin-top: 0px;
+    margin-bottom: 5px; }
+  #mainSection #mainHeader #logoUpm, #mainSection #mainFooter #logoUpm {
+    width: 5%;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    float: right; }
   #mainSection #mainHeader {
     height: 50px;
     display: flex;
@@ -96,18 +105,30 @@
       margin-left: calc(600px - 50vw); } }
 
 @media (max-width: 1200px) {
-  #mainSection .main .menuERShow {
+  #mainSection .menuERShow {
     flex-wrap: wrap;
     flex: 1; }
-    #mainSection .main .menuERShow .attachmentShow {
+    #mainSection .menuERShow .attachmentShow {
       width: 100%;
       max-width: 100%; }
-    #mainSection .main .menuERShow .menuERShowRight {
+    #mainSection .menuERShow .menuERShowRight {
       width: 100%;
       margin-left: 0px;
       border-left: none; }
-      #mainSection .main .menuERShow .menuERShowRight .menuERactionList {
+      #mainSection .menuERShow .menuERShowRight .menuERactionList {
         padding: 0px; } }
+
+@media (max-width: 768px) {
+  #mainHeader #logoImg, #mainFooter #logoImg {
+    width: 22%; }
+  #mainHeader #logoUpm, #mainFooter #logoUpm {
+    width: 14%; } }
+
+@media (max-width: 576px) {
+  #mainSection #mainHeader #logoImg, #mainSection #mainFooter #logoImg {
+    width: 32%; }
+  #mainSection #mainHeader #logoUpm, #mainSection #mainFooter #logoUpm {
+    width: 14%; } }
 
 button {
   background-color: white;
@@ -234,6 +255,10 @@ button {
         padding-top: 15px; }
     .portada .contenedor #imagenPortada {
       width: auto; }
+
+@media (max-width: 768px) {
+  .portada .contenedor .loginLeft {
+    display: none; } }
 
 .escapeRooms .flexBoxEscapeRooms {
   display: flex;

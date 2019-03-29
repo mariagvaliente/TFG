@@ -108,7 +108,7 @@ exports.destroy = (req, res, next) => {
 
 exports.hintApp = (req, res) => {
 
-    res.render("escapeRooms/hintApp", {"layout": false,
+    res.render("escapeRooms/hintApp/hintApp", {"layout": false,
         "escapeRoom": req.escapeRoom});
 
 };
@@ -116,7 +116,7 @@ exports.hintApp = (req, res) => {
 
 exports.hintAppWrapper = (req, res) => {
 
-  res.render("escapeRooms/hintAppScormWrapper", {"layout": false,
+  res.render("escapeRooms/hintApp/hintAppScormWrapper", {"layout": false,
     "escapeRoom": req.escapeRoom});
 
 };

@@ -31,7 +31,7 @@
     </div>
     <div class="right-half-flex">
       <div class="preview">
-        <iframe id="previewIframe" src='/escapeRooms/<%= escapeRoom.id %>/preview?appearance=litera'></iframe>
+        <iframe id="previewIframe" src='/escapeRooms/<%= escapeRoom.id %>/preview?appearance=<%=escapeRoom.appearance%>'></iframe>
       </div>
     </div>
   </div>
@@ -47,4 +47,4 @@
 </div>
 
 <% include ../../partials/__footer %>
-<%- include('../../partials/__progress', {progress: 1}) %>
+<%- include('../../partials/__progress', {progress: 5}) %>

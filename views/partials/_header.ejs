@@ -1,16 +1,16 @@
 <header class="" id="mainHeader">
     <div class="left">
         <% if (session.user) { %>
-            <a href="/?_method=DELETE"><i class="material-icons">
-power_settings_new
-</i></a>
+            <a href="/?_method=DELETE"><i class="material-icons">power_settings_new</i></a>
+            <span style="display:inline-block;width:10px;"></span>
+            <a href="/escapeRooms"><i class="material-icons">home</i></a>
         <% } %>
     </div>
     <div class="right">
         <% if (!session.user) { %>
             <a href="/">Login</a>
         <% } else { %>
-            <%= session.user.username %>
+            <a href="/users/<%=session.user.id%>/edit"><%= session.user.username %></a>
         <% } %>
     </div>
 </header>

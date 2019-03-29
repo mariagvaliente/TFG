@@ -2,6 +2,16 @@
 #mainSection
 	min-height: 100%
 	position: relative
+	#mainHeader, #mainFooter
+		#logoImg
+			width: 12%
+			margin-top: 0px
+			margin-bottom: 5px
+		#logoUpm
+			width: 5%
+			margin-top: 0px
+			margin-bottom: 5px
+			float: right
 	#mainHeader
 		height: 50px
 		display: flex
@@ -99,7 +109,7 @@
 				margin-left: calc(600px - 50vw)
 
 @media (max-width: 1200px)
-	#mainSection .main
+	#mainSection
 		.menuERShow
 			flex-wrap: wrap
 			flex: 1
@@ -112,13 +122,25 @@
 				border-left: none
 				.menuERactionList
 					padding: 0px
+
 // Small devices (landscape phones, 576px and up)
 // @media (min-width: 576px)
 
 
 // Medium devices (tablets, 768px and up)
-// @media (min-width: 768px)
-
+@media (max-width: 768px)
+	#mainHeader, #mainFooter
+		#logoImg
+			width: 22%
+		#logoUpm
+			width: 14%
+@media (max-width: 576px)
+	#mainSection
+		#mainHeader, #mainFooter
+			#logoImg
+				width: 32%
+			#logoUpm
+				width: 14%
 // Large devices (desktops, 992px and up)
 // @media (min-width: 992px)
 

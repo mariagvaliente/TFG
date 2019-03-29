@@ -377,7 +377,7 @@ exports.update = (req, res, next) => {
                     then(() => {
 
                         fs.unlink(req.file.path); // Delete the file uploaded at./uploads
-                        res.redirect(`/escapeRooms/${escapeRoom.id}/appearance`);
+                        res.redirect(`/escapeRooms/${escapeRoom.id}/turnos`);
 
                     });
 
@@ -386,7 +386,7 @@ exports.update = (req, res, next) => {
         }).
         then(() => {
 
-            res.redirect(`/escapeRooms/${req.escapeRoom.id}/appearance`);
+            res.redirect(`/escapeRooms/${req.escapeRoom.id}/turnos`);
 
         }).
         catch(Sequelize.ValidationError, (error) => {
@@ -423,7 +423,7 @@ exports.temasUpdate = (req, res, next) => {
 
     escapeRoom.save({"fields": ["appearance"]}).then(() => {
 
-        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "edit" : "turnos"}`);
+        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "instructions" : "evaluation"}`);
 
     }).
         catch(Sequelize.ValidationError, (error) => {
@@ -460,7 +460,7 @@ exports.turnosUpdate = (req, res /* , next*/) => {
 
     const isPrevious = Boolean(body.previous);
 
-    res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "appearance" : "puzzles"}`);
+    res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "edit" : "puzzles"}`);
 
 };
 
@@ -502,7 +502,7 @@ exports.pistasUpdate = (req, res, next) => {
     escapeRoom.numRight = numRight;
     escapeRoom.feedback = Boolean(feedback);
 
-    const back = `/escapeRooms/${escapeRoom.id}/${isPrevious ? "puzzles" : "evaluation"}`;
+    const back = `/escapeRooms/${escapeRoom.id}/${isPrevious ? "puzzles" : "instructions"}`;
 
     escapeRoom.save({"fields": [
         "numQuestions",
@@ -638,7 +638,7 @@ exports.encuestasUpdate = (req, res, next) => {
         "posttest"
     ]}).then(() => {
 
-        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "hints" : "instructions"}`);
+        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "appearance" : ""}`);
 
     }).
         catch(Sequelize.ValidationError, (error) => {
@@ -677,7 +677,7 @@ exports.instructionsUpdate = (req, res) => {
     "instructions",
   ]}).then(() => {
 
-    res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "evaluation" : ""}`);
+    res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "hints" : "appearance"}`);
 
   }).
   catch(Sequelize.ValidationError, (error) => {

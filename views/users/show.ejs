@@ -1,40 +1,45 @@
-<h1>
-    User:
-</h1>
 
-<ul>
-    <li>
-        User name:
-        <b><%= user.username %></b>
-    </li>
+<div class="main">
+    <h1>
+        Usuario:
+    </h1>
 
-    <li>
-        Administrator:
-        <b><%= user.isAdmin ? "Yes" : "No" %></b>
-    </li>
-    <li>
-        Student:
-        <b><%= user.isStudent ? "Yes" : "No" %></b>
-    </li>
+    <ul>
+        <li>
+            E-mail:
+            <b><%= user.username %></b>
+        </li>
 
-</ul>
+        <li>
+            Rol:
+            <b><%= user.isStudent ? "Estudiante" : "Profesor" %></b>
+        </li>
+        <% if(user.isAdmin) {%>
+        <li>
+            <b>Administrador</b>: Sí
+        </li>
+        <% } %>
 
-<% if (session.user) { %>
+    </ul>
+
+    <% if (session.user) { %>
     <p>
         <% if (session.user.isAdmin || session.user.id === user.id) { %>
-            <a href="/users/<%= user.id %>/edit">
-                <button type="button"> Edit</button>
-            </a>
+        <a href="/users/<%= user.id %>/edit">
+            <button type="button"> Edit</button>
+        </a>
         <% } %>
         <% if (session.user.isAdmin && session.user.id !== user.id) { %>
-            <a href="/users/<%= user.id %>?_method=DELETE">
-                <button type="button"
-                        onClick="return confirm('Delete user: <%= user.username %>');">
-                    Delete
-                </button>
-            </a>
+        <a href="/users/<%= user.id %>?_method=DELETE">
+            <button type="button"
+                    onClick="return confirm('Delete user: <%= user.username %>');">
+                Delete
+            </button>
+        </a>
         <% } %>
     </p>
-<% } %>
+    <% } %>
 
-<a href="/goback"><button type="button">Go back</button></a>
+    <a href="/goback"><button type="button">Go back</button></a>
+
+</div>

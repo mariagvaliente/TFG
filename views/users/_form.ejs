@@ -1,39 +1,35 @@
+<%if (!user.id) {%>
 <h1 class="loginWelcomeMessage">
-                Regístrate:
-            </h1>
+    Regístrate:
+</h1>
+    <form method="post" action="/users">
+<%}else{%>
+    <form method="post" action="/users/<%=user.id%>?_method=PUT%>">
+<%}%>
 
-            <form method="post" action="/users">
 <div>
-        <% if ( !user.id) { %>
          <label for="name"><span>Nombre</span>
          <input type="text" class="customInput" id="name" name="name" value="<%= user.name %>" required placeholder="Introduce tu nombre" autocomplete="off"/> </label>
-        <% } else { %>Nombre: <%= user.name %><% } %>
 </div>
 <br />
 <div>
-        <% if ( !user.id) { %>
          <label for="surname"><span>Apellidos</span>
         <input type="text" class="customInput" id="surname" name="surname" value="<%= user.surname %>" required placeholder="Introduce tus apellidos" autocomplete="off"/>
-        <% } else { %>Apellidos: <%= user.surname %><% } %></label>
 </div>
 <br />
 <div>
-        <% if ( !user.id) { %>
         <label for="gender"><span>Género</span>
         <select  required class="customInput" id="gender" name="gender" value="<%= user.gender %>" placeholder="Selecciona tu género" autocomplete="off">
-            <option value="" disabled selected></option>
-            <option value="Femenino">Mujer</option>
-            <option value="Masculino">Hombre</option>
-            <option value="Otro">Otro</option>
+            <option value="" disabled <%= !user.id ? "selected" : ""%> <option>
+            <option value="Femenino" <%= user.gender === "Femenino" ? "selected" : ""%>>Mujer</option>
+            <option value="Masculino" <%= user.gender === "Masculino" ? "selected" : ""%>>Hombre</option>
+            <option value="Otro" <%= user.gender === "Otro" ? "selected" : ""%>>Otro</option>
         </select></label>
-        <% } else { %>Género: <%= user.gender %><% } %>
 </div>
 <br />
 <div>
-        <% if ( !user.id) { %>
         <label for="username"><span>Email</span>
-        <input type="email" class="customInput" id="username" name="username" value="<%= user.username %>" required placeholder="Introduce tu email" autocomplete="off"/></label>
-        <% } else { %>Email: <%= user.username %><% } %>
+        <input type="email" <%=user.id?"disabled":""%> class="customInput" id="username" name="username" value="<%= user.username %>" required placeholder="Introduce tu email" autocomplete="off"/></label>
 </div>
 <br />
 <div>
@@ -46,11 +42,16 @@
         <input type="password" class="customInput" id="user_confirm_password" required placeholder="Introduce tu contraseña" autocomplete="off"/></label>
 </div>
 <br />
+<%if (!user.id) {%>
+    <button class="registro" type="submit" value="Save" onclick="return confirmPassword()">regístrate</button>
+    <br />
+    <br />
+    <a class="login" href="/">¿Ya tienes cuenta?</a>
+<%} else {%>
+    <button class="save" type="submit" value="edit" onclick="return confirmPassword()">guardar</button>
 
-<button class="registro" type="submit" value="Save" onclick="return confirmPassword()">regístrate</button>
-<br />
-<br />
-<a class="login" href="/">¿Ya tienes cuenta?</a>
+<%} %>
+
 
 <script>
     function confirmPassword() {
@@ -65,6 +66,30 @@
         } else {
             alert('Passwords do not match.');
             return false;
+        }
+    }
+
+    function confirmDNI(){
+        var numero
+        var letr
+        var letra
+        var expresion_regular_dni
+
+        expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
+
+        if(expresion_regular_dni.test (dni) == true){
+            numero = dni.substr(0,dni.length-1);
+            letr = dni.substr(dni.length-1,1);
+            numero = numero % 23;
+            letra='TRWAGMYFPDXBNJZSQVHLCKET';
+            letra=letra.substring(numero,numero+1);
+            if (letra!=letr.toUpperCase()) {
+                alert('Dni erroneo, la letra del NIF no se corresponde');
+            }else{
+                alert('Dni correcto');
+            }
+        }else{
+            alert('Dni erroneo, formato no válido');
         }
     }
 </script>

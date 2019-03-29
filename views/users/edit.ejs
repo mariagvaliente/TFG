@@ -1,9 +1,12 @@
+<% include ../partials/_header.ejs %>
+<div class="main">
 <h1>
-    Edit User:
+    Editar usuario:
 </h1>
 
 <form method="post" action="/users/<%= user.id %>?_method=PUT">
-    <% include _form.ejs %>
+    <%- include("./_form.ejs") %>
 
-    <a href="/goback"><button type="button">Go back</button></a>
 </form>
+</div>
+<% include ../partials/__footer.ejs %>
