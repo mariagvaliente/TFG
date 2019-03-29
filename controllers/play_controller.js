@@ -2,7 +2,15 @@ const Sequelize = require("sequelize");
 const {models} = require("../models");
 const cloudinary = require("cloudinary");
 const {parseURL}= require("../helpers/video")
-// GET /escapeRooms/:escapeRoomId
-exports.play = (req, res, next) => {
+// GET /escapeRooms/:escapeRoomId/play
+exports.play = (req, res) => {
   res.render("escapeRooms/play/play", {escapeRoom: req.escapeRoom, cloudinary, parseURL, layout: false});
+}
+// GET /escapeRooms/:escapeRoomId/pretest
+exports.preTest = (req, res) => {
+  res.render("escapeRooms/play/pretest", {escapeRoom: req.escapeRoom});
+}
+// GET /escapeRooms/:escapeRoomId/posttest
+exports.postTest = (req, res) => {
+  res.render("escapeRooms/play/posttestandsurvey", {escapeRoom: req.escapeRoom});
 }

@@ -1,0 +1,24 @@
+
+<% include ../../partials/_header.ejs %>
+<div class="main student">
+    <div class="dialog" >
+        <h1>Antes de irte...</h1>
+        <div class="dialog-content">
+            <%if (escapeRoom.posttest) { %>
+                <p class="evaluation-paragraph">Rellena este cuestionario para ver cuánto has aprendido:<br/><br/>
+                    <a target="_blank" href="<%=escapeRoom.posttest%>"><%=escapeRoom.posttest%></a>
+                </p>
+            <%}%>
+            <%if (escapeRoom.survey) { %>
+                <p class="evaluation-paragraph">Rellena la encuesta de satisfacción. Tu opinión es muy importante de cara a mejorar para futuras ediciones:<br/><br/>
+                    <a target="_blank" href="<%=escapeRoom.survey%>"><%=escapeRoom.survey%></a>
+                </p>
+            <%}%>
+        </div>
+        <a href="/escapeRooms">
+            <button>
+            salir
+            </button>
+        </a>
+    </div>
+</div>

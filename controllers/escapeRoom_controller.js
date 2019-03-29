@@ -671,8 +671,6 @@ exports.instructionsUpdate = (req, res) => {
 
   const {escapeRoom, body} = req;
   const isPrevious = Boolean(body.previous);
-  console.log("*******************************************")
-  console.log(body)
   escapeRoom.instructions = body.instructions;
 
   escapeRoom.save({"fields": [

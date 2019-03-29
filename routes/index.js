@@ -144,5 +144,7 @@ router.get("/escapeRooms/:escapeRoomId(\\d+)/hintApp", sessionController.loginRe
 router.get("/escapeRooms/:escapeRoomId(\\d+)/hintAppWrapper", sessionController.loginRequired, /* EscapeRoomController.isParticipantRequired,*/ hintController.hintAppWrapper);
 
 router.get("/escapeRooms/:escapeRoomId(\\d+)/play", sessionController.loginRequired, playController.play);
+router.get("/escapeRooms/:escapeRoomId(\\d+)/pretest", sessionController.loginRequired, playController.preTest);
+router.get("/escapeRooms/:escapeRoomId(\\d+)/posttest", sessionController.loginRequired, playController.postTest);
 
 module.exports = router;

@@ -881,6 +881,20 @@ button {
         #mainSection .main.student .dialog .join-button-flex-container div button {
           border-radius: 25px;
           width: 100%; }
+    #mainSection .main.student .dialog h1 {
+      font-size: 28px; }
+    #mainSection .main.student .dialog .dialog-content {
+      font-family: 'Lato', sans-serif; }
+      #mainSection .main.student .dialog .dialog-content * {
+        font-family: inherit; }
+      #mainSection .main.student .dialog .dialog-content .evaluation-paragraph {
+        font-size: 18px; }
+        #mainSection .main.student .dialog .dialog-content .evaluation-paragraph a {
+          max-width: 100%;
+          display: block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          color: #FAC855; }
 
 @media (max-width: 992px) {
   #mainSection .main.student .dialog {
