@@ -1,6 +1,6 @@
 $(function(){
     window.previewHintApp = () => {
-        var newwindow = window.open('hintAppWrapper','',
+        var newwindow = window.open('/escapeRooms/'+escapeRoomId+'/hintAppWrapper','',
             'width='+screen.width*0.7+',height='+screen.height*0.7);
         newwindow.onbeforeunload = function () {
             // processing event here
