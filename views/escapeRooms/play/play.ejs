@@ -4,8 +4,10 @@
     <title>Escape room</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/bootswatch/<%=escapeRoom.appearance%>.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/vendor/bootswatch/<%=escapeRoom.appearance%>.bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/vendor/quill.snow.css">
     <link rel="stylesheet" href="/stylesheets/play.css">
+
 </head>
 <body>
 <div class="previewContainer">
@@ -18,7 +20,7 @@
                     <% } else { %>
                     <video id="previewVideoContent" width="560" height="315" style="max-width: 100%;" src="<%= escapeRoom.video %>">"></video>
                     <% } %>
-                <% } else { %>
+                <% } else if (escapeRoom.attachment) { %>
                     <div class="previewImage">
                         <% var attachment = escapeRoom.attachment; %>
                         <%- include("../../attachments/_show", {attachment})%>
@@ -29,7 +31,7 @@
         <br/>
         <br/>
         <div class=" row-centered">
-            <div class="col-xs-12 text-left">
+            <div class="col-xs-12 text-left ql-editor instructionsShow">
                 <%if (escapeRoom.instructions) {%>
                     <%-escapeRoom.instructions %>
                 <%} else {%>
@@ -37,6 +39,16 @@
                 <%}%>
             </div>
         </div>
+        <% if (escapeRoom.hintApp) {%>
+        <div class=" row-centered">
+            <div class="col-xs-12">
+                    <button onclick="previewHintApp()" class="btn btn-primary">
+                        ¿Necesitas una pista?
+                    </button>
+            </div>
+        </div>
+        <% } %>
+
         <div class=" row-centered">
             <div class="col-xs-12">
             <% include ../../partials/_countdown.ejs %>
@@ -45,6 +57,6 @@
         </div>
     </div>
 </div>
-
+<script src="/js/handleHintApp.js"></script>
 </body>
 </html>

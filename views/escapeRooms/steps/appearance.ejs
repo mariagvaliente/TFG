@@ -9,25 +9,7 @@
         <img class="buttonApp <%= escapeRoom.appearance  === "sketchy"   ?  "selected" : "" %>" id="sketchy" src="/images/sketchy.png" autocomplete="off"/>
         <img class="buttonApp <%= escapeRoom.appearance  === "darkly"    ?  "selected" : "" %>" id="darkly" src="/images/darkly.png" autocomplete="off"/>
         <img class="buttonApp <%= escapeRoom.appearance  === "cyborg"    ?  "selected" : "" %>" id="cyborg" src="/images/cyborg.png" autocomplete="off"/>
-      <script>
-        var url = '/escapeRooms/<%= escapeRoom.id %>/preview?appearance=';
-        window.onload = function() {
-          let anchors = document.getElementsByClassName('buttonApp');
-          for(var i = 0; i < anchors.length; i++) {
-            let anchor = anchors[i];
-            anchor.onclick = function() {
-              let input = document.getElementById('appearance');
-              let oldSelected = document.getElementById(input.value);
-              input.value = anchor.id;
-              if (oldSelected) {
-                oldSelected.classList.remove('selected');
-              }
-              document.getElementById('previewIframe').src = url + anchor.id;
-              this.classList.add('selected')
-            }
-          }
-        }
-      </script>
+
     </div>
     <div class="right-half-flex">
       <div class="preview">
@@ -48,3 +30,20 @@
 
 <% include ../../partials/__footer %>
 <%- include('../../partials/__progress', {progress: 5}) %>
+<script>
+    var url = '/escapeRooms/<%= escapeRoom.id %>/preview?appearance=';
+    $(function() {
+        $('.buttonApp').on('click', function(e){
+            let input = $('#appearance');
+            let val = input.val();
+            let oldSelected = $('#'+val);
+            input.val(this.id);
+            if (oldSelected) {
+                oldSelected.removeClass('selected');
+            }
+            $('#previewIframe').attr('src', url + this.id);
+            this.classList.add('selected')
+        })
+
+    })
+</script>

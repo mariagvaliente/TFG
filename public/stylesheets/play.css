@@ -18,7 +18,7 @@ p {
 }
 .countdown, #explosion {
     font-family: 'Digital';
-    font-size: 20vw;
+    font-size: 18vw;
 }
 
 .previewImage img {
@@ -28,4 +28,9 @@ p {
 .row-centered {
     text-align: center;
     justify-content: center;
+}
+.instructionsShow {
+    height: auto;
+    overflow: visible;
+    whitespace: inherit;
 }

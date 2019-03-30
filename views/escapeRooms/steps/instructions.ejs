@@ -1,18 +1,23 @@
 
-<link rel="stylesheet" href="/stylesheets/quill.snow.css">
-<script src="/js/quill.min.js"></script>
-<script src="/js/image-resize.min.js"></script>
+<link rel="stylesheet" href="/stylesheets/vendor/quill.snow.css">
+<script src="/js/vendor/quill.min.js"></script>
+<script src="/js/vendor/image-resize.min.js"></script>
 <!-- Theme included stylesheets -->
  <% include ../../partials/_header.ejs %>
 <div class="main step-instructions">
   <h2>Instrucciones</h2>
-  <form method='POST' id="instructionsForm" action='/escapeRooms/<%= escapeRoom.id %>/instructions'  >
+    <p class="intro-paragraph">
+        Escribe las instrucciones que se proporcionarán a los alumnos cuando entren a jugar a la escape room.
+        Puedes incluir enlaces a otras páginas si es necesario.
+    </p>
+
+    <form method='POST' id="instructionsForm" action='/escapeRooms/<%= escapeRoom.id %>/instructions'  >
   	<div class="editor-wrapper">
         <div id="editor" style="background-color: white;">
             <%if (escapeRoom.instructions) {%>
-                <%-escapeRoom.instructions %>
+                <%- escapeRoom.instructions %>
             <%} else {%>
-                <h1>Bienvenido a la Escape Room</h1>
+                <h1 class="ql-align-center">Bienvenido a la Escape Room</h1>
             <%}%>
   		</div>
   	</div>
@@ -31,60 +36,6 @@
 <% include ../../partials/__footer %>
 <%- include('../../partials/__progress', {progress: 4}) %>
 
-<script>
-$(function(){
+<script src="/js/instructions.js">
 
-    var toolbarOptions = [
-      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-      ['blockquote', 'code-block'],
-      ['link'/*, 'image'*/],
-      [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-      [{ 'direction': 'rtl' }],                         // text direction
-
-      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-    //  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-      [{ 'align': [] }],
-
-      ['clean']                                         // remove formatting button
-    ];
-    var options = {
-      modules: {
-        toolbar: toolbarOptions,
-        imageResize: {},
-        clipboard: {}
-      },
-      placeholder: 'Write here your escape room instructions',
-      readOnly: false,
-      theme: 'snow'
-    };
-
-    var editor = new Quill('#editor', options);
-      $('#instructionsForm').on("submit", e => {
-        let content = document.getElementsByClassName('ql-editor')[0].innerHTML;
-        $('#instructions').val( (content));
-        return true;
-      });
-    editor.clipboard.addMatcher (Node.ELEMENT_NODE, function (node, delta) {
-        const attributes = {
-            'font': false,
-            'strike': false,
-            'direction': false,
-            'color': false
-        };
-        delta.ops = delta.ops.map(op=>{
-            return {
-                insert: op.insert,
-                attributes: {
-                    ...op.attributes, ...attributes
-                }
-            }
-        });
-        return delta;
-    });
-});
 </script>

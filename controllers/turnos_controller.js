@@ -34,7 +34,7 @@ exports.load = (req, res, next, turnId) => {
 // POST /escapeRooms/:escapeRoomId/join
 exports.indexStudent = (req, res, next) => {
 
-    models.turno.findAll().
+    models.turno.findAll({where: {escapeRoomId: req.escapeRoom.id}}).
         then((turnos) => {
 
             res.render("turnos/_indexStudent.ejs", {turnos});

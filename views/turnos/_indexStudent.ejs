@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="/stylesheets/owl.carousel.min.css">
-<link rel="stylesheet" href="/stylesheets/owl.theme.default.css">
+<link rel="stylesheet" href="/stylesheets/vendor/owl.carousel.min.css">
+<link rel="stylesheet" href="/stylesheets/vendor/owl.theme.default.css">
 <% include ../partials/_header.ejs %>
 
 <div class="main student" style="display: flex; justify-content: center; align-items: center;">
@@ -27,7 +27,7 @@
         var pastDates = [];
         var firstDiv = false;
         %>
-
+        <%if (turnos && turnos.length > 0) {%>
         <div class="owl-carousel">
             <% for (var i in turnos) { %>
                 <% 	var turn = turnos[i];
@@ -66,6 +66,7 @@
         </div>
         </div>
         </div>
+<%}%>
         <div class="join-button-flex-container">
             <form method='GET' id="form" action='/users/<%= session.user.id %>'>
                 <button class="deleteButton" type="submit" style="display:inline-block;">cancelar</button>
@@ -77,7 +78,7 @@
         </div>
     </div>
 </div>
-<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/vendor/owl.carousel.min.js"></script>
 
 <script>
 

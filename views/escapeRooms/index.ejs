@@ -4,18 +4,29 @@
     <div class="escapeRoomList">
         <% if (escapeRooms==0) { %>
         <h1>
-            No has creado ninguna escape room, gestiónalas desde aquí...
+            <% if (user && user.isStudent) { %>
+                No tienes ninguna escape room activa, espera a que tu profe te de acceso a alguna...
+            <% } else { %>
+                No has creado ninguna escape room, gestiónalas desde aquí...
+            <% } %>
         </h1>
         <div class="flexBoxEscapeRooms">
+            <% if (user && !user.isStudent) { %>
             <a href="/escapeRooms/new" class="escapeRoomItemWrapper animated bounceIn">
-                <div class="escapeRoomItem addEscapeRoom" style="animation-delay: <%=escapeRooms ? (escapeRooms.length * 100 + 100): 0 %>ms;">
+                <div class="escapeRoomItem addEscapeRoom">
                     <span>+</span>
                 </div>
             </a>
+            <% } %>
         </div>
         <% } else {  %>
         <h1>
-            Gestiona las escape rooms desde aquí...
+            <% if (user && user.isStudent) { %>
+                Estas son tus escape rooms
+            <% } else { %>
+                Gestiona las escape rooms desde aquí...
+            <% } %>
+
         </h1>
 
         <div class="flexBoxEscapeRooms">
@@ -23,7 +34,7 @@
             <% for (var i in escapeRooms) { %>
                 <% var escapeRoom = escapeRooms[i]; %>
                 <% var attachment = escapeRoom.attachment; %>
-                <a href="/escapeRooms/<%= escapeRoom.id %>" class="escapeRoomItemWrapper animated bounceIn" style="animation-delay: <%=100*i%>ms;">
+                <a href="/escapeRooms/<%= escapeRoom.id %><%=(user && user.isStudent) ? "/play" : "" %>" class="escapeRoomItemWrapper animated bounceIn" style="animation-delay: <%=100*i%>ms;">
                     <div class="escapeRoomItem">
                         <div class="erFoto" style="text-align: center">
                             <div class="bckgFoto" style="background-image: url(<% if (attachment) {%><%=attachment.url%><%} else {%>/images/placeholder.png<%}%>)"></div>
@@ -32,11 +43,13 @@
                     </div>
                 </a>
             <% } %>
+            <% if (user && !user.isStudent) { %>
             <a href="/escapeRooms/new" class="escapeRoomItemWrapper animated bounceIn">
                 <div class="escapeRoomItem addEscapeRoom" style="animation-delay: <%=escapeRooms ? (escapeRooms.length * 100 + 100): 0 %>ms;">
-                    <span>+</span>
+                        <span>+</span>
                 </div>
             </a>
+            <% } %>
         </div>
         <% } %>
     </br>

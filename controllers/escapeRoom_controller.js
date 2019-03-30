@@ -19,6 +19,8 @@ const attHelper = require("../helpers/attachments"),
             "tfg",
             "escapeRoom"
         ]};// Autoload the escape room with id equals to :escapeRoomId
+
+
 exports.load = (req, res, next, escapeRoomId) => {
 
     models.escapeRoom.findById(escapeRoomId, {"include": [
@@ -118,7 +120,8 @@ exports.index = (req, res, next) => {
 
             console.log(escapeRooms);
             res.render("escapeRooms/index.ejs", {escapeRooms,
-                cloudinary});
+                cloudinary,
+                user: req.user});
 
         }).
         catch((error) => next(error));
@@ -138,7 +141,9 @@ exports.show = (req, res) => {
 
     const {escapeRoom} = req;
     res.render("escapeRooms/show", {escapeRoom,
-        cloudinary});
+        cloudinary,
+        parseURL
+    });
 
 };
 
@@ -486,16 +491,13 @@ exports.pistasUpdate = (req, res, next) => {
                         attHelper.deleteResource(escapeRoom.hintApp.public_id);
                         escapeRoom.hintApp.destroy();
 
-                        return;
-
                     }
+                    return;
 
                 }
 
                 return attHelper.checksCloudinaryEnv().
-
-
-                // Save the new attachment into Cloudinary:
+                    // Save the new attachment into Cloudinary:
                     then(() => attHelper.uploadResource(req.file.path, cloudinary_upload_options_zip)).
                     then((uploadResult) => {
 
@@ -684,11 +686,17 @@ exports.destroy = (req, res, next) => {
 
 
 // GET /escapeRooms/:escapeRoomId/join
-exports.studentToken = (req, res) => {
+exports.studentToken = (req, res,next) => {
 
     const {escapeRoom} = req;
-    res.render("escapeRooms/indexStudent", {escapeRoom,
-        cloudinary});
+    console.log('************************************************',req.params, escapeRoom.invitation)
+    if (escapeRoom.invitation === req.query.token) {
+        res.render("escapeRooms/indexStudent", {escapeRoom,
+            cloudinary});
+    } else {
+        next(403)
+    }
+
 
 
 };
