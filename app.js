@@ -47,12 +47,11 @@ app.use(bodyParser.urlencoded({"extended": false}));
 app.use(cookieParser());
 
 // Configuracion de la session para almacenarla en BBDD usando Sequelize.
-const sequelize = require("./models"),
-    sessionStore = new SequelizeStore({"db": sequelize,
-        "table": "session",
-        "checkExpirationInterval": 15 * 60 * 100000, // The interval at which to cleanup expired sessions in milliseconds. (15 minutes)
-        "expiration": 4 * 60 * 60 * 100000 // The maximum age (in milliseconds) of a valid session. (4 hours)
-    });
+const sequelize = require("./models");
+const sessionStore = new SequelizeStore({"db": sequelize,
+    "table": "session",
+    "checkExpirationInterval": 15 * 60 * 100000, // The interval at which to cleanup expired sessions in milliseconds. (15 minutes)
+    "expiration": 4 * 60 * 60 * 100000});// The maximum age (in milliseconds) of a valid session. (4 hours)
 app.use(session({"secret": "Escape Room",
     "store": sessionStore,
     "resave": false,

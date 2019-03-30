@@ -1,6 +1,5 @@
 const Sequelize = require("sequelize");
-const {models} = require("../models");
-const cloudinary = require("cloudinary");// Autoload the hint with id equals to :hintId
+const {models} = require("../models");// Autoload the hint with id equals to :hintId
 exports.load = (req, res, next, hintId) => {
 
     models.hint.findById(hintId).

@@ -1,13 +1,9 @@
-const parseURL = (url) => {
+const patt1 = /youtube.com\/watch\?v=(.*)/;
+const patt2 = /youtube.com\/embed\/(.*)/;
+const patt3 = /youtu.be\/(.*)/;
 
-    if (url === "") {
+const parseURL = (url = "") => {
 
-        return false;
-
-    }
-    const patt1 = /youtube.com\/watch\?v=(.*)/;
-    const patt2 = /youtube.com\/embed\/(.*)/;
-    const patt3 = /youtu.be\/(.*)/;
     if (patt2.exec(url)) {
 
         return url;
@@ -25,7 +21,6 @@ const parseURL = (url) => {
         return `https://www.youtube.com/embed/${code2[1]}`;
 
     }
-
     return false;
 
 };

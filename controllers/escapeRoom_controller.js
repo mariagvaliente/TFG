@@ -88,26 +88,31 @@ exports.adminOrAuthorRequired = (req, res, next) => {
 // GET /escapeRooms
 exports.index = (req, res, next) => {
 
-    const findOptions = req.user ? req.user.isStudent ? {"include": [
-        {"model": models.turno,
-            "duplicating": false,
-            "required": true,
-            "include": [
-                {"model": models.user,
-                    "as": "students",
-                    "duplicating": false,
-                    "required": true,
-                    // "association": models.turno.associations.turnosAgregados,
-                    "where": {"id": req.user.id}}
-            ]},
+    let findOptions = {};
+    if (req.user) {
 
-        models.attachment
-    ]} : {"include": [
-        models.attachment,
-        {"model": models.user,
-            "as": "author",
-            "where": {"id": req.user.id}}
-    ]} : {};
+        findOptions = req.user.isStudent ? {"include": [
+            {"model": models.turno,
+                "duplicating": false,
+                "required": true,
+                "include": [
+                    {"model": models.user,
+                        "as": "students",
+                        "duplicating": false,
+                        "required": true,
+                        // "association": models.turno.associations.turnosAgregados,
+                        "where": {"id": req.user.id}}
+                ]},
+            models.attachment
+        ]} : {"include": [
+            models.attachment,
+            {"model": models.user,
+                "as": "author",
+                "where": {"id": req.user.id}}
+        ]};
+
+    }
+
     models.escapeRoom.findAll(findOptions).
         then((escapeRooms) => {
 
@@ -620,7 +625,7 @@ exports.instructions = (req, res) => {
 
 
 // GET /escapeRooms/:escapeRoomId/instructions
-exports.instructionsUpdate = (req, res) => {
+exports.instructionsUpdate = (req, res, next) => {
 
     const {escapeRoom, body} = req;
     const isPrevious = Boolean(body.previous);

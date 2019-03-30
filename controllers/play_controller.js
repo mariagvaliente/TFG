@@ -1,5 +1,3 @@
-const Sequelize = require("sequelize");
-const {models} = require("../models");
 const cloudinary = require("cloudinary");
 const {parseURL} = require("../helpers/video");
 // GET /escapeRooms/:escapeRoomId/play
