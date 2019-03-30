@@ -1,8 +1,8 @@
 "use strict";
 
 module.exports = {up (queryInterface, Sequelize) {
-
-    return queryInterface.createTable("members",
+    return queryInterface.createTable(
+        "members",
         {"teamId": {"type": Sequelize.INTEGER,
             "primaryKey": true,
             "unique": "compositeKey",
@@ -15,12 +15,10 @@ module.exports = {up (queryInterface, Sequelize) {
             "allowNull": false},
         "updatedAt": {"type": Sequelize.DATE,
             "allowNull": false}},
-        {"sync": {"force": true}});
-
+        {"sync": {"force": true}}
+    );
 },
 
 down (queryInterface) {
-
     return queryInterface.dropTable("members");
-
 }};

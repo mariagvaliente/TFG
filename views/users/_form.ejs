@@ -33,6 +33,11 @@
 </div>
 <br />
 <div>
+    <label for="dni"><span>DNI</span>
+        <input type="dni" <%=user.id?"disabled":""%> class="customInput" id="dni" name="dni" value="<%= user.dni %>" required placeholder="Introduce tu DNI" autocomplete="off"/></label>
+</div>
+<br />
+<div>
         <label for="user_password"><span>Contraseña</span>
         <input type="password" class="customInput" id="user_password" name="password" required placeholder="Introduce tu contraseña" autocomplete="off"/></label>
 </div>
@@ -43,7 +48,7 @@
 </div>
 <br />
 <%if (!user.id) {%>
-    <button class="registro" type="submit" value="Save" onclick="return confirmPassword()">regístrate</button>
+    <button class="registro" type="submit" value="Save" onclick="return (confirmPassword() && confirmDNI())">regístrate</button>
     <br />
     <br />
     <a class="login" href="/">¿Ya tienes cuenta?</a>
@@ -70,11 +75,8 @@
     }
 
     function confirmDNI(){
-        var numero
-        var letr
-        var letra
-        var expresion_regular_dni
-
+        var numero, letr, letra, expresion_regular_dni;
+        var dni = document.getElementById('dni').value;
         expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
 
         if(expresion_regular_dni.test (dni) == true){
@@ -85,11 +87,13 @@
             letra=letra.substring(numero,numero+1);
             if (letra!=letr.toUpperCase()) {
                 alert('Dni erroneo, la letra del NIF no se corresponde');
+                return false;
             }else{
-                alert('Dni correcto');
+                return true;
             }
         }else{
             alert('Dni erroneo, formato no válido');
+            return false;
         }
     }
 </script>

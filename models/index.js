@@ -6,6 +6,7 @@ const Sequelize = require("sequelize");
 const url = process.env.DATABASE_URL || "sqlite:escapeRoom.sqlite";
 
 const sequelize = new Sequelize(url);// Import the definition of the Escape Room Table from escapeRoom.js
+
 sequelize.import(path.join(__dirname, "escapeRoom"));
 
 // Session
@@ -35,6 +36,7 @@ sequelize.import(path.join(__dirname, "hintApp"));
 
 // Relation between models
 const {escapeRoom, turno, attachment, user, puzzle, hint, hintApp, team} = sequelize.models;// Relation 1-to-N between Escape Room and Turn:
+
 turno.belongsTo(escapeRoom);
 escapeRoom.hasMany(turno, {"onDelete": "CASCADE",
     "hooks": true});

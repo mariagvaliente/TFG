@@ -1,8 +1,8 @@
 // Definition of the Attachment model:
 
 module.exports = function (sequelize, DataTypes) {
-
-    return sequelize.define("attachment",
+    return sequelize.define(
+        "attachment",
         {"public_id": {"type": DataTypes.STRING,
             "validate": {"notEmpty": {"msg": "public_id must not be empty"}}},
         "url": {"type": DataTypes.STRING,
@@ -10,6 +10,6 @@ module.exports = function (sequelize, DataTypes) {
         "filename": {"type": DataTypes.STRING,
             "validate": {"notEmpty": {"msg": "filename must not be empty"}}},
         "mime": {"type": DataTypes.STRING,
-            "validate": {"notEmpty": {"msg": "mime must not be empty"}}}});
-
+            "validate": {"notEmpty": {"msg": "mime must not be empty"}}}}
+    );
 };

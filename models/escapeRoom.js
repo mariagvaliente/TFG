@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
-
-    return sequelize.define("escapeRoom",
+    return sequelize.define(
+        "escapeRoom",
         {"title": {"type": DataTypes.STRING,
             "validate": {"notEmpty": {"msg": "El título no puede estar vacío."}}},
         "subject": {"type": DataTypes.STRING,
@@ -14,10 +14,8 @@ module.exports = function (sequelize, DataTypes) {
         "invitation": {"type": DataTypes.STRING,
             "allowNull": false,
             "defaultValue" () {
-
                 return Math.random().toString(36).
                     substr(2);
-
             },
             "validate": {"notEmpty": {"msg": "La URL de la invitación no puede estar vacía."}}},
         "appearance": {"type": DataTypes.STRING,
@@ -28,8 +26,8 @@ module.exports = function (sequelize, DataTypes) {
         "numQuestions": {"type": DataTypes.INTEGER},
         "numRight": {"type": DataTypes.INTEGER},
         "feedback": {"type": DataTypes.BOOLEAN},
-        "instructions": {"type": DataTypes.STRING}});
-
+        "instructions": {"type": DataTypes.STRING}}
+    );
 };
 
 

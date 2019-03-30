@@ -1,8 +1,8 @@
 "use strict";
 
 module.exports = {"up" (queryInterface, Sequelize) {
-
-    return queryInterface.createTable("attachments",
+    return queryInterface.createTable(
+        "attachments",
         {"id": {"type": Sequelize.INTEGER,
             "allowNull": false,
             "primaryKey": true,
@@ -22,12 +22,10 @@ module.exports = {"up" (queryInterface, Sequelize) {
             "allowNull": false},
         "updatedAt": {"type": Sequelize.DATE,
             "allowNull": false}},
-        {"sync": {"force": true}});
-
+        {"sync": {"force": true}}
+    );
 },
 
 "down" (queryInterface) {
-
     return queryInterface.dropTable("attachments");
-
 }};

@@ -10,31 +10,25 @@ const partials = require("express-partials");
 const flash = require("express-flash");
 const methodOverride = require("method-override");
 const dotenv = require("dotenv");
+
 dotenv.config();
 
 
 const index = require("./routes/index"),
 
     app = express();// View engine setup
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 if (app.get("env") === "production") {
-
     app.use((req, res, next) => {
-
         if (req.headers["x-forwarded-proto"] !== "https") {
-
             res.redirect(`https://${req.get("Host")}${req.url}`);
-
         } else {
-
             next();
-
         }
-
     });
-
 }
 
 /*
@@ -52,6 +46,7 @@ const sessionStore = new SequelizeStore({"db": sequelize,
     "table": "session",
     "checkExpirationInterval": 15 * 60 * 100000, // The interval at which to cleanup expired sessions in milliseconds. (15 minutes)
     "expiration": 4 * 60 * 60 * 100000});// The maximum age (in milliseconds) of a valid session. (4 hours)
+
 app.use(session({"secret": "Escape Room",
     "store": sessionStore,
     "resave": false,
@@ -68,29 +63,25 @@ app.use(flash());
 
 // Dynamic Helper:
 app.use((req, res, next) => {
-
     // To use req.session in the views
     res.locals.session = req.session;
     res.locals.url = req.url;
 
     next();
-
 });
 
 app.use("/", index);
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
-
     const err = new Error("Not Found");
+
     err.status = 404;
     next(err);
-
 });
 
 // Error handler
 app.use((err, req, res) => {
-
     // Set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get("env") === "development" ? err : {};
@@ -98,7 +89,6 @@ app.use((err, req, res) => {
     // Render the error page
     res.status(err.status || 500);
     res.render("error");
-
 });
 
 module.exports = app;

@@ -14,6 +14,7 @@ const membersController = require("../controllers/members_controller");
 
 const multer = require("multer"),
     upload = multer({"dest": "./uploads/"});// Autologout
+
 router.all("*", sessionController.deleteExpiredUserSession);
 
 
@@ -21,20 +22,18 @@ router.all("*", sessionController.deleteExpiredUserSession);
 
 // Redirection to the saved restoration route.
 const redirectBack = (req, res) => {
-
     const url = req.session.backURL;
+
     delete req.session.backURL;
     res.redirect(url);
-
 };
 
 // Save the route that will be the current restoration route.
 const saveBack = (req, res, next) => {
-
     req.session.backURL = req.url;
     next();
-
 };
+
 router.get([
     "/",
     "/users",
@@ -108,18 +107,24 @@ router.delete("/escapeRooms/:escapeRoomId(\\d+)/hints/:hintId(\\d+)", sessionCon
 
 
 // Routes for the resource participants of a turn
-router.put("/users/:userId(\\d+)/participants",
+router.put(
+    "/users/:userId(\\d+)/participants",
     sessionController.loginRequired, sessionController.studentOrAdminRequired,
-    participantController.add);
+    participantController.add
+);
 
 // Routes for the resource members of a user
-router.put("/users/:userId(\\d+)/members/:teamId(\\d+)",
+router.put(
+    "/users/:userId(\\d+)/members/:teamId(\\d+)",
     sessionController.loginRequired, sessionController.studentOrAdminRequired,
-    membersController.add);
+    membersController.add
+);
 
-router.get("/users/:userId(\\d+)/members/:teamId(\\d+)",
+router.get(
+    "/users/:userId(\\d+)/members/:teamId(\\d+)",
     sessionController.loginRequired, sessionController.studentOrAdminRequired,
-    membersController.show);
+    membersController.show
+);
 
 router.get("/teams/new", teamController.new);
 router.post("/teams", teamController.create);

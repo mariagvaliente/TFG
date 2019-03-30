@@ -6,6 +6,7 @@ const arrDates = [
     new Date(),
     new Date()
 ];
+
 arrDates[0].setHours(10);
 arrDates[0].setMinutes(0);
 

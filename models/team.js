@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
-
-    return sequelize.define("team",
+    return sequelize.define(
+        "team",
         {"name": {"type": DataTypes.STRING,
-            "validate": {"notEmpty": {"msg": "El nombre no puede estar vacío."}}}});
-
+            "validate": {"notEmpty": {"msg": "El nombre no puede estar vacío."}}}}
+    );
 };

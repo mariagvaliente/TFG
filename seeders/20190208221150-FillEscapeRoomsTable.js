@@ -1,7 +1,6 @@
 "use strict";
 
 module.exports = {up (queryInterface) {
-
     return queryInterface.bulkInsert("escapeRooms", [
         {"title": "Escape Room IWEB 2018-React Redux",
             "subject": "IWEB",
@@ -15,11 +14,8 @@ module.exports = {up (queryInterface) {
             "createdAt": new Date(),
             "updatedAt": new Date()}
     ]);
-
 },
 
 down (queryInterface) {
-
     return queryInterface.bulkDelete("escapeRooms", null, {});
-
 }};

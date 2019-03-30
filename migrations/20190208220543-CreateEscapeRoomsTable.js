@@ -1,8 +1,8 @@
 "use strict";
 
 module.exports = {up (queryInterface, Sequelize) {
-
-    return queryInterface.createTable("escapeRooms",
+    return queryInterface.createTable(
+        "escapeRooms",
         {"id": {"type": Sequelize.INTEGER,
             "allowNull": false,
             "primaryKey": true,
@@ -21,10 +21,8 @@ module.exports = {up (queryInterface, Sequelize) {
         "invitation": {"type": Sequelize.STRING,
             "allowNull": false,
             "defaultValue" () {
-
                 return Math.random().toString(36).
                     substr(2);
-
             },
             "unique": true,
             "validate": {"notEmpty": {"msg": "La URL de la invitación no puede estar vacía."}}},
@@ -34,11 +32,9 @@ module.exports = {up (queryInterface, Sequelize) {
             "validate": {"notEmpty": {"msg": "El número de participantes no puede estar vacío."}}},
         "updatedAt": {"type": Sequelize.DATE,
             "allowNull": false}},
-        {"sync": {"force": true}});
-
+        {"sync": {"force": true}}
+    );
 },
 down (queryInterface) {
-
     return queryInterface.dropTable("escapeRooms");
-
 }};
