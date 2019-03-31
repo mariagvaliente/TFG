@@ -8,9 +8,7 @@ exports.add = (req, res, next) => {
 
     req.team.addTeamMembers(req.user.id).then(function () {
 
-
         res.redirect(direccion);
-
     }).
         catch(function (error) {
 
