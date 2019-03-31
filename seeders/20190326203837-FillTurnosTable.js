@@ -21,38 +21,28 @@ arrDates[3].setDate(arrDates[3].getDate() + 1);
 arrDates[3].setHours(11);
 arrDates[3].setMinutes(0);
 
-module.exports = {
-    "up": (queryInterface) => queryInterface.bulkInsert("turnos", [
-        {
-            "escapeRoomId": 1,
-            "date": arrDates[0],
-            "indications": "None",
-            "createdAt": new Date(),
-            "updatedAt": new Date()
-        },
-        {
-            "escapeRoomId": 1,
-            "date": arrDates[1],
-            "indications": "None",
-            "createdAt": new Date(),
-            "updatedAt": new Date()
-        },
-        {
-            "escapeRoomId": 1,
-            "date": arrDates[3],
-            "indications": "None",
-            "createdAt": new Date(),
-            "updatedAt": new Date()
-        },
-        {
-            "escapeRoomId": 1,
-            "date": arrDates[4],
-            "indications": "None",
-            "createdAt": new Date(),
-            "updatedAt": new Date()
-        }
+module.exports = {"up": (queryInterface) => queryInterface.bulkInsert("turnos", [
+    {"escapeRoomId": 1,
+        "date": arrDates[0],
+        "indications": "None",
+        "createdAt": new Date(),
+        "updatedAt": new Date()},
+    {"escapeRoomId": 1,
+        "date": arrDates[1],
+        "indications": "None",
+        "createdAt": new Date(),
+        "updatedAt": new Date()},
+    {"escapeRoomId": 1,
+        "date": arrDates[3],
+        "indications": "None",
+        "createdAt": new Date(),
+        "updatedAt": new Date()},
+    {"escapeRoomId": 1,
+        "date": arrDates[4],
+        "indications": "None",
+        "createdAt": new Date(),
+        "updatedAt": new Date()}
 
-    ]),
+]),
 
-    "down": (queryInterface) => queryInterface.bulkDelete("turnos", null, {})
-};
+"down": (queryInterface) => queryInterface.bulkDelete("turnos", null, {})};

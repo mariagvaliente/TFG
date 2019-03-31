@@ -125,6 +125,7 @@
                 Retos:
             </div>
             <div class="flexShowRight previewPuzzles">
+                <%if (escapeRoom.puzzles && escapeRoom.puzzles.length > 0) {%>
                 <div class="flex-table-retos-wrapper">
                     <div class="flex-table-retos">
                         <div class="flex-row-retos flex-row-retos-title">
@@ -174,6 +175,9 @@
                         <% } %>
                     </div>
                 </div>
+                <%} else {%>
+                No se ha definido ningún reto todavía
+                <%}%>
             </div>
         </div>
         <div class="flexRow animated bounceIn" id="pistas">
@@ -182,6 +186,7 @@
             </div>
             <div class="flexShowRight">
                 <% if (escapeRoom.hintApp) { %>
+
                     <a class="show_link" download="quiz.xml" href="<%= escapeRoom.hintApp.url%>"><%=escapeRoom.hintApp.filename%></a>
                     <button class="copy" onclick="previewHintApp()"><i class="material-icons">remove_red_eye</i></button>
                 <% } else { %>
@@ -235,7 +240,7 @@
     $("#dialog-preview-video").dialog({
       autoOpen: false,
       resizable: false,
-      width: 560,
+      width: screen.width > 600 ? 560 : screen.width*0.9,
       height: "auto",
       show: {
         effect: "blind",
@@ -254,42 +259,12 @@
       $( "#dialog-preview-video" ).dialog( "open" );
     });
 
-    window.previewHintApp = () => {
-      var newwindow = window.open('/escapeRooms/<%=escapeRoom.id%>/hintAppWrapper','',
-        'width='+screen.width*0.7+',height='+screen.height*0.7);
-      newwindow.onbeforeunload = function () {
-        // processing event here
-        var score = newwindow.API_1484_11.GetValue("cmi.score.raw");
-        var status = newwindow.API_1484_11.GetValue("cmi.success_status");
-        console.log(status, score)
-      }
-    }
+
   });
 
 
 </script>
-<%
-const parseURL = (url) => {
-    if (url === '') {
-        return false;
-    }
-    var patt1 = /youtube.com\/watch\?v=(.*)/;
-    var patt2 = /youtube.com\/embed\/(.*)/;
-    var patt3 = /youtu.be\/(.*)/;
-    if (patt2.exec(url)) {
-        return url;
-    }
-    var code = patt1.exec(url);
-    if (code) {
-        return 'https://www.youtube.com/embed/' + code[1];
-    }
-    var code2 = patt3.exec(url);
-    if (code2) {
-        return 'https://www.youtube.com/embed/' + code2[1];
-    }
-    return false;
-}
- %>
+
 <% if (escapeRoom.video) { %>
 <div id="dialog-preview-video" title="Previsualizar video">
     <% if (parseURL(escapeRoom.video)) { %>
@@ -301,3 +276,7 @@ const parseURL = (url) => {
 </div>
 <% } %>
 <% include ../partials/__footer %>
+<script>
+    var escapeRoomId = "<%= escapeRoom.id%>";
+</script>
+<script src="/js/handleHintApp.js"></script>

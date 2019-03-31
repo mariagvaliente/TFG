@@ -5,9 +5,8 @@ const Sequelize = require("sequelize");
 
 const url = process.env.DATABASE_URL || "sqlite:escapeRoom.sqlite";
 
-const sequelize = new Sequelize(url);
+const sequelize = new Sequelize(url);// Import the definition of the Escape Room Table from escapeRoom.js
 
-// Import the definition of the Escape Room Table from escapeRoom.js
 sequelize.import(path.join(__dirname, "escapeRoom"));
 
 // Session
@@ -36,9 +35,8 @@ sequelize.import(path.join(__dirname, "team"));
 sequelize.import(path.join(__dirname, "hintApp"));
 
 // Relation between models
-const {escapeRoom, turno, attachment, user, puzzle, hint, hintApp, team} = sequelize.models;
+const {escapeRoom, turno, attachment, user, puzzle, hint, hintApp, team} = sequelize.models;// Relation 1-to-N between Escape Room and Turn:
 
-// Relation 1-to-N between Escape Room and Turn:
 turno.belongsTo(escapeRoom);
 escapeRoom.hasMany(turno, {"onDelete": "CASCADE",
     "hooks": true});
@@ -69,40 +67,30 @@ escapeRoom.belongsTo(user, {"as": "author",
 //    A User participates in many turnos.
 //    A turn has many participants (the users who have added it as participant)
 
-turno.belongsToMany(user, {
-    "as": "students",
+turno.belongsToMany(user, {"as": "students",
     "through": "participants",
     "foreignKey": "turnId",
-    "otherKey": "userId"
-});
+    "otherKey": "userId"});
 
-user.belongsToMany(turno, {
-    "as": "turnosAgregados",
+user.belongsToMany(turno, {"as": "turnosAgregados",
     "through": "participants",
     "foreignKey": "userId",
-    "otherKey": "turnId"
-
-});
+    "otherKey": "turnId"});
 
 
 // Relation N-to-N between Team and User:
 //    A User participates in many turnos.
 //    A turn has many participants (the users who have added it as participant)
 
-team.belongsToMany(user, {
-    "as": "teamMembers",
+team.belongsToMany(user, {"as": "teamMembers",
     "through": "members",
     "foreignKey": "teamId",
-    "otherKey": "userId"
-});
+    "otherKey": "userId"});
 
-user.belongsToMany(team, {
-    "as": "teamsAgregados",
+user.belongsToMany(team, {"as": "teamsAgregados",
     "through": "members",
     "foreignKey": "userId",
-    "otherKey": "teamId"
-
-});
+    "otherKey": "teamId"});
 
 // Relation 1-to-1 between Escape Room and HintApp:
 hintApp.belongsTo(escapeRoom);

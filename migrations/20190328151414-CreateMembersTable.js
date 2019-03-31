@@ -1,42 +1,24 @@
 "use strict";
 
-module.exports = {
-  up (queryInterface, Sequelize) {
-
+module.exports = {up (queryInterface, Sequelize) {
     return queryInterface.createTable(
         "members",
-        {
-          "teamId": {
-            "type": Sequelize.INTEGER,
+        {"teamId": {"type": Sequelize.INTEGER,
             "primaryKey": true,
             "unique": "compositeKey",
-            "allowNull": false
-          },
-          "userId": {
-            "type": Sequelize.INTEGER,
+            "allowNull": false},
+        "userId": {"type": Sequelize.INTEGER,
             "primaryKey": true,
             "unique": "compositeKey",
-            "allowNull": false
-          },
-          "createdAt": {
-            "type": Sequelize.DATE,
-            "allowNull": false
-          },
-          "updatedAt": {
-            "type": Sequelize.DATE,
-            "allowNull": false
-          }
-        },
-        {
-          "sync": {"force": true}
-        }
+            "allowNull": false},
+        "createdAt": {"type": Sequelize.DATE,
+            "allowNull": false},
+        "updatedAt": {"type": Sequelize.DATE,
+            "allowNull": false}},
+        {"sync": {"force": true}}
     );
+},
 
-  },
-
-  down (queryInterface) {
-
+down (queryInterface) {
     return queryInterface.dropTable("members");
-
-  }
-};
+}};

@@ -13,9 +13,8 @@ const playController = require("../controllers/play_controller");
 const membersController = require("../controllers/members_controller");
 
 const multer = require("multer"),
-    upload = multer({"dest": "./uploads/"});
+    upload = multer({"dest": "./uploads/"});// Autologout
 
-// Autologout
 router.all("*", sessionController.deleteExpiredUserSession);
 
 
@@ -23,22 +22,17 @@ router.all("*", sessionController.deleteExpiredUserSession);
 
 // Redirection to the saved restoration route.
 const redirectBack = (req, res) => {
-
     const url = req.session.backURL;
 
     delete req.session.backURL;
     res.redirect(url);
-
 };
 
 // Save the route that will be the current restoration route.
 const saveBack = (req, res, next) => {
-
     req.session.backURL = req.url;
     next();
-
 };
-
 
 router.get([
     "/",
@@ -72,7 +66,6 @@ router.get("/users/:userId(\\d+)/edit", sessionController.loginRequired, session
 router.put("/users/:userId(\\d+)", sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.update);
 router.delete("/users/:userId(\\d+)", sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.destroy);
 router.get("/users/:userId(\\d+)/escapeRooms", sessionController.loginRequired, sessionController.adminOrMyselfRequired, escapeRoomController.index);
-router.get("/users/:userId(\\d+)/escapeRooms/student", sessionController.loginRequired, sessionController.studentOrAdminRequired, escapeRoomController.student);
 
 // Routes for the resource /escapeRooms
 router.get("/escapeRooms", sessionController.loginRequired, escapeRoomController.indexBreakDown);
@@ -113,9 +106,9 @@ router.put("/escapeRooms/:escapeRoomId(\\d+)/hints/:hintId(\\d+)", sessionContro
 router.delete("/escapeRooms/:escapeRoomId(\\d+)/hints/:hintId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, hintController.destroy);
 
 
-
 // Routes for the resource participants of a turn
-router.put( "/users/:userId(\\d+)/participants",
+router.put(
+    "/users/:userId(\\d+)/participants",
     sessionController.loginRequired, sessionController.studentOrAdminRequired,
     participantController.add
 );
