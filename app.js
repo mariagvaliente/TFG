@@ -73,11 +73,14 @@ app.use((req, res, next) => {
 app.use("/", index);
 
 // Catch 404 and forward to error handler
-app.use((req, res, next) => {
+app.use((req, res) => {
     const err = new Error("Not Found");
 
     err.status = 404;
-    next(err);
+    res.locals.message = "Not found";
+    res.locals.error = req.app.get("env") === "development" ? err : {};
+    res.render("error");
+    // Next(err);
 });
 
 // Error handler

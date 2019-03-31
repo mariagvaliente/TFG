@@ -34,3 +34,13 @@ p {
     overflow: visible;
     whitespace: inherit;
 }
+
+.backToMain {
+    padding: 15px;
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.backToMain:hover, .backToMain:active, .backToMain:focus {
+    text-decoration: none;
+}

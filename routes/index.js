@@ -142,4 +142,5 @@ router.get("/escapeRooms/:escapeRoomId(\\d+)/play", sessionController.loginRequi
 router.get("/escapeRooms/:escapeRoomId(\\d+)/pretest", sessionController.loginRequired, playController.preTest);
 router.get("/escapeRooms/:escapeRoomId(\\d+)/posttest", sessionController.loginRequired, playController.postTest);
 
+router.get("/inspiration", sessionController.loginRequired, (req, res) => res.render("inspiration"));
 module.exports = router;

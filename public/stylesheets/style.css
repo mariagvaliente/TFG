@@ -111,8 +111,7 @@ button {
     #mainSection .main footer {
       margin-left: -35px; }
     #mainSection .main .menuERShow {
-      display: flex;
-      justify-content: space-between; }
+      display: flex; }
       #mainSection .main .menuERShow .attachmentShow {
         text-align: center;
         max-width: 60%; }
@@ -396,7 +395,7 @@ button {
     text-align: left; }
     #mainSection .main .basicConfig .erFormField:focus-within, #mainSection .main.step-evaluation .erFormField:focus-within {
       color: white !important; }
-      #mainSection .main .basicConfig .erFormField:focus-within label, #mainSection .main .basicConfig .erFormField:focus-within .explanation, #mainSection .main.step-evaluation .erFormField:focus-within label, #mainSection .main.step-evaluation .erFormField:focus-within .explanation {
+      #mainSection .main .basicConfig .erFormField:focus-within label, #mainSection .main .basicConfig .erFormField:focus-within .explanation, #mainSection .main .basicConfig .erFormField:focus-within span, #mainSection .main.step-evaluation .erFormField:focus-within label, #mainSection .main.step-evaluation .erFormField:focus-within .explanation, #mainSection .main.step-evaluation .erFormField:focus-within span {
         color: white; }
     #mainSection .main .basicConfig .erFormField .customCheckbox, #mainSection .main.step-evaluation .erFormField .customCheckbox {
       vertical-align: middle;
@@ -426,6 +425,8 @@ button {
         font-size: 1em;
         margin-top: 0.4em;
         font-family: Lato, sans-serif; }
+        #mainSection .main .basicConfig .erFormField .customInput #imgLabel:focus, #mainSection .main .basicConfig .erFormField .customInput #hintsLabel:focus, #mainSection .main.step-evaluation .erFormField .customInput #imgLabel:focus, #mainSection .main.step-evaluation .erFormField .customInput #hintsLabel:focus {
+          color: white; }
     #mainSection .main .basicConfig .erFormField input[type=file], #mainSection .main.step-evaluation .erFormField input[type=file] {
       font-family: Lato, sans-serif;
       width: 0.1px;
@@ -1158,3 +1159,6 @@ html {
 
 .material-icons {
   vertical-align: middle; }
+
+.errorPage pre {
+  font-size: 16px; }
