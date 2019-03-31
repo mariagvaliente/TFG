@@ -17,9 +17,9 @@
            <li><a href="#appearance">Apariencia</a></li>
            <li><a href="#turnos">Turnos</a></li>
            <li><a href="#join">Enlace de invitación</a></li>
-           <li><a href="">Participantes <i class="material-icons">keyboard_arrow_right</i></a></li>
-           <li><a href="">Equipos <i class="material-icons">keyboard_arrow_right</i> </a></li>
-           <li><a href="">Learning analytics <i class="material-icons">keyboard_arrow_right</i> </a></li>
+           <li><a href="/escapeRooms/<%= escapeRoom.id %>/participants">Participantes <i class="material-icons">keyboard_arrow_right</i></a></li>
+           <li><a href="/escapeRooms/<%= escapeRoom.id %>/teams">Equipos <i class="material-icons">keyboard_arrow_right</i> </a></li>
+           <li><a href="/escapeRooms/<%= escapeRoom.id %>/analytics">Learning analytics <i class="material-icons">keyboard_arrow_right</i> </a></li>
            <li><a href="/escapeRooms/<%= escapeRoom.id %>/edit"><button class="showMenuButton editButton">editar</button></a></li>
            <li><a href="/escapeRooms/<%= escapeRoom.id %>?_method=DELETE" onClick="return confirm('Delete: <%= escapeRoom.title %>');"><button class="showMenuButton deleteButton">borrar</button></a></li>
            <li><a href="/users/<%= session.user.id %>/escapeRooms"><button class="showMenuButton">volver</button></a></li>

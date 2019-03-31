@@ -5,7 +5,6 @@ exports.add = (req, res, next) => {
     const direccion = req.body.redir || `/users/${req.user.id}/members/${req.team.id}`;
 
     req.team.addTeamMembers(req.user.id).then(function () {
-
         res.redirect(direccion);
     }).
         catch(function (error) {

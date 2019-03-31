@@ -102,7 +102,6 @@ exports.index = (req, res, next) => {
 
     models.escapeRoom.findAll(findOptions).
         then((escapeRooms) => {
-            console.log(escapeRooms);
             res.render("escapeRooms/index.ejs", {escapeRooms,
                 cloudinary,
                 "user": req.user});
@@ -549,7 +548,6 @@ exports.destroy = (req, res, next) => {
 exports.studentToken = (req, res, next) => {
     const {escapeRoom} = req;
 
-    console.log("************************************************", req.params, escapeRoom.invitation);
     if (escapeRoom.invitation === req.query.token) {
         res.render("escapeRooms/indexStudent", {escapeRoom,
             cloudinary});

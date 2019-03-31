@@ -1008,6 +1008,58 @@ button {
         width: 100%;
         margin-bottom: 10px; } }
 
+#mainSection .main.participants .flex-table-retos-wrapper {
+  margin: 10px 0px; }
+  #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos {
+    overflow: hidden; }
+    #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-name {
+      width: 15%; }
+    #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-surname {
+      width: 20%; }
+    #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-username {
+      width: 20%; }
+    #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-dni {
+      width: 15%; }
+    #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-gender {
+      width: 15%; }
+    #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-turno {
+      width: 15%;
+      border-right: none; }
+    #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos:not(.flex-row-retos-title) .flex-cell {
+      font-family: Roboto;
+      padding: 5px; }
+
+#mainSection .main.participants .filters * {
+  font-size: 16px; }
+
+#mainSection .main.participants .filters label {
+  margin-right: 10px; }
+  #mainSection .main.participants .filters label:focus-within {
+    color: white; }
+
+#mainSection .main.participants input[type=submit], #mainSection .main.participants button {
+  outline: 0;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  background: transparent;
+  border: 2px solid #656683;
+  color: #656683; }
+  #mainSection .main.participants input[type=submit].download-button, #mainSection .main.participants button.download-button {
+    background-color: #FAC855;
+    color: #161938;
+    border-color: #FAC855;
+    border-style: solid; }
+
+#mainSection .main.participants .no-participants {
+  display: block;
+  font-family: Lato;
+  text-align: center;
+  width: 100%;
+  padding: 15px; }
+
 * {
   font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
   box-sizing: border-box; }

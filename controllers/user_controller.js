@@ -1,5 +1,3 @@
-
-
 const Sequelize = require("sequelize");
 const {models} = require("../models");// Autoload the user with id equals to :userId
 

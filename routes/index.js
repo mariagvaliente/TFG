@@ -113,6 +113,8 @@ router.put(
     participantController.add
 );
 
+router.get("/escapeRooms/:escapeRoomId(\\d+)/participants", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, participantController.index);
+
 // Routes for the resource members of a user
 router.put(
     "/users/:userId(\\d+)/members/:teamId(\\d+)",

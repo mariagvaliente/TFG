@@ -1,0 +1,76 @@
+<% include ../partials/_header.ejs %>
+<%
+const zeroPad = d => {
+    if (d < 10 ) {
+        return "0" + d;
+    }
+    return d;
+}
+const getFullDate = (d) => {
+    return zeroPad(d.getDate()) + '-' + zeroPad(d.getMonth()+1) + '-' + d.getFullYear() + ' ' + zeroPad(d.getHours()) +  ':' + zeroPad(d.getMinutes());
+}
+%>
+
+<div class="main participants">
+    <h2>Participantes</h2>
+    <form method="get" class="participantsList" action="/escapeRooms/<%= escapeRoom.id %>/participants">
+        <div class="filters">
+            <label for="turnId">Turno
+            <select name="turnId" id="turnId">
+                <option value="" <%= !turnId ? "selected": ""%> >Todos los turnos</option>
+                <% for (t in escapeRoom.turnos) { %>
+                    <% var turno = escapeRoom.turnos[t] %>
+                    <option value="<%=turno.id%>" <%= turnId == turno.id ? "selected" : "" %> >
+                        <%= getFullDate(turno.date)%>
+                    </option>
+                <% } %>
+            </select>
+            </label>
+            <label for="orderBy">Ordenar por
+            <select name="orderBy" id="orderBy">
+                <option value="" <%= !orderBy ? "selected": ""%>  disabled></option>
+                <option value="name" <%= orderBy === "name" ? "selected": ""%>>Nombre</option>
+                <option value="surname" <%= orderBy === "surname" ? "selected": ""%>>Apellidos</option>
+                <option value="dni" <%= orderBy === "dni" ? "selected": ""%>>DNI</option>
+                <option value="username" <%= orderBy === "username" ? "selected": ""%>>E-mail</option>
+            </select></label>
+            <button type="submit" class="filter-button" >filtrar</button>
+        </div>
+        <div class="flex-table-retos-wrapper">
+            <div class="flex-table-retos">
+                <div class="flex-row-retos flex-row-retos-title">
+                    <div class="flex-cell flex-name">Nombre</div>
+                    <div class="flex-cell flex-surname">Apellidos</div>
+                    <div class="flex-cell flex-dni">DNI</div>
+                    <div class="flex-cell flex-username">Email</div>
+                    <div class="flex-cell flex-gender">Género</div>
+                    <div class="flex-cell flex-turno">Turno</div>
+                </div>
+            <% for (var p in participants) {
+                var participant = participants[p]; %>
+                <div class="flex-row-retos">
+                    <div class="flex-cell flex-name"><%= participant.name %></div>
+                    <div class="flex-cell flex-surname"><%= participant.surname %></div>
+                    <div class="flex-cell flex-dni"><%= participant.dni %></div>
+                    <div class="flex-cell flex-username"><%= participant.username %></div>
+                    <div class="flex-cell flex-gender"><%= participant.gender %></div>
+                    <div class="flex-cell flex-turno"><%= getFullDate(participant.turnDate) %></div>
+                </div>
+            <% } %>
+                <% if (!participants || participants.length === 0) { %>
+                    <div class="flex-row-retos">
+                        <em class="no-participants">No hay participantes en esta escape room</em>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+
+        <div class="align-right">
+            <a href="/escapeRooms/<%=escapeRoom.id%>">
+                <button type="button">volver</button>
+            </a>
+            <button type="submit" class="download-button" name="csv">descargar</button>
+        </div>
+    </form>
+</div>
+<% include ../partials/__footer %>
