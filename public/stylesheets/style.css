@@ -1027,7 +1027,7 @@ button {
       width: 15%;
       border-right: none; }
     #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos:not(.flex-row-retos-title) .flex-cell {
-      font-family: Roboto;
+      font-family: 'Lato';
       padding: 5px; }
 
 #mainSection .main.participants .filters * {
