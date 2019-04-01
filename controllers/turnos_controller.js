@@ -7,7 +7,7 @@ exports.load = (req, res, next, turnId) => {
     if (req.session.user) {
         options.include.push({"model": models.user,
             "as": "students",
-            "where": {"id": req.session.user.id},
+            // "where": {"id": req.session.user.id}, // TODO Comprobar
             "required": false});
     }
 

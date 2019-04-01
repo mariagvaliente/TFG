@@ -203,7 +203,7 @@ exports.create = (req, res, next) => {
                 }).
                 then(() => {
                     fs.unlink(req.file.path); // Delete the file uploaded at./uploads
-                    res.redirect(`/escapeRooms/${er.id}/appearance`);
+                    res.redirect(`/escapeRooms/${er.id}/turnos`);
                 });
         }).
         catch(Sequelize.ValidationError, (error) => {
