@@ -13,4 +13,4 @@ module.exports = {"up": (queryInterface) => queryInterface.bulkInsert("hintApps"
 
 ]),
 
-"down": (queryInterface) => queryInterface.bulkDelete("hints", null, {})};
+"down": (queryInterface) => queryInterface.bulkDelete("hintApps", null, {})};
