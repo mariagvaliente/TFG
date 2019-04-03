@@ -29,16 +29,17 @@ exports.new = (req, res) => {
 
 exports.create = (req, res, next) => {
     const {name} = req.body;
-    const team = models.team.build({name,members: [req.session.user.id]});
+    const team = models.team.build({name,
+        "members": [req.session.user.id]});
 
     const back = `/users/${req.session.user.id}/teams/index`;
 
     team.save().
         then((teamCreated) => {
-             teamCreated.addTeamMembers(req.session.user.id).then(()=>{
-              req.flash("success", "Team creado correctamente.");
-              res.redirect(back);
-             })
+            teamCreated.addTeamMembers(req.session.user.id).then(() => {
+                req.flash("success", "Team creado correctamente.");
+                res.redirect(back);
+            });
         }).
         catch(Sequelize.ValidationError, (error) => {
             error.errors.forEach(({message}) => req.flash("error", message));

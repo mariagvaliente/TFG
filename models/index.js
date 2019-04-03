@@ -34,6 +34,9 @@ sequelize.import(path.join(__dirname, "team"));
 // Import the definition of the Attachment Table from attachment.js
 sequelize.import(path.join(__dirname, "hintApp"));
 
+// Import the definition of the Participants Table from participants.js
+sequelize.import(path.join(__dirname, "participants"));
+
 // Relation between models
 const {escapeRoom, turno, attachment, user, puzzle, hint, hintApp, team} = sequelize.models;// Relation 1-to-N between Escape Room and Turn:
 
@@ -66,6 +69,7 @@ escapeRoom.belongsTo(user, {"as": "author",
 // Relation N-to-N between Turno and User:
 //    A User participates in many turnos.
 //    A turn has many participants (the users who have added it as participant)
+
 
 turno.belongsToMany(user, {"as": "students",
     "through": "participants",

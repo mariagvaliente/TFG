@@ -1,8 +1,9 @@
 const {models} = require("../models");// Autoload the user with id equals to :userId
 const converter = require("json-2-csv");
+const Sequelize = require("sequelize");
+const {Op} = Sequelize;
 
 // PUT /users/:userId/participants/
-
 exports.add = (req, res, next) => {
     console.log("Marcado como turno");
     const direccion = req.body.redir || `/users/${req.user.id}/teams/index`;
@@ -39,7 +40,9 @@ exports.index = (req, res, next) => {
             ],
             "where": {
                 "escapeRoomId": escapeRoom.id
-            }
+            },
+            "through": {"model": models.participants,
+                "attributes": ["attendance"]}
         }
     };
 
@@ -55,7 +58,6 @@ exports.index = (req, res, next) => {
             ]
         ];
     }
-
     models.user.findAll(options).then((users) => {
         const participants = [];
 
@@ -69,7 +71,8 @@ exports.index = (req, res, next) => {
                 username,
                 dni,
                 "turnId": user.turnosAgregados[0].id,
-                "turnDate": user.turnosAgregados[0].date});
+                "turnDate": user.turnosAgregados[0].date,
+                "attendance": user.turnosAgregados[0].participants.attendance});
         });
         if (req.query.csv) {
             converter.json2csv(
@@ -98,4 +101,34 @@ exports.index = (req, res, next) => {
         }
     }).
         catch((e) => next(e));
+};
+
+// POST /escapeRooms/:escapeRoomId/confirm
+exports.confirmAttendance = (req, res) => {
+    const turnos = req.escapeRoom.turnos.map((t) => t.id);
+
+    models.participants.update({"attendance": true}, {
+        "where": {
+            [Op.and]: [
+                {"turnId": {[Op.in]: turnos}},
+                {"userId": {[Op.in]: req.body.attendance.yes}}
+            ]
+        }
+    }).
+        then(() => {
+            models.participants.update({"attendance": false}, {
+                "where": {
+                    [Op.and]: [
+                        {"turnId": {[Op.in]: turnos}},
+                        {"userId": {[Op.in]: req.body.attendance.no}}
+                    ]
+                }
+            }).then(() => {
+                res.end();
+            });
+        }).
+        catch(() => {
+            res.status(500);
+            res.end();
+        });
 };
