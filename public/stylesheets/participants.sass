@@ -9,16 +9,20 @@
           &.flex-name
             width: 15%
           &.flex-surname
-            width: 20%
+            width: 15%
           &.flex-username
-            width: 20%
+            width: 15%
           &.flex-dni
             width: 15%
           &.flex-gender
             width: 15%
           &.flex-turno
-            width: 15%
+            width: 13%
+          &.flex-attendance
+            width: 12%
             border-right: none
+            .attendance-checkbox
+              width: 20px
         &:not(.flex-row-retos-title)
           .flex-cell
             font-family: 'Lato'
@@ -40,11 +44,23 @@
     background: transparent
     border: 2px solid $textpurple
     color: $textpurple
-    &.download-button
-      background-color: $brightyellow
-      color: $darkerpurple
-      border-color: $brightyellow
-      border-style: solid
+    @extend %scale-animation-down
+    &.participants-button
+      &.download-button
+        background-color: $lightred
+        color: $darkerpurple
+        border-color: $lightred
+        border-style: solid
+      &.attendance-button
+        background-color: $brightgreen
+        color: $darkerpurple
+        border-color: $brightgreen
+        border-style: solid
+      &.attendance-all-button
+        background-color: $brightyellow
+        color: $darkerpurple
+        border-color: $brightyellow
+        border-style: solid
   .no-participants
     display: block
     font-family: Lato

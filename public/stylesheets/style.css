@@ -373,9 +373,9 @@ button {
     -ms-transform: scale(1.2);
     transform: scale(1.2); }
 
-.escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp {
+.escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp, #mainSection .main.participants input[type=submit], #mainSection .main.participants button {
   transition: 0.2s all ease-in; }
-  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus {
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, #mainSection .main.participants input:hover[type=submit], #mainSection .main.participants button:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, #mainSection .main.participants input:active[type=submit], #mainSection .main.participants button:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus, #mainSection .main.participants input:focus[type=submit], #mainSection .main.participants button:focus {
     -webkit-transform: scale(0.8);
     -ms-transform: scale(0.8);
     transform: scale(0.8); }
@@ -563,9 +563,9 @@ button {
     -ms-transform: scale(1.2);
     transform: scale(1.2); }
 
-.escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp {
+.escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp, #mainSection .main.participants input[type=submit], #mainSection .main.participants button {
   transition: 0.2s all ease-in; }
-  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus {
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, #mainSection .main.participants input:hover[type=submit], #mainSection .main.participants button:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, #mainSection .main.participants input:active[type=submit], #mainSection .main.participants button:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus, #mainSection .main.participants input:focus[type=submit], #mainSection .main.participants button:focus {
     -webkit-transform: scale(0.8);
     -ms-transform: scale(0.8);
     transform: scale(0.8); }
@@ -1016,16 +1016,20 @@ button {
     #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-name {
       width: 15%; }
     #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-surname {
-      width: 20%; }
+      width: 15%; }
     #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-username {
-      width: 20%; }
+      width: 15%; }
     #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-dni {
       width: 15%; }
     #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-gender {
       width: 15%; }
     #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-turno {
-      width: 15%;
+      width: 13%; }
+    #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-attendance {
+      width: 12%;
       border-right: none; }
+      #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-attendance .attendance-checkbox {
+        width: 20px; }
     #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos:not(.flex-row-retos-title) .flex-cell {
       font-family: 'Lato';
       padding: 5px; }
@@ -1048,7 +1052,17 @@ button {
   background: transparent;
   border: 2px solid #656683;
   color: #656683; }
-  #mainSection .main.participants input[type=submit].download-button, #mainSection .main.participants button.download-button {
+  #mainSection .main.participants input[type=submit].participants-button.download-button, #mainSection .main.participants button.participants-button.download-button {
+    background-color: #F47E84;
+    color: #161938;
+    border-color: #F47E84;
+    border-style: solid; }
+  #mainSection .main.participants input[type=submit].participants-button.attendance-button, #mainSection .main.participants button.participants-button.attendance-button {
+    background-color: #48C18E;
+    color: #161938;
+    border-color: #48C18E;
+    border-style: solid; }
+  #mainSection .main.participants input[type=submit].participants-button.attendance-all-button, #mainSection .main.participants button.participants-button.attendance-all-button {
     background-color: #FAC855;
     color: #161938;
     border-color: #FAC855;

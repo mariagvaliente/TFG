@@ -178,7 +178,7 @@ exports.create = (req, res, next) => {
             req.flash("success", "Escape Room creada con éxito");
             if (!req.file) {
                 req.flash("info", "Escape Room without attachment.");
-                res.redirect(`/escapeRooms/${escapeRoom.id}/appearance`);
+                res.redirect(`/escapeRooms/${escapeRoom.id}/turnos`);
 
                 return;
             }
@@ -233,7 +233,6 @@ exports.update = (req, res, next) => {
     escapeRoom.description = body.description;
     escapeRoom.video = body.video;
     escapeRoom.nmax = body.nmax;
-    escapeRoom.appearance = body.appearance;
 
     escapeRoom.save({"fields": [
         "title",

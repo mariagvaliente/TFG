@@ -16,24 +16,24 @@ const getFullDate = (d) => {
     <form method="get" class="participantsList" action="/escapeRooms/<%= escapeRoom.id %>/participants">
         <div class="filters">
             <label for="turnId">Turno
-            <select name="turnId" id="turnId">
-                <option value="" <%= !turnId ? "selected": ""%> >Todos los turnos</option>
-                <% for (t in escapeRoom.turnos) { %>
+                <select name="turnId" id="turnId">
+                    <option value="" <%= !turnId ? "selected": ""%> >Todos los turnos</option>
+                    <% for (t in escapeRoom.turnos) { %>
                     <% var turno = escapeRoom.turnos[t] %>
                     <option value="<%=turno.id%>" <%= turnId == turno.id ? "selected" : "" %> >
                         <%= getFullDate(turno.date)%>
                     </option>
-                <% } %>
-            </select>
+                    <% } %>
+                </select>
             </label>
             <label for="orderBy">Ordenar por
-            <select name="orderBy" id="orderBy">
-                <option value="" <%= !orderBy ? "selected": ""%>  disabled></option>
-                <option value="name" <%= orderBy === "name" ? "selected": ""%>>Nombre</option>
-                <option value="surname" <%= orderBy === "surname" ? "selected": ""%>>Apellidos</option>
-                <option value="dni" <%= orderBy === "dni" ? "selected": ""%>>DNI</option>
-                <option value="username" <%= orderBy === "username" ? "selected": ""%>>E-mail</option>
-            </select></label>
+                <select name="orderBy" id="orderBy">
+                    <option value="" <%= !orderBy ? "selected": ""%>  disabled></option>
+                    <option value="name" <%= orderBy === "name" ? "selected": ""%>>Nombre</option>
+                    <option value="surname" <%= orderBy === "surname" ? "selected": ""%>>Apellidos</option>
+                    <option value="dni" <%= orderBy === "dni" ? "selected": ""%>>DNI</option>
+                    <option value="username" <%= orderBy === "username" ? "selected": ""%>>E-mail</option>
+                </select></label>
             <button type="submit" class="filter-button" >filtrar</button>
         </div>
         <div class="flex-table-retos-wrapper">
@@ -45,9 +45,10 @@ const getFullDate = (d) => {
                     <div class="flex-cell flex-username">Email</div>
                     <div class="flex-cell flex-gender">Género</div>
                     <div class="flex-cell flex-turno">Turno</div>
+                    <div class="flex-cell flex-attendance">Presente</div>
                 </div>
-            <% for (var p in participants) {
-                var participant = participants[p]; %>
+                <% for (var p in participants) {
+                    var participant = participants[p]; %>
                 <div class="flex-row-retos">
                     <div class="flex-cell flex-name"><%= participant.name %></div>
                     <div class="flex-cell flex-surname"><%= participant.surname %></div>
@@ -55,12 +56,18 @@ const getFullDate = (d) => {
                     <div class="flex-cell flex-username"><%= participant.username %></div>
                     <div class="flex-cell flex-gender"><%= participant.gender %></div>
                     <div class="flex-cell flex-turno"><%= getFullDate(participant.turnDate) %></div>
-                </div>
-            <% } %>
-                <% if (!participants || participants.length === 0) { %>
-                    <div class="flex-row-retos">
-                        <em class="no-participants">No hay participantes en esta escape room</em>
+                    <div class="flex-cell flex-attendance">
+                        <input type="checkbox" class="attendance-checkbox"
+                               data-id="<%=participant.id%>"
+                               data-turnId="<%=participant.turnId%>"
+                                <%= participant.attendance ? "checked":"" %> />
                     </div>
+                </div>
+                <% } %>
+                <% if (!participants || participants.length === 0) { %>
+                <div class="flex-row-retos">
+                    <em class="no-participants">No hay participantes en esta escape room</em>
+                </div>
                 <% } %>
             </div>
         </div>
@@ -69,8 +76,35 @@ const getFullDate = (d) => {
             <a href="/escapeRooms/<%=escapeRoom.id%>">
                 <button type="button">volver</button>
             </a>
-            <button type="submit" class="download-button" name="csv" value="csv">descargar</button>
+            <button type="submit" id="csv-button" class="participants-button download-button" name="csv" value="csv">descargar</button>
+            <button type="button" id="attendance-all-button" class="participants-button attendance-all-button"  >marcar/desmarcar todos</button>
+            <button type="button" id="attendance-button" class="participants-button attendance-button" name="attendance">confirmar asistencia</button>
         </div>
     </form>
 </div>
 <% include ../partials/__footer %>
+<script>
+
+  $(function(){
+    $('#attendance-button').on('click', ()=>{
+      let att = {yes:[], no:[]};
+      $('.attendance-checkbox').each((i,e)=>{
+        att[e.checked ? "yes":"no"].push($(e).data('id'));
+      });
+
+      fetch("/escapeRooms/<%=escapeRoom.id%>/confirm/", {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify({attendance: att}),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      }).then(res => alert("Asistencia guardada correctamente"))
+        .catch(error => alert("Ha ocurrido un error"))
+    });
+    var selected = true;
+    $('#attendance-all-button').on('click', ()=>{
+      $('.attendance-checkbox').prop("checked", selected);
+      selected =!selected;
+    });
+  });
+</script>

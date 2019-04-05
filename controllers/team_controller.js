@@ -30,14 +30,16 @@ exports.new = (req, res) => {
 exports.create = (req, res, next) => {
 
     const team = models.team.build({"name": req.body.name,
-        "turnoId": req.turno.id});
+        "turnoId": req.turno.id,"members": [req.session.user.id]});
 
     const back = `/turnos/${req.turno.id}/teams/index`;
 
     team.save().
-        then(() => {
-            req.flash("success", "Equipo creado correctamente.");
-            res.redirect(back);
+        then((teamCreated) => {
+            teamCreated.addTeamMembers(req.session.user.id).then(() => {
+                req.flash("success", "Team creado correctamente.");
+                res.redirect(back);
+            });
         }).
         catch(Sequelize.ValidationError, (error) => {
             error.errors.forEach(({message}) => req.flash("error", message));
