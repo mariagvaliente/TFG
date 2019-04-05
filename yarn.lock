@@ -2729,6 +2729,7 @@ jsesc@^2.5.1:
 json-2-csv@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/json-2-csv/-/json-2-csv-3.5.0.tgz#dec5bc4d672ecbf70466bcd1f6f6c2d7569f5e83"
+  integrity sha512-nb9jMYfl+vyMMeiFJYFt9/rgS6T8JEohXyImCseH3mfXUDtmqI4KfnwSHddzm5gP2d/0Yd8T7H42SqXkooQ2Yw==
   dependencies:
     deeks "2.2.1"
     doc-path "2.0.1"

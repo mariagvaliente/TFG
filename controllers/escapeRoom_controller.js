@@ -556,11 +556,3 @@ exports.studentToken = (req, res, next) => {
     }
 };
 
-// GET /escapeRooms/:escapeRoomId/join
-exports.indexStudent = (req, res) => {
-    const {escapeRoom} = req;
-
-    res.render("turnos/_indexStudent", {escapeRoom,
-        cloudinary});
-};
-

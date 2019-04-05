@@ -2,21 +2,21 @@ const Sequelize = require("sequelize");
 const {models} = require("../models");// Autoload the team with id equals to :teamId
 
 exports.load = (req, res, next, teamId) => {
+
     models.team.findById(teamId).
         then((team) => {
-            if (team) {
+            if (!team) {
+                throw new Error(`No hay equipo con id=${teamId}`);
+            } else {
                 req.team = team;
                 next();
-            } else {
-                req.flash("error", `No existe equipo con id=${teamId}.`);
-                throw new Error(`No existe teamId=${teamId}`);
             }
         }).
         catch((error) => next(error));
+
 };
 
-
-// GET /users/:userId/teams/new
+// GET /turnos/:turnoId/teams/new
 
 exports.new = (req, res) => {
     const team = {"name": ""};
@@ -25,34 +25,34 @@ exports.new = (req, res) => {
 };
 
 
-// POST /turnos/:turnId/teams/
+// POST /turnos/:turnId/teams
 
 exports.create = (req, res, next) => {
-    const {name} = req.body;
-    const team = models.team.build({name,members: [req.session.user.id]});
 
-    const back = `/users/${req.session.user.id}/teams/index`;
+    const team = models.team.build({"name": req.body.name,
+        "turnoId": req.turno.id});
+
+    const back = `/turnos/${req.turno.id}/teams/index`;
 
     team.save().
-        then((teamCreated) => {
-             teamCreated.addTeamMembers(req.session.user.id).then(()=>{
-              req.flash("success", "Team creado correctamente.");
-              res.redirect(back);
-             })
+        then(() => {
+            req.flash("success", "Equipo creado correctamente.");
+            res.redirect(back);
         }).
         catch(Sequelize.ValidationError, (error) => {
             error.errors.forEach(({message}) => req.flash("error", message));
             res.redirect(back);
         }).
         catch((error) => {
-            req.flash("error", `Error creando el team: ${error.message}`);
+            req.flash("error", `Error creando el equipo: ${error.message}`);
             next(error);
         });
 };
 
-// GET /users/:userId/teams/index
+// GET /turnos/:turnoId/teams/index
 
 exports.index = (req, res, next) => {
+
     models.team.findAll().
         then((teams) => {
             res.render("teams/index.ejs", {teams});

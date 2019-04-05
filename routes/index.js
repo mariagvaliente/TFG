@@ -128,9 +128,11 @@ router.get(
     membersController.show
 );
 
-router.get("/teams/new", teamController.new);
-router.post("/teams", teamController.create);
-router.get("/users/:userId(\\d+)/teams/index", teamController.index);
+
+router.get("/turnos/:turnoId(\\d+)/teams/new", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.new);
+router.post("/turnos/:turnoId(\\d+)/teams", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.create);
+router.get("/turnos/:turnoId(\\d+)/teams/index", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.index);
+
 
 router.post("/escapeRooms/:escapeRoomId(\\d+)/turnos/new", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);
 router.delete("/escapeRooms/:escapeRoomId(\\d+)/turnos", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.destroy);

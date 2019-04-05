@@ -8,6 +8,8 @@ module.exports = {"up" (queryInterface, Sequelize) {
             "primaryKey": true,
             "autoIncrement": true,
             "unique": true},
+        "turnoId": {"type": Sequelize.INTEGER,
+            "allowNull": false},
         "name": {"type": Sequelize.STRING,
             "validate": {"notEmpty": {"msg": "El nombre no puede estar vacío."}}},
         "createdAt": {"type": Sequelize.DATE,

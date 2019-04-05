@@ -2,7 +2,7 @@
 
 exports.add = (req, res, next) => {
     console.log("Usuario agregado al team");
-    const direccion = req.body.redir || `/users/${req.user.id}/members/${req.team.id}`;
+    const direccion = req.body.redir || `/turnos/${req.turno.id}/teams`;
 
     req.team.addTeamMembers(req.user.id).then(function () {
         res.redirect(direccion);

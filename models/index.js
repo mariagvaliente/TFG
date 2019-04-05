@@ -37,6 +37,8 @@ sequelize.import(path.join(__dirname, "hintApp"));
 // Relation between models
 const {escapeRoom, turno, attachment, user, puzzle, hint, hintApp, team} = sequelize.models;// Relation 1-to-N between Escape Room and Turn:
 
+// Relation 1-to-N between Escape Room and Turno:
+
 turno.belongsTo(escapeRoom);
 escapeRoom.hasMany(turno, {"onDelete": "CASCADE",
     "hooks": true});
@@ -91,6 +93,13 @@ user.belongsToMany(team, {"as": "teamsAgregados",
     "through": "members",
     "foreignKey": "userId",
     "otherKey": "teamId"});
+
+
+// Relation 1-to-N between Turno and Team:
+
+team.belongsTo(turno);
+turno.hasMany(team, {"onDelete": "CASCADE",
+    "hooks": true});
 
 // Relation 1-to-1 between Escape Room and HintApp:
 hintApp.belongsTo(escapeRoom);

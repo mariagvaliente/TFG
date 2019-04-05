@@ -1,3 +1,4 @@
+
 <% include ../partials/_header.ejs %>
 <div class="main student">
     <div class="dialog" >
@@ -6,20 +7,26 @@
         </br>
         </br>
         <div class="join-button-flex-container">
-            <% for (var i in teams) { %>
-                <% var team = teams[i]; %>
-                <form method='POST' id="form" action='/users/<%= session.user.id %>/members/<%= team.id %>?_method=put'>
-                    <button type="submit"> <%= team.name %></button>
-                </form>
+
+            <% if (teams == undefined) { %>
+                No hay equipos...
+            <% } else { %>
+                    <div>
+                        <% for (var i in teams) { %>
+                            <% var team = teams[i]; %>
+                            <form method='POST' id="form" action='/users/<%= session.user.id %>/members/<%= team.id %>?_method=put'>
+                                <button type="submit"> <%= team.name %></button>
+                            </form>
+                        <% } %>
+                    </div>
             <% } %>
-                <div>
-                    <a href="/teams/new">
-                        <button style="width:100px;height:50px">+</button>
-                    </a>
-                </div>
+
+            <div>
+                <a href="/turnos/<%= turno.id %>/teams/new">
+                    <button style="width:100px;height:50px">+</button>
+                </a>
+            </div>
 
         </div>
     </div>
 </div>
-
-

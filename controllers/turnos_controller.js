@@ -2,7 +2,8 @@ const Sequelize = require("sequelize");
 const {models} = require("../models");// Autoload the turn with id equals to :turnId
 
 exports.load = (req, res, next, turnId) => {
-    const options = {"include": []};
+    const options = {"include": [
+            {"model": models.team}]};
 
     if (req.session.user) {
         options.include.push({"model": models.user,
@@ -31,7 +32,6 @@ exports.indexStudent = (req, res, next) => {
         }).
         catch((error) => next(error));
 };
-
 
 // POST /escapeRooms/:escapeRoomId/turnos
 
