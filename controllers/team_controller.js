@@ -21,7 +21,7 @@ exports.load = (req, res, next, teamId) => {
 exports.new = (req, res) => {
     const team = {"name": ""};
 
-    res.render("teams/new", {team});
+    res.render("teams/new", {team, turno: req.turn});
 };
 
 
@@ -30,9 +30,9 @@ exports.new = (req, res) => {
 exports.create = (req, res, next) => {
 
     const team = models.team.build({"name": req.body.name,
-        "turnoId": req.turno.id,"members": [req.session.user.id]});
+        "turnoId": req.turn.id,"members": [req.session.user.id]});
 
-    const back = `/turnos/${req.turno.id}/teams/index`;
+    const back = `/turnos/${req.turn.id}/teams`;
 
     team.save().
         then((teamCreated) => {
@@ -51,14 +51,10 @@ exports.create = (req, res, next) => {
         });
 };
 
-// GET /turnos/:turnoId/teams/index
+// GET /turnos/:turnoId/teams
 
 exports.index = (req, res, next) => {
+  res.render("teams/index", { turno: req.turn});
 
-    models.team.findAll().
-        then((teams) => {
-            res.render("teams/index.ejs", {teams});
-        }).
-        catch((error) => next(error));
 };
 

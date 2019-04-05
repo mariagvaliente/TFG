@@ -40,8 +40,27 @@
 						button
 							border-radius: 25px
 							width: 100%
+				.teamCarouselItem
+					background-color: white
+					border-radius: 20px
+					color: $textpurple
+					font-size: 18px
+					padding: 10px
+					p
+						font-size: 10px
+					&.selected
+						border: 2px solid $brightyellow
+					&:hover
+						@extend %scale-animation-down
+
 				h1
-					font-size: 28px
+					font-size: 26px
+				#add-team
+					i
+						color: $textpurple
+						font-size: 28px
+				.info
+					font-size: 18px
 				.dialog-content
 					font-family: 'Lato', sans-serif
 					*

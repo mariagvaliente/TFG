@@ -7,7 +7,7 @@ const {Op} = Sequelize;
 exports.add = (req, res, next) => {
     console.log("Marcado como turno");
 
-    const direccion = req.body.redir || `/turnos/${req.body.turnSelected}/teams/index`;
+    const direccion = req.body.redir || `/turnos/${req.body.turnSelected}/teams`;
 
 
     req.user.addTurnosAgregados(req.body.turnSelected).then(function () {

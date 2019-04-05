@@ -3,7 +3,12 @@ const {models} = require("../models");// Autoload the turn with id equals to :tu
 
 exports.load = (req, res, next, turnId) => {
     const options = {"include": [
-            {"model": models.team}]};
+            {"model": models.team,
+                "include": {
+                    "model": models.user,
+                    "as": "teamMembers"
+                }
+            }]};
 
     if (req.session.user) {
         options.include.push({"model": models.user,

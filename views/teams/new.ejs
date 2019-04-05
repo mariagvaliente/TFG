@@ -6,13 +6,17 @@
         Añada un equipo:
         </br>
         </br>
-        <div class="join-button-flex-container">
+        <div class="">
                 <div>
                     <form method="POST" id="newForm" action="/turnos/<%= turno.id %>/teams">
                         <div>
-                            <input type="text" id="nam" required name="name" autocomplete="off"/>
+                            <input type="text" id="name" required name="name" placeholder="Escribe el nombre del equipo" autocomplete="off"/>
+                            <p class="info">Tus compañeros podrán unirse a tu equipo cuando se registren en la escape room.</p>
                         </div>
-                        <button type="submit">finalizar</button>
+                        <div class="join-button-flex-container">
+                        <a  href="javascript:history.back()"><button class="rounded deleteButton" type="button">volver</button></a>
+                        <button class="rounded acceptButton" type="submit">finalizar</button>
+                        </div>
                     </form>
                 </div>
         </div>

@@ -1,10 +1,10 @@
-// PUT /users/:userId/members/:teamId
+// PUT /turnos/:turno/members/:teamId
 
 exports.add = (req, res, next) => {
     console.log("Usuario agregado al team");
-    const direccion = req.body.redir || `/turnos/${req.turno.id}/teams`;
+    const direccion = req.body.redir || `/escapeRooms`;
 
-    req.team.addTeamMembers(req.user.id).then(function () {
+    req.team.addTeamMembers(req.session.user.id).then(function () {
         res.redirect(direccion);
     }).
         catch(function (error) {

@@ -1,5 +1,5 @@
 @charset "UTF-8";
-button {
+button, input[type="submit"] {
   background-color: white;
   color: #161938;
   font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -10,7 +10,10 @@ button {
   text-align: center;
   outline: 0;
   cursor: pointer; }
-  button.login {
+  button.rounded, input[type="submit"].rounded {
+    border-radius: 25px !important;
+    padding: 8px 25px !important; }
+  button.login, input[type="submit"].login {
     background-color: #48C18E;
     color: #161938;
     border: #48C18E;
@@ -20,7 +23,7 @@ button {
     width: 100%;
     height: 42px;
     outline: 0; }
-  button.registro {
+  button.registro, input[type="submit"].registro {
     background-color: #FAC855;
     color: #161938;
     border: #FAC855;
@@ -30,7 +33,7 @@ button {
     width: 100%;
     height: 42px;
     outline: 0; }
-  button.editButton {
+  button.editButton, input[type="submit"].editButton {
     background-color: #FAC855;
     color: #161938;
     font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -40,7 +43,7 @@ button {
     padding: 10px;
     text-align: center;
     outline: 0; }
-  button.deleteButton {
+  button.deleteButton, input[type="submit"].deleteButton {
     background-color: #F47E84;
     color: #161938;
     font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -50,7 +53,7 @@ button {
     padding: 10px;
     text-align: center;
     outline: 0; }
-  button.acceptButton {
+  button.acceptButton, input[type="submit"].acceptButton {
     background-color: #48C18E;
     color: #161938;
     font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -60,7 +63,7 @@ button {
     padding: 10px;
     text-align: center;
     outline: 0; }
-  button[type=submit] {
+  button[type=submit], input[type="submit"][type=submit] {
     cursor: pointer; }
 
 @font-face {
@@ -373,9 +376,9 @@ button {
     -ms-transform: scale(1.2);
     transform: scale(1.2); }
 
-.escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp, #mainSection .main.participants input[type=submit], #mainSection .main.participants button {
+.escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.participants input[type=submit], #mainSection .main.participants button {
   transition: 0.2s all ease-in; }
-  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, #mainSection .main.participants input:hover[type=submit], #mainSection .main.participants button:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, #mainSection .main.participants input:active[type=submit], #mainSection .main.participants button:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus, #mainSection .main.participants input:focus[type=submit], #mainSection .main.participants button:focus {
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.participants input:hover[type=submit], #mainSection .main.participants button:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, #mainSection .main.student .dialog .teamCarouselItem:active:hover, #mainSection .main.participants input:active[type=submit], #mainSection .main.participants button:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus, #mainSection .main.student .dialog .teamCarouselItem:focus:hover, #mainSection .main.participants input:focus[type=submit], #mainSection .main.participants button:focus {
     -webkit-transform: scale(0.8);
     -ms-transform: scale(0.8);
     transform: scale(0.8); }
@@ -563,9 +566,9 @@ button {
     -ms-transform: scale(1.2);
     transform: scale(1.2); }
 
-.escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp, #mainSection .main.participants input[type=submit], #mainSection .main.participants button {
+.escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.participants input[type=submit], #mainSection .main.participants button {
   transition: 0.2s all ease-in; }
-  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, #mainSection .main.participants input:hover[type=submit], #mainSection .main.participants button:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, #mainSection .main.participants input:active[type=submit], #mainSection .main.participants button:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus, #mainSection .main.participants input:focus[type=submit], #mainSection .main.participants button:focus {
+  .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.participants input:hover[type=submit], #mainSection .main.participants button:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, #mainSection .main.student .dialog .teamCarouselItem:active:hover, #mainSection .main.participants input:active[type=submit], #mainSection .main.participants button:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus, #mainSection .main.student .dialog .teamCarouselItem:focus:hover, #mainSection .main.participants input:focus[type=submit], #mainSection .main.participants button:focus {
     -webkit-transform: scale(0.8);
     -ms-transform: scale(0.8);
     transform: scale(0.8); }
@@ -978,8 +981,23 @@ button {
         #mainSection .main.student .dialog .join-button-flex-container div button {
           border-radius: 25px;
           width: 100%; }
+    #mainSection .main.student .dialog .teamCarouselItem {
+      background-color: white;
+      border-radius: 20px;
+      color: #656683;
+      font-size: 18px;
+      padding: 10px; }
+      #mainSection .main.student .dialog .teamCarouselItem p {
+        font-size: 10px; }
+      #mainSection .main.student .dialog .teamCarouselItem.selected {
+        border: 2px solid #FAC855; }
     #mainSection .main.student .dialog h1 {
+      font-size: 26px; }
+    #mainSection .main.student .dialog #add-team i {
+      color: #656683;
       font-size: 28px; }
+    #mainSection .main.student .dialog .info {
+      font-size: 18px; }
     #mainSection .main.student .dialog .dialog-content {
       font-family: 'Lato', sans-serif; }
       #mainSection .main.student .dialog .dialog-content * {

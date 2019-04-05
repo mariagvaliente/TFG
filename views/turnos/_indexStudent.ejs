@@ -69,11 +69,11 @@
 <%}%>
         <div class="join-button-flex-container">
             <form method='GET' id="form" action='/users/<%= session.user.id %>'>
-                <button class="deleteButton" type="submit" style="display:inline-block;">cancelar</button>
+                <button class="rounded deleteButton" type="submit" style="display:inline-block;">cancelar</button>
             </form>
             <form method='POST' id="form" action='/users/<%= session.user.id %>/participants?_method=put'>
                 <input type="hidden" id="turnSelected" name="turnSelected" value="">
-                <button class="aceptButton" type="submit" style="display:inline-block;">continuar</button>
+                <button class="rounded acceptButton" type="submit" style="display:inline-block;">continuar</button>
             </form>
         </div>
     </div>

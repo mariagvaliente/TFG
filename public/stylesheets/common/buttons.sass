@@ -1,6 +1,6 @@
 @import 'colors'
 
-button
+button, input[type="submit"]
   background-color: white
   color: $darkerpurple
   font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif
@@ -11,7 +11,9 @@ button
   text-align: center
   outline: 0
   cursor: pointer
-
+  &.rounded
+    border-radius: 25px !important
+    padding: 8px 25px !important
   &.login
     background-color: $brightgreen
     color: $darkerpurple
