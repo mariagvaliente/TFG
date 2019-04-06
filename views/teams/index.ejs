@@ -17,6 +17,7 @@
             <div class="owl-carousel">
                 <% for (var i in turno.teams) { %>
                 <% var team = turno.teams[i]; %>
+
                 <div class="teamCarouselItem" data-id="<%=team.id%>">
                     <%= team.name %>
                     <%for (var m in team.teamMembers) {%>

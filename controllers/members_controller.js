@@ -1,5 +1,4 @@
 // PUT /turnos/:turno/members/:teamId
-
 exports.add = (req, res, next) => {
     console.log("Usuario agregado al team");
     const direccion = req.body.redir || `/escapeRooms`;
@@ -13,7 +12,6 @@ exports.add = (req, res, next) => {
 };
 
 // GET /users/:userId/members/:teamId
-
 exports.show = (req, res, next) => {
     req.team.getTeamMembers().then(function (usuarios) {
         usuarios.forEach(function (usuario) {

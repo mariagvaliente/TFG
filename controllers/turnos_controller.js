@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
-const {models} = require("../models");// Autoload the turn with id equals to :turnId
+const {models} = require("../models");
 
+// Autoload the turn with id equals to :turnId
 exports.load = (req, res, next, turnId) => {
     const options = {"include": [
             {"model": models.team,
@@ -39,7 +40,6 @@ exports.indexStudent = (req, res, next) => {
 };
 
 // POST /escapeRooms/:escapeRoomId/turnos
-
 exports.create = (req, res, next) => {
     const {date, indications} = req.body;
     const modDate = new Date(date);

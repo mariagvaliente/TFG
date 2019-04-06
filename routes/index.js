@@ -9,7 +9,6 @@ const sessionController = require("../controllers/session_controller");
 const teamController = require("../controllers/team_controller");
 const participantController = require("../controllers/participants_controller");
 const playController = require("../controllers/play_controller");
-
 const membersController = require("../controllers/members_controller");
 
 const multer = require("multer"),
@@ -106,34 +105,6 @@ router.put("/escapeRooms/:escapeRoomId(\\d+)/hints/:hintId(\\d+)", sessionContro
 router.delete("/escapeRooms/:escapeRoomId(\\d+)/hints/:hintId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, hintController.destroy);
 
 
-// Routes for the resource participants of a turn
-router.put(
-    "/users/:userId(\\d+)/participants",
-    sessionController.loginRequired, sessionController.studentOrAdminRequired,
-    participantController.add
-);
-
-router.get("/escapeRooms/:escapeRoomId(\\d+)/participants", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, participantController.index);
-
-// Routes for the resource members of a user
-router.put(
-    "/turnos/:turnoId(\\d+)/members/:teamId(\\d+)",
-    sessionController.loginRequired, sessionController.studentOrAdminRequired,
-    membersController.add
-);
-
-router.get(
-    "/users/:userId(\\d+)/members/:teamId(\\d+)",
-    sessionController.loginRequired, sessionController.studentOrAdminRequired,
-    membersController.show
-);
-
-
-router.get("/turnos/:turnoId(\\d+)/teams/new", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.new);
-router.post("/turnos/:turnoId(\\d+)/teams", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.create);
-router.get("/turnos/:turnoId(\\d+)/teams", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.index);
-
-
 router.post("/escapeRooms/:escapeRoomId(\\d+)/turnos/new", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.create);
 router.delete("/escapeRooms/:escapeRoomId(\\d+)/turnos/:turnoId(\\\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, turnController.destroy);
 
@@ -146,5 +117,35 @@ router.get("/escapeRooms/:escapeRoomId(\\d+)/posttest", sessionController.loginR
 
 router.get("/inspiration", sessionController.loginRequired, (req, res) => res.render("inspiration"));
 router.post("/escapeRooms/:escapeRoomId(\\d+)/confirm", sessionController.loginRequired, participantController.confirmAttendance);
+
+
+// Routes for the resource participants of a turn
+router.put(
+    "/users/:userId(\\d+)/participants",
+    sessionController.loginRequired, sessionController.studentOrAdminRequired,
+    participantController.add
+);
+
+router.get("/escapeRooms/:escapeRoomId(\\d+)/participants", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, participantController.index);
+
+// Routes for the resource members of a team
+router.put(
+    "/turnos/:turnoId(\\d+)/members/:teamId(\\d+)",
+    sessionController.loginRequired, sessionController.studentOrAdminRequired,
+    membersController.add
+);
+
+router.get(
+    "/users/:userId(\\d+)/members/:teamId(\\d+)",
+    sessionController.loginRequired, sessionController.studentOrAdminRequired,
+    membersController.show
+);
+
+// Routes for the resource /teams
+router.get("/turnos/:turnoId(\\d+)/teams/new", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.new);
+router.post("/turnos/:turnoId(\\d+)/teams", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.create);
+router.get("/turnos/:turnoId(\\d+)/teams", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.index);
+
+
 
 module.exports = router;

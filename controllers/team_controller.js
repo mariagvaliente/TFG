@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
-const {models} = require("../models");// Autoload the team with id equals to :teamId
+const {models} = require("../models");
 
+// Autoload the team with id equals to :teamId
 exports.load = (req, res, next, teamId) => {
 
     models.team.findById(teamId).
@@ -17,7 +18,6 @@ exports.load = (req, res, next, teamId) => {
 };
 
 // GET /turnos/:turnoId/teams/new
-
 exports.new = (req, res) => {
     const team = {"name": ""};
 
@@ -26,13 +26,12 @@ exports.new = (req, res) => {
 
 
 // POST /turnos/:turnId/teams
-
 exports.create = (req, res, next) => {
 
     const team = models.team.build({"name": req.body.name,
         "turnoId": req.turn.id,"members": [req.session.user.id]});
 
-    const back = `/turnos/${req.turn.id}/teams`;
+    const back = `/escapeRooms`;
 
     team.save().
         then((teamCreated) => {
@@ -52,7 +51,6 @@ exports.create = (req, res, next) => {
 };
 
 // GET /turnos/:turnoId/teams
-
 exports.index = (req, res, next) => {
   res.render("teams/index", { turno: req.turn});
 
