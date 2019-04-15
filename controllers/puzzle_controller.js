@@ -88,3 +88,25 @@ exports.destroy = (req, res, next) => {
         }).
         catch((error) => next(error));
 };
+
+// GET /escapeRooms/:escapeRoomId/puzzles/:puzzleId/check
+exports.check = (req, res, next) => {
+
+    const {puzzle, query} = req;
+
+    const answer = query.answer || "";
+
+   if (answer.toLowerCase().trim() === puzzle.sol.toLowerCase().trim()){
+       console.log("Reto superado");
+
+      // const direccion = req.body.redir || `/escapeRooms`;
+       /*
+       req.puzzle.addSuperados(req.team.id).then(function () {
+           res.redirect(direccion);
+       }).
+           catch(function (error) {
+               next(error);
+           });
+           */
+   }
+};
