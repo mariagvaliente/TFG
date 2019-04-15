@@ -108,5 +108,8 @@ exports.check = (req, res, next) => {
                next(error);
            });
            */
+   } else {
+       console.log("Reto no superado");
+       res.redirect(`/escapeRooms/${req.escapeRoom.id}/retos`);
    }
 };
