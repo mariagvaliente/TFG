@@ -68,11 +68,9 @@ escapeRoom.belongsTo(user, {"as": "author",
     "foreignKey": "authorId"});
 
 
-// Relation N-to-N between Turno and User:
+// Relation N-to-M between Turno and User:
 //    A User participates in many turnos.
 //    A turn has many participants (the users who have added it as participant)
-
-
 turno.belongsToMany(user, {"as": "students",
     "through": "participants",
     "foreignKey": "turnId",
@@ -84,10 +82,9 @@ user.belongsToMany(turno, {"as": "turnosAgregados",
     "otherKey": "turnId"});
 
 
-// Relation N-to-N between Team and User:
-//    A User participates in many turnos.
-//    A turn has many participants (the users who have added it as participant)
-
+// Relation N-to-M between Team and User:
+//    A User belongs to many teams.
+//    A team has many members (the users who have added it as member)
 team.belongsToMany(user, {"as": "teamMembers",
     "through": "members",
     "foreignKey": "teamId",
@@ -100,7 +97,6 @@ user.belongsToMany(team, {"as": "teamsAgregados",
 
 
 // Relation 1-to-N between Turno and Team:
-
 team.belongsTo(turno);
 turno.hasMany(team, {"onDelete": "CASCADE",
     "hooks": true});
@@ -109,5 +105,18 @@ turno.hasMany(team, {"onDelete": "CASCADE",
 hintApp.belongsTo(escapeRoom);
 escapeRoom.hasOne(hintApp, {"onDelete": "CASCADE",
     "hooks": true});
+
+
+// Relation N-to-M between Team and Puzzle:
+team.belongsToMany(puzzle, {"as": "retos",
+    "through": "retosSuperados",
+    "foreignKey": "teamId",
+    "otherKey": "puzzleId"});
+
+puzzle.belongsToMany(team, {"as": "superados",
+    "through": "retosSuperados",
+    "foreignKey": "puzzleId",
+    "otherKey": "teamId"});
+
 
 module.exports = sequelize;
