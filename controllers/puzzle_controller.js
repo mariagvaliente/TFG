@@ -98,16 +98,20 @@ exports.check = (req, res, next) => {
 
    if (answer.toLowerCase().trim() === puzzle.sol.toLowerCase().trim()){
        console.log("Reto superado");
-
-      // const direccion = req.body.redir || `/escapeRooms`;
-       /*
-       req.puzzle.addSuperados(req.team.id).then(function () {
-           res.redirect(direccion);
-       }).
-           catch(function (error) {
-               next(error);
+       req.session.user.getTeamsAgregados().then(function (equipos) {
+           equipos.forEach(function (equipo) {
+               equipo.isAdd = true;
+               req.puzzle.addSuperados(equipo.id).then(function () {
+                   res.redirect(`/escapeRooms/${req.escapeRoom.id}/retos`);
+               }).
+                   catch(function (error) {
+                       next(error);
+                   });
+               }).
+                   catch(function (error) {
+                       next(error);
+                   });
            });
-           */
    } else {
        console.log("Reto no superado");
        res.redirect(`/escapeRooms/${req.escapeRoom.id}/retos`);

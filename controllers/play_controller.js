@@ -1,7 +1,8 @@
 const cloudinary = require("cloudinary");
 const {parseURL} = require("../helpers/video");
-// GET /escapeRooms/:escapeRoomId/play
 
+
+// GET /escapeRooms/:escapeRoomId/play
 exports.play = (req, res) => {
     res.render("escapeRooms/play/play", {"escapeRoom": req.escapeRoom,
         cloudinary,

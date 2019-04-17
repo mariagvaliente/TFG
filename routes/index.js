@@ -118,6 +118,8 @@ router.get("/escapeRooms/:escapeRoomId(\\d+)/pretest", sessionController.loginRe
 router.get("/escapeRooms/:escapeRoomId(\\d+)/posttest", sessionController.loginRequired, playController.postTest);
 router.get("/escapeRooms/:escapeRoomId(\\d+)/retos", sessionController.loginRequired, playController.retos);
 
+
+
 router.get("/inspiration", sessionController.loginRequired, (req, res) => res.render("inspiration"));
 router.post("/escapeRooms/:escapeRoomId(\\d+)/confirm", sessionController.loginRequired, participantController.confirmAttendance);
 
@@ -131,6 +133,7 @@ router.put(
 
 router.get("/escapeRooms/:escapeRoomId(\\d+)/participants", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, participantController.index);
 
+
 // Routes for the resource members of a team
 router.put(
     "/turnos/:turnoId(\\d+)/members/:teamId(\\d+)",
@@ -138,11 +141,6 @@ router.put(
     membersController.add
 );
 
-router.get(
-    "/users/:userId(\\d+)/members/:teamId(\\d+)",
-    sessionController.loginRequired, sessionController.studentOrAdminRequired,
-    membersController.show
-);
 
 // Routes for the resource /teams
 router.get("/turnos/:turnoId(\\d+)/teams/new", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.new);
