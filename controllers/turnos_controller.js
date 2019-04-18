@@ -4,12 +4,12 @@ const {models} = require("../models");
 // Autoload the turn with id equals to :turnId
 exports.load = (req, res, next, turnId) => {
     const options = {"include": [
-            {"model": models.team,
-                "include": {
-                    "model": models.user,
-                    "as": "teamMembers"
-                }
-            }]};
+        {"model": models.team,
+            "include": {
+                "model": models.user,
+                "as": "teamMembers"
+            }}
+    ]};
 
     if (req.session.user) {
         options.include.push({"model": models.user,
@@ -34,9 +34,11 @@ exports.load = (req, res, next, turnId) => {
 // POST /escapeRooms/:escapeRoomId/join
 exports.indexStudent = (req, res, next) => {
     const {escapeRoom} = req;
+
     models.turno.findAll({"where": {"escapeRoomId": req.escapeRoom.id}}).
         then((turnos) => {
-            res.render("turnos/_indexStudent.ejs", {turnos, escapeRoom});
+            res.render("turnos/_indexStudent.ejs", {turnos,
+                escapeRoom});
         }).
         catch((error) => next(error));
 };
@@ -45,9 +47,11 @@ exports.indexStudent = (req, res, next) => {
 // GET /escapeRooms/:escapeRoomId/completed
 exports.indexStudentCompleted = (req, res, next) => {
     const {escapeRoom} = req;
+
     models.turno.findAll({"where": {"escapeRoomId": req.escapeRoom.id}}).
         then((turnos) => {
-            res.render("turnos/_indexStudentCompleted.ejs", {turnos, escapeRoom});
+            res.render("turnos/_indexStudentCompleted.ejs", {turnos,
+                escapeRoom});
         }).
         catch((error) => next(error));
 };

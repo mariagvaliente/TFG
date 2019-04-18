@@ -120,7 +120,6 @@ router.get("/escapeRooms/:escapeRoomId(\\d+)/posttest", sessionController.loginR
 router.get("/escapeRooms/:escapeRoomId(\\d+)/retos", sessionController.loginRequired, playController.retos);
 
 
-
 router.get("/inspiration", sessionController.loginRequired, (req, res) => res.render("inspiration"));
 router.post("/escapeRooms/:escapeRoomId(\\d+)/confirm", sessionController.loginRequired, participantController.confirmAttendance);
 
@@ -147,7 +146,6 @@ router.put(
 router.get("/turnos/:turnoId(\\d+)/teams/new", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.new);
 router.post("/turnos/:turnoId(\\d+)/teams", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.create);
 router.get("/turnos/:turnoId(\\d+)/teams", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.index);
-
 
 
 module.exports = router;

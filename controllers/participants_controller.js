@@ -30,7 +30,7 @@ exports.add = (req, res, next) => {
                 "escapeRoomId": escapeRoom.id
             }
         }
-    }
+    };
 
 
     if (req.body.turnSelected) {
@@ -75,10 +75,8 @@ exports.add = (req, res, next) => {
                 console.log("Turno completo");
                 res.redirect(`/escapeRooms/${escapeRoom.id}/completed`);
             }
-
         }).
         catch((e) => next(e));
-
 };
 
 // GET /escapeRooms/:escapeRoomId/participants

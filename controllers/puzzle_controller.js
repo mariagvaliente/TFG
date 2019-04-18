@@ -91,29 +91,38 @@ exports.destroy = (req, res, next) => {
 
 // GET /escapeRooms/:escapeRoomId/puzzles/:puzzleId/check
 exports.check = (req, res, next) => {
-
     const {puzzle, query} = req;
-
     const answer = query.answer || "";
 
-   if (answer.toLowerCase().trim() === puzzle.sol.toLowerCase().trim()){
-       console.log("Reto superado");
-       req.session.user.getTeamsAgregados().then(function (equipos) {
-           equipos.forEach(function (equipo) {
-               equipo.isAdd = true;
-               req.puzzle.addSuperados(equipo.id).then(function () {
-                   res.redirect(`/escapeRooms/${req.escapeRoom.id}/retos`);
-               }).
-                   catch(function (error) {
-                       next(error);
-                   });
-               }).
-                   catch(function (error) {
-                       next(error);
-                   });
-           });
-   } else {
-       console.log("Reto no superado");
-       res.redirect(`/escapeRooms/${req.escapeRoom.id}/retos`);
-   }
+    if (answer.toLowerCase().trim() === puzzle.sol.toLowerCase().trim()) {
+        models.user.findById(req.session.user.id).then((user) => {
+            user.getTeamsAgregados({
+                "include": [
+                    {
+                        "model": models.turno,
+                        "required": true,
+                        "where": {"escapeRoomId": req.escapeRoom.id} // Aquí habrá que añadir las condiciones de si el turno está activo, etc
+                    }
+                ]
+
+            }).
+                then((team) => {
+                    if (team && team.length > 0) {
+                        req.puzzle.addSuperados(team[0].id).then(function () {
+                            req.flash("success", "Reto superado!");
+                            res.redirect(`/escapeRooms/${req.escapeRoom.id}/retos`);
+                        }).
+                            catch(function (e) {
+                                next(e);
+                            });
+                    } else {
+                        next("Ha ocurrido un error. Asegúrate de que te has registrado correctamente en la Escape Room.");
+                    }
+                });
+        }).
+            catch((e) => next(e));
+    } else {
+        req.flash("error", "Respuesta incorecta");
+        res.redirect(`/escapeRooms/${req.escapeRoom.id}/retos`);
+    }
 };
