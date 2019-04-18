@@ -8,8 +8,6 @@ exports.add = (req, res, next) => {
     console.log("Marcado como turno");
     const {escapeRoom} = req;
     const direccion = req.body.redir || `/turnos/${req.body.turnSelected}/teams`;
-
-
     const options = {
         "attributes": [
             "id",
@@ -61,14 +59,18 @@ exports.add = (req, res, next) => {
 
             if (participants.length < escapeRoom.nmax) {
 
-                req.user.addTurnosAgregados(req.body.turnSelected).
-                    then(function () {
-                        res.redirect(direccion);
+                    if (!req.user.getTurnosAgreados){
+                        req.user.addTurnosAgregados(req.body.turnSelected).
+                            then(function () {
+                                res.redirect(direccion);
+                            }).
+                            catch(function (error) {
+                                next(error);
+                            });
+                    } else {
+                        console.log("Ya estas dentro de un turno");
+                    }
 
-                    }).
-                    catch(function (error) {
-                        next(error);
-                    });
             } else {
                 console.log("Turno completo");
                 res.redirect(`/escapeRooms/${escapeRoom.id}/completed`);
