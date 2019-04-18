@@ -3,7 +3,6 @@ const {models} = require("../models");
 
 // Autoload the team with id equals to :teamId
 exports.load = (req, res, next, teamId) => {
-
     models.team.findById(teamId).
         then((team) => {
             if (!team) {
@@ -14,24 +13,24 @@ exports.load = (req, res, next, teamId) => {
             }
         }).
         catch((error) => next(error));
-
 };
 
 // GET /turnos/:turnoId/teams/new
 exports.new = (req, res) => {
     const team = {"name": ""};
 
-    res.render("teams/new", {team, turno: req.turn});
+    res.render("teams/new", {team,
+        "turno": req.turn});
 };
 
 
 // POST /turnos/:turnId/teams
 exports.create = (req, res, next) => {
-
     const team = models.team.build({"name": req.body.name,
-        "turnoId": req.turn.id,"members": [req.session.user.id]});
+        "turnoId": req.turn.id,
+        "members": [req.session.user.id]});
 
-    const back = `/escapeRooms`;
+    const back = "/escapeRooms";
 
     team.save().
         then((teamCreated) => {
@@ -51,8 +50,7 @@ exports.create = (req, res, next) => {
 };
 
 // GET /turnos/:turnoId/teams
-exports.index = (req, res, next) => {
-  res.render("teams/index", { turno: req.turn});
-
+exports.index = (req, res) => {
+    res.render("teams/index", {"turno": req.turn});
 };
 

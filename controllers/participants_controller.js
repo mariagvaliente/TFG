@@ -32,7 +32,7 @@ exports.add = (req, res, next) => {
                 "escapeRoomId": escapeRoom.id
             }
         }
-    }
+    };
 
 
     if (req.body.turnSelected) {
@@ -60,11 +60,9 @@ exports.add = (req, res, next) => {
 
 
             if (participants.length < escapeRoom.nmax) {
-
                 req.user.addTurnosAgregados(req.body.turnSelected).
                     then(function () {
                         res.redirect(direccion);
-
                     }).
                     catch(function (error) {
                         next(error);
@@ -73,10 +71,8 @@ exports.add = (req, res, next) => {
                 console.log("Turno completo");
                 res.redirect(`/escapeRooms/${escapeRoom.id}/completed`);
             }
-
         }).
         catch((e) => next(e));
-
 };
 
 // GET /escapeRooms/:escapeRoomId/participants
