@@ -3,23 +3,81 @@ const converter = require("json-2-csv");
 const Sequelize = require("sequelize");
 const {Op} = Sequelize;
 
-// PUT /users/:userId/participants/
+// PUT  /escapeRooms/:escapeRoomId/users/:userId/participants/
 exports.add = (req, res, next) => {
     console.log("Marcado como turno");
-
+    const {escapeRoom} = req;
     const direccion = req.body.redir || `/turnos/${req.body.turnSelected}/teams`;
 
 
-    req.user.addTurnosAgregados(req.body.turnSelected).then(function () {
-        res.redirect(direccion);
+    const options = {
+        "attributes": [
+            "id",
+            "name",
+            "surname",
+            "gender",
+            "username",
+            "dni"
+        ],
+        "include": {
+            "model": models.turno,
+            "as": "turnosAgregados",
+            "duplicating": false,
+            "required": true,
+            "attributes": [
+                "id",
+                "date"
+            ],
+            "where": {
+                "escapeRoomId": escapeRoom.id
+            }
+        }
+    }
 
-    }).
-        catch(function (error) {
-            next(error);
-        });
+
+    if (req.body.turnSelected) {
+        options.include.where.id = req.body.turnSelected;
+    }
+
+    models.user.findAll(options).
+        then((users) => {
+            const participants = [];
+
+            users.forEach((user) => {
+                const {id, name, gender, username, surname, dni} = user;
+
+                participants.push({
+                    id,
+                    name,
+                    surname,
+                    gender,
+                    username,
+                    dni,
+                    "turnId": user.turnosAgregados[0].id,
+                    "turnDate": user.turnosAgregados[0].date
+                });
+            });
+
+
+            if (participants.length < escapeRoom.nmax) {
+
+                req.user.addTurnosAgregados(req.body.turnSelected).
+                    then(function () {
+                        res.redirect(direccion);
+
+                    }).
+                    catch(function (error) {
+                        next(error);
+                    });
+            } else {
+                console.log("Turno completo");
+                res.redirect(`/escapeRooms/${escapeRoom.id}/completed`);
+            }
+
+        }).
+        catch((e) => next(e));
+
 };
-
-
 
 // GET /escapeRooms/:escapeRoomId/participants
 exports.index = (req, res, next) => {

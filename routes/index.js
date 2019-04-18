@@ -95,6 +95,7 @@ router.post("/escapeRooms/:escapeRoomId(\\d+)/instructions", sessionController.l
 router.get("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequired, sessionController.studentOrAdminRequired, escapeRoomController.studentToken);
 router.post("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.indexStudent);
 
+router.get("/escapeRooms/:escapeRoomId(\\d+)/completed", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.indexStudentCompleted);
 
 router.post("/escapeRooms/:escapeRoomId(\\d+)/puzzles/new", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, puzzleController.create);
 router.put("/escapeRooms/:escapeRoomId(\\d+)/puzzles/:puzzleId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, puzzleController.update);
@@ -126,7 +127,7 @@ router.post("/escapeRooms/:escapeRoomId(\\d+)/confirm", sessionController.loginR
 
 // Routes for the resource participants of a turn
 router.put(
-    "/users/:userId(\\d+)/participants",
+    "/escapeRooms/:escapeRoomId(\\d+)/users/:userId(\\d+)/participants",
     sessionController.loginRequired, sessionController.studentOrAdminRequired,
     participantController.add
 );

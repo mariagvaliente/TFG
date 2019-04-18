@@ -30,11 +30,24 @@ exports.load = (req, res, next, turnId) => {
         catch((error) => next(error));
 };
 
+
 // POST /escapeRooms/:escapeRoomId/join
 exports.indexStudent = (req, res, next) => {
+    const {escapeRoom} = req;
     models.turno.findAll({"where": {"escapeRoomId": req.escapeRoom.id}}).
         then((turnos) => {
-            res.render("turnos/_indexStudent.ejs", {turnos});
+            res.render("turnos/_indexStudent.ejs", {turnos, escapeRoom});
+        }).
+        catch((error) => next(error));
+};
+
+
+// GET /escapeRooms/:escapeRoomId/completed
+exports.indexStudentCompleted = (req, res, next) => {
+    const {escapeRoom} = req;
+    models.turno.findAll({"where": {"escapeRoomId": req.escapeRoom.id}}).
+        then((turnos) => {
+            res.render("turnos/_indexStudentCompleted.ejs", {turnos, escapeRoom});
         }).
         catch((error) => next(error));
 };
