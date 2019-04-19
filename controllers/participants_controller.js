@@ -57,9 +57,9 @@ exports.add = (req, res, next) => {
             });
 
 
-            if (participants.length < escapeRoom.nmax) {
-
-                    if (!req.user.getTurnosAgreados){
+            req.user.getTurnosAgregados().then(function (turnos) {
+                if (turnos.length === 0){
+                    if (participants.length < escapeRoom.nmax) {
                         req.user.addTurnosAgregados(req.body.turnSelected).
                             then(function () {
                                 res.redirect(direccion);
@@ -68,15 +68,19 @@ exports.add = (req, res, next) => {
                                 next(error);
                             });
                     } else {
-                        console.log("Ya estas dentro de un turno");
+                        req.flash("error", "Turno completo. Por favor, elige otro turno.");
+                        res.redirect(`/escapeRooms/${escapeRoom.id}/completed`);
                     }
+                } else {
+                    req.flash("error", "Ya estas dentro de un turno.");
+                    res.redirect(`/users/${req.session.user.id}/escapeRooms`);
+                }
 
-            } else {
-                console.log("Turno completo");
-                res.redirect(`/escapeRooms/${escapeRoom.id}/completed`);
-            }
+            }).
+                catch((e) => next(e));
         }).
         catch((e) => next(e));
+
 };
 
 // GET /escapeRooms/:escapeRoomId/participants
