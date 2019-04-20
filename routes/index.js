@@ -10,6 +10,7 @@ const teamController = require("../controllers/team_controller");
 const participantController = require("../controllers/participants_controller");
 const playController = require("../controllers/play_controller");
 const membersController = require("../controllers/members_controller");
+const analyticsController = require("../controllers/analytics_controller");
 
 const multer = require("multer"),
     upload = multer({"dest": "./uploads/"});// Autologout
@@ -147,8 +148,9 @@ router.get("/turnos/:turnoId(\\d+)/teams/new", sessionController.loginRequired, 
 router.post("/turnos/:turnoId(\\d+)/teams", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.create);
 router.get("/turnos/:turnoId(\\d+)/teams", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.indexTurnos);
 
-router.get("/escapeRooms/:escapeRoomId/analytics/", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.analytics);
-router.get("/escapeRooms/:escapeRoomId/analytics/puzzles/participants", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, puzzleController.puzzlesByParticipants);
-router.get("/escapeRooms/:escapeRoomId/analytics/puzzles/teams", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, puzzleController.puzzlesByTeams);
+// Routes for learning analytics
+router.get("/escapeRooms/:escapeRoomId/analytics/", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, analyticsController.analytics);
+router.get("/escapeRooms/:escapeRoomId/analytics/puzzles/participants", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, analyticsController.puzzlesByParticipants);
+router.get("/escapeRooms/:escapeRoomId/analytics/puzzles/teams", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, analyticsController.puzzlesByTeams);
 
 module.exports = router;
