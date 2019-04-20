@@ -1,15 +1,4 @@
 <% include ../partials/_header.ejs %>
-<%
-const zeroPad = d => {
-    if (d < 10 ) {
-        return "0" + d;
-    }
-    return d;
-}
-const getFullDate = (d) => {
-    return zeroPad(d.getDate()) + '-' + zeroPad(d.getMonth()+1) + '-' + d.getFullYear() + ' ' + zeroPad(d.getHours()) +  ':' + zeroPad(d.getMinutes());
-}
-%>
 
 <div class="main teams">
     <h2>Equipos</h2>
@@ -26,7 +15,7 @@ const getFullDate = (d) => {
                     <% } %>
                 </select>
             </label>
-            <button type="submit" class="filter-button" >filtrar</button>
+            <button type="submit" class="filter-button white" >filtrar</button>
         </div>
         <div class="flex-table-retos-wrapper">
             <div class="flex-table-retos animated jello">

@@ -58,6 +58,17 @@ app.use(methodOverride("_method", {"methods": [
 ]}));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/api", api);
+
+const zeroPad = (d) => {
+    if (d < 10) {
+        return `0${d}`;
+    }
+    return d;
+};
+
+app.locals.zeroPadding = zeroPad;
+app.locals.getFullDate = (d) => `${zeroPad(d.getDate())}-${zeroPad(d.getMonth() + 1)}-${d.getFullYear()} ${zeroPad(d.getHours())}:${zeroPad(d.getMinutes())}`;
+
 app.use(partials());
 app.use(flash());
 
@@ -70,6 +81,7 @@ app.use((req, res, next) => {
 
     next();
 });
+
 
 app.use("/", index);
 

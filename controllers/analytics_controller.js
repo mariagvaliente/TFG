@@ -1,3 +1,4 @@
+const Sequelize = require("sequelize");
 const {models} = require("../models");
 
 // GET /escapeRooms/:escapeRoomId/analytics
@@ -10,7 +11,8 @@ exports.analytics = (req, res) => {
 // GET /escapeRooms/:escapeRoomId/analytics/puzzles/participants
 exports.puzzlesByParticipants = (req, res) => {
     const {escapeRoom, query} = req;
-    const where = {
+    const {turnId, orderBy} = query;
+    const options = {
         "include": [
             {
                 "model": models.turno,
@@ -38,9 +40,16 @@ exports.puzzlesByParticipants = (req, res) => {
             }
         ]
     };
+
+    if (turnId) {
+        options.include[0].where.id = turnId;
+    }
+    if (orderBy) {
+        options.order = Sequelize.literal(`lower(user.${orderBy}) ASC`);
+    }
     const puzzles = escapeRoom.puzzles.map((puz) => puz.id);
 
-    models.user.findAll(where).
+    models.user.findAll(options).
         then((users) => {
             const results = users.map((u) => {
                 const {id, name, surname} = u;
@@ -52,6 +61,7 @@ exports.puzzlesByParticipants = (req, res) => {
                     if (idx > -1) {
                         retosSuperados[idx] = 1;
                     }
+                    return 0;
                 });
                 return {id,
                     name,
@@ -60,14 +70,17 @@ exports.puzzlesByParticipants = (req, res) => {
             });
 
             res.render("escapeRooms/analytics/retosSuperadosByParticipant", {escapeRoom,
-                results});
+                results,
+                turnId,
+                orderBy});
         });
 };
 
 // GET /escapeRooms/:escapeRoomId/analytics/puzzles/teams
 exports.puzzlesByTeams = (req, res) => {
     const {escapeRoom, query} = req;
-    const where = {
+    const {turnId} = query;
+    const options = {
         "include": [
             {
                 "model": models.turno,
@@ -80,11 +93,16 @@ exports.puzzlesByTeams = (req, res) => {
                 "as": "retos",
                 "through": {"model": models.retosSuperados}
             }
-        ]
+        ],
+        "order": Sequelize.literal("lower(team.name) ASC")
     };
+
+    if (turnId) {
+        options.include[0].where.id = turnId;
+    }
     const puzzles = escapeRoom.puzzles.map((puz) => puz.id);
 
-    models.team.findAll(where).
+    models.team.findAll(options).
         then((teams) => {
             const results = teams.map((u) => {
                 const {id, name} = u;
@@ -96,13 +114,27 @@ exports.puzzlesByTeams = (req, res) => {
                     if (idx > -1) {
                         retosSuperados[idx] = 1;
                     }
+                    return 0;
                 });
                 return {id,
                     name,
-                    retosSuperados};
+                    retosSuperados,
+                    turnId};
             });
 
             res.render("escapeRooms/analytics/retosSuperadosByTeam", {escapeRoom,
-                results});
+                results,
+                turnId});
         });
+};
+
+
+exports.summary = (req, res) => {
+    res.render("escapeRooms/analytics/summary");
+};
+exports.ranking = (req, res) => {
+    res.render("escapeRooms/analytics/ranking");
+};
+exports.timeline = (req, res) => {
+    res.render("escapeRooms/analytics/timeline");
 };

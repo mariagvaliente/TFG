@@ -12,12 +12,7 @@
         </div>
         <%
         var monthArray = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-        var zeroPadding = function(hour) {
-            if (hour < 10) {
-                return "0" + hour;
-            }
-            return hour;
-        }
+
         var formatDate = function(currentDate) {
             return currentDate.getDate() + " de " + monthArray[currentDate.getMonth()] + " de " + currentDate.getFullYear();
         }

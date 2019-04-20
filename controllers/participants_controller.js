@@ -115,12 +115,7 @@ exports.index = (req, res, next) => {
         options.include.where.id = turnId;
     }
     if (orderBy) {
-        options.order = [
-            [
-                orderBy,
-                "ASC"
-            ]
-        ];
+        options.order = Sequelize.literal(`lower(user.${orderBy}) ASC`);
     }
     models.user.findAll(options).then((users) => {
         const participants = [];

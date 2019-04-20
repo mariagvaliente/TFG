@@ -70,7 +70,8 @@ exports.index = (req, res, next) => {
                 ]
 
             }
-        ]
+        ],
+        "order": Sequelize.literal("lower(team.name) ASC")
     };
 
     if (turnId) {

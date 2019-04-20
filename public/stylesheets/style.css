@@ -13,6 +13,10 @@ button, input[type="submit"] {
   button.rounded, input[type="submit"].rounded {
     border-radius: 25px !important;
     padding: 8px 25px !important; }
+  button.white, input[type="submit"].white {
+    background-color: white !important;
+    border: #161938 !important;
+    color: #161938 !important; }
   button.login, input[type="submit"].login {
     background-color: #48C18E;
     color: #161938;
@@ -118,6 +122,12 @@ button, input[type="submit"] {
       padding: 9px 18px;
       border-radius: 40px;
       margin: 5px; }
+    #mainSection .main .filters * {
+      font-size: 16px; }
+    #mainSection .main .filters label {
+      margin-right: 10px; }
+      #mainSection .main .filters label:focus-within {
+        color: white; }
     #mainSection .main.no-bckg {
       background: none; }
     #mainSection .main footer {
@@ -385,14 +395,14 @@ button, input[type="submit"] {
     -ms-transform: scale(1.2);
     transform: scale(1.2); }
 
-#mainSection .main .analyticsTag, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main.participants input[type=submit], #mainSection .main.participants button, .retosSuperados .buttonTab, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.teams input[type=submit], #mainSection .main.teams button {
+#mainSection .main .analyticsTag, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main.participants input[type=submit], #mainSection .main.participants button, .retosSuperados input[type=submit], .retosSuperados button, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.teams input[type=submit], #mainSection .main.teams button {
   transition: 0.2s all ease-in; }
-  #mainSection .main .analyticsTag:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main.participants input:hover[type=submit], #mainSection .main.participants button:hover, .retosSuperados .buttonTab:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.teams input:hover[type=submit], #mainSection .main.teams button:hover, #mainSection .main .analyticsTag:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main.participants input:active[type=submit], #mainSection .main.participants button:active, .retosSuperados .buttonTab:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, #mainSection .main.student .dialog .teamCarouselItem:active:hover, #mainSection .main.teams input:active[type=submit], #mainSection .main.teams button:active, #mainSection .main .analyticsTag:focus, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main.participants input:focus[type=submit], #mainSection .main.participants button:focus, .retosSuperados .buttonTab:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus, #mainSection .main.student .dialog .teamCarouselItem:focus:hover, #mainSection .main.teams input:focus[type=submit], #mainSection .main.teams button:focus {
+  #mainSection .main .analyticsTag:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main.participants input:hover[type=submit], #mainSection .main.participants button:hover, .retosSuperados input:hover[type=submit], .retosSuperados button:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.teams input:hover[type=submit], #mainSection .main.teams button:hover, #mainSection .main .analyticsTag:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main.participants input:active[type=submit], #mainSection .main.participants button:active, .retosSuperados input:active[type=submit], .retosSuperados button:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, #mainSection .main.student .dialog .teamCarouselItem:active:hover, #mainSection .main.teams input:active[type=submit], #mainSection .main.teams button:active, #mainSection .main .analyticsTag:focus, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main.participants input:focus[type=submit], #mainSection .main.participants button:focus, .retosSuperados input:focus[type=submit], .retosSuperados button:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus, #mainSection .main.student .dialog .teamCarouselItem:focus:hover, #mainSection .main.teams input:focus[type=submit], #mainSection .main.teams button:focus {
     -webkit-transform: scale(0.8);
     -ms-transform: scale(0.8);
     transform: scale(0.8); }
 
-#mainSection .main.participants input[type=submit], #mainSection .main.participants button, .retosSuperados .buttonTab {
+#mainSection .main.participants input[type=submit], #mainSection .main.participants button, .retosSuperados input[type=submit], .retosSuperados button {
   outline: 0;
   cursor: pointer;
   border-radius: 20px;
@@ -586,14 +596,14 @@ button, input[type="submit"] {
     -ms-transform: scale(1.2);
     transform: scale(1.2); }
 
-#mainSection .main .analyticsTag, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main.participants input[type=submit], #mainSection .main.participants button, .retosSuperados .buttonTab, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.teams input[type=submit], #mainSection .main.teams button {
+#mainSection .main .analyticsTag, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main.participants input[type=submit], #mainSection .main.participants button, .retosSuperados input[type=submit], .retosSuperados button, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.teams input[type=submit], #mainSection .main.teams button {
   transition: 0.2s all ease-in; }
-  #mainSection .main .analyticsTag:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main.participants input:hover[type=submit], #mainSection .main.participants button:hover, .retosSuperados .buttonTab:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.teams input:hover[type=submit], #mainSection .main.teams button:hover, #mainSection .main .analyticsTag:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main.participants input:active[type=submit], #mainSection .main.participants button:active, .retosSuperados .buttonTab:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, #mainSection .main.student .dialog .teamCarouselItem:active:hover, #mainSection .main.teams input:active[type=submit], #mainSection .main.teams button:active, #mainSection .main .analyticsTag:focus, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main.participants input:focus[type=submit], #mainSection .main.participants button:focus, .retosSuperados .buttonTab:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus, #mainSection .main.student .dialog .teamCarouselItem:focus:hover, #mainSection .main.teams input:focus[type=submit], #mainSection .main.teams button:focus {
+  #mainSection .main .analyticsTag:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main.participants input:hover[type=submit], #mainSection .main.participants button:hover, .retosSuperados input:hover[type=submit], .retosSuperados button:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.teams input:hover[type=submit], #mainSection .main.teams button:hover, #mainSection .main .analyticsTag:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main.participants input:active[type=submit], #mainSection .main.participants button:active, .retosSuperados input:active[type=submit], .retosSuperados button:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, #mainSection .main.student .dialog .teamCarouselItem:active:hover, #mainSection .main.teams input:active[type=submit], #mainSection .main.teams button:active, #mainSection .main .analyticsTag:focus, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main.participants input:focus[type=submit], #mainSection .main.participants button:focus, .retosSuperados input:focus[type=submit], .retosSuperados button:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus, #mainSection .main.student .dialog .teamCarouselItem:focus:hover, #mainSection .main.teams input:focus[type=submit], #mainSection .main.teams button:focus {
     -webkit-transform: scale(0.8);
     -ms-transform: scale(0.8);
     transform: scale(0.8); }
 
-#mainSection .main.participants input[type=submit], #mainSection .main.participants button, .retosSuperados .buttonTab {
+#mainSection .main.participants input[type=submit], #mainSection .main.participants button, .retosSuperados input[type=submit], .retosSuperados button {
   outline: 0;
   cursor: pointer;
   border-radius: 20px;
@@ -1065,14 +1075,14 @@ button, input[type="submit"] {
     -ms-transform: scale(1.2);
     transform: scale(1.2); }
 
-#mainSection .main .analyticsTag, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main.participants input[type=submit], #mainSection .main.participants button, .retosSuperados .buttonTab, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.teams input[type=submit], #mainSection .main.teams button {
+#mainSection .main .analyticsTag, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem.addEscapeRoom, #mainSection .main.participants input[type=submit], #mainSection .main.participants button, .retosSuperados input[type=submit], .retosSuperados button, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.teams input[type=submit], #mainSection .main.teams button {
   transition: 0.2s all ease-in; }
-  #mainSection .main .analyticsTag:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main.participants input:hover[type=submit], #mainSection .main.participants button:hover, .retosSuperados .buttonTab:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.teams input:hover[type=submit], #mainSection .main.teams button:hover, #mainSection .main .analyticsTag:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main.participants input:active[type=submit], #mainSection .main.participants button:active, .retosSuperados .buttonTab:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, #mainSection .main.student .dialog .teamCarouselItem:active:hover, #mainSection .main.teams input:active[type=submit], #mainSection .main.teams button:active, #mainSection .main .analyticsTag:focus, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main.participants input:focus[type=submit], #mainSection .main.participants button:focus, .retosSuperados .buttonTab:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus, #mainSection .main.student .dialog .teamCarouselItem:focus:hover, #mainSection .main.teams input:focus[type=submit], #mainSection .main.teams button:focus {
+  #mainSection .main .analyticsTag:hover, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:hover, #mainSection .main.participants input:hover[type=submit], #mainSection .main.participants button:hover, .retosSuperados input:hover[type=submit], .retosSuperados button:hover, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:hover, #mainSection .main.student .dialog .teamCarouselItem:hover, #mainSection .main.teams input:hover[type=submit], #mainSection .main.teams button:hover, #mainSection .main .analyticsTag:active, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:active, #mainSection .main.participants input:active[type=submit], #mainSection .main.participants button:active, .retosSuperados input:active[type=submit], .retosSuperados button:active, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:active:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:active, #mainSection .main.student .dialog .teamCarouselItem:active:hover, #mainSection .main.teams input:active[type=submit], #mainSection .main.teams button:active, #mainSection .main .analyticsTag:focus, .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem:focus, #mainSection .main.participants input:focus[type=submit], #mainSection .main.participants button:focus, .retosSuperados input:focus[type=submit], .retosSuperados button:focus, #mainSection .main .flexBoxTurnos .turno.turnoAlumno:focus:hover, #mainSection .main.step-appearance .half-flex-container .left-half-flex .buttonApp:focus, #mainSection .main.student .dialog .teamCarouselItem:focus:hover, #mainSection .main.teams input:focus[type=submit], #mainSection .main.teams button:focus {
     -webkit-transform: scale(0.8);
     -ms-transform: scale(0.8);
     transform: scale(0.8); }
 
-#mainSection .main.participants input[type=submit], #mainSection .main.participants button, .retosSuperados .buttonTab {
+#mainSection .main.participants input[type=submit], #mainSection .main.participants button, .retosSuperados input[type=submit], .retosSuperados button {
   outline: 0;
   cursor: pointer;
   border-radius: 20px;
@@ -1107,14 +1117,6 @@ button, input[type="submit"] {
     #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos:not(.flex-row-retos-title) .flex-cell {
       font-family: 'Lato';
       padding: 5px; }
-
-#mainSection .main.participants .filters * {
-  font-size: 16px; }
-
-#mainSection .main.participants .filters label {
-  margin-right: 10px; }
-  #mainSection .main.participants .filters label:focus-within {
-    color: white; }
 
 #mainSection .main.participants input[type=submit].participants-button.download-button, #mainSection .main.participants button.participants-button.download-button {
   background-color: #F47E84;
@@ -1204,24 +1206,60 @@ button, input[type="submit"] {
 
 .retosSuperados {
   overflow: hidden; }
-  .retosSuperados table *:not(i) {
-    font-family: Lato, sans-serif; }
-  .retosSuperados table th {
-    text-align: left;
-    padding: 10px; }
-  .retosSuperados table td {
-    padding: 10px;
-    text-align: center; }
-    .retosSuperados table td.align-left {
-      text-align: left; }
-    .retosSuperados table td.complete {
-      color: #48C18E; }
-    .retosSuperados table td.incomplete {
-      color: #F47E84; }
-  .retosSuperados .buttonTab.white {
-    background-color: white;
-    border: #161938;
-    color: #161938; }
+  .retosSuperados table {
+    display: table !important;
+    color: #161938;
+    border-spacing: 0px; }
+    .retosSuperados table *:not(i) {
+      font-family: Lato, sans-serif; }
+    .retosSuperados table tr {
+      background-color: #9091A6;
+      border-left: 1px solid white; }
+      .retosSuperados table tr:first-child {
+        background-color: #161938;
+        color: white; }
+        .retosSuperados table tr:first-child th {
+          border-bottom-width: 0px; }
+          .retosSuperados table tr:first-child th:first-child {
+            border-radius: 10px 0px 0px 0px; }
+      .retosSuperados table tr th {
+        text-align: left;
+        padding: 10px;
+        border: 3px solid white;
+        border-right-width: 0px; }
+        .retosSuperados table tr th:last-child {
+          border-right-width: 3px;
+          border-radius: 0px 20px 0px 0px; }
+      .retosSuperados table tr:last-child th, .retosSuperados table tr:last-child td {
+        border-bottom-width: 3px; }
+      .retosSuperados table tr:last-child td:first-child {
+        border-radius: 0px 0px 0px 20px; }
+      .retosSuperados table tr:last-child td:last-child {
+        border-radius: 0px 0px 20px 0px; }
+      .retosSuperados table tr td {
+        padding: 10px;
+        text-align: center;
+        border: 3px solid white;
+        border-bottom-width: 0px;
+        border-right-width: 0px; }
+        .retosSuperados table tr td:last-child {
+          border-right-width: 3px; }
+        .retosSuperados table tr td.align-left {
+          text-align: left; }
+        .retosSuperados table tr td.complete {
+          color: #48C18E; }
+          .retosSuperados table tr td.complete .icon {
+            background-color: #48C18E; }
+        .retosSuperados table tr td.incomplete {
+          color: #F47E84; }
+          .retosSuperados table tr td.incomplete .icon {
+            background-color: #F47E84; }
+        .retosSuperados table tr td .icon {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          border: 2px solid #161938;
+          border-radius: 12px; }
 
 * {
   font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;

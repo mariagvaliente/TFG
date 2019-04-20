@@ -2,9 +2,30 @@
 
 <div class="main retosSuperados">
     <h2>Retos superados</h2>
-    <a href=".."><button class="buttonTab">volver</button></a>
-    <a href="teams"><button class="buttonTab white">ver por equipo</button></a>
-    <br/>
+    <form method="get" class="participantsList" action="/escapeRooms/<%= escapeRoom.id %>/analytics/puzzles/participants">
+        <div class="filters">
+            <label for="turnId">Turno
+                <select name="turnId" id="turnId">
+                    <option value="" <%= !turnId ? "selected": ""%> >Todos los turnos</option>
+                    <% for (t in escapeRoom.turnos) { %>
+                    <% var turno = escapeRoom.turnos[t] %>
+                    <option value="<%=turno.id%>" <%= turnId == turno.id ? "selected" : "" %> >
+                        <%= getFullDate(turno.date)%>
+                    </option>
+                    <% } %>
+                </select>
+            </label>
+            <label for="orderBy">Ordenar por
+                <select name="orderBy" id="orderBy">
+                    <option value="" <%= !orderBy ? "selected": ""%>  disabled></option>
+                    <option value="name" <%= orderBy === "name" ? "selected": ""%>>Nombre</option>
+                    <option value="surname" <%= orderBy === "surname" ? "selected": ""%>>Apellidos</option>
+                </select></label>
+            <button type="submit" class="filter-button white" >filtrar</button>
+            <a href="teams"><button type="button" class="buttonTab">ver por equipo</button></a>
+
+        </div>
+    </form>
     <br/>
     <table>
         <tr class="animated fadeInRight">
@@ -22,7 +43,7 @@
         <%for (var p in results) {
             var result = results[p];
         %>
-        <tr class="animated fadeInRight" style="animation-delay: <%=0.2*(p)+(0.1)%>s;">
+        <tr class="animated fadeInRight" style="animation-delay: <%=0.2*(p)+(0.3)%>s;">
             <td class="align-left"><%=result.name%> <%= result.surname%></td>
             <% for (var r in result.retosSuperados) {
                 var superado = result.retosSuperados[r];
@@ -31,22 +52,30 @@
                 }
             %>
                 <td class="<%= superado ? "complete":"incomplete"%>">
-                    <i class="material-icons">fiber_manual_record</i>
+                    <span class="icon"></span>
                 </td>
             <% } %>
             <td><%=Math.round(result.retosSuperados.filter(r=>r==1).length*10000/result.retosSuperados.length)/100%>%</td>
         </tr>
         <%} %>
-        <tr class="animated fadeInRight" style="animation-delay: <%=0.1*(results.length)%>s;">
+        <tr class="animated fadeInRight" style="animation-delay: <%=0.2*(results.length)+0.3%>s;">
             <td class="align-left"><b>Total:</b> <%=results.length%></td>
             <% for (var s in totalRetosSuperados) { %>
                 <td>
-                    <%=totalRetosSuperados[s]%><br/>
+                    <b><%=totalRetosSuperados[s]%></b>
+                    <br/>
+                    <% if (results.length > 0 ) {%>
                     <%=Math.round(totalRetosSuperados[s]/results.length*10000)/100 %>%
+                    <% } %>
 
                 </td>
             <% } %>
+            <td></td>
         </tr>
     </table>
+    <br/>
+
+    <br/>
+
 </div>
 <% include ../../partials/__footer %>
