@@ -58,7 +58,7 @@ exports.add = (req, res, next) => {
 
 
             req.user.getTurnosAgregados().then(function (turnos) {
-                if (turnos.length === 0){
+                if (turnos.length === 0) {
                     if (participants.length < escapeRoom.nmax) {
                         req.user.addTurnosAgregados(req.body.turnSelected).
                             then(function () {
@@ -75,17 +75,16 @@ exports.add = (req, res, next) => {
                     req.flash("error", "Ya estas dentro de un turno.");
                     res.redirect(`/users/${req.session.user.id}/escapeRooms`);
                 }
-
             }).
                 catch((e) => next(e));
         }).
         catch((e) => next(e));
-
 };
 
 // GET /escapeRooms/:escapeRoomId/participants
 exports.index = (req, res, next) => {
-    const {escapeRoom} = req;
+    const {escapeRoom, query} = req;
+    const {turnId, orderBy} = query;
     const options = {
         "attributes": [
             "id",
@@ -112,14 +111,13 @@ exports.index = (req, res, next) => {
         }
     };
 
-    if (req.query.turnId) {
-        options.include.where.id = req.query.turnId;
+    if (turnId) {
+        options.include.where.id = turnId;
     }
-    if (req.query.orderBy) {
-        console.log(req.query.orderBy);
+    if (orderBy) {
         options.order = [
             [
-                req.query.orderBy,
+                orderBy,
                 "ASC"
             ]
         ];
@@ -162,8 +160,8 @@ exports.index = (req, res, next) => {
         } else {
             res.render("escapeRooms/participants", {escapeRoom,
                 participants,
-                "turnId": req.query.turnId,
-                "orderBy": req.query.orderBy});
+                turnId,
+                orderBy});
         }
     }).
         catch((e) => next(e));

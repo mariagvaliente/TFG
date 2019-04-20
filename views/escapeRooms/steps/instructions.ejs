@@ -12,8 +12,8 @@
     </p>
 
     <form method='POST' id="instructionsForm" action='/escapeRooms/<%= escapeRoom.id %>/instructions'  >
-  	<div class="editor-wrapper">
-        <div id="editor" style="background-color: white;">
+  	<div class="editor-wrapper animated zoomInUp">
+        <div id="editor" class="" style="background-color: white;">
             <%if (escapeRoom.instructions) {%>
                 <%- escapeRoom.instructions %>
             <%} else {%>

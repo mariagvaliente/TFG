@@ -555,3 +555,8 @@ exports.studentToken = (req, res, next) => {
     }
 };
 
+exports.analytics = (req, res) => {
+    const {escapeRoom} = req;
+
+    res.render("escapeRooms/analytics/analytics", {escapeRoom});
+};

@@ -3,17 +3,17 @@
   <h2 >Apariencia</h2>  
   <div class="half-flex-container">
     <div class="left-half-flex">
-        <img class="buttonApp <%= escapeRoom.appearance  === "litera"    ?  "selected" : "" %>" id="litera" src="/images/litera.png" autocomplete="off"/>
-        <img class="buttonApp <%= escapeRoom.appearance  === "cerulean"  ?  "selected" : "" %>" id="cerulean" src="/images/cerulean.png" autocomplete="off"/>
-        <img class="buttonApp <%= escapeRoom.appearance  === "journal"   ?  "selected" : "" %>" id="journal" src="/images/journal.png" autocomplete="off"/>
-        <img class="buttonApp <%= escapeRoom.appearance  === "sketchy"   ?  "selected" : "" %>" id="sketchy" src="/images/sketchy.png" autocomplete="off"/>
-        <img class="buttonApp <%= escapeRoom.appearance  === "darkly"    ?  "selected" : "" %>" id="darkly" src="/images/darkly.png" autocomplete="off"/>
-        <img class="buttonApp <%= escapeRoom.appearance  === "cyborg"    ?  "selected" : "" %>" id="cyborg" src="/images/cyborg.png" autocomplete="off"/>
+        <img class="buttonApp animated bounceInUp <%= escapeRoom.appearance  === "litera"    ?  "selected" : "" %>" id="litera" src="/images/litera.png" autocomplete="off" style="animation-delay: 0.2s;"/>
+        <img class="buttonApp animated bounceInUp <%= escapeRoom.appearance  === "cerulean"  ?  "selected" : "" %>" id="cerulean" src="/images/cerulean.png" autocomplete="off" style="animation-delay: 0.4s;"/>
+        <img class="buttonApp animated bounceInUp <%= escapeRoom.appearance  === "journal"   ?  "selected" : "" %>" id="journal" src="/images/journal.png" autocomplete="off" style="animation-delay: 0.6s;"/>
+        <img class="buttonApp animated bounceInUp <%= escapeRoom.appearance  === "sketchy"   ?  "selected" : "" %>" id="sketchy" src="/images/sketchy.png" autocomplete="off" style="animation-delay: 0.8s;"/>
+        <img class="buttonApp animated bounceInUp <%= escapeRoom.appearance  === "darkly"    ?  "selected" : "" %>" id="darkly" src="/images/darkly.png" autocomplete="off" style="animation-delay: 1s;"/>
+        <img class="buttonApp animated bounceInUp <%= escapeRoom.appearance  === "cyborg"    ?  "selected" : "" %>" id="cyborg" src="/images/cyborg.png" autocomplete="off" style="animation-delay: 1.2s;"/>
 
     </div>
     <div class="right-half-flex">
       <div class="preview">
-        <iframe id="previewIframe" src='/escapeRooms/<%= escapeRoom.id %>/preview?appearance=<%=escapeRoom.appearance%>'></iframe>
+        <iframe id="previewIframe" class="animated slideInDown" src='/escapeRooms/<%= escapeRoom.id %>/preview?appearance=<%=escapeRoom.appearance%>'></iframe>
       </div>
     </div>
   </div>

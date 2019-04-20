@@ -131,6 +131,7 @@ router.put(
 );
 
 router.get("/escapeRooms/:escapeRoomId(\\d+)/participants", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, participantController.index);
+router.get("/escapeRooms/:escapeRoomId(\\d+)/teams", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, teamController.index);
 
 
 // Routes for the resource members of a team
@@ -144,7 +145,10 @@ router.put(
 // Routes for the resource /teams
 router.get("/turnos/:turnoId(\\d+)/teams/new", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.new);
 router.post("/turnos/:turnoId(\\d+)/teams", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.create);
-router.get("/turnos/:turnoId(\\d+)/teams", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.index);
+router.get("/turnos/:turnoId(\\d+)/teams", sessionController.loginRequired, sessionController.studentOrAdminRequired, teamController.indexTurnos);
 
+router.get("/escapeRooms/:escapeRoomId/analytics/", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, escapeRoomController.analytics);
+router.get("/escapeRooms/:escapeRoomId/analytics/puzzles/participants", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, puzzleController.puzzlesByParticipants);
+router.get("/escapeRooms/:escapeRoomId/analytics/puzzles/teams", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, puzzleController.puzzlesByTeams);
 
 module.exports = router;

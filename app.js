@@ -13,7 +13,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-
+const api = require("./routes/api");
 const index = require("./routes/index"),
 
     app = express();// View engine setup
@@ -57,6 +57,7 @@ app.use(methodOverride("_method", {"methods": [
     "GET"
 ]}));
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/api", api);
 app.use(partials());
 app.use(flash());
 

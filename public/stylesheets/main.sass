@@ -3,6 +3,8 @@
 	min-height: 100%
 	position: relative
 	#mainHeader, #mainFooter
+		.navBarIcon
+			@extend %scale-animation-up
 		#logoImg
 			width: 12%
 			margin-top: 0px
@@ -36,11 +38,21 @@
 		color: white
 		height: 100%
 		background-image: url("../images/background.png")
-		background-size: contain
+		background-size: 100%
 		height: 100%
 		padding: 35px
 		padding-top: 70px !important
 		position: relative
+		.analyticsTag
+			display: inline-block
+			font-family: Lato, sans-serif
+			font-weight: bold
+			background-color: white
+			color: $darkerpurple
+			padding: 9px 18px
+			border-radius: 40px
+			margin: 5px
+			@extend %scale-animation-down
 		&.no-bckg
 			background: none
 		footer

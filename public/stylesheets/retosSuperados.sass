@@ -1,0 +1,26 @@
+@import 'common/colors'
+.retosSuperados
+  overflow: hidden
+  table
+    *:not(i)
+      font-family: Lato, sans-serif
+    th
+      text-align: left
+      padding: 10px
+
+    td
+      padding: 10px
+      text-align: center
+      &.align-left
+        text-align: left
+      &.complete
+        color: $brightgreen
+      &.incomplete
+        color: $lightred
+  .buttonTab
+    @extend %common-button-props
+    &.white
+      background-color: white
+      border: $darkerpurple
+      color: $darkerpurple
+

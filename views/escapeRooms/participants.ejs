@@ -37,7 +37,7 @@ const getFullDate = (d) => {
             <button type="submit" class="filter-button" >filtrar</button>
         </div>
         <div class="flex-table-retos-wrapper">
-            <div class="flex-table-retos">
+            <div class="flex-table-retos animated jello">
                 <div class="flex-row-retos flex-row-retos-title">
                     <div class="flex-cell flex-name">Nombre</div>
                     <div class="flex-cell flex-surname">Apellidos</div>
@@ -66,12 +66,18 @@ const getFullDate = (d) => {
                 <% } %>
                 <% if (!participants || participants.length === 0) { %>
                 <div class="flex-row-retos">
+                    <% if (turnId) {%>
+                    <em class="no-participants">No hay participantes en este turno</em>
+                    <% } else { %>
                     <em class="no-participants">No hay participantes en esta escape room</em>
+                    <% } %>
                 </div>
                 <% } %>
             </div>
         </div>
-
+        <div class="total-number">
+            <b>Total:</b> <%= participants.length %> participante(s)
+        </div>
         <div class="align-right">
             <a href="/escapeRooms/<%=escapeRoom.id%>">
                 <button type="button">volver</button>

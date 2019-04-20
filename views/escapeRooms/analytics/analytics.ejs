@@ -1,0 +1,21 @@
+<% include ../../partials/_header.ejs %>
+
+<div class="main">
+    <h2>Learning analytics</h2>
+    <a href="/escapeRooms/<%=escapeRoom.id%>/analytics/summary" class="">
+        <span class="analyticsTag animated jackInTheBox delay-1s">
+            <i class="material-icons">dashboard</i> Resumen
+        </span>
+    </a>
+    <a href="/escapeRooms/<%=escapeRoom.id%>/analytics/puzzles/participants" class="">
+        <span class="analyticsTag animated jackInTheBox delay-1s">
+            <i class="material-icons">bar_chart</i> Retos superados
+        </span>
+    </a>
+    <a href="/escapeRooms/<%=escapeRoom.id%>/analytics/timeline" class="">
+        <span class="analyticsTag animated jackInTheBox delay-1s">
+            <i class="material-icons">timeline</i> Cronograma
+        </span>
+    </a>
+</div>
+<% include ../../partials/__footer %>

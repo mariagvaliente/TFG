@@ -1,6 +1,5 @@
 @import 'common/colors'
-@import 'common/mixins'
-#mainSection .main.participants
+#mainSection .main.teams
   .flex-table-retos-wrapper
     margin: 10px 0px
     .flex-table-retos
@@ -8,22 +7,12 @@
       .flex-row-retos
         .flex-cell
           &.flex-name
-            width: 15%
-          &.flex-surname
-            width: 15%
-          &.flex-username
-            width: 15%
-          &.flex-dni
-            width: 15%
-          &.flex-gender
-            width: 15%
+            width: 20%
           &.flex-turno
-            width: 13%
-          &.flex-attendance
-            width: 12%
+            width: 20%
+          &.flex-participants
+            width: 60%
             border-right: none
-            .attendance-checkbox
-              width: 20px
         &:not(.flex-row-retos-title)
           .flex-cell
             font-family: 'Lato'
@@ -36,7 +25,16 @@
       &:focus-within
         color: white
   input[type=submit], button
-    @extend %common-button-props
+    outline: 0
+    cursor: pointer
+    border-radius: 20px
+    padding: 10px
+    text-align: center
+    font-size: 16px
+    background: transparent
+    border: 2px solid $textpurple
+    color: $textpurple
+    @extend %scale-animation-down
     &.participants-button
       &.download-button
         background-color: $lightred
@@ -53,13 +51,9 @@
         color: $darkerpurple
         border-color: $brightyellow
         border-style: solid
-  .no-participants
+  .no-teams
     display: block
     font-family: Lato
     text-align: center
     width: 100%
     padding: 15px
-.total-number
-  font-family: Lato
-  b
-    font-family: Lato

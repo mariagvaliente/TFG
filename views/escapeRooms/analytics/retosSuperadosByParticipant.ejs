@@ -1,0 +1,52 @@
+<% include ../../partials/_header.ejs %>
+
+<div class="main retosSuperados">
+    <h2>Retos superados</h2>
+    <a href=".."><button class="buttonTab">volver</button></a>
+    <a href="teams"><button class="buttonTab white">ver por equipo</button></a>
+    <br/>
+    <br/>
+    <table>
+        <tr class="animated fadeInRight">
+            <th>Nombre</th>
+            <%for (var p in escapeRoom.puzzles) {
+                var puzzle = escapeRoom.puzzles[p];
+            %>
+        <th>
+            <%=puzzle.title%>
+        </th>
+        <%} %>
+            <th>Total</th>
+        </tr>
+        <% var totalRetosSuperados = escapeRoom.puzzles.map(p=>0)%>
+        <%for (var p in results) {
+            var result = results[p];
+        %>
+        <tr class="animated fadeInRight" style="animation-delay: <%=0.2*(p)+(0.1)%>s;">
+            <td class="align-left"><%=result.name%> <%= result.surname%></td>
+            <% for (var r in result.retosSuperados) {
+                var superado = result.retosSuperados[r];
+                if (superado) {
+                    totalRetosSuperados[r] += 1;
+                }
+            %>
+                <td class="<%= superado ? "complete":"incomplete"%>">
+                    <i class="material-icons">fiber_manual_record</i>
+                </td>
+            <% } %>
+            <td><%=Math.round(result.retosSuperados.filter(r=>r==1).length*10000/result.retosSuperados.length)/100%>%</td>
+        </tr>
+        <%} %>
+        <tr class="animated fadeInRight" style="animation-delay: <%=0.1*(results.length)%>s;">
+            <td class="align-left"><b>Total:</b> <%=results.length%></td>
+            <% for (var s in totalRetosSuperados) { %>
+                <td>
+                    <%=totalRetosSuperados[s]%><br/>
+                    <%=Math.round(totalRetosSuperados[s]/results.length*10000)/100 %>%
+
+                </td>
+            <% } %>
+        </tr>
+    </table>
+</div>
+<% include ../../partials/__footer %>

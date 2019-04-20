@@ -1,0 +1,68 @@
+<% include ../partials/_header.ejs %>
+<%
+const zeroPad = d => {
+    if (d < 10 ) {
+        return "0" + d;
+    }
+    return d;
+}
+const getFullDate = (d) => {
+    return zeroPad(d.getDate()) + '-' + zeroPad(d.getMonth()+1) + '-' + d.getFullYear() + ' ' + zeroPad(d.getHours()) +  ':' + zeroPad(d.getMinutes());
+}
+%>
+
+<div class="main teams">
+    <h2>Equipos</h2>
+    <form method="get" class="teamsList" action="/escapeRooms/<%= escapeRoom.id %>/teams">
+        <div class="filters">
+            <label for="turnId">Turno
+                <select name="turnId" id="turnId">
+                    <option value="" <%= !turnId ? "selected": ""%> >Todos los turnos</option>
+                    <% for (t in escapeRoom.turnos) { %>
+                    <% var turno = escapeRoom.turnos[t] %>
+                    <option value="<%=turno.id%>" <%= turnId == turno.id ? "selected" : "" %> >
+                        <%= getFullDate(turno.date)%>
+                    </option>
+                    <% } %>
+                </select>
+            </label>
+            <button type="submit" class="filter-button" >filtrar</button>
+        </div>
+        <div class="flex-table-retos-wrapper">
+            <div class="flex-table-retos animated jello">
+                <div class="flex-row-retos flex-row-retos-title">
+                    <div class="flex-cell flex-name">Nombre</div>
+                    <div class="flex-cell flex-turno">Turno</div>
+                    <div class="flex-cell flex-participants">Participantes</div>
+                </div>
+                <% for (var p in teams) {
+                    var team = teams[p]; %>
+                <div class="flex-row-retos">
+                    <div class="flex-cell flex-name"><%= team.name %></div>
+                    <div class="flex-cell flex-turno"><%= getFullDate(team.turno.date) %></div>
+                    <div class="flex-cell flex-participants"><%=team.teamMembers.map(m=>m.name + " " + m.surname).join(", ") %></div>
+
+                </div>
+                <% } %>
+                <% if (!teams || teams.length === 0) { %>
+                <div class="flex-row-retos">
+                    <% if (turnId) {%>
+                        <em class="no-teams">No hay equipos en este turno</em>
+                    <% } else { %>
+                        <em class="no-teams">No hay equipos en esta escape room</em>
+                    <% } %>
+                </div>
+                <% } %>
+            </div>
+        </div>
+        <div class="total-number">
+            <b>Total:</b> <%= teams.length %> equipo(s)
+        </div>
+        <div class="align-right">
+            <a href="/escapeRooms/<%=escapeRoom.id%>">
+                <button type="button">volver</button>
+            </a>
+        </div>
+    </form>
+</div>
+<% include ../partials/__footer %>
