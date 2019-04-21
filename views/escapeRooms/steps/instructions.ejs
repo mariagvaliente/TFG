@@ -28,13 +28,14 @@
         <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
         <button class="progress-buttons" type="submit" value="next" id="next" name="next">siguiente</button>
     </div>
-  </form>
+        <%- include('../../partials/__progress', {progress: 4}) %>
+
+    </form>
 </div>
 <br/>
 <br/>
 <br/>
 <% include ../../partials/__footer %>
-<%- include('../../partials/__progress', {progress: 4}) %>
 
 <script src="/js/instructions.js">
 

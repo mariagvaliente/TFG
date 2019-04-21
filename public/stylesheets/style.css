@@ -1305,10 +1305,21 @@ html {
       html body .progressBar .outterBar {
         height: 10px;
         border: 2px solid white;
-        border-radius: 5px; }
+        border-radius: 5px;
+        position: relative;
+        z-index: 9999;
+        overflow: hidden; }
         html body .progressBar .outterBar .innerBar {
           background-color: white;
-          height: 100%; }
+          height: 100%;
+          position: absolute;
+          display: inline-block;
+          border: none;
+          border-radius: 0px;
+          border-width: 0px;
+          padding: 0px; }
+          html body .progressBar .outterBar .innerBar:hover {
+            opacity: 0.7 !important; }
     html body input, html body select {
       background-color: #232951;
       -webkit-text-fill-color: #656683 !important;

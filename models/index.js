@@ -37,8 +37,12 @@ sequelize.import(path.join(__dirname, "hintApp"));
 // Import the definition of the Participants Table from participants.js
 sequelize.import(path.join(__dirname, "participants"));
 
+// Import the definition of the Requested Hints Table from requestedHint.js
+sequelize.import(path.join(__dirname, "requestedHint"));
+
+
 // Relation between models
-const {escapeRoom, turno, attachment, user, puzzle, hint, hintApp, team} = sequelize.models;// Relation 1-to-N between Escape Room and Turn:
+const {escapeRoom, turno, attachment, user, puzzle, hint, hintApp, team, requestedHint} = sequelize.models;// Relation 1-to-N between Escape Room and Turn:
 
 // Relation 1-to-N between Escape Room and Turno:
 
@@ -117,6 +121,10 @@ puzzle.belongsToMany(team, {"as": "superados",
     "through": "retosSuperados",
     "foreignKey": "puzzleId",
     "otherKey": "teamId"});
+
+// Relation N-to-M between Team and Hint:
+requestedHint.belongsTo(hint);
+requestedHint.belongsTo(team);
 
 
 module.exports = sequelize;

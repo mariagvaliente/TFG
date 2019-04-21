@@ -113,6 +113,7 @@ router.delete("/escapeRooms/:escapeRoomId(\\d+)/turnos/:turnoId(\\\\d+)", sessio
 
 router.get("/escapeRooms/:escapeRoomId(\\d+)/hintApp", sessionController.loginRequired, /* EscapeRoomController.isParticipantRequired,*/ hintController.hintApp);
 router.get("/escapeRooms/:escapeRoomId(\\d+)/hintAppWrapper", sessionController.loginRequired, /* EscapeRoomController.isParticipantRequired,*/ hintController.hintAppWrapper);
+router.post("/escapeRooms/:escapeRoomId(\\d+)/requestHint", sessionController.loginRequired, /* EscapeRoomController.isParticipantRequired,*/ hintController.requestHint);
 
 router.get("/escapeRooms/:escapeRoomId(\\d+)/play", sessionController.loginRequired, playController.play);
 router.get("/escapeRooms/:escapeRoomId(\\d+)/pretest", sessionController.loginRequired, playController.preTest);

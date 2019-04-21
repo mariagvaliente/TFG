@@ -18,9 +18,9 @@ const attHelper = require("../helpers/attachments"),
         "tags": [
             "tfg",
             "escapeRoom"
-        ]};// Autoload the escape room with id equals to :escapeRoomId
+        ]};
 
-
+// Autoload the escape room with id equals to :escapeRoomId
 exports.load = (req, res, next, escapeRoomId) => {
     models.escapeRoom.findById(escapeRoomId, {"include": [
         {"model": models.turno},
@@ -323,9 +323,10 @@ exports.temasUpdate = (req, res, next) => {
 
     escapeRoom.appearance = body.appearance;
     const isPrevious = Boolean(body.previous);
+    const progressBar = body.progress;
 
     escapeRoom.save({"fields": ["appearance"]}).then(() => {
-        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "instructions" : "evaluation"}`);
+        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "instructions" : progressBar || "evaluation"}`);
     }).
         catch(Sequelize.ValidationError, (error) => {
             error.errors.forEach(({message}) => req.flash("error", message));
@@ -351,8 +352,9 @@ exports.turnosUpdate = (req, res /* , next*/) => {
     const {escapeRoom, body} = req;
 
     const isPrevious = Boolean(body.previous);
+    const progressBar = body.progress;
 
-    res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "edit" : "puzzles"}`);
+    res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "edit" : progressBar || "puzzles"}`);
 };
 
 // GET /escapeRooms/:escapeRoomId/puzzles
@@ -365,8 +367,9 @@ exports.retos = (req, res) => {
 // POST /escapeRooms/:escapeRoomId/puzzles
 exports.retosUpdate = (req, res) => {
     const isPrevious = Boolean(req.body.previous);
+    const progressBar = req.body.progress;
 
-    res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "turnos" : "hints"}`);
+    res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "turnos" : progressBar || "hints"}`);
 };
 
 // GET /escapeRooms/:escapeRoomId/hints
@@ -380,14 +383,14 @@ exports.pistas = (req, res) => {
 exports.pistasUpdate = (req, res, next) => {
     const {escapeRoom, body} = req;
     const isPrevious = Boolean(body.previous);
-
+    const progressBar = body.progress;
     const {numQuestions, numRight, feedback} = body;
 
     escapeRoom.numQuestions = numQuestions;
     escapeRoom.numRight = numRight;
     escapeRoom.feedback = Boolean(feedback);
 
-    const back = `/escapeRooms/${escapeRoom.id}/${isPrevious ? "puzzles" : "instructions"}`;
+    const back = `/escapeRooms/${escapeRoom.id}/${isPrevious ? "puzzles" : progressBar || "instructions"}`;
 
     escapeRoom.save({"fields": [
         "numQuestions",
@@ -471,6 +474,7 @@ exports.encuestas = (req, res) => {
 exports.encuestasUpdate = (req, res, next) => {
     const {escapeRoom, body} = req;
     const isPrevious = Boolean(body.previous);
+    const progressBar = body.progress;
 
     escapeRoom.survey = body.survey;
     escapeRoom.pretest = body.pretest;
@@ -481,7 +485,7 @@ exports.encuestasUpdate = (req, res, next) => {
         "pretest",
         "posttest"
     ]}).then(() => {
-        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "appearance" : ""}`);
+        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "appearance" : progressBar || ""}`);
     }).
         catch(Sequelize.ValidationError, (error) => {
             error.errors.forEach(({message}) => req.flash("error", message));
@@ -507,9 +511,10 @@ exports.instructionsUpdate = (req, res, next) => {
     const isPrevious = Boolean(body.previous);
 
     escapeRoom.instructions = body.instructions;
+    const progressBar = body.progress;
 
     escapeRoom.save({"fields": ["instructions"]}).then(() => {
-        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "hints" : "appearance"}`);
+        res.redirect(`/escapeRooms/${escapeRoom.id}/${isPrevious ? "hints" : progressBar || "appearance"}`);
     }).
         catch(Sequelize.ValidationError, (error) => {
             error.errors.forEach(({message}) => req.flash("error", message));

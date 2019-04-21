@@ -1,5 +1,13 @@
 <span class="progressBar"> 
 	<div class="progressText"><%=progress%>/6 completado </div>
 	<% var width = progress / 6 * 100 ; %>
-	<div class="outterBar"><div class="innerBar" style="width: <%=width%>%;"></div></div>
+	<% var labels = ["edit","turnos","puzzles","hints","instructions","appearance","evaluation"]%>
+	<% var realLabels = ["Configuración básica","Turnos","Retos","Pistas","Instrucciones","Apariencia","Evaluación"]%>
+	<% labels.splice(progress, 1)%>
+	<% realLabels.splice(progress, 1)%>
+	<div class="outterBar">
+        <%for(var i in labels){%>
+		<button name="progress" value="<%=labels[i]%>" title="<%=labels[i]%>" class="innerBar" style="opacity: <%= ( progress > i) ? 1 : 0 %>; left: <%=  100/6*i %>%;width: <%=100/6%>%;"></button>
+        <%}%>
+	</div>
 </span>

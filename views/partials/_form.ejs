@@ -106,29 +106,6 @@ $(function(){
         $('#keepAttachment').val("0");
     })
 
-/*    $('.customInput').on('focus', function(e){
-      elementMouseIsOver = document.querySelectorAll( ":hover" );
-      try {
-          [...elementMouseIsOver].filter(a=>a.classList.contains('erFormField'))[0].children[1]
-      } catch(e) {
-          var el = $( e.target);
-          var elOffset = el.offset().top;
-          var elHeight = el.height();
-          var windowHeight = $(window).height();
-          var offset;
-
-          if (elHeight < windowHeight) {
-            offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
-          }
-          else {
-            offset = elOffset;
-          }
-          var speed = 700;
-          $('html, body').animate({scrollTop:offset}, speed);
-      }
-
-    })*/
-
 })
 
 
@@ -136,5 +113,5 @@ $(function(){
 
 </script>
 <% include ./__scrollListener %>
-
 <%- include('../partials/__progress', {progress: 0}) %>
+
