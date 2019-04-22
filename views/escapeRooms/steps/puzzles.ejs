@@ -3,7 +3,7 @@
   <h2>Retos   
   </h2>
     <div class="flex-table-retos-wrapper">
-        <div class="flex-table-retos">
+        <div class="flex-table-retos animated jello">
       <div class="flex-row-retos flex-row-retos-title">
         <div class="flex-cell flex-cell-retos">
           Título
@@ -118,10 +118,10 @@
       <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
       <button class="progress-buttons" type="submit" value="next" id="next" name="next">siguiente</button>
     </div>
+      <%- include('../../partials/__progress', {progress: 2}) %>
   </form>
 </div>
 <% include ../../partials/__footer %>
-<%- include('../../partials/__progress', {progress: 2}) %>
 
 <script type="text/javascript">
   const editReto = (el) => {

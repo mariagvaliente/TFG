@@ -7,7 +7,7 @@
 	</h2>
 	<% var turnos = escapeRoom.turnos; %>
 	<div class="contenedor">
-	    <div class="turnosLeft">
+	    <div class="turnosLeft animated bounceInUp">
 	        <div id="datepicker"></div>
 	    </div>
 	    <div class="turnosRight" >
@@ -25,11 +25,13 @@
 			<button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
 		  	<button class="progress-buttons" type="submit" value="next" id="next" name="next">siguiente</button>
 		</div>
+        <%- include('../../partials/__progress', {progress: 1}) %>
 	</form>
+	<br/>
 	<br/>
 </div>
 <% include ../../partials/__footer %>
-<%- include('../../partials/__progress', {progress: 1}) %>
+
 <script>
 var selectedDates = [
 <% for (var d = 0; d < turnos.length; d++) { %>

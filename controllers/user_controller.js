@@ -41,17 +41,26 @@ exports.new = (req, res) => {
 // POST /users
 exports.create = (req, res, next) => {
     const {name, surname, gender, username, password, dni} = req.body,
+
+        studentRegex = /(@alumnos\.upm\.es)/,
+        teacherRegex = /(@upm\.es)/,
         user = models.user.build({name,
             surname,
             gender,
             username,
             "dni": (dni || "").toLowerCase(),
             password}),
+        isStudent = user.username.match(studentRegex),
+        isTeacher = user.username.match(teacherRegex);
 
-        expresion = /(@upm\.es)/,
-        hallado = user.username.match(expresion);
-
-    user.isStudent = !hallado;
+    user.isStudent = Boolean(isStudent);
+    if (!isStudent && !isTeacher) {
+        req.flash("error", "Debes registrarte con tu cuenta de correo de la UPM");
+        res.render("index", {user,
+            "register": true});
+        return;
+    }
+    console.log(user);
 
     // Save into the data base
     user.save({"fields": [

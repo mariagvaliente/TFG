@@ -1,12 +1,12 @@
 <header class="" id="mainHeader">
     <div class="left">
         <% if (session.user) { %>
-            <a title="Salir" href="/?_method=DELETE"><i class="material-icons">power_settings_new</i></a>
+            <a title="Salir" href="/?_method=DELETE"><i class="navBarIcon material-icons">power_settings_new</i></a>
             <span style="display:inline-block;width:10px;"></span>
-            <a title="Pág. principal" href="/escapeRooms"><i class="material-icons">home</i></a>
+            <a title="Pág. principal" href="/escapeRooms"><i class="navBarIcon material-icons">home</i></a>
             <span style="display:inline-block;width:10px;"></span>
             <% if (!session.user.isStudent) { %>
-                <a title="Ideas" href="/inspiration"><i class="material-icons">widgets</i></a>
+                <a title="Ideas" href="/inspiration"><i class="navBarIcon material-icons">widgets</i></a>
             <% } %>
         <% } %>
     </div>

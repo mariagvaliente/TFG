@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
-const {models} = require("../models");// Autoload the puzzle with id equals to :puzzleId
+const {models} = require("../models");
 
+// Autoload the puzzle with id equals to :puzzleId
 exports.load = (req, res, next, puzzleId) => {
     models.puzzle.findById(puzzleId).
         then((puzzle) => {
@@ -28,9 +29,7 @@ exports.create = (req, res, next) => {
     const back = `/escapeRooms/${req.escapeRoom.id}/puzzles`;
 
     puzzle.save().
-        then((puz) => {
-            console.log("*******************************");
-            console.log(puz);
+        then(() => {
             req.flash("success", "Reto creado correctamente.");
             res.redirect(back);
         }).

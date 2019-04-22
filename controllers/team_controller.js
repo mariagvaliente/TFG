@@ -49,8 +49,48 @@ exports.create = (req, res, next) => {
         });
 };
 
+// GET /escapeRooms/:escapeRoomId/teams
+exports.index = (req, res, next) => {
+    const {escapeRoom, query} = req;
+    const {turnId} = query;
+    const where = {
+        "include": [
+            {
+                "model": models.turno,
+                "where": {
+                    "escapeRoomId": escapeRoom.id
+                }
+            },
+            {
+                "model": models.user,
+                "as": "teamMembers",
+                "attributes": [
+                    "name",
+                    "surname"
+                ]
+
+            }
+        ],
+        "order": Sequelize.literal("lower(team.name) ASC")
+    };
+
+    if (turnId) {
+        where.include[0].where.id = turnId;
+    }
+    models.team.findAll(where).then((teams) => {
+        res.render("escapeRooms/teams", {teams,
+            escapeRoom,
+            turnId});
+    }).
+        catch((e) => {
+            console.error(e);
+            next(e);
+        });
+};
+
 // GET /turnos/:turnoId/teams
-exports.index = (req, res) => {
+exports.indexTurnos = (req, res) => {
     res.render("teams/index", {"turno": req.turn});
 };
+
 

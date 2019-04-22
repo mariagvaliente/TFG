@@ -23,7 +23,7 @@ var formatTime = function(currentDate) {
 	var dateNoTime = new Date(turn.date);
 	dateNoTime.setHours(0,0,0,0);
 	%> 
-		<div class="turno" data-date="<%=dateNoTime.getTime()%>">
+		<div class="turno " data-date="<%=dateNoTime.getTime()%>">
 			<div class="hora">
 				<%= formatTime(date) %>
 			</div>
