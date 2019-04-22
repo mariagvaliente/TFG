@@ -1,0 +1,52 @@
+<% include ../partials/_header.ejs %>
+
+<div class="main showStudent">
+	<div class="flex">
+		<div class="flex-thumb">
+			<% var attachment = escapeRoom.attachment; %>
+			<% include ../attachments/_show %>
+		</div>
+		<div class="flex-er-info">
+    		<h2><%=escapeRoom.title%></h2>
+			<h3><b>Turno:</b> <%=getFullDate(participant.turnosAgregados[0].date)%></h3>
+			<h4><b>Equipo:</b> <%=participant.teamsAgregados[0].name%></h4>
+			<h5><%=participant.teamsAgregados[0].teamMembers.map(m=>m.name + " " + m.surname).join(", ")%></h5>
+		</div>
+	</div>
+    <p class="desc"><%=escapeRoom.description%></p>
+    <% status = "active"%>
+    <div class="status">
+	    <% if (status === "pending") { %>
+	    		<% if (escapeRoom.pretest) { %>
+	    			Antes de empezar rellena el siguiente cuestionario <br/>
+	    			<a target="_blank" href="<%=escapeRoom.pretest%>">
+	    				<button>click aquí</button>
+	    			</a>
+	    		<% } %>
+	    <% } else if( status === "active") { %>
+	    		<a href="/escapeRooms/<%=escapeRoom.id%>/play"><button>jugar</button>
+	    		</a>
+	    <% } else {%>
+	    		<% if (escapeRoom.posttest) { %>
+	    			Antes de irte rellena el siguiente cuestionario <br/>
+	    			<a target="_blank" href="<%=escapeRoom.pretest%>">
+	    				<button>click aquí</button>
+	    			</a> <br/>
+	    		<% } %>
+	    		<% if (escapeRoom.survey) { %>
+	    			¡Tu opinión cuenta! Dinos lo que piensas de la escape room <br/>
+	    			<a target="_blank" href="<%=escapeRoom.survey%>">
+	    				<button>click aquí</button>
+	    			</a>
+	    		<% } %>
+		<%}%>
+	</div>
+
+</div>
+<br/>
+<br/>
+<br/>
+<script>
+var participant =  JSON.parse('<%-JSON.stringify(participant)%>')
+</script>
+<% include ../partials/__footer %>

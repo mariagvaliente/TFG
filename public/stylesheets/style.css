@@ -1261,6 +1261,28 @@ button, input[type="submit"] {
           border: 2px solid #161938;
           border-radius: 12px; }
 
+.showStudent .flex {
+  display: flex; }
+  .showStudent .flex .flex-thumb {
+    width: 25%;
+    position: relative;
+    padding-top: 40px; }
+    .showStudent .flex .flex-thumb img {
+      width: 100%; }
+  .showStudent .flex .flex-er-info {
+    flex: 1;
+    padding: 15px; }
+    .showStudent .flex .flex-er-info *:not(h2) {
+      font-family: Lato; }
+    .showStudent .flex .flex-er-info *:not(b) {
+      font-weight: normal; }
+
+.showStudent .desc {
+  font-family: Lato; }
+
+.showStudent .status {
+  text-align: center; }
+
 * {
   font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
   box-sizing: border-box; }
