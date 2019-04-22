@@ -548,7 +548,7 @@ exports.studentToken = (req, res, next) => {
     const {escapeRoom} = req;
 
     if (escapeRoom.invitation === req.query.token) {
-        res.render("escapeRooms/indexStudent", {escapeRoom,
+        res.render("escapeRooms/indexInvitation", {escapeRoom,
             cloudinary});
     } else {
         next(403);
