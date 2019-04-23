@@ -7,7 +7,7 @@ const {Op} = Sequelize;
 exports.add = (req, res, next) => {
     console.log("Marcado como turno");
     const {escapeRoom} = req;
-    const direccion = req.body.redir || `/turnos/${req.body.turnSelected}/teams`;
+    const direccion = req.body.redir || `/escapeRooms/${escapeRoom.id}/turnos/${req.body.turnSelected}/teams`;
     const options = {
         "attributes": [
             "id",
@@ -57,7 +57,7 @@ exports.add = (req, res, next) => {
             });
 
 
-            req.user.getTurnosAgregados().then(function (turnos) {
+            req.user.getTurnosAgregados({"where": {"escapeRoomId": escapeRoom.id}}).then(function (turnos) {
                 if (turnos.length === 0) {
                     if (participants.length < escapeRoom.nmax) {
                         req.user.addTurnosAgregados(req.body.turnSelected).
