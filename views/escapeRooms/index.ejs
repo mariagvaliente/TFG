@@ -34,8 +34,7 @@
             <% for (var i in escapeRooms) { %>
                 <% var escapeRoom = escapeRooms[i]; %>
                 <% var attachment = escapeRoom.attachment; %>
-
-                <a href="/escapeRooms/<%= escapeRoom.id %><%=(user && user.isStudent) ? "/play" : "" %>" class="escapeRoomItemWrapper animated bounceIn" style="animation-delay: <%=100*i%>ms;">
+                <a href="/escapeRooms/<%= escapeRoom.id %>" class="escapeRoomItemWrapper animated bounceIn" style="animation-delay: <%=100*i%>ms;">
                     <div class="escapeRoomItem">
                         <div class="erFoto" style="text-align: center">
                             <div class="bckgFoto" style="background-image: url(<% if (attachment) {%><%=attachment.url%><%} else {%>/images/placeholder.png<%}%>)"></div>

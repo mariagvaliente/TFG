@@ -74,6 +74,48 @@ exports.adminOrAuthorRequired = (req, res, next) => {
     }
 };
 
+exports.adminOrAuthorOrParticipantRequired = (req, res, next) => {
+    const isAdmin = Boolean(req.session.user.isAdmin),
+        isAuthor = req.escapeRoom.authorId === req.session.user.id;
+
+    models.user.findAll({
+        "include": [
+            {
+                "model": models.turno,
+                "as": "turnosAgregados",
+                "where": {
+                    "escapeRoomId": req.escapeRoom.id
+                }
+            },
+            {
+                "model": models.team,
+                "as": "teamsAgregados",
+                "include": {
+                    "model": models.user,
+                    "as": "teamMembers",
+                    "attributes": [
+                        "name",
+                        "id",
+                        "surname"
+                    ]
+                }
+            }
+        ],
+        "where": {
+            "id": req.session.user.id
+        }
+    }).then((participants) => {
+        const isParticipant = participants && participants.length > 0;
+
+        req.isParticipant = isParticipant ? participants[0] : null;
+        if (isAdmin || isAuthor || isParticipant) {
+            next();
+        } else {
+            console.log("Operación prohibida: El usuario logueado no es el autor de la escape room ni el administrador");
+            res.send(403);
+        }
+    });
+};
 // GET /escapeRooms
 exports.index = (req, res, next) => {
     let findOptions = {};
@@ -118,10 +160,19 @@ exports.indexBreakDown = (req, res) => {
 // GET /escapeRooms/:escapeRoomId
 exports.show = (req, res) => {
     const {escapeRoom} = req;
+    const participant = req.isParticipant;
 
-    res.render("escapeRooms/show", {escapeRoom,
-        cloudinary,
-        parseURL});
+    if (participant) {
+        res.render("escapeRooms/show_student", {escapeRoom,
+            cloudinary,
+            participant,
+            "status": "pending",
+            parseURL});
+    } else {
+        res.render("escapeRooms/show", {escapeRoom,
+            cloudinary,
+            parseURL});
+    }
 };
 
 // /escapeRooms/:escapeRoomId/preview
