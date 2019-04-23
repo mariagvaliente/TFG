@@ -15,16 +15,17 @@ exports.load = (req, res, next, teamId) => {
         catch((error) => next(error));
 };
 
-// GET /turnos/:turnoId/teams/new
+// GET /escapeRooms/:escapeRoomId/turnos/:turnoId/teams/new
 exports.new = (req, res) => {
     const team = {"name": ""};
+    const {escapeRoom} = req;
 
-    res.render("teams/new", {team,
+    res.render("teams/new", {team, escapeRoom,
         "turno": req.turn});
 };
 
 
-// POST /turnos/:turnId/teams
+// POST /escapeRooms/:escapeRoomId/turnos/:turnId/teams
 exports.create = (req, res, next) => {
     const team = models.team.build({"name": req.body.name,
         "turnoId": req.turn.id,
@@ -88,9 +89,10 @@ exports.index = (req, res, next) => {
         });
 };
 
-// GET /turnos/:turnoId/teams
+// GET /escapeRooms/:escapeRoomId/turnos/:turnoId/teams
 exports.indexTurnos = (req, res) => {
-    res.render("teams/index", {"turno": req.turn});
+    const {escapeRoom} = req;
+    res.render("teams/index", {"turno": req.turn, escapeRoom});
 };
 
 

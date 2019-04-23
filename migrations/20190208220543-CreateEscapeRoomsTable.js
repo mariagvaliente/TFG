@@ -18,6 +18,8 @@ module.exports = {up (queryInterface, Sequelize) {
         "video": {"type": Sequelize.STRING},
         "nmax": {"type": Sequelize.INTEGER,
             "allowNull": false},
+        "teamSize": {"type": Sequelize.INTEGER,
+            "allowNull": false},
         "invitation": {"type": Sequelize.STRING,
             "allowNull": false,
             "defaultValue" () {

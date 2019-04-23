@@ -25,11 +25,15 @@
 </div>
 
 <div class="wideRow erFormField">
-    <label for="vid"  class="itemNarrow">6. Número máximo de participantes:</label>
+    <label for="nm"  class="itemNarrow">6. Número máximo de participantes:</label>
     <input type="number" min="1" class="customInput itemWide" id="nm" name="nmax" value="<%= escapeRoom.nmax %>" placeholder="¿Cuántos participantes puede haber en cada turno?" autocomplete="off"/>
 </div>
 
-<br/>
+<div class="wideRow erFormField">
+    <label for="ts"  class="itemNarrow">7. Tamaño máximo de los equipos:</label>
+    <input type="number" min="1" class="customInput itemWide" id="ts" name="teamSize" value="<%= escapeRoom.teamSize %>" placeholder="¿Cuántos alumnos puede haber en cada equipo?" autocomplete="off"/>
+</div>
+
 <div class="wideRow erFormField">
     <label class="itemNarrow">8. Miniatura:</label>
     <input class="attach" type="file" id="img" name="image"/>
@@ -60,7 +64,7 @@
 </div>
 
 <br/>
- 
+
 <div class="align-right">
     <% if (escapeRoom.id) { %>
 

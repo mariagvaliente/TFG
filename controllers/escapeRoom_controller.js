@@ -194,7 +194,8 @@ exports.new = (req, res) => {
         "duration": "",
         "description": "",
         "video": "",
-        "nmax": ""};
+        "nmax": "",
+        "teamSize": ""};
 
     res.render("escapeRooms/new", {escapeRoom});
 };
@@ -202,7 +203,7 @@ exports.new = (req, res) => {
 
 // POST /escapeRooms/create
 exports.create = (req, res, next) => {
-    const {title, subject, duration, description, video, nmax} = req.body,
+    const {title, subject, duration, description, video, nmax, teamSize} = req.body,
 
         authorId = req.session.user && req.session.user.id || 0,
 
@@ -212,6 +213,7 @@ exports.create = (req, res, next) => {
             description,
             video,
             nmax,
+            teamSize,
             authorId}); // Saves only the fields question and answer into the DDBB
 
     escapeRoom.save({"fields": [
@@ -222,6 +224,7 @@ exports.create = (req, res, next) => {
         "description",
         "video",
         "nmax",
+        "teamSize",
         "authorId",
         "invitation"
     ]}).
@@ -284,6 +287,8 @@ exports.update = (req, res, next) => {
     escapeRoom.description = body.description;
     escapeRoom.video = body.video;
     escapeRoom.nmax = body.nmax;
+    escapeRoom.teamSize = body.teamSize;
+
 
     escapeRoom.save({"fields": [
         "title",
@@ -291,7 +296,8 @@ exports.update = (req, res, next) => {
         "duration",
         "description",
         "video",
-        "nmax"
+        "nmax",
+        "teamSize"
     ]}).
         then((er) => {
             req.flash("success", "Escape Room editada con éxito");
@@ -604,7 +610,7 @@ exports.studentToken = (req, res, next) => {
     const {escapeRoom} = req;
 
     if (escapeRoom.invitation === req.query.token) {
-        res.render("escapeRooms/indexStudent", {escapeRoom,
+        res.render("escapeRooms/indexInvitation", {escapeRoom,
             cloudinary});
     } else {
         next(403);

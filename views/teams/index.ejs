@@ -4,7 +4,7 @@
 <div class="main student">
     <div class="dialog" >
         </br>
-        Seleccione un equipo <a id="add-team" href="/turnos/<%= turno.id %>/teams/new">
+        Seleccione un equipo <a id="add-team" href="/escapeRooms/<%= escapeRoom.id %>/turnos/<%= turno.id %>/teams/new">
             <i class="material-icons">add_circle_outline</i></a>
         </br>
         </br>
@@ -31,7 +31,7 @@
             <br/>
             <div>
 
-                <form method='POST' id="form" action='/turnos/<%= turno.id %>/members/xxxx?_method=put'>
+                <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/turnos/<%= turno.id %>/members/xxxx?_method=put'>
                     <div class="join-button-flex-container">
                     <a href="javascript:history.back()"><button class="rounded deleteButton" type="button">volver</button></a>
                     <button class="rounded acceptButton" type="submit">continuar</button>

@@ -11,6 +11,8 @@ module.exports = function (sequelize, DataTypes) {
         "video": {"type": DataTypes.STRING},
         "nmax": {"type": DataTypes.INTEGER,
             "validate": {"notEmpty": {"msg": "El número de participantes no puede estar vacío."}}},
+        "teamSize": {"type": DataTypes.INTEGER,
+            "validate": {"notEmpty": {"msg": "El tamaño de los equipos no puede estar vacío."}}},
         "invitation": {"type": DataTypes.STRING,
             "allowNull": false,
             "defaultValue" () {
