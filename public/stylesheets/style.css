@@ -1283,6 +1283,38 @@ button, input[type="submit"] {
 .showStudent .status {
   text-align: center; }
 
+.main.inspiration {
+  font-size: 18px; }
+  .main.inspiration *:not(i):not(h2) {
+    font-family: Lato, sans-serif; }
+  .main.inspiration h3 {
+    color: #48C18E;
+    font-weight: bold; }
+  .main.inspiration h4 {
+    color: #FAC855;
+    font-weight: bold;
+    font-size: 24px; }
+  .main.inspiration b, .main.inspiration strong {
+    color: #F47E84; }
+  .main.inspiration .flex-images {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; }
+    .main.inspiration .flex-images .flex-col {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      padding: 10px; }
+      .main.inspiration .flex-images .flex-col div {
+        text-align: center; }
+      .main.inspiration .flex-images .flex-col img {
+        height: 200px; }
+  .main.inspiration .lettered {
+    list-style-type: lower-alpha; }
+  .main.inspiration .narrative {
+    width: 80px; }
+
 * {
   font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
   box-sizing: border-box; }
