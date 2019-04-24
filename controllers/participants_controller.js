@@ -195,12 +195,12 @@ exports.confirmAttendance = (req, res) => {
 // DELETE /escapeRooms/:escapeRoomId/turno/:turnId/team/:teamId
 exports.studentLeave = (req, res) => {
     models.user.findById(req.session.user.id).then((user) => {
-        req.team.removeTeamMember(user).then((team) => {
+        req.team.removeTeamMember(user).then(() => {
             models.participants.find({"where": {"turnId": req.turn.id,
                 "userId": req.session.user.id}}).
                 then((participant) => {
-                    participant.destroy().then((p) => {
-                        if ((req.team.teamMembers.length) <= 1) {
+                    participant.destroy().then(() => {
+                        if (req.team.teamMembers.length <= 1) {
                             req.team.destroy().then(() => {
                                 res.redirect("/");
                             });
