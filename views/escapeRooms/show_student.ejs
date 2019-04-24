@@ -1,42 +1,47 @@
 <% include ../partials/_header.ejs %>
 
 <div class="main showStudent">
-	<div class="flex">
-		<div class="flex-thumb">
+	<div class="flex ">
+		<div class="flex-thumb attachmentShow">
 			<% var attachment = escapeRoom.attachment; %>
 			<% include ../attachments/_show %>
 		</div>
 		<div class="flex-er-info">
-    		<h2><%=escapeRoom.title%></h2>
-			<h3><b>Turno:</b> <%=getFullDate(participant.turnosAgregados[0].date)%></h3>
-			<h4><b>Equipo:</b> <%=participant.teamsAgregados[0].name%></h4>
-			<h5><%=participant.teamsAgregados[0].teamMembers.map(m=>m.name + " " + m.surname).join(", ")%></h5>
+    		<h2 class="animated slideInUp"><%=escapeRoom.title%></h2>
+			<h3 class="animated slideInUp"><b>Turno:</b> <%=getFullDate(participant.teamsAgregados[0].turno.date)%></h3>
+			<h4 class="animated slideInUp"><b>Equipo:</b> <%=participant.teamsAgregados[0].name%></h4>
+			<h5 class="animated slideInUp"><%=participant.teamsAgregados[0].teamMembers.map(m=>m.name + " " + m.surname).join(", ")%></h5>
 		</div>
 	</div>
-    <p class="desc"><%=escapeRoom.description%></p>
+	<h3 class="animated slideInUp">Indicaciones</h3>
+	<p class="desc animated slideInUp">
+		<%= participant.teamsAgregados[0].turno.indications || "Ninguna" %>
+	</p>
+	<h3 class="animated slideInUp">Descripción</h3>
+    <p class="desc animated slideInUp"><%=escapeRoom.description%></p>
     <% status = "active"%>
     <div class="status">
 	    <% if (status === "pending") { %>
 	    		<% if (escapeRoom.pretest) { %>
 	    			Antes de empezar rellena el siguiente cuestionario <br/>
 	    			<a target="_blank" href="<%=escapeRoom.pretest%>">
-	    				<button>click aquí</button>
+	    				<button class="rounded">click aquí</button>
 	    			</a>
 	    		<% } %>
 	    <% } else if( status === "active") { %>
-	    		<a href="/escapeRooms/<%=escapeRoom.id%>/play"><button>jugar</button>
+	    		<a href="/escapeRooms/<%=escapeRoom.id%>/play"><button class="rounded">jugar</button>
 	    		</a>
 	    <% } else {%>
 	    		<% if (escapeRoom.posttest) { %>
 	    			Antes de irte rellena el siguiente cuestionario <br/>
 	    			<a target="_blank" href="<%=escapeRoom.pretest%>">
-	    				<button>click aquí</button>
+	    				<button class="rounded">click aquí</button>
 	    			</a> <br/>
 	    		<% } %>
 	    		<% if (escapeRoom.survey) { %>
 	    			¡Tu opinión cuenta! Dinos lo que piensas de la escape room <br/>
 	    			<a target="_blank" href="<%=escapeRoom.survey%>">
-	    				<button>click aquí</button>
+	    				<button class="rounded">click aquí</button>
 	    			</a>
 	    		<% } %>
 		<%}%>

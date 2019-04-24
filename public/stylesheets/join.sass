@@ -46,11 +46,13 @@
 					color: $textpurple
 					font-size: 18px
 					padding: 10px
+					&.disabled
+						opacity: 0.5
 					p
 						font-size: 10px
 					&.selected
 						border: 2px solid $brightyellow
-					&:hover
+					&:not(.disabled):hover
 						@extend %scale-animation-down
 
 				h1

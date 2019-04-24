@@ -1,6 +1,8 @@
 const Sequelize = require("sequelize");
-const {models} = require("../models");// Autoload the hint with id equals to :hintId
+const {models} = require("../models");
 
+
+// Autoload the hint with id equals to :hintId
 exports.load = (req, res, next, hintId) => {
     models.hint.findById(hintId).
         then((hint) => {
@@ -88,6 +90,7 @@ exports.hintAppWrapper = (req, res) => {
 exports.requestHint = (req, res) => {
     const {escapeRoom, body} = req;
     const {score, status} = body;
+    const success = status === "completed" || status === "passed";
 
     models.user.findById(req.session.user.id).then((user) => {
         user.getTeamsAgregados({
@@ -104,73 +107,85 @@ exports.requestHint = (req, res) => {
                 if (teams && teams.length > 0) {
                     const [team] = teams;
 
-                    team.getRetos().then((retosSuperados) => {
-                        let currentReto = -1;
-                        const puzzleIndexes = escapeRoom.puzzles.map((p) => p.id);
+                    if (success) {
+                        team.getRetos().then((retosSuperados) => {
+                            let currentReto = -1;
+                            const puzzleIndexes = escapeRoom.puzzles.map((p) => p.id);
 
-                        for (const p in retosSuperados) {
-                            const reto = retosSuperados[p];
-                            const idx = puzzleIndexes.indexOf(reto.id);
+                            for (const p in retosSuperados) {
+                                const reto = retosSuperados[p];
+                                const idx = puzzleIndexes.indexOf(reto.id);
 
-                            if (idx > currentReto) {
-                                currentReto = idx;
-                            }
-                        }
-                        currentReto++;
-
-                        if (currentReto >= puzzleIndexes.length) {
-                            currentReto = -1;
-                        } else {
-                            currentReto = escapeRoom.puzzles[currentReto].id;
-                        }
-                        models.requestedHint.findAll({
-                            "where": {
-                                "teamId": team.id,
-                                "success": true
-                            }
-                        }).then((hints) => {
-                            const requestedHints = hints.filter((h) => h.id !== null);
-                            let currentHint = -1;
-                            const allHints = [];
-                            const allHintsIndexes = [];
-                            const currentRetos = escapeRoom.puzzles.filter((p) => p.id === currentReto);
-
-                            for (const h in currentRetos) {
-                                for (const i in currentRetos[h].hints) {
-                                    allHints.push(currentRetos[h].hints[i]);
-                                    allHintsIndexes.push(currentRetos[h].hints[i].id);
+                                if (idx > currentReto) {
+                                    currentReto = idx;
                                 }
                             }
+                            currentReto++;
 
-                            for (const h in requestedHints) {
-                                const hint = requestedHints[h];
-
-                                const hIndex = allHintsIndexes.indexOf(hint.hintId);
-
-                                if (hIndex > currentHint) {
-                                    currentHint = hIndex;
+                            if (currentReto >= puzzleIndexes.length) {
+                                currentReto = -1;
+                            } else {
+                                currentReto = escapeRoom.puzzles[currentReto].id;
+                            }
+                            models.requestedHint.findAll({
+                                "where": {
+                                    "teamId": team.id,
+                                    "success": true
                                 }
-                            }
-                            currentHint++;
-                            let pista = "No quedan más pistas automáticas para tu situación. Puedes llamar al profesor para que te dé una personalizada.";
-                            let hintId = null;
+                            }).then((hints) => {
+                                const requestedHints = hints.filter((h) => h.id !== null);
+                                let currentHint = -1;
+                                const allHints = [];
+                                const allHintsIndexes = [];
+                                const currentRetos = escapeRoom.puzzles.filter((p) => p.id === currentReto);
 
-                            if (currentHint < allHintsIndexes.length) {
-                                pista = allHints[currentHint].content;
-                                hintId = allHints[currentHint].id;
-                            }
+                                for (const h in currentRetos) {
+                                    for (const i in currentRetos[h].hints) {
+                                        allHints.push(currentRetos[h].hints[i]);
+                                        allHintsIndexes.push(currentRetos[h].hints[i].id);
+                                    }
+                                }
 
-                            models.requestedHint.build({
-                                hintId,
-                                "teamId": team.id,
-                                "success": Boolean(status),
-                                score
-                            }).save().
-                                then(() => {
-                                    res.json({"msg": status ? pista : "Lo siento, sigue intentándolo"});
-                                });
+                                for (const h in requestedHints) {
+                                    const hint = requestedHints[h];
+
+                                    const hIndex = allHintsIndexes.indexOf(hint.hintId);
+
+                                    if (hIndex > currentHint) {
+                                        currentHint = hIndex;
+                                    }
+                                }
+                                currentHint++;
+                                let pista = "No quedan más pistas automáticas para tu situación. Puedes llamar al profesor para que te dé una personalizada.";
+                                let hintId = null;
+
+                                if (currentHint < allHintsIndexes.length) {
+                                    pista = allHints[currentHint].content;
+                                    hintId = allHints[currentHint].id;
+                                }
+
+                                models.requestedHint.build({
+                                    hintId,
+                                    "teamId": team.id,
+                                    success,
+                                    score
+                                }).save().
+                                    then(() => {
+                                        res.json({"msg": pista});
+                                    });
+                            });
                         });
-                    });
+                    } else {
+                        models.requestedHint.build({
+                            "hintId": null,
+                            "teamId": team.id,
+                            success,
+                            score
+                        }).save().
+                            then(() => {
+                                res.json({"msg": "Lo siento, sigue intentándolo"});
+                            });
+                    }
                 } else {
                     res.status(500);
                     res.send({"msg": "Ha ocurrido un error. Asegúrate de que te has registrado correctamente en la Escape Room."});

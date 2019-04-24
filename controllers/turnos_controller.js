@@ -35,7 +35,13 @@ exports.load = (req, res, next, turnId) => {
 exports.indexStudent = (req, res, next) => {
     const {escapeRoom} = req;
 
-    models.turno.findAll({"where": {"escapeRoomId": req.escapeRoom.id}}).
+    models.turno.findAll({
+      "where": {"escapeRoomId": req.escapeRoom.id},
+      "include": {
+          "model": models.user,
+            "as": "students"
+      }
+    }).
         then((turnos) => {
             res.render("turnos/_indexStudent.ejs", {turnos,
                 escapeRoom});

@@ -85,11 +85,14 @@
         text-align: center
         padding: 12px
         border-radius: 20px
+        &.disabled
+          opacity: 0.4
+          cursor: not-allowed
         &.selected
           border: 3px solid $brightyellow
         &.turnoAlumno
           cursor: pointer
-          &:hover
+          &:not(.disabled):hover
             @extend %scale-animation-down
         &.hidden
           display: none

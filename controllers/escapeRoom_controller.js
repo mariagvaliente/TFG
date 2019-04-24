@@ -80,25 +80,30 @@ exports.adminOrAuthorOrParticipantRequired = (req, res, next) => {
 
     models.user.findAll({
         "include": [
-            {
-                "model": models.turno,
-                "as": "turnosAgregados",
-                "where": {
-                    "escapeRoomId": req.escapeRoom.id
-                }
-            },
+
             {
                 "model": models.team,
                 "as": "teamsAgregados",
-                "include": {
-                    "model": models.user,
-                    "as": "teamMembers",
-                    "attributes": [
-                        "name",
-                        "id",
-                        "surname"
-                    ]
-                }
+                "required": true,
+                "include": [
+                    {
+                        "model": models.user,
+                        "as": "teamMembers",
+                        "attributes": [
+                            "name",
+                            "id",
+                            "surname"
+                        ]
+                    },
+                    {
+                        "model": models.turno,
+                        "where": {
+                            "escapeRoomId": req.escapeRoom.id
+                        },
+                        "required": true
+                    }
+
+                ]
             }
         ],
         "where": {
@@ -130,7 +135,6 @@ exports.index = (req, res, next) => {
                         "as": "students",
                         "duplicating": false,
                         "required": true,
-                        // "association": models.turno.associations.turnosAgregados,
                         "where": {"id": req.user.id}}
                 ]},
             models.attachment
