@@ -3,7 +3,12 @@ const {models} = require("../models");
 
 // Autoload the team with id equals to :teamId
 exports.load = (req, res, next, teamId) => {
-    models.team.findById(teamId).
+    models.team.findById(teamId, {
+        "include": {
+            "model": models.user,
+            "as": "teamMembers"
+        }
+    }).
         then((team) => {
             if (!team) {
                 throw new Error(`No hay equipo con id=${teamId}`);
@@ -20,7 +25,8 @@ exports.new = (req, res) => {
     const team = {"name": ""};
     const {escapeRoom} = req;
 
-    res.render("teams/new", {team, escapeRoom,
+    res.render("teams/new", {team,
+        escapeRoom,
         "turno": req.turn});
 };
 
@@ -92,7 +98,9 @@ exports.index = (req, res, next) => {
 // GET /escapeRooms/:escapeRoomId/turnos/:turnoId/teams
 exports.indexTurnos = (req, res) => {
     const {escapeRoom} = req;
-    res.render("teams/index", {"turno": req.turn, escapeRoom});
+
+    res.render("teams/index", {"turno": req.turn,
+        escapeRoom});
 };
 
 

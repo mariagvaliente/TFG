@@ -151,7 +151,6 @@ exports.index = (req, res, next) => {
         catch((error) => next(error));
 };
 
-
 // GET /escapeRooms
 exports.indexBreakDown = (req, res) => {
     res.redirect("/");
@@ -616,4 +615,3 @@ exports.studentToken = (req, res, next) => {
         next(403);
     }
 };
-

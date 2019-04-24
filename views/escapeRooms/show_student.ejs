@@ -42,6 +42,10 @@
 		<%}%>
 	</div>
 
+
+	<form method="post" action="/escapeRooms/<%=escapeRoom.id%>/turno/<%=participant.turnosAgregados[0].id%>/team/<%=participant.teamsAgregados[0].id%>?_method=delete">
+		<button onsubmit="return confirm('¿Seguro que deseas desapuntarte?');">desapuntarse</button>
+	</form>
 </div>
 <br/>
 <br/>
