@@ -6,7 +6,7 @@ exports.add = (req, res, next) => {
     const {escapeRoom} = req;
 
     req.team.getTeamMembers().then(function (members) {
-        if (members.length < escapeRoom.teamSize){
+        if (members.length < escapeRoom.teamSize) {
             req.team.addTeamMembers(req.session.user.id).then(function () {
                 res.redirect(direccion);
             }).
@@ -19,8 +19,6 @@ exports.add = (req, res, next) => {
         }
     }).
         catch((e) => next(e));
-
-
 };
 
 

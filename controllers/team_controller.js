@@ -20,7 +20,8 @@ exports.new = (req, res) => {
     const team = {"name": ""};
     const {escapeRoom} = req;
 
-    res.render("teams/new", {team, escapeRoom,
+    res.render("teams/new", {team,
+        escapeRoom,
         "turno": req.turn});
 };
 
@@ -92,7 +93,9 @@ exports.index = (req, res, next) => {
 // GET /escapeRooms/:escapeRoomId/turnos/:turnoId/teams
 exports.indexTurnos = (req, res) => {
     const {escapeRoom} = req;
-    res.render("teams/index", {"turno": req.turn, escapeRoom});
+
+    res.render("teams/index", {"turno": req.turn,
+        escapeRoom});
 };
 
 

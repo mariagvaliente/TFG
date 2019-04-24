@@ -1,4 +1,4 @@
-<div class="clockContainer" >
+<div class="clockContainer" id="clockContainer" >
     <p class="clock text-danger text-center" id="explosion" style="display:none"><span id="boom" data-text="BOOOOOM!">BOOOOOM!</span></p>
     <p class="countdown text-danger clock text-center" id="time">
     <span id="minus" style="display:none;" data-text="-">-</span><span id="hours" data-text="00">00</span><span class="colon" data-text=":">:</span><span id="mins" data-text="00">00</span><span class="colon" data-text=":">:</span><span id="secs" data-text="00">00</span>
@@ -21,11 +21,18 @@
         document.getElementById('mins').setAttribute('data-text', pad(mins));
         document.getElementById('secs').innerHTML = pad(secs);
         document.getElementById('secs').setAttribute('data-text', pad(secs));
-
+        if (rem_time > 0 && rem_time < 11) {
+          document.getElementById("clockContainer").classList.add("animated");
+          document.getElementById("clockContainer").classList.add("infinite");
+          document.getElementById("clockContainer").classList.add("pulse");
+        }
         if (rem_time === 0 || rem_time < 0) {
             [...document.getElementsByClassName("clock")].forEach((e) => {
                 e.classList.add('red');
             });
+            document.getElementById("clockContainer").classList.remove("animated");
+            document.getElementById("clockContainer").classList.remove("infinite");
+            document.getElementById("clockContainer").classList.remove("pulse");
         }
         if (rem_time === 0) {
             //clearInterval(countdownChrono);
