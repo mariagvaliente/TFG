@@ -95,8 +95,6 @@ router.post("/escapeRooms/:escapeRoomId(\\d+)/instructions", sessionController.l
 
 router.get("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequired, sessionController.studentOrAdminRequired, escapeRoomController.studentToken);
 router.post("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.indexStudent);
-router.get("/escapeRooms/:escapeRoomId(\\d+)/completed", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.indexStudentCompleted);
-
 router.get("/escapeRooms/:escapeRoomId(\\d+)/activarTurno", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.indexActivarTurno);
 router.post("/escapeRooms/:escapeRoomId(\\d+)/activar", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.activar);
 

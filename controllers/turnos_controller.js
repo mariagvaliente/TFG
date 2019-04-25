@@ -50,17 +50,6 @@ exports.indexStudent = (req, res, next) => {
 };
 
 
-// GET /escapeRooms/:escapeRoomId/completed
-exports.indexStudentCompleted = (req, res, next) => {
-    const {escapeRoom} = req;
-
-    models.turno.findAll({"where": {"escapeRoomId": req.escapeRoom.id}}).
-        then((turnos) => {
-            res.render("turnos/_indexStudentCompleted.ejs", {turnos,
-                escapeRoom});
-        }).
-        catch((error) => next(error));
-};
 
 // GET /escapeRooms/:escapeRoomId/activarTurno
 exports.indexActivarTurno = (req, res, next) => {
@@ -73,6 +62,41 @@ exports.indexActivarTurno = (req, res, next) => {
         }).
         catch((error) => next(error));
 };
+
+
+
+// POST /escapeRooms/:escapeRoomId/activar
+exports.activar = (req, res, next) => {
+
+    const {escapeRoom, body} = req;
+
+
+    models.turno.findAll({"where": {"id": body.turnSelected}}).
+        each((turno) => {
+            console.log(turno.id);
+
+            turno.status = "active";
+            turno.startTime = new Date();
+
+            const back = `/escapeRooms/${escapeRoom.id}`;
+
+            turno.save({"fields": ["startTime", "status"]}).then(() => {
+                req.flash("success", "Turno activo.");
+                res.redirect(back);
+            }).
+                catch(Sequelize.ValidationError, (error) => {
+                    error.errors.forEach(({message}) => req.flash("error", message));
+                    res.redirect(back);
+                }).
+                catch((error) => {
+                    req.flash("error", `Error creando el turno: ${error.message}`);
+                    next(error);
+                });
+        }).
+        catch((error) => next(error));
+
+};
+
 
 // POST /escapeRooms/:escapeRoomId/turnos
 exports.create = (req, res, next) => {
@@ -113,35 +137,3 @@ exports.destroy = (req, res, next) => {
         catch((error) => next(error));
 };
 
-
-// POST /escapeRooms/:escapeRoomId/activar
-exports.activar = (req, res, next) => {
-
-    const {escapeRoom, body} = req;
-
-
-    models.turno.findAll({"where": {"id": body.turnSelected}}).
-        each((turno) => {
-            console.log(turno.id);
-
-            turno.status = "active";
-            turno.startTime = new Date();
-
-            const back = `/escapeRooms/${escapeRoom.id}`;
-
-            turno.save({"fields": ["startTime", "status"]}).then(() => {
-                req.flash("success", "Turno activo.");
-                res.redirect(back);
-            }).
-                catch(Sequelize.ValidationError, (error) => {
-                    error.errors.forEach(({message}) => req.flash("error", message));
-                    res.redirect(back);
-                }).
-                catch((error) => {
-                    req.flash("error", `Error creando el turno: ${error.message}`);
-                    next(error);
-                });
-        }).
-        catch((error) => next(error));
-
-};
