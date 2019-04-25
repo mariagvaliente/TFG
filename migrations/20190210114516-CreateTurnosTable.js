@@ -13,8 +13,6 @@ module.exports = {up (queryInterface, Sequelize) {
         "date": {"type": Sequelize.DATE,
             "validate": {"notEmpty": {"msg": "La fecha no puede estar vacía."}}},
         "indications": {"type": Sequelize.STRING},
-        "startTime": {"type": Sequelize.DATE},
-        "status": {"type": Sequelize.STRING, "defaultValue": "pending"},
         "createdAt": {"type": Sequelize.DATE,
             "allowNull": false},
         "updatedAt": {"type": Sequelize.DATE,
