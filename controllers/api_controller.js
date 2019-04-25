@@ -1,20 +1,20 @@
 const {models} = require("../models");
 
 
-// GET /api/escapeRooms/:escapeRoomId/puzzles/:puzzleId/check
+// POST /api/escapeRooms/:escapeRoomId/puzzles/:puzzleId/check
 exports.check = (req, res, next) => {
-    const {puzzle, query} = req;
-    const answer = query.answer || "";
+  const {puzzle,  body} = req;
+  let {solution, token} = body;
     const where = {};
 
-    if (query.id) {
-        where.id = query.id;
-    } else if (query.username) {
-        where.username = `${query.username}@alumnos.upm.es`;
+    if (token) {
+        where.username = token;
     } else {
         return res.status(401).end();
     }
-    if (answer.toLowerCase().trim() === puzzle.sol.toLowerCase().trim()) {
+    solution = (solution === undefined || solution === null )? "": solution;
+    const puzzleSol = (puzzle.sol === undefined | puzzle.sol === null ) ? "" : puzzle.sol;
+    if (solution.toLowerCase().trim() === puzzleSol.toLowerCase().trim()) {
         models.user.findAll({where}).then((users) => {
             if (!users || users.length === 0) {
                 res.status(404).send("Usuario no encontrado");

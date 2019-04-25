@@ -164,12 +164,10 @@ exports.indexBreakDown = (req, res) => {
 exports.show = (req, res) => {
     const {escapeRoom} = req;
     const participant = req.isParticipant;
-
     if (participant) {
         res.render("escapeRooms/show_student", {escapeRoom,
             cloudinary,
             participant,
-            "status": "pending",
             parseURL});
     } else {
         res.render("escapeRooms/show", {escapeRoom,

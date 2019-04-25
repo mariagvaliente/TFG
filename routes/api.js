@@ -16,6 +16,6 @@ router.param("userId", userController.load);
 router.param("teamId", teamController.load);
 
 
-router.get("/escapeRooms/:escapeRoomId(\\d+)/puzzles/:puzzleId(\\d+)/check", apiController.check);
+router.post("/escapeRooms/:escapeRoomId(\\d+)/puzzles/:puzzleId(\\d+)/check", apiController.check);
 
 module.exports = router;

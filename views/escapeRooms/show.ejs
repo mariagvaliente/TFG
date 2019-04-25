@@ -23,6 +23,7 @@
            <li><a href="/escapeRooms/<%= escapeRoom.id %>/edit"><button class="showMenuButton editButton">editar</button></a></li>
            <li><a href="/escapeRooms/<%= escapeRoom.id %>?_method=DELETE" onClick="return confirm('Delete: <%= escapeRoom.title %>');"><button class="showMenuButton deleteButton">borrar</button></a></li>
            <li><a href="/users/<%= session.user.id %>/escapeRooms"><button class="showMenuButton">volver</button></a></li>
+           <li><a href="/escapeRooms/<%= escapeRoom.id %>/activarTurno"><button class="showMenuButton">PLAY</button></a></li>
        </ul>
 
     </div>

@@ -6,7 +6,7 @@
     <div class="dialog" >
         <div style="font-size: xx-large;">
             </br>
-            Turno completo...Por favor, seleccione otro turno:
+            Seleccione el turno que quieres activar:
             </br>
             </br>
         </div>
@@ -66,7 +66,7 @@
     <form method='GET' id="form" action='/users/<%= session.user.id %>/escapeRooms'>
         <button class="rounded deleteButton" type="submit" style="display:inline-block;">cancelar</button>
     </form>
-    <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/users/<%= session.user.id %>/participants?_method=put'>
+    <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/activar'>
         <input type="hidden" id="turnSelected" name="turnSelected" value="">
         <button class="rounded acceptButton" type="submit" style="display:inline-block;">continuar</button>
     </form>
