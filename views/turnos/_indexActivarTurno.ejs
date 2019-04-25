@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="/stylesheets/vendor/owl.carousel.min.css">
+<link rel="stylesheet" href="/stylesheets/vendor/owl.theme.default.css">
+<% include ../partials/_header.ejs %>
+
+<div class="main student" style="display: flex; justify-content: center; align-items: center;">
+    <div class="dialog" >
+        <div style="font-size: xx-large;">
+            </br>
+            Seleccione el turno que quieres activar:
+            </br>
+            </br>
+        </div>
+        <%
+        var monthArray = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+        var formatDate = function(currentDate) {
+            return currentDate.getDate() + " de " + monthArray[currentDate.getMonth()] + " de " + currentDate.getFullYear();
+        }
+        var formatTime = function(currentDate) {
+            return zeroPadding(currentDate.getHours()) + ":" + zeroPadding(currentDate.getMinutes());
+        }
+        var pastDates = [];
+        var firstDiv = false;
+        %>
+        <%if (turnos && turnos.length > 0) {%>
+            <div class="owl-carousel">
+                <% for (var i in turnos) { %>
+                    <% 	var turn = turnos[i];
+                        var date = new Date(turn.date);
+                        var dateNoTime = new Date(turn.date);
+                        dateNoTime.setHours(0,0,0,0); %>
+
+                    <%	if (pastDates.indexOf(dateNoTime.getTime()) === -1) {
+                        pastDates.push(dateNoTime.getTime());
+                    if (firstDiv) {
+                    %>
+            </div>
+    </div>
+    <% } else {
+        firstDiv = true;
+    }%>
+    <div class="day-wrapper">
+        <p class="turno-date-title-show"><%=formatDate(dateNoTime)%></p>
+
+
+        <div class="flexBoxTurnos">
+            <%}%>
+            <div class="turno turnoAlumno" data-date="<%=dateNoTime.getTime()%>" id="turno-<%=turn.id%>" data-id="<%=turn.id%>">
+                <div class="hora">
+                    <%= formatTime(date) %>
+                </div>
+                <div class="indications">
+                    <% if (turn.indications) { %>
+                        <%= turn.indications %> <br/>
+                    <% } else { %>
+                        <em class="no-indications"> Sin indicaciones</em>
+                    <% } %>
+                </div>
+            </div>
+            <%}%>
+        </div>
+    </div>
+</div>
+<%}%>
+<div class="join-button-flex-container">
+    <form method='GET' id="form" action='/users/<%= session.user.id %>/escapeRooms'>
+        <button class="rounded deleteButton" type="submit" style="display:inline-block;">cancelar</button>
+    </form>
+    <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/activar'>
+        <input type="hidden" id="turnSelected" name="turnSelected" value="">
+        <button class="rounded acceptButton" type="submit" style="display:inline-block;">continuar</button>
+    </form>
+</div>
+</div>
+</div>
+<script src="/js/vendor/owl.carousel.min.js"></script>
+
+<script>
+
+    $(function(){
+        $('.turno').on('click', function(e) {
+            var currentClicked = $(this);
+            var turnId = currentClicked.data('id');
+            $('.selected').removeClass('selected');
+            currentClicked.addClass('selected');
+            $('#turnSelected').val(turnId);
+        });
+        var car = $(".owl-carousel").owlCarousel(
+            {  center: false,
+                items:1,
+                loop:true,
+                margin: 10,
+                nav:true,
+                dots:true,
+                checkVisible: false
+            }
+        );
+        console.log($(".owl-carousel").data('owlCarousel'))
+
+
+    });
+
+</script>

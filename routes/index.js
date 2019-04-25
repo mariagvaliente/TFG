@@ -97,6 +97,10 @@ router.get("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequi
 router.post("/escapeRooms/:escapeRoomId(\\d+)/join", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.indexStudent);
 router.get("/escapeRooms/:escapeRoomId(\\d+)/completed", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.indexStudentCompleted);
 
+router.get("/escapeRooms/:escapeRoomId(\\d+)/activarTurno", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.indexActivarTurno);
+router.post("/escapeRooms/:escapeRoomId(\\d+)/activar", sessionController.loginRequired, sessionController.studentOrAdminRequired, turnController.activar);
+
+
 router.post("/escapeRooms/:escapeRoomId(\\d+)/puzzles/new", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, puzzleController.create);
 router.put("/escapeRooms/:escapeRoomId(\\d+)/puzzles/:puzzleId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, puzzleController.update);
 router.delete("/escapeRooms/:escapeRoomId(\\d+)/puzzles/:puzzleId(\\d+)", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, puzzleController.destroy);

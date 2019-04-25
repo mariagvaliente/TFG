@@ -14,16 +14,16 @@
 		</div>
 	</div>
     <p class="desc"><%=escapeRoom.description%></p>
-    <% status = "active"%>
+
     <div class="status">
-	    <% if (status === "pending") { %>
+	    <% if (participant.turnosAgregados[0].status === "pending") { %>
 	    		<% if (escapeRoom.pretest) { %>
 	    			Antes de empezar rellena el siguiente cuestionario <br/>
 	    			<a target="_blank" href="<%=escapeRoom.pretest%>">
 	    				<button>click aquí</button>
 	    			</a>
 	    		<% } %>
-	    <% } else if( status === "active") { %>
+	    <% } else if( participant.turnosAgregados[0].status === "active") { %>
 	    		<a href="/escapeRooms/<%=escapeRoom.id%>/play"><button>jugar</button>
 	    		</a>
 	    <% } else {%>
