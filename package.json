@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "heroku local:start",
+    "start": "npm start",
     "start_old": "node ./bin/www",
     "dev": "DEBUG=TFG  nodemon bin/www -e sass,js --exec \"npm run css && npm run lint && node\" && xdg-open http://localhost:3000 ",
     "dev-windows": "nodemon bin/www -e sass,js --exec \"npm run css && npm run lint && node\" && start http://localhost:3000",
