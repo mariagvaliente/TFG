@@ -191,3 +191,24 @@ exports.confirmAttendance = (req, res) => {
             res.end();
         });
 };
+
+// DELETE /escapeRooms/:escapeRoomId/turno/:turnId/team/:teamId
+exports.studentLeave = (req, res) => {
+    models.user.findById(req.session.user.id).then((user) => {
+        req.team.removeTeamMember(user).then(() => {
+            models.participants.find({"where": {"turnId": req.turn.id,
+                "userId": req.session.user.id}}).
+                then((participant) => {
+                    participant.destroy().then(() => {
+                        if (req.team.teamMembers.length <= 1) {
+                            req.team.destroy().then(() => {
+                                res.redirect("/");
+                            });
+                        } else {
+                            res.redirect("/");
+                        }
+                    });
+                });
+        });
+    });
+};

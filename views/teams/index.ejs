@@ -18,7 +18,7 @@
                 <% for (var i in turno.teams) { %>
                 <% var team = turno.teams[i]; %>
 
-                <div class="teamCarouselItem" data-id="<%=team.id%>">
+                <div class="teamCarouselItem <%=team.teamMembers.length >= escapeRoom.teamSize ? "disabled":""%> " data-id="<%=team.id%>">
                     <%= team.name %>
                     <%for (var m in team.teamMembers) {%>
                     <p><%=team.teamMembers[m].name %> <%=team.teamMembers[m].surname %></p>

@@ -41,11 +41,9 @@
                 }%>
              <div class="day-wrapper">
                 <p class="turno-date-title-show"><%=formatDate(dateNoTime)%></p>
-
-
                  <div class="flexBoxTurnos">
             <%}%>
-            <div class="turno turnoAlumno" data-date="<%=dateNoTime.getTime()%>" id="turno-<%=turn.id%>" data-id="<%=turn.id%>">
+            <div class="turno turnoAlumno <%=turn.students.length >= 2 ? "disabled":""%>" data-date="<%=dateNoTime.getTime()%>" id="turno-<%=turn.id%>" data-id="<%=turn.id%>">
             <div class="hora">
                 <%= formatTime(date) %>
             </div>
@@ -78,7 +76,7 @@
 <script>
 
     $(function(){
-      $('.turno').on('click', function(e) {
+      $('.turno:not(.disabled)').on('click', function(e) {
         var currentClicked = $(this);
         var turnId = currentClicked.data('id');
         $('.selected').removeClass('selected');
