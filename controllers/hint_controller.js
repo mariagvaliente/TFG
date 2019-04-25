@@ -171,7 +171,7 @@ exports.requestHint = (req, res) => {
                                     score
                                 }).save().
                                     then(() => {
-                                        res.json({"msg": pista});
+                                        res.json({"msg": pista, "ok": !!hintId});
                                     });
                             });
                         });
@@ -183,12 +183,12 @@ exports.requestHint = (req, res) => {
                             score
                         }).save().
                             then(() => {
-                                res.json({"msg": "Lo siento, sigue intentándolo"});
+                                res.json({"msg": "Lo siento, sigue intentándolo", "ok": false});
                             });
                     }
                 } else {
                     res.status(500);
-                    res.send({"msg": "Ha ocurrido un error. Asegúrate de que te has registrado correctamente en la Escape Room."});
+                    res.send({"msg": "Ha ocurrido un error. Asegúrate de que te has registrado correctamente en la Escape Room.", "ok": false});
                 }
             });
     }).

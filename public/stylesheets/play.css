@@ -44,3 +44,10 @@ p {
 .backToMain:hover, .backToMain:active, .backToMain:focus {
     text-decoration: none;
 }
+
+#hintList {
+    width: auto;
+    display: inline-block;
+    list-style: none;
+    padding-left: 0px;
+}

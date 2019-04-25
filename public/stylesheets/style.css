@@ -67,6 +67,11 @@ button, input[type="submit"] {
     padding: 10px;
     text-align: center;
     outline: 0; }
+  button.inverse, input[type="submit"].inverse {
+    background-color: transparent;
+    color: white;
+    border-color: white;
+    -webkit-text-fill-color: white !important; }
   button[type=submit], input[type="submit"][type=submit] {
     cursor: pointer; }
 
@@ -136,7 +141,7 @@ button, input[type="submit"] {
       display: flex; }
       #mainSection .main .menuERShow .attachmentShow {
         text-align: center;
-        max-width: 60%; }
+        flex: 1; }
       #mainSection .main .menuERShow .menuERShowRight {
         margin-left: 50px;
         padding: 10px;
@@ -1287,6 +1292,9 @@ button, input[type="submit"] {
 
 .showStudent .status {
   text-align: center; }
+
+.showStudent #unjoin {
+  text-align: right; }
 
 .main.inspiration {
   font-size: 18px; }

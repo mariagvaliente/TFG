@@ -12,6 +12,7 @@
 </head>
 <body>
 <a class="backToMain" href="/escapeRooms/<%=escapeRoom.id%>">🡄</a>
+<%if (team) {%><span style="float: right;"><b>Equipo: </b><%=team.name%></span><%}%>
 <div class="previewContainer">
     <div class="container">
     <h1><%=escapeRoom.title%></h1>
@@ -44,15 +45,40 @@
         <% if (escapeRoom.hintApp) {%>
         <div class=" row-centered">
             <div class="col-xs-12">
-                    <button onclick="previewHintApp()" class="btn btn-primary">
-                        ¿Necesitas una pista?
-                    </button>
+
+                    <div >
+                        <%if (hints && hints.length > 0) {%>
+                        <h4>Pistas</h4>
+                        <%}%>
+                        <ul id="hintList" >
+                        <% for (var h in hints) {
+                            let hint = hints[h].hint;
+                            if (hint && hint.id) {%>
+                            <li>
+                                <div class="alert alert-warning">
+                                    <%=hint.content%>
+                                </div>
+                            </li>
+                        <% }
+                        } %>
+                        </ul>
+                        <br/>
+                        <button onclick="previewHintApp()" class="btn btn-primary">
+                            ¿Necesitas una pista?
+                        </button>
+                    </div>
             </div>
         </div>
         <% } %>
 
         <div class=" row-centered">
             <div class="col-xs-12">
+                <%if (team.turno && team.turno.status === "active") {
+                    %>
+                <% } %>
+                <script>
+                    console.log("<%=team.turno.status%>")
+                </script>
             <% include ../../partials/_countdown.ejs %>
             <button type="button" class="btn btn-warning">finish</button>
             </div>

@@ -103,7 +103,7 @@
                 Invitación:
             </div>
             <div class="flexShowRight">
-                <% var invitationLink = "http://localhost:3000/escapeRooms/" + escapeRoom.id +"/join?token=" + escapeRoom.invitation; %>
+                <% var invitationLink = hostName + "/escapeRooms/" + escapeRoom.id +"/join?token=" + escapeRoom.invitation; %>
 
                 <a class="show_link" href="<%= invitationLink %>"><%= invitationLink %></a>
 

@@ -174,6 +174,7 @@ exports.show = (req, res) => {
     } else {
         res.render("escapeRooms/show", {escapeRoom,
             cloudinary,
+            "hostName": process.env.APP_NAME || "http://localhost:3000",
             parseURL});
     }
 };

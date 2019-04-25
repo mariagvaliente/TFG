@@ -46,15 +46,14 @@
 	    		<% } %>
 		<%}%>
 	</div>
-
-
-	<form method="post" action="/escapeRooms/<%=escapeRoom.id%>/turno/<%=participant.teamsAgregados[0].turno.id%>/team/<%=participant.teamsAgregados[0].id%>?_method=delete">
-		<button onsubmit="return confirm('¿Seguro que deseas desapuntarte?');">desapuntarse</button>
+	<form id="unjoin" method="post" action="/escapeRooms/<%=escapeRoom.id%>/turno/<%=participant.teamsAgregados[0].turno.id%>/team/<%=participant.teamsAgregados[0].id%>?_method=delete">
+		<input type="submit" class="rounded inverse" onclick="return confirm('¿Seguro que deseas desapuntarte?');" value="desapuntarse"></input>
 	</form>
+	<br/>
+	<br/>
+	<br/>
 </div>
-<br/>
-<br/>
-<br/>
+
 <script>
 var participant =  JSON.parse('<%-JSON.stringify(participant)%>')
 </script>

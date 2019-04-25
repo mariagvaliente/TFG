@@ -14,7 +14,15 @@ $(function(){
                     return res.json();
                 }).then(res => {
                     console.log(res);
-                    alert(res.msg)
+                    alert(res.msg);
+                    if(res.ok) {
+                        let listEl = document.createElement("li");
+                        listEl.innerHTML= `<div class="alert alert-warning">
+                                ${res.msg}
+                            </div>`.trim();
+                        document.getElementById("hintList").appendChild(listEl);
+                    }
+
                 }).catch(e=>console.error(e));
         }
     };

@@ -5,7 +5,7 @@
     </p>
 </div>
 <script>
-    var rem_time= 60;
+    var rem_time= window.remainingTime ||60;
     function chrono(stopQuickCountDown) {
         var seconds = Math.abs(rem_time);
 
