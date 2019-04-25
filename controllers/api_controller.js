@@ -4,7 +4,7 @@ const {models} = require("../models");
 // POST /api/escapeRooms/:escapeRoomId/puzzles/:puzzleId/check
 exports.check = (req, res, next) => {
     const {puzzle, body} = req;
-    let {solution, token} = body;
+    const {solution, token} = body;
     const where = {};
 
     if (token) {
@@ -12,10 +12,12 @@ exports.check = (req, res, next) => {
     } else {
         return res.status(401).end();
     }
-    solution = solution === undefined || solution === null ? "" : solution;
-    const puzzleSol = puzzle.sol === undefined | puzzle.sol === null ? "" : puzzle.sol;
+    // eslint-disable-next-line no-undefined
+    const answer = solution === undefined || solution === null ? "" : solution;
+    // eslint-disable-next-line no-undefined
+    const puzzleSol = puzzle.sol === undefined || puzzle.sol === null ? "" : puzzle.sol;
 
-    if (solution.toLowerCase().trim() === puzzleSol.toLowerCase().trim()) {
+    if (answer.toLowerCase().trim() === puzzleSol.toLowerCase().trim()) {
         models.user.findAll({where}).then((users) => {
             if (!users || users.length === 0) {
                 res.status(404).send("Usuario no encontrado");
