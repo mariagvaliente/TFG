@@ -3,8 +3,8 @@ const {models} = require("../models");
 
 // POST /api/escapeRooms/:escapeRoomId/puzzles/:puzzleId/check
 exports.check = (req, res, next) => {
-  const {puzzle,  body} = req;
-  let {solution, token} = body;
+    const {puzzle, body} = req;
+    let {solution, token} = body;
     const where = {};
 
     if (token) {
@@ -12,8 +12,9 @@ exports.check = (req, res, next) => {
     } else {
         return res.status(401).end();
     }
-    solution = (solution === undefined || solution === null )? "": solution;
-    const puzzleSol = (puzzle.sol === undefined | puzzle.sol === null ) ? "" : puzzle.sol;
+    solution = solution === undefined || solution === null ? "" : solution;
+    const puzzleSol = puzzle.sol === undefined | puzzle.sol === null ? "" : puzzle.sol;
+
     if (solution.toLowerCase().trim() === puzzleSol.toLowerCase().trim()) {
         models.user.findAll({where}).then((users) => {
             if (!users || users.length === 0) {

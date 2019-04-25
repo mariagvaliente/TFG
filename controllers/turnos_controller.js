@@ -50,7 +50,6 @@ exports.indexStudent = (req, res, next) => {
 };
 
 
-
 // GET /escapeRooms/:escapeRoomId/activarTurno
 exports.indexActivarTurno = (req, res, next) => {
     const {escapeRoom} = req;
@@ -64,10 +63,8 @@ exports.indexActivarTurno = (req, res, next) => {
 };
 
 
-
 // POST /escapeRooms/:escapeRoomId/activar
 exports.activar = (req, res, next) => {
-
     const {escapeRoom, body} = req;
 
 
@@ -80,7 +77,10 @@ exports.activar = (req, res, next) => {
 
             const back = `/escapeRooms/${escapeRoom.id}`;
 
-            turno.save({"fields": ["startTime", "status"]}).then(() => {
+            turno.save({"fields": [
+                "startTime",
+                "status"
+            ]}).then(() => {
                 req.flash("success", "Turno activo.");
                 res.redirect(back);
             }).
@@ -94,7 +94,6 @@ exports.activar = (req, res, next) => {
                 });
         }).
         catch((error) => next(error));
-
 };
 
 

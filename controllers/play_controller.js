@@ -21,7 +21,7 @@ exports.play = (req, res) => {
             {
                 "model": models.user,
                 "as": "teamMembers",
-                "attributes":[],
+                "attributes": [],
                 "where": {
                     "id": req.session.user.id
                 },
@@ -35,16 +35,17 @@ exports.play = (req, res) => {
         ],
         "required": true
     }).then((teams) => {
-        const team =  teams && teams[0] ? teams[0] : [];
-        console.log(team.turno)
+        const team = teams && teams[0] ? teams[0] : [];
+
+        console.log(team.turno);
         models.requestedHint.findAll({
             "where": {
                 "teamId": team.id,
                 "success": true
             },
-            "include": models.hint,
+            "include": models.hint
 
-        }).then((hints)=>{
+        }).then((hints) => {
             res.render("escapeRooms/play/play", {"escapeRoom": req.escapeRoom,
                 cloudinary,
                 team,
@@ -52,7 +53,6 @@ exports.play = (req, res) => {
                 parseURL,
                 "layout": false});
         });
-
     });
 };
 

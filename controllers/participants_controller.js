@@ -59,13 +59,13 @@ exports.add = (req, res, next) => {
 
             req.user.getTurnosAgregados({"where": {"escapeRoomId": escapeRoom.id}}).then(function (turnos) {
                 if (turnos.length === 0) {
-                        req.user.addTurnosAgregados(req.body.turnSelected).
-                            then(function () {
-                                res.redirect(direccion);
-                            }).
-                            catch(function (error) {
-                                next(error);
-                            });
+                    req.user.addTurnosAgregados(req.body.turnSelected).
+                        then(function () {
+                            res.redirect(direccion);
+                        }).
+                        catch(function (error) {
+                            next(error);
+                        });
                 } else {
                     req.flash("error", "Ya estas dentro de un turno.");
                     res.redirect(`/users/${req.session.user.id}/escapeRooms`);
