@@ -292,6 +292,8 @@ exports.update = (req, res, next) => {
     escapeRoom.nmax = body.nmax;
     escapeRoom.teamSize = body.teamSize;
 
+    const isPrevious = Boolean(body.previous);
+    const progressBar = body.progress;
 
     escapeRoom.save({"fields": [
         "title",
@@ -353,12 +355,12 @@ exports.update = (req, res, next) => {
                     }).
                     then(() => {
                         fs.unlink(req.file.path); // Delete the file uploaded at./uploads
-                        res.redirect(`/escapeRooms/${escapeRoom.id}/turnos`);
+                        res.redirect(`/escapeRooms/${escapeRoom.id}/${progressBar || "turnos"}`);
                     });
             }
         }).
         then(() => {
-            res.redirect(`/escapeRooms/${req.escapeRoom.id}/turnos`);
+            res.redirect(`/escapeRooms/${req.escapeRoom.id}/${progressBar || "turnos"}`);
         }).
         catch(Sequelize.ValidationError, (error) => {
             error.errors.forEach(({message}) => req.flash("error", message));
@@ -613,7 +615,8 @@ exports.studentToken = (req, res, next) => {
     const {escapeRoom} = req;
 
     if (escapeRoom.invitation === req.query.token) {
-        res.render("escapeRooms/indexInvitation", {escapeRoom,
+        res.render("escapeRooms/indexInvitation", {
+            escapeRoom,
             cloudinary});
     } else {
         next(403);

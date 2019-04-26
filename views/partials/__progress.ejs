@@ -7,7 +7,7 @@
 	<% realLabels.splice(progress, 1)%>
 	<div class="outterBar">
         <%for(var i in labels){%>
-		<button name="progress" value="<%=labels[i]%>" title="<%=labels[i]%>" class="innerBar" style="opacity: <%= ( progress > i) ? 1 : 0 %>; left: <%=  100/6*i %>%;width: <%=100/6%>%;"></button>
+		<button name="progress" value="<%=labels[i]%>" title="<%=realLabels[i]%>" class="innerBar" style="opacity: <%= ( progress > i) ? 1 : 0 %>; left: <%=  100/6*i %>%;width: <%=16.67%>%;"></button>
         <%}%>
 	</div>
 </span>

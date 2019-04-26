@@ -367,7 +367,7 @@ button, input[type="submit"] {
   .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker th:nth-child(6), .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker th:nth-child(7) {
     color: #F47E84; }
   .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker * {
-    font-family: 'Lato', font-family;
+    font-family: 'Lato', sans-serif;
     font-size: 16px; }
   .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker td, .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker a {
     color: #92A3AB;
@@ -568,7 +568,7 @@ button, input[type="submit"] {
   .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker th:nth-child(6), .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker th:nth-child(7) {
     color: #F47E84; }
   .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker * {
-    font-family: 'Lato', font-family;
+    font-family: 'Lato', sans-serif;
     font-size: 16px; }
   .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker td, .main.step-turnos #datepicker .ui-datepicker-inline.ui-datepicker a {
     color: #92A3AB;
@@ -739,7 +739,7 @@ button, input[type="submit"] {
     #mainSection .main .editor-wrapper #editor.ql-container {
       font-size: 18px; }
     #mainSection .main .editor-wrapper #editor * {
-      font-family: 'Lato'; }
+      font-family: 'Lato', sans-serif; }
     #mainSection .main .editor-wrapper #editor .ql-active, #mainSection .main .editor-wrapper #editor .ql-snow.ql-toolbar button:hover {
       color: #F47E84; }
       #mainSection .main .editor-wrapper #editor .ql-active *, #mainSection .main .editor-wrapper #editor .ql-snow.ql-toolbar button:hover * {
@@ -1125,7 +1125,7 @@ button, input[type="submit"] {
       #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-attendance .attendance-checkbox {
         width: 20px; }
     #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos:not(.flex-row-retos-title) .flex-cell {
-      font-family: 'Lato';
+      font-family: 'Lato', sans-serif;
       padding: 5px; }
 
 #mainSection .main.participants input[type=submit].participants-button.download-button, #mainSection .main.participants button.participants-button.download-button {
@@ -1170,7 +1170,7 @@ button, input[type="submit"] {
       width: 60%;
       border-right: none; }
     #mainSection .main.teams .flex-table-retos-wrapper .flex-table-retos .flex-row-retos:not(.flex-row-retos-title) .flex-cell {
-      font-family: 'Lato';
+      font-family: 'Lato', sans-serif;
       padding: 5px; }
 
 #mainSection .main.teams .filters * {
@@ -1209,7 +1209,7 @@ button, input[type="submit"] {
 
 #mainSection .main.teams .no-teams {
   display: block;
-  font-family: Lato;
+  font-family: Lato, sans-serif;
   text-align: center;
   width: 100%;
   padding: 15px; }
@@ -1283,12 +1283,12 @@ button, input[type="submit"] {
     flex: 1;
     padding: 15px; }
     .showStudent .flex .flex-er-info *:not(h2) {
-      font-family: Lato; }
+      font-family: Lato, sans-serif; }
     .showStudent .flex .flex-er-info *:not(b) {
       font-weight: normal; }
 
 .showStudent .desc {
-  font-family: Lato; }
+  font-family: Lato, sans-serif; }
 
 .showStudent .status {
   text-align: center; }
@@ -1299,7 +1299,7 @@ button, input[type="submit"] {
 .showStudent .pulseButton {
   margin: 100px;
   cursor: pointer;
-  box-shadow: 0 0 2px 10px rgba(204, 169, 44, 0.2);
+  box-shadow: 0 0 2px 0px rgba(204, 169, 44, 0.2);
   animation: pulseButton 2s infinite; }
   .showStudent .pulseButton:hover {
     animation: none; }
