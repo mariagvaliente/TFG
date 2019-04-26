@@ -1,20 +1,23 @@
 const {models} = require("../models");
 
 
-// GET /api/escapeRooms/:escapeRoomId/puzzles/:puzzleId/check
+// POST /api/escapeRooms/:escapeRoomId/puzzles/:puzzleId/check
 exports.check = (req, res, next) => {
-    const {puzzle, query} = req;
-    const answer = query.answer || "";
+    const {puzzle, body} = req;
+    const {solution, token} = body;
     const where = {};
 
-    if (query.id) {
-        where.id = query.id;
-    } else if (query.username) {
-        where.username = `${query.username}@alumnos.upm.es`;
+    if (token) {
+        where.username = token;
     } else {
         return res.status(401).end();
     }
-    if (answer.toLowerCase().trim() === puzzle.sol.toLowerCase().trim()) {
+    // eslint-disable-next-line no-undefined
+    const answer = solution === undefined || solution === null ? "" : solution;
+    // eslint-disable-next-line no-undefined
+    const puzzleSol = puzzle.sol === undefined || puzzle.sol === null ? "" : puzzle.sol;
+
+    if (answer.toLowerCase().trim() === puzzleSol.toLowerCase().trim()) {
         models.user.findAll({where}).then((users) => {
             if (!users || users.length === 0) {
                 res.status(404).send("Usuario no encontrado");

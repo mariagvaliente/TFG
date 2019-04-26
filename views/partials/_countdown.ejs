@@ -5,7 +5,10 @@
     </p>
 </div>
 <script>
-    var rem_time= 60;
+    var rem_time = window.duration || 60;
+    if (window.startTime && window.duration) {
+        rem_time = window.duration*60 - Math.round((new Date() - startTime)/1000);
+    }
     function chrono(stopQuickCountDown) {
         var seconds = Math.abs(rem_time);
 
@@ -53,12 +56,10 @@
         }
 
     }
-
-    chrono();
-
-    var countdownChrono = setInterval('chrono()', 1000);
-    var countdownChronoQuick;
-
-
+    if (window.countdown){
+        chrono();
+        var countdownChrono = setInterval('chrono()', 1000);
+        var countdownChronoQuick;
+    }
 
 </script>

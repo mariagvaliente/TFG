@@ -50,7 +50,6 @@ exports.indexStudent = (req, res, next) => {
 };
 
 
-
 // GET /escapeRooms/:escapeRoomId/activarTurno
 exports.indexActivarTurno = (req, res, next) => {
     const {escapeRoom} = req;
@@ -62,7 +61,6 @@ exports.indexActivarTurno = (req, res, next) => {
         }).
         catch((error) => next(error));
 };
-
 
 
 // POST /escapeRooms/:escapeRoomId/activar

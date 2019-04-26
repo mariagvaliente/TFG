@@ -164,6 +164,7 @@ exports.indexBreakDown = (req, res) => {
 exports.show = (req, res) => {
     const {escapeRoom} = req;
     const participant = req.isParticipant;
+
     if (participant) {
         res.render("escapeRooms/show_student", {escapeRoom,
             cloudinary,
@@ -172,6 +173,7 @@ exports.show = (req, res) => {
     } else {
         res.render("escapeRooms/show", {escapeRoom,
             cloudinary,
+            "hostName": process.env.APP_NAME || "http://localhost:3000",
             parseURL});
     }
 };

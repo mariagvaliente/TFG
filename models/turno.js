@@ -5,6 +5,7 @@ module.exports = function (sequelize, DataTypes) {
             "validate": {"notEmpty": {"msg": "La fecha no puede estar vacía."}}},
         "indications": {"type": DataTypes.STRING},
         "startTime": {"type": DataTypes.DATE},
-        "status": {"type": DataTypes.STRING, "defaultValue": "pending"}}
+        "status": {"type": DataTypes.STRING,
+            "defaultValue": "pending"}}
     );
 };

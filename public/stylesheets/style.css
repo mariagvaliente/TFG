@@ -67,6 +67,11 @@ button, input[type="submit"] {
     padding: 10px;
     text-align: center;
     outline: 0; }
+  button.inverse, input[type="submit"].inverse {
+    background-color: transparent;
+    color: white;
+    border-color: white;
+    -webkit-text-fill-color: white !important; }
   button[type=submit], input[type="submit"][type=submit] {
     cursor: pointer; }
 
@@ -136,7 +141,7 @@ button, input[type="submit"] {
       display: flex; }
       #mainSection .main .menuERShow .attachmentShow {
         text-align: center;
-        max-width: 60%; }
+        flex: 1; }
       #mainSection .main .menuERShow .menuERShowRight {
         margin-left: 50px;
         padding: 10px;
@@ -1287,6 +1292,36 @@ button, input[type="submit"] {
 
 .showStudent .status {
   text-align: center; }
+
+.showStudent #unjoin {
+  text-align: right; }
+
+.showStudent .pulseButton {
+  margin: 100px;
+  cursor: pointer;
+  box-shadow: 0 0 2px 10px rgba(204, 169, 44, 0.2);
+  animation: pulseButton 2s infinite; }
+  .showStudent .pulseButton:hover {
+    animation: none; }
+
+@-webkit-keyframes pulseButton {
+  0% {
+    -webkit-box-shadow: 0 0 2px 0 rgba(204, 169, 44, 0.4); }
+  70% {
+    -webkit-box-shadow: 0 0 2px 10px rgba(204, 169, 44, 0); }
+  100% {
+    -webkit-box-shadow: 0 0 2px 0 rgba(204, 169, 44, 0); } }
+
+@keyframes pulseButton {
+  0% {
+    -moz-box-shadow: 0 0 2px 0 rgba(204, 169, 44, 0.4);
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4); }
+  70% {
+    -moz-box-shadow: 0 0 2px 10px rgba(204, 169, 44, 0);
+    box-shadow: 0 0 2px 10px rgba(204, 169, 44, 0); }
+  100% {
+    -moz-box-shadow: 0 0 2px 0 rgba(204, 169, 44, 0);
+    box-shadow: 0 0 2px 0 rgba(204, 169, 44, 0); } }
 
 .main.inspiration {
   font-size: 18px; }
