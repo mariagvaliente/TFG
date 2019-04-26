@@ -29,7 +29,7 @@
 			</a>
 			<% } %>
 		<% } else if(participant.teamsAgregados[0].turno.status === "active") { %>
-		<a href="/escapeRooms/<%=escapeRoom.id%>/play"><button class="rounded">jugar</button>
+		<a href="/escapeRooms/<%=escapeRoom.id%>/play"><button class="rounded editButton pulseButton">jugar</button>
 		</a>
 		<% } else {%>
 			<% if (escapeRoom.posttest) { %>
@@ -46,6 +46,10 @@
 			<% } %>
 		<%}%>
 	</div>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
 	<form id="unjoin" method="post" action="/escapeRooms/<%=escapeRoom.id%>/turno/<%=participant.teamsAgregados[0].turno.id%>/team/<%=participant.teamsAgregados[0].id%>?_method=delete">
 		<input type="submit" class="rounded inverse" onclick="return confirm('¿Seguro que deseas desapuntarte?');" value="desapuntarse"></input>
 	</form>

@@ -73,11 +73,15 @@
 
         <div class=" row-centered">
             <div class="col-xs-12">
-                <%if (team.turno && team.turno.status === "active") {
-                    %>
-                <% } %>
                 <script>
-                    console.log("<%=team.turno.status%>")
+                    <%if (team.turno && team.turno.status === "active") { %>
+                        var countdown = true;
+                        var startTime = new Date("<%=team.turno.startTime%>");
+                        var duration = <%=escapeRoom.duration || 0%>;
+                    <% } else {%>
+                        var countdown = false;
+                        var duration = 0;
+                    <% } %>
                 </script>
             <% include ../../partials/_countdown.ejs %>
             <button type="button" class="btn btn-warning">finish</button>
