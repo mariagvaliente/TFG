@@ -67,7 +67,6 @@ exports.indexActivarTurno = (req, res, next) => {
 
 // POST /escapeRooms/:escapeRoomId/activar
 exports.activar = (req, res, next) => {
-
     const {escapeRoom, body} = req;
 
 
@@ -80,7 +79,10 @@ exports.activar = (req, res, next) => {
 
             const back = `/escapeRooms/${escapeRoom.id}`;
 
-            turno.save({"fields": ["startTime", "status"]}).then(() => {
+            turno.save({"fields": [
+                    "startTime",
+                    "status"
+                ]}).then(() => {
                 req.flash("success", "Turno activo.");
                 res.redirect(back);
             }).
@@ -94,9 +96,7 @@ exports.activar = (req, res, next) => {
                 });
         }).
         catch((error) => next(error));
-
 };
-
 
 // POST /escapeRooms/:escapeRoomId/turnos
 exports.create = (req, res, next) => {
