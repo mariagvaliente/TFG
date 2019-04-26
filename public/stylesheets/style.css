@@ -57,6 +57,16 @@ button, input[type="submit"] {
     padding: 10px;
     text-align: center;
     outline: 0; }
+  button.playButton, input[type="submit"].playButton {
+    background-color: #FF6347;
+    color: #161938;
+    font: 22px 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;
+    border-radius: 5px;
+    border-color: #FF6347;
+    border-style: solid;
+    padding: 10px;
+    text-align: center;
+    outline: 0; }
   button.acceptButton, input[type="submit"].acceptButton {
     background-color: #48C18E;
     color: #161938;
