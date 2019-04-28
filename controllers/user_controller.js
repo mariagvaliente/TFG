@@ -47,7 +47,7 @@ exports.create = (req, res, next) => {
         user = models.user.build({name,
             surname,
             gender,
-            username,
+            username: (username || "").toLowerCase(),
             "dni": (dni || "").toLowerCase(),
             password}),
         isStudent = user.username.match(studentRegex),
