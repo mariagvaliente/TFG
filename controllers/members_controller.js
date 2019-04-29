@@ -1,14 +1,26 @@
-
-
-// PUT /escapeRooms/:escapeRoomId/turnos/:turnoId/members/:teamId
+// PUT /escapeRooms/:escapeRoomId/users/:userId/turnos/:turnoId/members/:teamId
 exports.add = (req, res, next) => {
     const direccion = req.body.redir || "/escapeRooms";
-    const {escapeRoom} = req;
+    const {escapeRoom, turn} = req;
 
     req.team.getTeamMembers().then(function (members) {
         if (members.length < escapeRoom.teamSize) {
             req.team.addTeamMembers(req.session.user.id).then(function () {
-                res.redirect(direccion);
+                req.user.getTurnosAgregados({"where": {"escapeRoomId": escapeRoom.id}}).then(function (turnos) {
+                    if (turnos.length === 0) {
+                        req.user.addTurnosAgregados(turn.id).
+                            then(function () {
+                                res.redirect(direccion);
+                            }).
+                            catch(function (error) {
+                                next(error);
+                            });
+                    } else {
+                        req.flash("error", "Ya estas dentro de un turno.");
+                        res.redirect(`/users/${req.session.user.id}/escapeRooms`);
+                    }
+                }).
+                    catch((e) => next(e));
             }).
                 catch(function (error) {
                     next(error);
@@ -20,5 +32,3 @@ exports.add = (req, res, next) => {
     }).
         catch((e) => next(e));
 };
-
-

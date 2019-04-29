@@ -4,7 +4,7 @@
 <div class="main student">
     <div class="dialog" >
         </br>
-        Seleccione un equipo <a id="add-team" href="/escapeRooms/<%= escapeRoom.id %>/turnos/<%= turno.id %>/teams/new">
+        Seleccione un equipo <a id="add-team" href="/escapeRooms/<%= escapeRoom.id %>/users/<%= session.user.id %>/turnos/<%= turno.id %>/teams/new">
             <i class="material-icons">add_circle_outline</i></a>
         </br>
         </br>
@@ -13,28 +13,25 @@
             <% if (!turno.teams) { %>
                 No hay equipos todavía...
             <% } else { %>
-
-            <div class="owl-carousel">
-                <% for (var i in turno.teams) { %>
-                <% var team = turno.teams[i]; %>
-
-                <div class="teamCarouselItem <%=team.teamMembers.length >= escapeRoom.teamSize ? "disabled":""%> " data-id="<%=team.id%>">
-                    <%= team.name %>
-                    <%for (var m in team.teamMembers) {%>
-                    <p><%=team.teamMembers[m].name %> <%=team.teamMembers[m].surname %></p>
-                    <%}%>
+                <div class="owl-carousel">
+                    <% for (var i in turno.teams) { %>
+                        <% var team = turno.teams[i]; %>
+                        <div class="teamCarouselItem <%=team.teamMembers.length >= escapeRoom.teamSize ? "disabled":""%> " data-id="<%=team.id%>">
+                            <%= team.name %>
+                            <%for (var m in team.teamMembers) {%>
+                            <p><%=team.teamMembers[m].name %> <%=team.teamMembers[m].surname %></p>
+                            <%}%>
+                        </div>
+                    <% } %>
                 </div>
-                <% } %>
-            </div>
-
             <% } %>
             <br/>
             <div>
 
-                <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/turnos/<%= turno.id %>/members/xxxx?_method=put'>
+                <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/users/<%= session.user.id %>/participants/turnos/<%= turno.id %>/members/xxxx?_method=put'>
                     <div class="join-button-flex-container">
-                    <a href="javascript:history.back()"><button class="rounded deleteButton" type="button">volver</button></a>
-                    <button class="rounded acceptButton" type="submit">continuar</button>
+                        <a href="javascript:history.back()"><button class="rounded deleteButton" type="button">volver</button></a>
+                        <button class="rounded acceptButton" type="submit">continuar</button>
                     </div>
                 </form>
             </div>
@@ -45,7 +42,6 @@
 <script src="/js/vendor/owl.carousel.min.js"></script>
 
 <script>
-
     $(function(){
         let selectedId = "";
         let repl = false;
@@ -79,8 +75,5 @@
             }
         );
         console.log($(".owl-carousel").data('owlCarousel'))
-
-
     });
-
 </script>

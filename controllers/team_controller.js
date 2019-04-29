@@ -20,7 +20,7 @@ exports.load = (req, res, next, teamId) => {
         catch((error) => next(error));
 };
 
-// GET /escapeRooms/:escapeRoomId/turnos/:turnoId/teams/new
+// GET /escapeRooms/:escapeRoomId/users/:userId/turnos/:turnoId/teams/new
 exports.new = (req, res) => {
     const team = {"name": ""};
     const {escapeRoom} = req;
@@ -31,8 +31,9 @@ exports.new = (req, res) => {
 };
 
 
-// POST /escapeRooms/:escapeRoomId/turnos/:turnId/teams
+// POST /escapeRooms/:escapeRoomId/users/:userId/turnos/:turnId/teams
 exports.create = (req, res, next) => {
+    const {escapeRoom} = req;
     const team = models.team.build({"name": req.body.name,
         "turnoId": req.turn.id,
         "members": [req.session.user.id]});
@@ -43,7 +44,22 @@ exports.create = (req, res, next) => {
         then((teamCreated) => {
             teamCreated.addTeamMembers(req.session.user.id).then(() => {
                 req.flash("success", "Team creado correctamente.");
-                res.redirect(back);
+
+                req.user.getTurnosAgregados({"where": {"escapeRoomId": escapeRoom.id}}).then(function (turnos) {
+                    if (turnos.length === 0) {
+                        req.user.addTurnosAgregados(req.turn.id).
+                            then(function () {
+                                res.redirect(back);
+                            }).
+                            catch(function (error) {
+                                next(error);
+                            });
+                    } else {
+                        req.flash("error", "Ya estas dentro de un turno.");
+                        res.redirect(`/users/${req.session.user.id}/escapeRooms`);
+                    }
+                }).
+                    catch((e) => next(e));
             });
         }).
         catch(Sequelize.ValidationError, (error) => {
