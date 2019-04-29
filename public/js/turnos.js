@@ -24,7 +24,8 @@ const filterTurnos = (date) => {
     turnos.each((index, turno) => {
 
         const $turno = $(turno);
-
+        console.log($turno.data("date"))
+        console.log(date)
         if ($turno.data("date") === date) {
 
             $turno.removeClass("hidden");
@@ -36,8 +37,9 @@ const filterTurnos = (date) => {
 };
 
 const updateDate = (date) => {
+    console.log("update", date)
     date.setHours(0,0,0,0)
-    $("#date").val(date-date.getTimezoneOffset());
+    $("#date").val(date);
     $("#currentDate").html(formatDate(date));
     filterTurnos(date.getTime());
     $("#start").focus();
