@@ -15,7 +15,9 @@ const monthArray = [
 ];
 
 const formatDate = (currentDate) => `${currentDate.getDate()} de ${monthArray[currentDate.getMonth()]}`; // + " de " + currentDate.getFullYear();
-
+var getDashDate = function(currentDate) {
+    return currentDate.getDate() + "-" + currentDate.getMonth() + "-" + currentDate.getFullYear();
+}
 const filterTurnos = (date) => {
 
     const turnos = $(".turno:not(.add-turno");
@@ -41,7 +43,7 @@ const updateDate = (date) => {
     date.setHours(0,0,0,0)
     $("#date").val(date);
     $("#currentDate").html(formatDate(date));
-    filterTurnos(date.getTime());
+    filterTurnos(getDashDate(date));
     $("#start").focus();
 
 };

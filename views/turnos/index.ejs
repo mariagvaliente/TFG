@@ -11,6 +11,10 @@ var formatDate = function(currentDate) {
 	return currentDate.getDate() + " de " + monthArray[currentDate.getMonth()] + " de " + currentDate.getFullYear();
 }
 
+var getDashDate = function(currentDate) {
+	return currentDate.getDate() + "-" + currentDate.getMonth() + "-" + currentDate.getFullYear();
+}
+
 var formatTime = function(currentDate) {
 	return zeroPadding(currentDate.getHours()) + ":" + zeroPadding(currentDate.getMinutes());
 }
@@ -23,7 +27,7 @@ var formatTime = function(currentDate) {
 	var dateNoTime = new Date(turn.date);
 	dateNoTime.setHours(0,0,0,0);
 	%> 
-		<div class="turno " data-date="<%=dateNoTime.getTime()%>">
+		<div class="turno " data-date="<%=getDashDate(dateNoTime)%>">
 			<div class="hora">
 				<%= formatTime(date) %>
 			</div>
