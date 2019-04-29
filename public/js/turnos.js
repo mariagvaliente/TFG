@@ -37,7 +37,7 @@ const filterTurnos = (date) => {
 
 const updateDate = (date) => {
     date.setHours(0,0,0,0)
-    $("#date").val(date);
+    $("#date").val(date-date.getTimezoneOffset());
     $("#currentDate").html(formatDate(date));
     filterTurnos(date.getTime());
     $("#start").focus();
