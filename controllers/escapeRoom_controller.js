@@ -424,14 +424,32 @@ exports.retos = (req, res) => {
     const {escapeRoom} = req;
 
     res.render("escapeRooms/steps/puzzles", {escapeRoom});
+
 };
 
 // POST /escapeRooms/:escapeRoomId/puzzles
 exports.retosUpdate = (req, res) => {
+    const {escapeRoom, body} = req;
+
     const isPrevious = Boolean(req.body.previous);
     const progressBar = req.body.progress;
 
-    res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "turnos" : progressBar || "hints"}`);
+    escapeRoom.automatic = body.automatic;
+
+    escapeRoom.save({"fields": [
+            "automatic"
+        ]}).then(() => {
+        res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "turnos" : progressBar || "hints"}`);
+    }).
+        catch(Sequelize.ValidationError, (error) => {
+            error.errors.forEach(({message}) => req.flash("error", message));
+            res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "turnos" : progressBar || "hints"}`);
+        }).
+        catch((error) => {
+            req.flash("error", `Error al editar la escape room: ${error.message}`);
+            next(error);
+        });
+
 };
 
 // GET /escapeRooms/:escapeRoomId/hints

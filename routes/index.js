@@ -117,10 +117,10 @@ router.get("/escapeRooms/:escapeRoomId(\\d+)/hintApp", sessionController.loginRe
 router.get("/escapeRooms/:escapeRoomId(\\d+)/hintAppWrapper", sessionController.loginRequired, /* EscapeRoomController.isParticipantRequired,*/ hintController.hintAppWrapper);
 router.post("/escapeRooms/:escapeRoomId(\\d+)/requestHint", sessionController.loginRequired, /* EscapeRoomController.isParticipantRequired,*/ hintController.requestHint);
 
-router.get("/escapeRooms/:escapeRoomId(\\d+)/play", sessionController.loginRequired, playController.play);
-router.get("/escapeRooms/:escapeRoomId(\\d+)/pretest", sessionController.loginRequired, playController.preTest);
-router.get("/escapeRooms/:escapeRoomId(\\d+)/posttest", sessionController.loginRequired, playController.postTest);
-router.get("/escapeRooms/:escapeRoomId(\\d+)/retos", sessionController.loginRequired, playController.retos);
+router.get("/escapeRooms/:escapeRoomId(\\d+)/play", sessionController.loginRequired, sessionController.studentOrAdminRequired, playController.play);
+router.get("/escapeRooms/:escapeRoomId(\\d+)/pretest", sessionController.loginRequired, sessionController.studentOrAdminRequired, playController.preTest);
+router.get("/escapeRooms/:escapeRoomId(\\d+)/posttest", sessionController.loginRequired, sessionController.studentOrAdminRequired, playController.postTest);
+router.get("/escapeRooms/:escapeRoomId(\\d+)/retos", sessionController.loginRequired, sessionController.studentOrAdminRequired, playController.retos);
 
 
 router.get("/inspiration", sessionController.loginRequired, (req, res) => res.render("inspiration"));
