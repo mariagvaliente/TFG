@@ -171,7 +171,6 @@ $(function () {
 
         dateSubmitted.setUTCHours(time[0]);
         dateSubmitted.setUTCMinutes(time[1]);
-        dateSubmitted.setTime
         $("#date").val(dateSubmitted);
 
         return true;
