@@ -15,7 +15,7 @@ const monthArray = [
 ];
 
 const formatDate = (currentDate) => `${currentDate.getDate()} de ${monthArray[currentDate.getMonth()]}`; // + " de " + currentDate.getFullYear();
-var getDashDate = function(currentDate) {
+const getDashDate = function(currentDate) {
     return currentDate.getDate() + "-" + currentDate.getMonth() + "-" + currentDate.getFullYear();
 }
 const filterTurnos = (date) => {
