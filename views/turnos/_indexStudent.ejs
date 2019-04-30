@@ -34,7 +34,7 @@
         <p class="turno-date-title-show"><%=formatDate(dateNoTime)%></p>
         <div class="flexBoxTurnos">
             <%}%>
-            <div class="turno turnoAlumno <%=turn.students.length >= 2 ? "disabled":""%>" data-date="<%=dateNoTime.getTime()%>" id="turno-<%=turn.id%>" data-id="<%=turn.id%>">
+            <div class="turno turnoAlumno <%=turn.students.length >= escapeRoom.nmax ? "disabled":""%>" data-date="<%=dateNoTime.getTime()%>" id="turno-<%=turn.id%>" data-id="<%=turn.id%>">
                 <div class="hora">
                     <%= formatTime(date) %>
                 </div>
@@ -56,8 +56,8 @@
         <button class="rounded deleteButton" type="submit" style="display:inline-block;">cancelar</button>
     </form>
     <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/users/<%= session.user.id %>/selectTurno'>
-        <input type="hidden" id="turnSelected" name="turnSelected" value="">
-        <button class="rounded acceptButton" type="submit" style="display:inline-block;">continuar</button>
+        <input type="hidden" id="turnSelected" name="turnSelected" value="0">
+        <button disabled id="continue" class="rounded acceptButton" type="submit" style="display:inline-block;">continuar</button>
     </form>
 </div>
 </div>
@@ -72,6 +72,8 @@
             $('.selected').removeClass('selected');
             currentClicked.addClass('selected');
             $('#turnSelected').val(turnId);
+            $('#continue').prop("disabled", false);
+
         });
         var car = $(".owl-carousel").owlCarousel(
             {  center: false,

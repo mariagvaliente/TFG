@@ -31,7 +31,7 @@
                 <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/users/<%= session.user.id %>/participants/turnos/<%= turno.id %>/members/xxxx?_method=put'>
                     <div class="join-button-flex-container">
                         <a href="javascript:history.back()"><button class="rounded deleteButton" type="button">volver</button></a>
-                        <button class="rounded acceptButton" type="submit">continuar</button>
+                        <button disabled id="continue" class="rounded acceptButton" type="submit">continuar</button>
                     </div>
                 </form>
             </div>
@@ -51,6 +51,7 @@
             $('.selected').removeClass('selected');
             currentClicked.addClass('selected');
             selectedId = teamId;
+            $('#continue').prop("disabled", false);
         });
         $('#form').on('submit', function(e){
             console.log($('#form').attr('action'))
