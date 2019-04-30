@@ -169,8 +169,9 @@ $(function () {
         const time = $("#start").val().
             split(":");
 
-        dateSubmitted.setHours(time[0]);
-        dateSubmitted.setMinutes(time[1]);
+        dateSubmitted.setUTCHours(time[0]);
+        dateSubmitted.setUTCMinutes(time[1]);
+        dateSubmitted.setTime
         $("#date").val(dateSubmitted);
 
         return true;

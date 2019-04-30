@@ -76,7 +76,7 @@ exports.activar = (req, res, next) => {
             turno.startTime = new Date();
 
             setTimeout(function () {
-                turno.status = "finish";
+                turno.status = "finished";
 
                 turno.save({"fields": ["status"]}).then(() => {
                     res.redirect(back);
