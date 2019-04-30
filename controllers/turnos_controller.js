@@ -114,6 +114,7 @@ exports.activar = (req, res, next) => {
 exports.create = (req, res, next) => {
     const {date, indications} = req.body;
     const modDate = new Date(date);
+    console.log(modDate)
     const turn = models.turno.build({"date": modDate,
         indications,
         "escapeRoomId": req.escapeRoom.id});
