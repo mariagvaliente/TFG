@@ -8,6 +8,7 @@ exports.selectTurno = (req, res, next) => {
     console.log("Marcado como turno");
     const {escapeRoom} = req;
     const direccion = req.body.redir || `/escapeRooms/${escapeRoom.id}/turnos/${req.body.turnSelected}/teams`;
+
     res.redirect(direccion);
 };
 
@@ -127,7 +128,7 @@ exports.studentLeave = (req, res) => {
     models.user.findById(req.session.user.id).then((user) => {
         req.team.removeTeamMember(user).then(() => {
             models.participants.find({"where": {"turnId": req.turn.id,
-                    "userId": req.session.user.id}}).
+                "userId": req.session.user.id}}).
                 then((participant) => {
                     participant.destroy().then(() => {
                         if (req.team.teamMembers.length <= 1) {

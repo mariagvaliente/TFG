@@ -10,15 +10,8 @@
             </br>
             </br>
         </div>
+        
         <%
-        var monthArray = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-
-        var formatDate = function(currentDate) {
-            return currentDate.getDate() + " de " + monthArray[currentDate.getMonth()] + " de " + currentDate.getFullYear();
-        }
-        var formatTime = function(currentDate) {
-            return zeroPadding(currentDate.getHours()) + ":" + zeroPadding(currentDate.getMinutes());
-        }
         var pastDates = [];
         var firstDiv = false;
         %>

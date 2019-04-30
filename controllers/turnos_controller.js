@@ -70,16 +70,15 @@ exports.activar = (req, res, next) => {
 
     models.turno.findAll({"where": {"id": body.turnSelected}}).
         each((turno) => {
-
             const back = `/escapeRooms/${escapeRoom.id}`;
+
             turno.status = "active";
             turno.startTime = new Date();
 
-            setTimeout(function(){ turno.status = "finish";
+            setTimeout(function () {
+                turno.status = "finish";
 
-                turno.save({"fields": [
-                        "status"
-                    ]}).then(() => {
+                turno.save({"fields": ["status"]}).then(() => {
                     res.redirect(back);
                 }).
                     catch(Sequelize.ValidationError, (error) => {
@@ -89,12 +88,13 @@ exports.activar = (req, res, next) => {
                     catch((error) => {
                         req.flash("error", `Error desactivando el turno: ${error.message}`);
                         next(error);
-                    });}, escapeRoom.duration*60000);
+                    });
+            }, escapeRoom.duration * 60000);
 
             turno.save({"fields": [
-                    "startTime",
-                    "status"
-                ]}).then(() => {
+                "startTime",
+                "status"
+            ]}).then(() => {
                 req.flash("success", "Turno activo.");
                 res.redirect(back);
             }).

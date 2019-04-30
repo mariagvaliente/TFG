@@ -424,7 +424,6 @@ exports.retos = (req, res) => {
     const {escapeRoom} = req;
 
     res.render("escapeRooms/steps/puzzles", {escapeRoom});
-
 };
 
 // POST /escapeRooms/:escapeRoomId/puzzles
@@ -436,9 +435,7 @@ exports.retosUpdate = (req, res) => {
 
     escapeRoom.automatic = body.automatic;
 
-    escapeRoom.save({"fields": [
-            "automatic"
-        ]}).then(() => {
+    escapeRoom.save({"fields": ["automatic"]}).then(() => {
         res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "turnos" : progressBar || "hints"}`);
     }).
         catch(Sequelize.ValidationError, (error) => {
@@ -449,7 +446,6 @@ exports.retosUpdate = (req, res) => {
             req.flash("error", `Error al editar la escape room: ${error.message}`);
             next(error);
         });
-
 };
 
 // GET /escapeRooms/:escapeRoomId/hints
@@ -633,8 +629,7 @@ exports.studentToken = (req, res, next) => {
     const {escapeRoom} = req;
 
     if (escapeRoom.invitation === req.query.token) {
-        res.render("escapeRooms/indexInvitation", {
-            escapeRoom,
+        res.render("escapeRooms/indexInvitation", {escapeRoom,
             cloudinary});
     } else {
         next(403);
