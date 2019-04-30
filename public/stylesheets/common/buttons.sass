@@ -11,6 +11,8 @@ button, input[type="submit"]
   text-align: center
   outline: 0
   cursor: pointer
+  &:disabled, &.disabled
+    cursor: not-allowed
   &.rounded
     border-radius: 25px !important
     padding: 8px 25px !important

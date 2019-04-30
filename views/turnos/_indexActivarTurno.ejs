@@ -6,11 +6,10 @@
     <div class="dialog" >
         <div style="font-size: xx-large;">
             </br>
-            Seleccione el turno que quieres activar:
+            Seleccione el turno que quieres activar/desactivar:
             </br>
             </br>
-        </div>
-        
+        </div>        
         <%
         var pastDates = [];
         var firstDiv = false;
@@ -38,7 +37,7 @@
 
         <div class="flexBoxTurnos">
             <%}%>
-            <div class="turno turnoAlumno" data-date="<%=dateNoTime.getTime()%>" id="turno-<%=turn.id%>" data-id="<%=turn.id%>">
+            <div class="turno turnoProfe <%=turn.status%>" data-date="<%=dateNoTime.getTime()%>" id="turno-<%=turn.id%>" data-id="<%=turn.id%>">
                 <div class="hora">
                     <%= formatTime(date) %>
                 </div>
@@ -59,9 +58,9 @@
     <form method='GET' id="form" action='/users/<%= session.user.id %>/escapeRooms'>
         <button class="rounded deleteButton" type="submit" style="display:inline-block;">cancelar</button>
     </form>
-    <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/activar'>
+    <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/activar?_method=put'>
         <input type="hidden" id="turnSelected" name="turnSelected" value="">
-        <button class="rounded acceptButton" type="submit" style="display:inline-block;">continuar</button>
+        <button class="rounded acceptButton"  id="continue" disabled type="submit" style="display:inline-block;">continuar</button>
     </form>
 </div>
 </div>
@@ -71,12 +70,14 @@
 <script>
 
     $(function(){
-        $('.turno').on('click', function(e) {
+        $('.turno:not(.finished)').on('click', function(e) {
             var currentClicked = $(this);
             var turnId = currentClicked.data('id');
             $('.selected').removeClass('selected');
             currentClicked.addClass('selected');
             $('#turnSelected').val(turnId);
+            $('#continue').prop("disabled", false);
+            
         });
         var car = $(".owl-carousel").owlCarousel(
             {  center: false,

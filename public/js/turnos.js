@@ -26,8 +26,6 @@ const filterTurnos = (date) => {
     turnos.each((index, turno) => {
 
         const $turno = $(turno);
-        console.log($turno.data("date"))
-        console.log(date)
         if ($turno.data("date") === date) {
 
             $turno.removeClass("hidden");
