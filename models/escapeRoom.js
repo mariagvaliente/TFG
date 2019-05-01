@@ -29,13 +29,8 @@ module.exports = function (sequelize, DataTypes) {
         "numRight": {"type": DataTypes.INTEGER},
         "feedback": {"type": DataTypes.BOOLEAN},
         "instructions": {"type": DataTypes.STRING},
-<<<<<<< HEAD
         "automatic": {"type": DataTypes.STRING,
              "defaultValue": "no"}}
-=======
-        "automatic": {"type": DataTypes.BOOLEAN,
-            "defaultValue": false}}
->>>>>>> ca7d8da78a92da2664aa56e825fd9b3e56abb21f
     );
 };
 
