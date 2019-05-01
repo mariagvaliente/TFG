@@ -436,6 +436,13 @@ button, input[type="submit"] {
 
 #mainSection .main .align-right {
   text-align: right; }
+  #mainSection .main .align-right.flex-buttons {
+    display: flex;
+    justify-content: flex-end; }
+    #mainSection .main .align-right.flex-buttons #previous {
+      order: 1; }
+    #mainSection .main .align-right.flex-buttons #next {
+      order: 2; }
 
 #mainSection .main .basicConfig, #mainSection .main.step-evaluation {
   font-size: 26px;

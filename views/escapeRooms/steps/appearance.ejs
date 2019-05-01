@@ -19,10 +19,10 @@
   </div>
   <form method='POST' action='/escapeRooms/<%= escapeRoom.id %>/appearance'  >
     <input type="hidden" id="appearance" name="appearance" value="<%= escapeRoom.appearance  || "litera" %>" />
-    <div class="align-right">
+    <div class="align-right flex-buttons">
         <a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button></a>
-        <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
         <button class="progress-buttons" type="submit" value="next" id="next" name="next">siguiente</button>
+        <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
     </div>
       <%- include('../../partials/_progress', {progress: 5}) %>
   </form>

@@ -42,12 +42,14 @@
 	    	        <label for="turnId">Turno
 	    	            <select name="turnId" id="turnId">
 	    	                <option value="" <%= !turnId ? "selected": ""%> >Todos los turnos</option>
-	    	                <% for (t in escapeRoom.turnos) { %>
-	    	                <% var turno = escapeRoom.turnos[t] %>
+	    	                <% for (t in escapeRoom.turnos) { 
+	    	                	var turno = escapeRoom.turnos[t] ;
+	    	                if (turno.status !== "pending" ) {%>
 	    	                <option value="<%=turno.id%>" <%= turnId == turno.id ? "selected" : "" %> >
 	    	                    <%= getFullDate(turno.date)%>
 	    	                </option>
-	    	                <% } %>
+	    	                <%  }
+	    	            } %>
 	    	            </select>
 	    	        </label>
 	    	        <button type="submit" class="filter-button white" >filtrar</button>
