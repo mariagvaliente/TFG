@@ -82,11 +82,16 @@ const monthArray = [
 ];
 
 app.locals.zeroPadding = zeroPadding;
-app.locals.getFullDate = (d) => `${zeroPadding(d.getDate())}-${zeroPadding(d.getMonth() + 1)}-${d.getFullYear()} ${zeroPadding(d.getHours())}:${zeroPadding(d.getMinutes())}`;
+app.locals.getFullDate = (d) => {
+    d.setMinutes(d.getMinutes() + d.getTimezoneOffset());
+    
+    return `${zeroPadding(d.getDate())}-${zeroPadding(d.getMonth() + 1)}-${d.getFullYear()} ${zeroPadding(d.getHours())}:${zeroPadding(d.getMinutes())}`;
+}
 
 app.locals.formatDate = function (currentDate) {
     return `${currentDate.getDate()} de ${monthArray[currentDate.getMonth()]} de ${currentDate.getFullYear()}`;
 };
+
 app.locals.formatTime = function (currentDate) {
     currentDate.setMinutes(currentDate.getMinutes() + currentDate.getTimezoneOffset());
     return `${zeroPadding(currentDate.getHours())}:${zeroPadding(currentDate.getMinutes())}`;
@@ -95,6 +100,7 @@ app.locals.formatTime = function (currentDate) {
 app.locals.getDashDate = function (currentDate) {
     return `${currentDate.getDate()}-${currentDate.getMonth()}-${currentDate.getFullYear()}`;
 };
+
 app.locals.zeroPadding = function (hour) {
     if (hour < 10) {
         return `0${hour}`;

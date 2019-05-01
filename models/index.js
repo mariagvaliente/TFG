@@ -67,7 +67,10 @@ puzzle.hasMany(hint, {"onDelete": "CASCADE",
 
 
 // Relation 1-to-N between User and Quiz:
-user.hasMany(escapeRoom, {"foreignKey": "authorId"});
+user.hasMany(escapeRoom, {"foreignKey": "authorId",
+    "onDelete": "CASCADE",
+    "hooks": true});
+
 escapeRoom.belongsTo(user, {"as": "author",
     "foreignKey": "authorId"});
 
@@ -78,12 +81,16 @@ escapeRoom.belongsTo(user, {"as": "author",
 turno.belongsToMany(user, {"as": "students",
     "through": "participants",
     "foreignKey": "turnId",
-    "otherKey": "userId"});
+    "otherKey": "userId",
+    "onDelete": "CASCADE",
+    "hooks": true});
 
 user.belongsToMany(turno, {"as": "turnosAgregados",
     "through": "participants",
     "foreignKey": "userId",
-    "otherKey": "turnId"});
+    "otherKey": "turnId",
+    "onDelete": "CASCADE",
+    "hooks": true});
 
 
 // Relation N-to-M between Team and User:
@@ -92,12 +99,17 @@ user.belongsToMany(turno, {"as": "turnosAgregados",
 team.belongsToMany(user, {"as": "teamMembers",
     "through": "members",
     "foreignKey": "teamId",
-    "otherKey": "userId"});
+    "otherKey": "userId",
+    "onDelete": "CASCADE",
+    "hooks": true});
 
 user.belongsToMany(team, {"as": "teamsAgregados",
     "through": "members",
     "foreignKey": "userId",
-    "otherKey": "teamId"});
+    "otherKey": "teamId",
+    "onDelete": "CASCADE",
+    "hooks": true
+});
 
 
 // Relation 1-to-N between Turno and Team:
@@ -115,15 +127,21 @@ escapeRoom.hasOne(hintApp, {"onDelete": "CASCADE",
 team.belongsToMany(puzzle, {"as": "retos",
     "through": "retosSuperados",
     "foreignKey": "teamId",
-    "otherKey": "puzzleId"});
+    "otherKey": "puzzleId",
+    "onDelete": "CASCADE",
+    "individualHooks ": true});
+
 
 puzzle.belongsToMany(team, {"as": "superados",
     "through": "retosSuperados",
     "foreignKey": "puzzleId",
-    "otherKey": "teamId"});
+    "otherKey": "teamId",
+    "onDelete": "CASCADE",
+    "individualHooks ": true});
 
 // Relation N-to-M between Team and Hint:
-requestedHint.belongsTo(hint);
+requestedHint.belongsTo(hint, {"onDelete": "CASCADE",
+    "individualHooks ": true});
 requestedHint.belongsTo(team);
 
 

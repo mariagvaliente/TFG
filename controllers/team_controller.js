@@ -43,7 +43,7 @@ exports.create = (req, res, next) => {
     team.save().
         then((teamCreated) => {
             teamCreated.addTeamMembers(req.session.user.id).then(() => {
-                req.flash("success", "Team creado correctamente.");
+                req.flash("success", "Equipo creado correctamente.");
 
                 req.user.getTurnosAgregados({"where": {"escapeRoomId": escapeRoom.id}}).then(function (turnos) {
                     if (turnos.length === 0) {
@@ -55,7 +55,7 @@ exports.create = (req, res, next) => {
                                 next(error);
                             });
                     } else {
-                        req.flash("error", "Ya estas dentro de un turno.");
+                        req.flash("error", "Ya estás dentro de un turno.");
                         res.redirect(`/users/${req.session.user.id}/escapeRooms`);
                     }
                 }).

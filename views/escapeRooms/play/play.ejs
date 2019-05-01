@@ -30,10 +30,8 @@
                         <%- include("../../attachments/_show", {attachment})%>
                     </div>
                 <% } %>
-
         </div>
-        <br/>
-        <br/>
+        <br/><br/>
         <div class=" row-centered">
             <div class="col-xs-12 text-left ql-editor instructionsShow">
                 <%if (escapeRoom.instructions) {%>
@@ -44,9 +42,8 @@
             </div>
         </div>
         <% if (escapeRoom.hintApp) {%>
-        <div class=" row-centered">
-            <div class="col-xs-12">
-
+            <div class=" row-centered">
+                <div class="col-xs-12">
                     <div >
                         <%if (hints && hints.length > 0) {%>
                         <h4>Pistas</h4>
@@ -68,10 +65,9 @@
                             ¿Necesitas una pista?
                         </button>
                     </div>
+                </div>
             </div>
-        </div>
         <% } %>
-
         <div class=" row-centered">
             <div class="col-xs-12">
                 <script>

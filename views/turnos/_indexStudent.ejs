@@ -21,6 +21,7 @@
                         var date = new Date(turn.date);
                         var dateNoTime = new Date(turn.date);
                         dateNoTime.setHours(0,0,0,0); %>
+                    
                     <%	if (pastDates.indexOf(dateNoTime.getTime()) === -1) {
                         pastDates.push(dateNoTime.getTime());
                     if (firstDiv) {
@@ -63,28 +64,4 @@
 </div>
 </div>
 <script src="/js/vendor/owl.carousel.min.js"></script>
-
-<script>
-    $(function(){
-        $('.turno:not(.disabled)').on('click', function(e) {
-            var currentClicked = $(this);
-            var turnId = currentClicked.data('id');
-            $('.selected').removeClass('selected');
-            currentClicked.addClass('selected');
-            $('#turnSelected').val(turnId);
-            $('#continue').prop("disabled", false);
-
-        });
-        var car = $(".owl-carousel").owlCarousel(
-            {  center: false,
-                items:1,
-                loop:true,
-                margin: 10,
-                nav:true,
-                dots:true,
-                checkVisible: false
-            }
-        );
-        console.log($(".owl-carousel").data('owlCarousel'))
-    });
-</script>
+<script src="/js/turnoSelect.js"></script>
