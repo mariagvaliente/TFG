@@ -89,8 +89,7 @@ user.belongsToMany(turno, {"as": "turnosAgregados",
     "through": "participants",
     "foreignKey": "userId",
     "otherKey": "turnId",
-    "onDelete": "CASCADE",
-    "hooks": true});
+});
 
 
 // Relation N-to-M between Team and User:
@@ -99,16 +98,13 @@ user.belongsToMany(turno, {"as": "turnosAgregados",
 team.belongsToMany(user, {"as": "teamMembers",
     "through": "members",
     "foreignKey": "teamId",
-    "otherKey": "userId",
-    "onDelete": "CASCADE",
-    "hooks": true});
+    "otherKey": "userId"
+});
 
 user.belongsToMany(team, {"as": "teamsAgregados",
     "through": "members",
     "foreignKey": "userId",
-    "otherKey": "teamId",
-    "onDelete": "CASCADE",
-    "hooks": true
+    "otherKey": "teamId"
 });
 
 
@@ -127,21 +123,20 @@ escapeRoom.hasOne(hintApp, {"onDelete": "CASCADE",
 team.belongsToMany(puzzle, {"as": "retos",
     "through": "retosSuperados",
     "foreignKey": "teamId",
-    "otherKey": "puzzleId",
-    "onDelete": "CASCADE",
-    "individualHooks ": true});
+    "otherKey": "puzzleId"
+});
 
 
 puzzle.belongsToMany(team, {"as": "superados",
     "through": "retosSuperados",
     "foreignKey": "puzzleId",
     "otherKey": "teamId",
-    "onDelete": "CASCADE",
-    "individualHooks ": true});
+    "onDelete": "CASCADE"
+});
 
 // Relation N-to-M between Team and Hint:
 requestedHint.belongsTo(hint, {"onDelete": "CASCADE",
-    "individualHooks ": true});
+    "hooks ": true});
 requestedHint.belongsTo(team);
 
 
