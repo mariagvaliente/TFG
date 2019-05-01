@@ -66,9 +66,5 @@ exports.postTest = (req, res) => {
     res.render("escapeRooms/play/posttestandsurvey", {"escapeRoom": req.escapeRoom});
 };
 
-// GET /escapeRooms/:escapeRoomId/retos
-exports.retos = (req, res) => {
-    res.render("escapeRooms/play/retos", {"escapeRoom": req.escapeRoom});
-};
 
 

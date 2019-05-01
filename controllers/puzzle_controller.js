@@ -109,7 +109,7 @@ exports.check = (req, res, next) => {
                     if (team && team.length > 0) {
                         req.puzzle.addSuperados(team[0].id).then(function () {
                             req.flash("success", "Reto superado!");
-                            res.redirect(`/escapeRooms/${req.escapeRoom.id}/retos`);
+                            res.redirect(`/escapeRooms/${req.escapeRoom.id}/play`);
                         }).
                             catch(function (e) {
                                 next(e);
@@ -122,6 +122,6 @@ exports.check = (req, res, next) => {
             catch((e) => next(e));
     } else {
         req.flash("error", "Respuesta incorecta");
-        res.redirect(`/escapeRooms/${req.escapeRoom.id}/retos`);
+        res.redirect(`/escapeRooms/${req.escapeRoom.id}/play`);
     }
 };

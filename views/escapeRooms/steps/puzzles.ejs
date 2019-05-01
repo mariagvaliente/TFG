@@ -5,8 +5,9 @@
     <div>
         <label for="at"><span>Monitorización</span>
             <select  required class="customInput" id="at" name="automatic" value="<%= escapeRoom.automatic %>" placeholder="Selecciona la monitorización" autocomplete="off">
-                <option value="False" <%= escapeRoom.automatic === "False" ? "selected" : ""%>>Manual</option>
-                <option value="True" <%= escapeRoom.automatic === "True" ? "selected" : ""%>>Automática</option>
+                <option value="" disabled <%= !session.user.id ? "selected" : ""%> <option>
+                <option value="no" <%= escapeRoom.automatic === "no" ? "selected" : ""%>>Manual</option>
+                <option value="yes" <%= escapeRoom.automatic === "yes"? "selected" : ""%>>Automática</option>
             </select></label>
     </div>
     </br>
