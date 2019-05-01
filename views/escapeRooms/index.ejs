@@ -12,11 +12,11 @@
         </h1>
         <div class="flexBoxEscapeRooms">
             <% if (user && !user.isStudent) { %>
-            <a href="/escapeRooms/new" class="escapeRoomItemWrapper animated bounceIn">
-                <div class="escapeRoomItem addEscapeRoom">
-                    <span>+</span>
-                </div>
-            </a>
+                <a href="/escapeRooms/new" class="escapeRoomItemWrapper animated bounceIn">
+                    <div class="escapeRoomItem addEscapeRoom">
+                        <span>+</span>
+                    </div>
+                </a>
             <% } %>
         </div>
         <% } else {  %>
@@ -26,11 +26,9 @@
             <% } else { %>
                 Gestiona las escape rooms desde aquí...
             <% } %>
-
         </h1>
 
         <div class="flexBoxEscapeRooms">
-
             <% for (var i in escapeRooms) { %>
                 <% var escapeRoom = escapeRooms[i]; %>
                 <% var attachment = escapeRoom.attachment; %>
@@ -53,7 +51,7 @@
         </div>
         <% } %>
     </br>
-    <% include ../partials/__footer %>
+    <% include ../partials/_footer %>
     </div>
 </div>
 </div>

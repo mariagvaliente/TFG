@@ -67,7 +67,10 @@ puzzle.hasMany(hint, {"onDelete": "CASCADE",
 
 
 // Relation 1-to-N between User and Quiz:
-user.hasMany(escapeRoom, {"foreignKey": "authorId"});
+user.hasMany(escapeRoom, {"foreignKey": "authorId",
+    "onDelete": "CASCADE",
+    "hooks": true});
+
 escapeRoom.belongsTo(user, {"as": "author",
     "foreignKey": "authorId"});
 
@@ -117,13 +120,16 @@ team.belongsToMany(puzzle, {"as": "retos",
     "foreignKey": "teamId",
     "otherKey": "puzzleId"});
 
+
 puzzle.belongsToMany(team, {"as": "superados",
     "through": "retosSuperados",
     "foreignKey": "puzzleId",
-    "otherKey": "teamId"});
+    "otherKey": "teamId",
+    "onDelete": "CASCADE"});
 
 // Relation N-to-M between Team and Hint:
-requestedHint.belongsTo(hint);
+requestedHint.belongsTo(hint, {"onDelete": "CASCADE",
+    "hooks ": true});
 requestedHint.belongsTo(team);
 
 

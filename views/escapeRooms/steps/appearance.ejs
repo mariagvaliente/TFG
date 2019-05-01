@@ -24,12 +24,12 @@
         <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
         <button class="progress-buttons" type="submit" value="next" id="next" name="next">siguiente</button>
     </div>
-      <%- include('../../partials/__progress', {progress: 5}) %>
+      <%- include('../../partials/_progress', {progress: 5}) %>
   </form>
   <br/><br/><br/><br/>
 </div>
 
-<% include ../../partials/__footer %>
+<% include ../../partials/_footer %>
 <script>
     var url = '/escapeRooms/<%= escapeRoom.id %>/preview?appearance=';
     $(function() {

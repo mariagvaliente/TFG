@@ -90,10 +90,16 @@
           cursor: not-allowed
         &.selected
           border: 3px solid $brightyellow
-        &.turnoAlumno
+        &.turnoAlumno, &.turnoProfe
           cursor: pointer
-          &:not(.disabled):hover
+          &:not(.disabled):not(.finished):hover
             @extend %scale-animation-down
+          &.finished
+            opacity: 0.8
+            cursor: not-allowed
+        &.turnoProfe
+          &.active
+            color: $brightgreen
         &.hidden
           display: none
         .hora

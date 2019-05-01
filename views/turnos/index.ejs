@@ -1,25 +1,4 @@
-<%
-var monthArray = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-var zeroPadding = function(hour) {
-	if (hour < 10) {
-		return "0" + hour;
-	}
-	return hour;
-}
 
-var formatDate = function(currentDate) {
-	return currentDate.getDate() + " de " + monthArray[currentDate.getMonth()] + " de " + currentDate.getFullYear();
-}
-
-var getDashDate = function(currentDate) {
-	return currentDate.getDate() + "-" + currentDate.getMonth() + "-" + currentDate.getFullYear();
-}
-
-var formatTime = function(currentDate) {
-	return zeroPadding(currentDate.getHours()) + ":" + zeroPadding(currentDate.getMinutes());
-}
-
-%>
 <div class="flexBoxTurnos">
 <% for (var i in turnos) {
  	var turn = turnos[i];
@@ -35,7 +14,7 @@ var formatTime = function(currentDate) {
 				<% if (turn.indications) { %>
 					<%= turn.indications %> <br/>
 				<% } else { %> 
-					<em class="no-indications"> Sin indicaciones</em>
+					<em class="no-indications">Sin indicaciones</em>
 				<% } %>
 			</div>
 			<form method="POST"  action="/escapeRooms/<%= escapeRoom.id %>/turnos/<%=turn.id%>?_method=DELETE">

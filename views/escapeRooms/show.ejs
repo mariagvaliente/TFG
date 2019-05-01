@@ -85,7 +85,7 @@
         </div>
         <div class="flexRow animated bounceIn">
             <div class="flexShowLeft">
-                Nº máx. participantes:
+                Aforo turno:
             </div>
             <div class="flexShowRight">
                 <%= escapeRoom.nmax %>
@@ -126,7 +126,7 @@
             </div>
             <div class="flexShowRight">
                 <% var turnos = escapeRoom.turnos; %>
-                <%  include ../turnos/index_show  %>
+                <%  include ../turnos/_indexShow  %>
             </div>
         </div>
         <div class="flexRow animated bounceIn" id="pistas">
@@ -284,7 +284,7 @@
 
 </div>
 <% } %>
-<% include ../partials/__footer %>
+<% include ../partials/_footer %>
 <script>
     var escapeRoomId = "<%= escapeRoom.id%>";
 </script>

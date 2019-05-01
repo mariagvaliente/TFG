@@ -63,39 +63,40 @@ exports.indexActivarTurno = (req, res, next) => {
 };
 
 
-// POST /escapeRooms/:escapeRoomId/activar
+// PUT /escapeRooms/:escapeRoomId/activar
 exports.activar = (req, res, next) => {
     const {escapeRoom, body} = req;
 
-
     models.turno.findAll({"where": {"id": body.turnSelected}}).
         each((turno) => {
-
             const back = `/escapeRooms/${escapeRoom.id}`;
-            turno.status = "active";
-            turno.startTime = new Date();
 
-            setTimeout(function(){ turno.status = "finish";
+            turno.status = turno.status === "pending" ? "active" : "finished";
+            if (turno.status === "active") {
+                turno.startTime = new Date();
+                setTimeout(function () {
+                    turno.status = "finished";
 
-                turno.save({"fields": [
-                        "status"
-                    ]}).then(() => {
-                    res.redirect(back);
-                }).
-                    catch(Sequelize.ValidationError, (error) => {
-                        error.errors.forEach(({message}) => req.flash("error", message));
+                    turno.save({"fields": ["status"]}).then(() => {
                         res.redirect(back);
                     }).
-                    catch((error) => {
-                        req.flash("error", `Error desactivando el turno: ${error.message}`);
-                        next(error);
-                    });}, escapeRoom.duration*60000);
+                        catch(Sequelize.ValidationError, (error) => {
+                            error.errors.forEach(({message}) => req.flash("error", message));
+                            res.redirect(back);
+                        }).
+                        catch((error) => {
+                            req.flash("error", `Error desactivando el turno: ${error.message}`);
+                            next(error);
+                        });
+                }, escapeRoom.duration * 60000);
+            }
 
             turno.save({"fields": [
-                    "startTime",
-                    "status"
-                ]}).then(() => {
-                req.flash("success", "Turno activo.");
+                "startTime",
+                "status"
+            ]}).then((t) => {
+                console.log(t);
+                req.flash("success", turno.status === "active" ? "Turno activo." : "Turno desactivado");
                 res.redirect(back);
             }).
                 catch(Sequelize.ValidationError, (error) => {
@@ -103,7 +104,7 @@ exports.activar = (req, res, next) => {
                     res.redirect(back);
                 }).
                 catch((error) => {
-                    req.flash("error", `Error activando el turno: ${error.message}`);
+                    req.flash("error", `Error activando/desactivando el turno: ${error.message}`);
                     next(error);
                 });
         }).
@@ -114,6 +115,8 @@ exports.activar = (req, res, next) => {
 exports.create = (req, res, next) => {
     const {date, indications} = req.body;
     const modDate = new Date(date);
+
+    console.log(modDate);
     const turn = models.turno.build({"date": modDate,
         indications,
         "escapeRoomId": req.escapeRoom.id});

@@ -1,7 +1,119 @@
 <% include ../../partials/_header.ejs %>
-<div class="main">
+<div class="main retosSuperados ranking">
     <h2>Ranking</h2>
-    <pre>Próximamente</pre>
+    	<div class="content">
+	    	<div class="podium">
+	    		<div class="podium-col second">
+	    			<% if(teams[1]) { %>
+		    			<div class="podium-label">
+		    				<%=teams[1].name%>
+		    			</div>
+		    		<% } %>
+	    			<div class="podium-rect">
+	    				2
+	    			</div>
+	    		</div>
+	    		<div class="podium-col first">
+	    			<i class="material-icons animated zoomIn star">star</i>
+	    			<% if(teams[0]) { %>
+		    			<div class="podium-label">
+		    				<%=teams[0].name%>
+		    			</div>
+		    		<% } %>
+	    			<div class="podium-rect">
+	    				1
+	    			</div>
+	    		</div>
+	    		<div class="podium-col third">
+	    			<% if(teams[2]) { %>
+		    			<div class="podium-label">
+		    				<%=teams[2].name%>
+		    			</div>
+		    		<% } %>
+	    			<div class="podium-rect">
+	    				3
+	    			</div>
+	    		</div>
+	    	</div>
+	    	<br/>
+	    	<br/>
+	    	<form method="get" class="participantsList" action="/escapeRooms/<%= escapeRoom.id %>/analytics/ranking">
+	    	    <div class="filters">
+	    	        <label for="turnId">Turno
+	    	            <select name="turnId" id="turnId">
+	    	                <option value="" <%= !turnId ? "selected": ""%> >Todos los turnos</option>
+	    	                <% for (t in escapeRoom.turnos) { %>
+	    	                <% var turno = escapeRoom.turnos[t] %>
+	    	                <option value="<%=turno.id%>" <%= turnId == turno.id ? "selected" : "" %> >
+	    	                    <%= getFullDate(turno.date)%>
+	    	                </option>
+	    	                <% } %>
+	    	            </select>
+	    	        </label>
+	    	        <button type="submit" class="filter-button white" >filtrar</button>
 
+	    	    </div>
+	    	</form>
+	    	<br/>
+	    	<br/>
+		    <table>
+			    <tr>
+			    	<th>Equipo</th>
+			    	<th>Miembros</th>
+			    	<th>Turno</th>
+			    	<th>Resultado</th>
+			    	<th>Tiempo</th>
+
+			    </tr>
+			    <% if (teams.length === 0) { %>
+			    	<tr>
+			    		<td></td>
+			    		<td></td>
+			    		<td></td>
+			    		<td></td>
+			    		<td></td>
+			    	</tr>
+			    <% } %>
+			    <% for (var t in teams) { 
+			    	var team = teams[t];
+			    	var stringified = JSON.parse(JSON.stringify(team));
+			    	var count = stringified.countRetos;
+			    	var startTime = stringified.turno.startTime;
+			    	var latestRetoSuperado = stringified.latestRetoSuperado;
+			    	var res = count + "/" + escapeRoom.puzzles.length;
+			    	%>
+				    <tr>
+				    	<td><b><%=team.name%></b></td>
+				    	<td>
+				    		<%=
+								team.teamMembers.map(member=> 
+								member.name + " " + member.surname).join(", ")
+							%>
+				    	</td>
+				    	<td><%=getFullDate(team.turno.date)%></td>
+				    	<td><%=res%></td>
+				    	<td>
+				    		<% if(escapeRoom.puzzles.length === parseInt(count) 
+				    			&& startTime) {
+				    			%>
+				    			<%= secondsToDhms((new Date(latestRetoSuperado) - new Date(startTime))/1000)  %>
+				    		<% } else { %>
+				    			n/a
+				    		<%}
+				    	%></td>
+
+				    </tr>
+			    <% } %>
+
+			</table>
+		</div>
+    	<br/>
+    	<br/>
+    	<br/>
 </div>
-<% include ../../partials/__footer %>
+<script>
+$(function(){
+	$(".podium").addClass("started");
+})
+</script>
+<% include ../../partials/_footer %>

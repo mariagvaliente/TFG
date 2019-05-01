@@ -44,8 +44,8 @@ app.use(cookieParser());
 const sequelize = require("./models");
 const sessionStore = new SequelizeStore({"db": sequelize,
     "table": "session",
-    "checkExpirationInterval": 15 * 60 * 100000, // The interval at which to cleanup expired sessions in milliseconds. (15 minutes)
-    "expiration": 4 * 60 * 60 * 100000});// The maximum age (in milliseconds) of a valid session. (4 hours)
+    "checkExpirationInterval": 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds. (15 minutes)
+    "expiration": 8 * 60 * 60 * 100000});// The maximum age (in milliseconds) of a valid session. (4 hours)
 
 app.use(session({"secret": "Escape Room",
     "store": sessionStore,
@@ -58,16 +58,7 @@ app.use(methodOverride("_method", {"methods": [
 ]}));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/api", api);
-
-const zeroPad = (d) => {
-    if (d < 10) {
-        return `0${d}`;
-    }
-    return d;
-};
-
-app.locals.zeroPadding = zeroPad;
-app.locals.getFullDate = (d) => `${zeroPad(d.getDate())}-${zeroPad(d.getMonth() + 1)}-${d.getFullYear()} ${zeroPad(d.getHours())}:${zeroPad(d.getMinutes())}`;
+require("./helpers/locals")(app);
 
 app.use(partials());
 app.use(flash());

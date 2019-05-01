@@ -15,7 +15,7 @@ const monthArray = [
 ];
 
 const formatDate = (currentDate) => `${currentDate.getDate()} de ${monthArray[currentDate.getMonth()]}`; // + " de " + currentDate.getFullYear();
-var getDashDate = function(currentDate) {
+const getDashDate = function(currentDate) {
     return currentDate.getDate() + "-" + currentDate.getMonth() + "-" + currentDate.getFullYear();
 }
 const filterTurnos = (date) => {
@@ -26,8 +26,6 @@ const filterTurnos = (date) => {
     turnos.each((index, turno) => {
 
         const $turno = $(turno);
-        console.log($turno.data("date"))
-        console.log(date)
         if ($turno.data("date") === date) {
 
             $turno.removeClass("hidden");
@@ -169,9 +167,8 @@ $(function () {
         const time = $("#start").val().
             split(":");
 
-        dateSubmitted.setHours(time[0]);
-        dateSubmitted.setMinutes(time[1]);
-        $("#date").val(dateSubmitted);
+        const res = new Date(Date.UTC(dateSubmitted.getUTCFullYear(), dateSubmitted.getUTCMonth(), dateSubmitted.getUTCDate()+1, time[0], time[1]));
+        $("#date").val(res);
 
         return true;
 

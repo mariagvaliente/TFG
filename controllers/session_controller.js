@@ -172,7 +172,7 @@ exports.create = (req, res, next) => {
         {login} = req.body,
         {password} = req.body;
 
-    authenticate(login, password).
+    authenticate((login || "").toLowerCase(), password).
         then((user) => {
             if (user) {
                 /*
