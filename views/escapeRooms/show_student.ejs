@@ -21,25 +21,33 @@
 			</h5>
 		</div>
 	</div>
+	<% const turno = participant.teamsAgregados[0].turno%>
 	<h3 class="animated slideInUp">Indicaciones</h3>
 	<p class="desc animated slideInUp">
-		<%= participant.teamsAgregados[0].turno.indications || "Ninguna" %>
+		<%= turno.indications || "Ninguna" %>
 	</p>
 	<h3 class="animated slideInUp">Descripción</h3>
 	<p class="desc animated slideInUp"><%=escapeRoom.description%></p>
 
 	<div class="status">
 
-		<% if (participant.teamsAgregados[0].turno.status === "pending") { %>
-			<div class="desc centered animated slideInLeft">
-				<% if (escapeRoom.pretest) { %>
-				Antes de empezar rellena el siguiente cuestionario 
-				<br/><br/>
-				<a target="_blank" href="<%=escapeRoom.pretest%>">
-					<button class="rounded">acceder</button>
-				</a>
-				<% } %>
-			</div>
+		<% 
+		
+		if (turno.status === "pending") { 
+			let date = new Date(turno.date);
+			let now = new Date();
+			const lessThanHalfAnHour = ((date - now) / 1000 / 60) < 30;
+			if (lessThanHalfAnHour) {%>
+				<div class="desc centered animated slideInLeft">
+					<% if (escapeRoom.pretest) { %>
+					Antes de empezar rellena el siguiente cuestionario 
+					<br/><br/>
+					<a target="_blank" href="<%=escapeRoom.pretest%>">
+						<button class="rounded">acceder</button>
+					</a>
+					<% } %>
+				</div>
+			<% } %>
 		<% } else if(participant.teamsAgregados[0].turno.status === "active") { %>
 			<a href="/escapeRooms/<%=escapeRoom.id%>/play"><button class="rounded editButton pulseButton">jugar</button>
 			</a>
