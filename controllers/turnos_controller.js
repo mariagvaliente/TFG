@@ -88,14 +88,14 @@ exports.activar = (req, res, next) => {
                             req.flash("error", `Error desactivando el turno: ${error.message}`);
                             next(error);
                         });
-                }, escapeRoom.duration * 60000);            
+                }, escapeRoom.duration * 60000);
             }
 
             turno.save({"fields": [
                 "startTime",
                 "status"
             ]}).then((t) => {
-                console.log(t)
+                console.log(t);
                 req.flash("success", turno.status === "active" ? "Turno activo." : "Turno desactivado");
                 res.redirect(back);
             }).
@@ -115,7 +115,8 @@ exports.activar = (req, res, next) => {
 exports.create = (req, res, next) => {
     const {date, indications} = req.body;
     const modDate = new Date(date);
-    console.log(modDate)
+
+    console.log(modDate);
     const turn = models.turno.build({"date": modDate,
         indications,
         "escapeRoomId": req.escapeRoom.id});

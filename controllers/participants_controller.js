@@ -4,7 +4,7 @@ const Sequelize = require("sequelize");
 const {Op} = Sequelize;
 
 // POST  /escapeRooms/:escapeRoomId/users/:userId/selectTurno
-exports.selectTurno = (req, res, next) => {
+exports.selectTurno = (req, res) => {
     console.log("Marcado como turno");
     const {escapeRoom} = req;
     const direccion = req.body.redir || `/escapeRooms/${escapeRoom.id}/turnos/${req.body.turnSelected}/teams`;

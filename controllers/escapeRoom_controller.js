@@ -291,8 +291,6 @@ exports.update = (req, res, next) => {
     escapeRoom.video = body.video;
     escapeRoom.nmax = body.nmax;
     escapeRoom.teamSize = body.teamSize;
-
-    const isPrevious = Boolean(body.previous);
     const progressBar = body.progress;
 
     escapeRoom.save({"fields": [
@@ -427,7 +425,7 @@ exports.retos = (req, res) => {
 };
 
 // POST /escapeRooms/:escapeRoomId/puzzles
-exports.retosUpdate = (req, res) => {
+exports.retosUpdate = (req, res, next) => {
     const {escapeRoom, body} = req;
 
     const isPrevious = Boolean(req.body.previous);
