@@ -81,9 +81,8 @@ escapeRoom.belongsTo(user, {"as": "author",
 turno.belongsToMany(user, {"as": "students",
     "through": "participants",
     "foreignKey": "turnId",
-    "otherKey": "userId",
-    "onDelete": "CASCADE",
-    "hooks": true});
+    "otherKey": "userId"
+});
 
 user.belongsToMany(turno, {"as": "turnosAgregados",
     "through": "participants",
