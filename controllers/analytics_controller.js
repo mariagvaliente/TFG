@@ -192,7 +192,7 @@ exports.ranking = (req, res, next) => {
     const options = {
 
         "attributes": [
-             Sequelize.literal('DISTINCT ON("name") "team"."name"'), 
+            "name",
             [
                 Sequelize.fn("MAX", 
                     Sequelize.col( isPg ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`')),
@@ -204,13 +204,17 @@ exports.ranking = (req, res, next) => {
                 "countretos"
             ]
         ],
-       
+        "group": [
+            "team.id",
+             "teamMembers.id",
+            
+        ],
         "include": [
             {
                 "model": models.user,
                 "as": "teamMembers",
                 includeIgnoreAttributes: false,
-                "attributes": ["name","surname"],
+                "attributes": ['name',"surname"],
                 "duplicating": true,
                 "through": {
                     "model": models.members,
@@ -252,6 +256,19 @@ exports.ranking = (req, res, next) => {
         ]
     };
 
+    if (isPg) {
+        options.attributes.push(
+         [sequelize.literal('STRING_AGG("retos->retosSuperados"."createdAt"," ")'), 'ca'],
+         [sequelize.literal('STRING_AGG("retos->retosSuperados"."updatedAt"," ")'), 'ua'],
+         [sequelize.literal('STRING_AGG("retos->retosSuperados"."puzzleId"," ")'), 'pi'],
+         [sequelize.literal('STRING_AGG("retos->retosSuperados"."teamId"," ")'), 'ti']
+
+         [sequelize.literal('STRING_AGG("teamMembers->members"."createdAt"," ")'), 'tca'],
+         [sequelize.literal('STRING_AGG("teamMembers->members"."updatedAt"," ")'), 'tua'],
+         [sequelize.literal('STRING_AGG("teamMembers->members"."teamId"," ")'), 'tti'],
+         [sequelize.literal('STRING_AGG("teamMembers->members"."userId"," ")'), 'tui'],
+            )
+    }
     if (turnId) {
         options.include[1].where.id = turnId;
     }
