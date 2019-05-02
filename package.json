@@ -43,7 +43,7 @@
     "nodemon": "^1.18.11",
     "pg": "7.4.0",
     "sass": "^1.19.0",
-    "sequelize": "^4.43.2",
+    "sequelize": "^4.36.2",
     "sequelize-cli": "^5.4.0"
   },
   "devDependencies": {
@@ -51,6 +51,6 @@
     "sqlite3": "^4.0.6"
   },
   "engines": {
-    "node": "8.16.0"
+    "node": "8"
   }
 }
