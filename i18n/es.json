@@ -100,6 +100,7 @@
         },
         "main": {
             "noERTeacher": "No has creado ninguna escape room, gestiónalas desde aquí...",
+            "noERStudent": "No tienes ninguna escape room activa, espera a que tu profe te invite.",
             "yesERStudent": "Estas son tus escape rooms",
             "yesERTeacher": "Gestiona las escape rooms desde aquí..."
         },
