@@ -3,7 +3,7 @@ const {models} = require("../models");
 
 // Autoload the puzzle with id equals to :puzzleId
 exports.load = (req, res, next, puzzleId) => {
-    models.puzzle.findById(puzzleId).
+    models.puzzle.findByPk(puzzleId).
         then((puzzle) => {
             if (puzzle) {
                 req.puzzle = puzzle;
@@ -94,7 +94,7 @@ exports.check = (req, res, next) => {
     const answer = query.answer || "";
 
     if (answer.toLowerCase().trim() === puzzle.sol.toLowerCase().trim()) {
-        models.user.findById(req.session.user.id).then((user) => {
+        models.user.findByPk(req.session.user.id).then((user) => {
             user.getTeamsAgregados({
                 "include": [
                     {

@@ -22,7 +22,7 @@ const attHelper = require("../helpers/attachments"),
 
 // Autoload the escape room with id equals to :escapeRoomId
 exports.load = (req, res, next, escapeRoomId) => {
-    models.escapeRoom.findById(escapeRoomId, {"include": [
+    models.escapeRoom.findByPk(escapeRoomId, {"include": [
         {"model": models.turno},
         {"model": models.puzzle,
             "include": [{"model": models.hint}]},

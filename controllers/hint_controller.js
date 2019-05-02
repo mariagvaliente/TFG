@@ -4,7 +4,7 @@ const {models} = require("../models");
 
 // Autoload the hint with id equals to :hintId
 exports.load = (req, res, next, hintId) => {
-    models.hint.findById(hintId).
+    models.hint.findByPk(hintId).
         then((hint) => {
             if (hint) {
                 req.hint = hint;
@@ -92,7 +92,7 @@ exports.requestHint = (req, res) => {
     const {score, status} = body;
     const success = status === "completed" || status === "passed";
 
-    models.user.findById(req.session.user.id).then((user) => {
+    models.user.findByPk(req.session.user.id).then((user) => {
         user.getTeamsAgregados({
             "include": [
                 {
