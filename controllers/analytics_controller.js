@@ -190,6 +190,8 @@ exports.ranking = (req, res, next) => {
     const {turnId} = query;
     const isPg = process.env.APP_NAME;
     const options = {
+         // raw: true,
+                // includeIgnoreAttributes: false,
 
         "attributes": [
             "name",
@@ -203,62 +205,21 @@ exports.ranking = (req, res, next) => {
                     Sequelize.col( isPg ?'"retos->retosSuperados"."puzzleId"':'`retos->retosSuperados`.`puzzleId`')),
                 "countretos"
             ],
-            [
-               Sequelize.fn("array_agg",
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`'), "character varying(255)")),
-               "rca"
-            ],
-            [
-               Sequelize.fn("array_agg", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."updatedAt"':'`retos->retosSuperados`.`updatedAt`'), "character varying(255)")),
-               "rua"
-            ],
-            [
-               Sequelize.fn("array_agg", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."puzzleId"':'`retos->retosSuperados`.`puzzleId`'), "character varying(255)")),
-               "rpi"
-            ],
-            [
-               Sequelize.fn("array_agg", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."teamId"':'`retos->retosSuperados`.`teamId`'), "character varying(255)")),
-               "rti"
-            ],
-            [
-               Sequelize.fn("array_agg", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"teamMembers->members"."teamId"':'`teamMembers->members`.`teamId`'), "character varying(255)")),
-               "tti"
-            ],
-            [
-               Sequelize.fn("array_agg", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"teamMembers->members"."userId"':'`teamMembers->members`.`userId`'), "character varying(255)")),
-               "tui"
-            ],
-            [
-               Sequelize.fn("array_agg", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"teamMembers->members"."createdAt"':'`teamMembers->members`.`createdAt`'), "character varying(255)")),
-               "tca"
-            ],
-            [
-               Sequelize.fn("array_agg", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"teamMembers->members"."updatedAt"':'`teamMembers->members`.`updatedAt`'), "character varying(255)")),
-               "tua"
-            ],           
+            [Sequelize.fn('GROUP_CONCAT', Sequelize.literal(isPg ? 'DISTINCT "teamMembers"."name"':'DISTINCT `teamMembers`.`name`')), 'nameagg'],
+
       
         ],
         "group": [
             "team.id",
-            "teamMembers.id",
-            Sequelize.col( isPg ?'"teamMembers->members"."teamId"':'`teamMembers->members`.`teamId`')
         ],
         "include": [
             {
                 "model": models.user,
                 "as": "teamMembers",
-                includeIgnoreAttributes: false,
-                "attributes": ['name',"surname"],
-                "duplicating": true,
+                "attributes": [],
                 "through": {
                     "model": models.members,
+                    duplicating: true,
                     "attributes": []
                 }
             },
@@ -280,13 +241,11 @@ exports.ranking = (req, res, next) => {
                 "attributes": [],
                 "as": "retos",
                 "required": false,
-                "duplicating": true,
                 includeIgnoreAttributes: false,
                 "through": {
                     "model": models.retosSuperados,
                     "attributes": [],
                     "required": true,
-                    "duplicating": true,
 
                 }
             }
@@ -297,20 +256,7 @@ exports.ranking = (req, res, next) => {
         ]
     };
 
-   /* if (isPg) {
-        options.attributes = [...options.attributes,
-         
-         [Sequelize.literal(`array_agg("retos->retosSuperados"."createdAt",'')`), 'ca'],
-         [Sequelize.literal(`array_agg("retos->retosSuperados"."updatedAt",'')`), 'ua'],
-         [Sequelize.literal(`array_agg("retos->retosSuperados"."puzzleId",'')`), 'pi'],
-         [Sequelize.literal(`array_agg("retos->retosSuperados"."teamId",'')`), 'ti']
-
-         [Sequelize.literal(`array_agg("teamMembers->members"."createdAt",'')`), 'tca'],
-         [Sequelize.literal(`array_agg("teamMembers->members"."updatedAt",'')`), 'tua'],
-         [Sequelize.literal(`array_agg("teamMembers->members"."teamId",'')`), 'tti'],
-         [Sequelize.literal(`array_agg("teamMembers->members"."userId",'')`), 'tui'],
-        ]
-    }*/
+    
     if (turnId) {
         options.include[1].where.id = turnId;
     }
