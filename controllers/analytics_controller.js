@@ -188,8 +188,9 @@ exports.summary = (req, res) => {
 exports.ranking = (req, res, next) => {
     const {escapeRoom, query} = req;
     const {turnId} = query;
-    console.log(process.env.APP_NAME)
+    const isPg = process.env.APP_NAME;
     const options = {
+
         "attributes": [
             "name",
             [
@@ -198,30 +199,14 @@ exports.ranking = (req, res, next) => {
                 "latestretosuperado"
             ],
             [
-                Sequelize.fn("COUNT", Sequelize.col("retos.title")),
+                Sequelize.fn("COUNT", Sequelize.col("retos.id")),
                 "countretos"
             ]
         ],
         "group": [
             "team.id",
             Sequelize.col("teamMembers.id"),
-            Sequelize.col( process.env.APP_NAME ?'"teamMembers->members"."createdAt"':
-                '`teamMembers->members`.`createdAt`'),
-            Sequelize.col( process.env.APP_NAME ?'"teamMembers->members"."updatedAt"':
-                '`teamMembers->members`.`updatedAt`'),
-            Sequelize.col( process.env.APP_NAME ?'"teamMembers->members"."teamId"':
-                '`teamMembers->members`.`teamId`'),
-            Sequelize.col( process.env.APP_NAME ?'"teamMembers->members"."userId"':
-                '`teamMembers->members`.`userId`'),
-            "turno.id",
-            Sequelize.col( process.env.APP_NAME ?'"retos->retosSuperados"."createdAt"':
-                '`retos->retosSuperados`.`createdAt`'),
-            Sequelize.col( process.env.APP_NAME ?'"retos->retosSuperados"."updatedAt"':
-                '`retos->retosSuperados`.`updatedAt`'),
-            Sequelize.col( process.env.APP_NAME ?'"retos->retosSuperados"."teamId"':
-                '`retos->retosSuperados`.`teamId`'),
-            Sequelize.col( process.env.APP_NAME ?'"retos->retosSuperados"."puzzleId"':
-                '`retos->retosSuperados`.`puzzleId`'),
+            
         ],
         "include": [
             {
@@ -254,6 +239,7 @@ exports.ranking = (req, res, next) => {
                 "as": "retos",
                 "required": false,
                 "duplicating": true,
+                includeIgnoreAttributes: false,
                 "through": {
                     "model": models.retosSuperados,
                     "attributes": [],
@@ -273,9 +259,9 @@ exports.ranking = (req, res, next) => {
         options.include[1].where.id = turnId;
     }
     models.team.findAll(options).
-        then((teams) => res.render("escapeRooms/analytics/ranking", {teams,
+        then((teams) => res.json(teams)/*res.render("escapeRooms/analytics/ranking", {teams,
             escapeRoom,
-            turnId})).
+            turnId})*/).
         catch((e) => next(e));
 };
 
