@@ -228,6 +228,21 @@ exports.ranking = (req, res, next) => {
                    Sequelize.cast(Sequelize.col( isPg ?'"teamMembers->members"."teamId"':'`teamMembers->members`.`teamId`'), "character varying(255)")),
                "tti"
             ],
+            [
+               Sequelize.fn("array_agg", 
+                   Sequelize.cast(Sequelize.col( isPg ?'"teamMembers->members"."userId"':'`teamMembers->members`.`userId`'), "character varying(255)")),
+               "tui"
+            ],
+            [
+               Sequelize.fn("array_agg", 
+                   Sequelize.cast(Sequelize.col( isPg ?'"teamMembers->members"."createdAt"':'`teamMembers->members`.`createdAt`'), "character varying(255)")),
+               "tca"
+            ],
+            [
+               Sequelize.fn("array_agg", 
+                   Sequelize.cast(Sequelize.col( isPg ?'"teamMembers->members"."updatedAt"':'`teamMembers->members`.`updatedAt`'), "character varying(255)")),
+               "tua"
+            ],           
       
         ],
         "group": [
