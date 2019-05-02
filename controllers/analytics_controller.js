@@ -257,7 +257,7 @@ exports.ranking = (req, res, next) => {
     };
 
     if (isPg) {
-        options.attributes.push(
+        options.attributes = [...options.attributes,
          [Sequelize.literal('STRING_AGG("retos->retosSuperados"."createdAt"," ")'), 'ca'],
          [Sequelize.literal('STRING_AGG("retos->retosSuperados"."updatedAt"," ")'), 'ua'],
          [Sequelize.literal('STRING_AGG("retos->retosSuperados"."puzzleId"," ")'), 'pi'],
@@ -267,7 +267,7 @@ exports.ranking = (req, res, next) => {
          [Sequelize.literal('STRING_AGG("teamMembers->members"."updatedAt"," ")'), 'tua'],
          [Sequelize.literal('STRING_AGG("teamMembers->members"."teamId"," ")'), 'tti'],
          [Sequelize.literal('STRING_AGG("teamMembers->members"."userId"," ")'), 'tui'],
-            )
+        ]
     }
     if (turnId) {
         options.include[1].where.id = turnId;
