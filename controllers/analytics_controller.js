@@ -206,17 +206,20 @@ exports.ranking = (req, res, next) => {
                 "countretos"
             ],
             // [Sequelize.fn('GROUP_CONCAT', Sequelize.literal(isPg ? 'DISTINCT "teamMembers"."name"':'DISTINCT `teamMembers`.`name`')), 'nameagg'],
-            [Sequelize.literal(`array_agg(DISTINCT teamMembers.name, ', ') as nameagg`)]
+            // [Sequelize.literal(`array_agg(DISTINCT teamMembers.name, ', ') as nameagg`)]
       
         ],
+        plain: false,
+        attribute: "team.id",
         "group": [
             "team.id",
+            "teamMembers.id"
         ],
         "include": [
             {
                 "model": models.user,
                 "as": "teamMembers",
-                "attributes": [],
+                "attributes": ["name","surname"],
                 "through": {
                     "model": models.members,
                     duplicating: true,
