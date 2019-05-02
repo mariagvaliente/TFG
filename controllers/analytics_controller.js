@@ -192,7 +192,7 @@ exports.ranking = (req, res, next) => {
     const options = {
 
         "attributes": [
-            "name",
+             Sequelize.literal('DISTINCT ON("name")'), 
             [
                 Sequelize.fn("MAX", 
                     Sequelize.col( isPg ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`')),
@@ -202,31 +202,15 @@ exports.ranking = (req, res, next) => {
                 Sequelize.fn("COUNT", 
                     Sequelize.col( isPg ?'"retos->retosSuperados"."puzzleId"':'`retos->retosSuperados`.`puzzleId`')),
                 "countretos"
-            ],
-            [
-                Sequelize.fn("COUNT", 
-                    Sequelize.col( isPg ?'"teamMembers->members"."userId"':'`teamMembers->members`.`userId`')),
-                "numberofparticipants"
             ]
         ],
-        "group": [
-            "team.id",
-             // Sequelize.col( isPg ? '"teamMembers->members"."userId"':"teamMembers->members.userId"),
-             "teamMembers.id",
-             Sequelize.col( isPg ? '"teamMembers->members"."teamId"':"teamMembers->members.teamId"),
-            Sequelize.col( isPg ? '"teamMembers->members"."createdAt"':"teamMembers->members.createdAt"),
-            Sequelize.col( isPg ? '"teamMembers->members"."updatedAt"':"teamMembers->members.updatedAt"),
-            
-        ],
+       
         "include": [
             {
                 "model": models.user,
                 "as": "teamMembers",
                 includeIgnoreAttributes: false,
-                "attributes": [
-                    "name",
-                    "surname"
-                ],
+                "attributes": ["name","surname"],
                 "duplicating": true,
                 "through": {
                     "model": models.members,
