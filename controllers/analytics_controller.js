@@ -212,7 +212,8 @@ exports.ranking = (req, res, next) => {
             Sequelize.col( process.env.APP_NAME ?'"teamMembers->members"."teamId"':
                 '`teamMembers->members`.`teamId`'),
             Sequelize.col( process.env.APP_NAME ?'"teamMembers->members"."userId"':
-                '`teamMembers->members`.`userId`')
+                '`teamMembers->members`.`userId`'),
+            "turno.id"
         ],
         "include": [
             {
