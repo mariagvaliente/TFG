@@ -204,28 +204,28 @@ exports.ranking = (req, res, next) => {
                 "countretos"
             ],
             [
-               Sequelize.fn("STRING_AGG", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`'), "integer")),
+               Sequelize.fn("STRING_AGG",
+                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`'), "string")),
                "rca"
             ],
             [
                Sequelize.fn("STRING_AGG", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."updatedAt"':'`retos->retosSuperados`.`updatedAt`'), "integer")),
+                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."updatedAt"':'`retos->retosSuperados`.`updatedAt`'), "string")),
                "rua"
             ],
             [
                Sequelize.fn("STRING_AGG", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."puzzleId"':'`retos->retosSuperados`.`puzzleId`'), "integer")),
+                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."puzzleId"':'`retos->retosSuperados`.`puzzleId`'), "string")),
                "rpi"
             ],
             [
                Sequelize.fn("STRING_AGG", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."teamId"':'`retos->retosSuperados`.`teamId`'), "integer")),
+                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."teamId"':'`retos->retosSuperados`.`teamId`'), "string")),
                "rti"
             ],
             [
                Sequelize.fn("STRING_AGG", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"teamMembers->members"."teamId"':'`teamMembers->members`.`teamId`'), "integer")),
+                   Sequelize.cast(Sequelize.col( isPg ?'"teamMembers->members"."teamId"':'`teamMembers->members`.`teamId`'), "string")),
                "tti"
             ],
       
