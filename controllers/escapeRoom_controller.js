@@ -431,10 +431,7 @@ exports.retosUpdate = (req, res, next) => {
     const isPrevious = Boolean(body.previous);
     const progressBar = body.progress;
 
-    escapeRoom.automatic = automatic;
-
-    console.log("***************************");
-    console.log(automatic);
+    escapeRoom.automatic = automatic === 1;
 
     escapeRoom.save({"fields": ["automatic"]}).then(() => {
         res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "turnos" : progressBar || "hints"}`);

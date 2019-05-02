@@ -3,7 +3,7 @@
 module.exports = {
 
   "up": (queryInterface, Sequelize) => queryInterface.addColumn("escapeRooms", "automatic", Sequelize.STRING, {
-    "defaultValue": "si"}),
+    "defaultValue": false}),
   "down": (queryInterface, Sequelize) => queryInterface.removeColumn("escapeRooms", "automatic", Sequelize.STRING)
 
 };

@@ -6,9 +6,6 @@ module.exports = function (app) {
         return d;
     };
 
-    console.log(app.locals);
-
-
     app.locals.zeroPadding = zeroPadding;
     app.locals.getFullDate = (d) => {
         d.setMinutes(d.getMinutes() + d.getTimezoneOffset());

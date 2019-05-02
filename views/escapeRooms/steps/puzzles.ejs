@@ -2,15 +2,6 @@
 <div class="main step-puzzles">
   <h2><%=i18n.escapeRoom.steps.puzzles.title%>
   </h2>
-    <div>
-      <label for="at"><span><%=i18n.escapeRoom.steps.puzzles.tracking%></span>
-        <select  required class="customInput" id="at" name="automatic" value="<%= escapeRoom.automatic %>" placeholder="Selecciona la monitorización" autocomplete="off">
-            <option value="no" <%= !escapeRoom.automatic ? "selected" : ""%>><%=i18n.escapeRoom.steps.puzzles.manual%></option>
-            <option value="si" <%= escapeRoom.automatic ? "selected" : ""%>><%=i18n.escapeRoom.steps.puzzles.automatic%></option>
-        </select>
-      </label>
-    </div>
-    </br>
     <div class="flex-table-retos-wrapper">
         <div class="flex-table-retos animated jello">
       <div class="flex-row-retos flex-row-retos-title">
@@ -120,6 +111,14 @@
     <br/>
     <input type="hidden" name="retos" id="retos" value="">
   <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/puzzles'  >
+    <div>
+      <label for="at"><span><%=i18n.escapeRoom.steps.puzzles.tracking%></span>
+        <select  required class="customInput" id="at" name="automatic" value="<%= escapeRoom.automatic %>" placeholder="Selecciona la monitorización" autocomplete="off">
+            <option value="0" <%= !escapeRoom.automatic ? "selected" : ""%>><%=i18n.escapeRoom.steps.puzzles.manual%></option>
+            <option value="1" <%= escapeRoom.automatic ? "selected" : ""%>><%=i18n.escapeRoom.steps.puzzles.automatic%></option>
+        </select>
+      </label>
+    </div>
     <div class="align-right flex-buttons" style="margin-bottom: 60px;">
     <a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit"><%=i18n.common.exit%></button></a>
     <button class="progress-buttons" type="submit" value="next" id="next" name="next"><%=i18n.common.next%></button>
