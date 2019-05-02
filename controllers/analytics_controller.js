@@ -1,4 +1,4 @@
-const Sequelize = require("sequelize");
+const Sequelize = require("Sequelize");
 const {models} = require("../models");
 const converter = require("json-2-csv");
 
@@ -258,15 +258,15 @@ exports.ranking = (req, res, next) => {
 
     if (isPg) {
         options.attributes.push(
-         [sequelize.literal('STRING_AGG("retos->retosSuperados"."createdAt"," ")'), 'ca'],
-         [sequelize.literal('STRING_AGG("retos->retosSuperados"."updatedAt"," ")'), 'ua'],
-         [sequelize.literal('STRING_AGG("retos->retosSuperados"."puzzleId"," ")'), 'pi'],
-         [sequelize.literal('STRING_AGG("retos->retosSuperados"."teamId"," ")'), 'ti']
+         [Sequelize.literal('STRING_AGG("retos->retosSuperados"."createdAt"," ")'), 'ca'],
+         [Sequelize.literal('STRING_AGG("retos->retosSuperados"."updatedAt"," ")'), 'ua'],
+         [Sequelize.literal('STRING_AGG("retos->retosSuperados"."puzzleId"," ")'), 'pi'],
+         [Sequelize.literal('STRING_AGG("retos->retosSuperados"."teamId"," ")'), 'ti']
 
-         [sequelize.literal('STRING_AGG("teamMembers->members"."createdAt"," ")'), 'tca'],
-         [sequelize.literal('STRING_AGG("teamMembers->members"."updatedAt"," ")'), 'tua'],
-         [sequelize.literal('STRING_AGG("teamMembers->members"."teamId"," ")'), 'tti'],
-         [sequelize.literal('STRING_AGG("teamMembers->members"."userId"," ")'), 'tui'],
+         [Sequelize.literal('STRING_AGG("teamMembers->members"."createdAt"," ")'), 'tca'],
+         [Sequelize.literal('STRING_AGG("teamMembers->members"."updatedAt"," ")'), 'tua'],
+         [Sequelize.literal('STRING_AGG("teamMembers->members"."teamId"," ")'), 'tti'],
+         [Sequelize.literal('STRING_AGG("teamMembers->members"."userId"," ")'), 'tui'],
             )
     }
     if (turnId) {
