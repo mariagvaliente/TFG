@@ -205,8 +205,8 @@ exports.ranking = (req, res, next) => {
                     Sequelize.col( isPg ?'"retos->retosSuperados"."puzzleId"':'`retos->retosSuperados`.`puzzleId`')),
                 "countretos"
             ],
-            [Sequelize.fn('GROUP_CONCAT', Sequelize.literal(isPg ? 'DISTINCT "teamMembers"."name"':'DISTINCT `teamMembers`.`name`')), 'nameagg'],
-
+            // [Sequelize.fn('GROUP_CONCAT', Sequelize.literal(isPg ? 'DISTINCT "teamMembers"."name"':'DISTINCT `teamMembers`.`name`')), 'nameagg'],
+            [Sequelize.literal(`array_agg(DISTINCT "teamMembers"."name", ', ') as nameagg`)]
       
         ],
         "group": [
