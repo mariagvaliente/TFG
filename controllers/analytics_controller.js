@@ -219,7 +219,7 @@ exports.ranking = (req, res, next) => {
             {
                 "model": models.user,
                 "as": "teamMembers",
-                "attributes": ["name","surname"],
+                "attributes": [],
                 "through": {
                     "model": models.members,
                     duplicating: true,
