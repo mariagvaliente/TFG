@@ -18,7 +18,7 @@ exports.load = (req, res, next, turnId) => {
             "required": false});
     }
 
-    models.turno.findById(turnId, options).
+    models.turno.findByPk(turnId, options).
         then((turn) => {
             if (turn) {
                 req.turn = turn;

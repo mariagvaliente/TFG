@@ -581,6 +581,9 @@ function Local_API_1484_11(options){
             return throwVocabError(key,v);
           }
           callListener(key,v);
+          if(v === "completed") {
+            setTimeout(function(){window.close()},2500)
+          }
           break;
         case "cmi.exit":
           if (exit.indexOf('|' + v + '|') === -1) {

@@ -3,7 +3,7 @@ const {models} = require("../models");
 
 // Autoload the team with id equals to :teamId
 exports.load = (req, res, next, teamId) => {
-    models.team.findById(teamId, {
+    models.team.findByPk(teamId, {
         "include": {
             "model": models.user,
             "as": "teamMembers"

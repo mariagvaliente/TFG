@@ -79,9 +79,9 @@
 			    <% for (var t in teams) { 
 			    	var team = teams[t];
 			    	var stringified = JSON.parse(JSON.stringify(team));
-			    	var count = stringified.countRetos;
+			    	var count = stringified.countretos;
 			    	var startTime = stringified.turno.startTime;
-			    	var latestRetoSuperado = stringified.latestRetoSuperado;
+			    	var latestRetoSuperado = stringified.latestretosuperado;
 			    	var res = count + "/" + escapeRoom.puzzles.length;
 			    	%>
 				    <tr>

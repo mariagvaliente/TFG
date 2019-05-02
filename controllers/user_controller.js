@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const {models} = require("../models");// Autoload the user with id equals to :userId
 
 exports.load = (req, res, next, userId) => {
-    models.user.findById(userId).
+    models.user.findByPk(userId).
         then((user) => {
             if (user) {
                 req.user = user;
