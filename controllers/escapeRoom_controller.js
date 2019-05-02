@@ -427,18 +427,21 @@ exports.retos = (req, res) => {
 // POST /escapeRooms/:escapeRoomId/puzzles
 exports.retosUpdate = (req, res, next) => {
     const {escapeRoom, body} = req;
+    const {automatic} = body;
+    const isPrevious = Boolean(body.previous);
+    const progressBar = body.progress;
 
-    const isPrevious = Boolean(req.body.previous);
-    const progressBar = req.body.progress;
+    escapeRoom.automatic = automatic;
 
-    escapeRoom.automatic = body.automatic;
+    console.log("***************************");
+    console.log(automatic);
 
     escapeRoom.save({"fields": ["automatic"]}).then(() => {
         res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "turnos" : progressBar || "hints"}`);
     }).
         catch(Sequelize.ValidationError, (error) => {
             error.errors.forEach(({message}) => req.flash("error", message));
-            res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "turnos" : progressBar || "hints"}`);
+            res.redirect(`/escapeRooms/${req.escapeRoom.id}/puzzles`);
         }).
         catch((error) => {
             req.flash("error", `${error.message}`);
