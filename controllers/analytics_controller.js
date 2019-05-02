@@ -205,27 +205,27 @@ exports.ranking = (req, res, next) => {
             ],
             [
                Sequelize.fn("STRING_AGG", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`'), "integer"),
+                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`'), "integer")),
                "rca"
             ],
             [
                Sequelize.fn("STRING_AGG", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."updatedAt"':'`retos->retosSuperados`.`updatedAt`'), "integer"),
+                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."updatedAt"':'`retos->retosSuperados`.`updatedAt`'), "integer")),
                "rua"
             ],
             [
                Sequelize.fn("STRING_AGG", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."puzzleId"':'`retos->retosSuperados`.`puzzleId`'), "integer"),
+                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."puzzleId"':'`retos->retosSuperados`.`puzzleId`'), "integer")),
                "rpi"
             ],
             [
                Sequelize.fn("STRING_AGG", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."teamId"':'`retos->retosSuperados`.`teamId`'), "integer"),
+                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."teamId"':'`retos->retosSuperados`.`teamId`'), "integer")),
                "rti"
             ],
             [
                Sequelize.fn("STRING_AGG", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"teamMembers->members"."teamId"':'`teamMembers->members`.`teamId`'), "integer"),
+                   Sequelize.cast(Sequelize.col( isPg ?'"teamMembers->members"."teamId"':'`teamMembers->members`.`teamId`'), "integer")),
                "tti"
             ],
       
