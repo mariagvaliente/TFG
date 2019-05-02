@@ -201,7 +201,14 @@ exports.ranking = (req, res, next) => {
             [
                 Sequelize.fn("COUNT", Sequelize.col("retos.id")),
                 "countretos"
-            ]
+            ],
+            [
+                Sequelize.fn("COUNT", 
+  Sequelize.col( isPg ?'"teamMembers->members"."createdAt"':
+                'teamMembers->members.createdAt')),
+                 "not"
+            ],
+
         ],
         "group": [
             "team.id",
