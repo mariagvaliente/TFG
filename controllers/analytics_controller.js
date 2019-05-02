@@ -192,7 +192,7 @@ exports.ranking = (req, res, next) => {
     const options = {
 
         "attributes": [
-             Sequelize.literal('DISTINCT ON("name")'), 
+             Sequelize.literal('DISTINCT ON("name") "team"."name"'), 
             [
                 Sequelize.fn("MAX", 
                     Sequelize.col( isPg ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`')),
