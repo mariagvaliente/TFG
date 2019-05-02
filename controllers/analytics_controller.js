@@ -199,20 +199,14 @@ exports.ranking = (req, res, next) => {
                 "latestretosuperado"
             ],
             [
-                Sequelize.fn("COUNT", Sequelize.col("retos.id")),
-                "countretos"
-            ],
-            [
                 Sequelize.fn("COUNT", 
-  Sequelize.col( isPg ?'"teamMembers->members"."createdAt"':
-                'teamMembers->members.createdAt')),
-                 "not"
-            ],
-
+                    Sequelize.col("retos.id")),
+                "countretos"
+            ]
         ],
         "group": [
             "team.id",
-            Sequelize.col("teamMembers.id"),
+            Sequelize.col( isPg ? '"teamMembers"."id"':"teamMembers.id"),
             
         ],
         "include": [
