@@ -192,13 +192,11 @@ exports.ranking = (req, res, next) => {
         "attributes": [
             "name",
             [
-                Sequelize.fn("MAX", 
-                    Sequelize.col("retos->retosSuperados.createdAt")),
+                Sequelize.fn("MAX", Sequelize.col("retos->retosSuperados.createdAt")),
                 "latestRetoSuperado"
             ],
             [
-                Sequelize.fn("COUNT", 
-                    Sequelize.col("retos.title")),
+                Sequelize.fn("COUNT", Sequelize.col("retos.title")),
                 "countRetos"
             ]
         ],
@@ -236,10 +234,13 @@ exports.ranking = (req, res, next) => {
                 "attributes": [],
                 "as": "retos",
                 "required": false,
+                "duplicating": true,
                 "through": {
                     "model": models.retosSuperados,
                     "attributes": [],
-                    "required": true
+                    "required": true,
+                    "duplicating": true,
+
                 }
             }
         ],
