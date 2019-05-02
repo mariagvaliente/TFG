@@ -204,11 +204,31 @@ exports.ranking = (req, res, next) => {
                 "countretos"
             ],
             [
-               Sequelize.fn("GROUP_CONCAT", 
+               Sequelize.fn("STRING_AGG", 
                    Sequelize.col( isPg ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`')),
-               "ca"
+               "rca"
             ],
-            // [Sequelize.literal(`STRING_AGG("retos->retosSuperados"."createdAt",' ')`), 'ca']
+            [
+               Sequelize.fn("STRING_AGG", 
+                   Sequelize.col( isPg ?'"retos->retosSuperados"."updatedAt"':'`retos->retosSuperados`.`updatedAt`')),
+               "rua"
+            ],
+            [
+               Sequelize.fn("STRING_AGG", 
+                   Sequelize.col( isPg ?'"retos->retosSuperados"."puzzleId"':'`retos->retosSuperados`.`puzzleId`')),
+               "rpi"
+            ],
+            [
+               Sequelize.fn("STRING_AGG", 
+                   Sequelize.col( isPg ?'"retos->retosSuperados"."teamId"':'`retos->retosSuperados`.`teamId`')),
+               "rti"
+            ],
+            [
+               Sequelize.fn("STRING_AGG", 
+                   Sequelize.col( isPg ?'"teamMembers->members"."teamId"':'`teamMembers->members`.`teamId`')),
+               "tti"
+            ],
+      
         ],
         "group": [
             "team.id",
