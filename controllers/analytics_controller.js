@@ -188,11 +188,13 @@ exports.summary = (req, res) => {
 exports.ranking = (req, res, next) => {
     const {escapeRoom, query} = req;
     const {turnId} = query;
+    console.log(process.env.APP_NAME)
     const options = {
         "attributes": [
             "name",
             [
-                Sequelize.fn("MAX", Sequelize.col('"retos->retosSuperados"."createdAt"')),
+                Sequelize.fn("MAX", 
+                    Sequelize.col( process.env.APP_NAME ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`')),
                 "latestretosuperado"
             ],
             [
@@ -202,7 +204,9 @@ exports.ranking = (req, res, next) => {
         ],
         "group": [
             "team.id",
-            Sequelize.col("teamMembers.id")
+            Sequelize.col("teamMembers.id"),
+            Sequelize.col( process.env.APP_NAME ?'"teamMembers->members"."createdAt"':
+                '`teamMembers->members`.`createdAt`')
         ],
         "include": [
             {
