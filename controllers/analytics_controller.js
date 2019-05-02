@@ -205,27 +205,27 @@ exports.ranking = (req, res, next) => {
             ],
             [
                Sequelize.fn("STRING_AGG",
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`'), "string")),
+                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`'), "character varying(255)")),
                "rca"
             ],
             [
                Sequelize.fn("STRING_AGG", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."updatedAt"':'`retos->retosSuperados`.`updatedAt`'), "string")),
+                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."updatedAt"':'`retos->retosSuperados`.`updatedAt`'), "character varying(255)")),
                "rua"
             ],
             [
                Sequelize.fn("STRING_AGG", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."puzzleId"':'`retos->retosSuperados`.`puzzleId`'), "string")),
+                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."puzzleId"':'`retos->retosSuperados`.`puzzleId`'), "character varying(255)")),
                "rpi"
             ],
             [
                Sequelize.fn("STRING_AGG", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."teamId"':'`retos->retosSuperados`.`teamId`'), "string")),
+                   Sequelize.cast(Sequelize.col( isPg ?'"retos->retosSuperados"."teamId"':'`retos->retosSuperados`.`teamId`'), "character varying(255)")),
                "rti"
             ],
             [
                Sequelize.fn("STRING_AGG", 
-                   Sequelize.cast(Sequelize.col( isPg ?'"teamMembers->members"."teamId"':'`teamMembers->members`.`teamId`'), "string")),
+                   Sequelize.cast(Sequelize.col( isPg ?'"teamMembers->members"."teamId"':'`teamMembers->members`.`teamId`'), "character varying(255)")),
                "tti"
             ],
       
