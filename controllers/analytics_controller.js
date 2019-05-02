@@ -1,4 +1,4 @@
-const Sequelize = require("Sequelize");
+const Sequelize = require("sequelize");
 const {models} = require("../models");
 const converter = require("json-2-csv");
 
