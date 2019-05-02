@@ -193,11 +193,11 @@ exports.ranking = (req, res, next) => {
             "name",
             [
                 Sequelize.fn("MAX", Sequelize.col('"retos->retosSuperados"."createdAt"')),
-                "latestRetoSuperado"
+                "latestretosuperado"
             ],
             [
                 Sequelize.fn("COUNT", Sequelize.col("retos.title")),
-                "countRetos"
+                "countretos"
             ]
         ],
         "group": [
@@ -245,8 +245,8 @@ exports.ranking = (req, res, next) => {
             }
         ],
         "order": [
-            Sequelize.literal("countRetos DESC"),
-            Sequelize.literal("latestRetoSuperado ASC")
+            Sequelize.literal("countretos DESC"),
+            Sequelize.literal("latestretosuperado ASC")
         ]
     };
 
