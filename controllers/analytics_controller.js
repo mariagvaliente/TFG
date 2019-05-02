@@ -193,7 +193,7 @@ exports.ranking = (req, res, next) => {
             "name",
             [
                 Sequelize.fn("MAX", 
-                    Sequelize.col("`retos->retosSuperados`.`createdAt`")),
+                    Sequelize.col("retos->retosSuperados.createdAt")),
                 "latestRetoSuperado"
             ],
             [
