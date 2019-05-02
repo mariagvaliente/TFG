@@ -195,7 +195,7 @@ exports.ranking = (req, res, next) => {
             "name",
             [
                 Sequelize.fn("MAX", 
-                    Sequelize.col( process.env.APP_NAME ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`')),
+                    Sequelize.col( isPg ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`')),
                 "latestretosuperado"
             ],
             [
@@ -223,7 +223,7 @@ exports.ranking = (req, res, next) => {
                     "name",
                     "surname"
                 ],
-                includeIgnoreAttributes: false,
+                "duplicating": true,
                 "through": {
                     "model": models.members,
                     "attributes": []
@@ -231,6 +231,7 @@ exports.ranking = (req, res, next) => {
             },
             {
                 "model": models.turno,
+                "duplicating": true,
                 "attributes": [
                     "id",
                     "date",
