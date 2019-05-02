@@ -125,3 +125,5 @@ exports.check = (req, res, next) => {
         res.redirect(`/escapeRooms/${req.escapeRoom.id}/play`);
     }
 };
+
+

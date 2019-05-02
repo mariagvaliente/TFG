@@ -30,7 +30,7 @@ module.exports = function (sequelize, DataTypes) {
         "feedback": {"type": DataTypes.BOOLEAN},
         "instructions": {"type": DataTypes.STRING},
         "automatic": {"type": DataTypes.STRING,
-             "defaultValue": "no"}}
+            "defaultValue": "si"}}
     );
 };
 
