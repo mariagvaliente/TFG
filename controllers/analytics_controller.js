@@ -214,14 +214,15 @@ exports.ranking = (req, res, next) => {
              // Sequelize.col( isPg ? '"teamMembers->members"."userId"':"teamMembers->members.userId"),
              "teamMembers.id",
              // Sequelize.col( isPg ? '"teamMembers->members"."teamId"':"teamMembers->members.teamId"),
-            // Sequelize.col( isPg ? '"teamMembers->members"."createdAt"':"teamMembers->members.createdAt"),
-            // Sequelize.col( isPg ? '"teamMembers->members"."updatedAt"':"teamMembers->members.updatedAt"),
+            Sequelize.col( isPg ? '"teamMembers->members"."createdAt"':"teamMembers->members.createdAt"),
+            Sequelize.col( isPg ? '"teamMembers->members"."updatedAt"':"teamMembers->members.updatedAt"),
             
         ],
         "include": [
             {
                 "model": models.user,
                 "as": "teamMembers",
+                includeIgnoreAttributes: false,
                 "attributes": [
                     "name",
                     "surname"
