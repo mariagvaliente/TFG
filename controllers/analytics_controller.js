@@ -223,6 +223,7 @@ exports.ranking = (req, res, next) => {
                     "name",
                     "surname"
                 ],
+                includeIgnoreAttributes: false,
                 "through": {
                     "model": models.members,
                     "attributes": []
