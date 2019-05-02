@@ -258,15 +258,15 @@ exports.ranking = (req, res, next) => {
 
     if (isPg) {
         options.attributes = [...options.attributes,
-         [Sequelize.literal('STRING_AGG("retos->retosSuperados"."createdAt"," ")'), 'ca'],
-         [Sequelize.literal('STRING_AGG("retos->retosSuperados"."updatedAt"," ")'), 'ua'],
-         [Sequelize.literal('STRING_AGG("retos->retosSuperados"."puzzleId"," ")'), 'pi'],
-         [Sequelize.literal('STRING_AGG("retos->retosSuperados"."teamId"," ")'), 'ti']
+         [Sequelize.literal(`STRING_AGG("retos->retosSuperados"."createdAt",'')`), 'ca'],
+         [Sequelize.literal(`STRING_AGG("retos->retosSuperados"."updatedAt",'')`), 'ua'],
+         [Sequelize.literal(`STRING_AGG("retos->retosSuperados"."puzzleId",'')`), 'pi'],
+         [Sequelize.literal(`STRING_AGG("retos->retosSuperados"."teamId",'')`), 'ti']
 
-         [Sequelize.literal('STRING_AGG("teamMembers->members"."createdAt"," ")'), 'tca'],
-         [Sequelize.literal('STRING_AGG("teamMembers->members"."updatedAt"," ")'), 'tua'],
-         [Sequelize.literal('STRING_AGG("teamMembers->members"."teamId"," ")'), 'tti'],
-         [Sequelize.literal('STRING_AGG("teamMembers->members"."userId"," ")'), 'tui'],
+         [Sequelize.literal(`STRING_AGG("teamMembers->members"."createdAt",'')`), 'tca'],
+         [Sequelize.literal(`STRING_AGG("teamMembers->members"."updatedAt",'')`), 'tua'],
+         [Sequelize.literal(`STRING_AGG("teamMembers->members"."teamId",'')`), 'tti'],
+         [Sequelize.literal(`STRING_AGG("teamMembers->members"."userId",'')`), 'tui'],
         ]
     }
     if (turnId) {
