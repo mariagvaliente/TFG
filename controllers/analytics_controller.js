@@ -190,9 +190,6 @@ exports.ranking = (req, res, next) => {
     const {turnId} = query;
     const isPg = process.env.APP_NAME;
     const options = {
-         // raw: true,
-                // includeIgnoreAttributes: false,
-
         "attributes": [
             "name",
             [
@@ -205,12 +202,8 @@ exports.ranking = (req, res, next) => {
                     Sequelize.col( isPg ?'"retos->retosSuperados"."puzzleId"':'`retos->retosSuperados`.`puzzleId`')),
                 "countretos"
             ],
-            // [Sequelize.fn('GROUP_CONCAT', Sequelize.literal(isPg ? 'DISTINCT "teamMembers"."name"':'DISTINCT `teamMembers`.`name`')), 'nameagg'],
-            // [Sequelize.literal(`array_agg(DISTINCT teamMembers.name, ', ') as nameagg`)]
       
         ],
-        plain: false,
-        attribute: "team.id",
         "group": [
             "team.id",
             "teamMembers.id"
@@ -219,7 +212,7 @@ exports.ranking = (req, res, next) => {
             {
                 "model": models.user,
                 "as": "teamMembers",
-                "attributes": [],
+                "attributes": ["name","surname"],
                 "through": {
                     "model": models.members,
                     duplicating: true,
@@ -264,9 +257,9 @@ exports.ranking = (req, res, next) => {
         options.include[1].where.id = turnId;
     }
     models.team.findAll(options).
-        then((teams) => res.json(teams)/*res.render("escapeRooms/analytics/ranking", {teams,
+        then((teams) => /*res.json(teams)*/res.render("escapeRooms/analytics/ranking", {teams,
             escapeRoom,
-            turnId})*/).
+            turnId})).
         catch((e) => next(e));
 };
 
