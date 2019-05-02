@@ -218,6 +218,10 @@ exports.ranking = (req, res, next) => {
                 '`retos->retosSuperados`.`createdAt`'),
             Sequelize.col( process.env.APP_NAME ?'"retos->retosSuperados"."updatedAt"':
                 '`retos->retosSuperados`.`updatedAt`'),
+            Sequelize.col( process.env.APP_NAME ?'"retos->retosSuperados"."teamId"':
+                '`retos->retosSuperados`.`teamId`'),
+            Sequelize.col( process.env.APP_NAME ?'"retos->retosSuperados"."puzzleId"':
+                '`retos->retosSuperados`.`puzzleId`'),
         ],
         "include": [
             {
