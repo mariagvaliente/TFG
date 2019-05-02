@@ -41,7 +41,7 @@
     "node-sass": "^4.11.0",
     "node-sass-middleware": "0.11.0",
     "nodemon": "^1.18.11",
-    "pg": "7.4.0",
+    "pg": "7.10.0",
     "sass": "^1.19.0",
     "sequelize": "5.8.2",
     "sequelize-cli": "^5.4.0"
