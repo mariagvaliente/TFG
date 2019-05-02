@@ -247,7 +247,7 @@ exports.ranking = (req, res, next) => {
         ],
         "group": [
             "team.id",
-            Sequelize.col( isPg ?'"teamMembers->members"."teamId"':'`teamMembers->members`.`teamId`')
+            Sequelize.col( isPg ?'"teamMembers->members"."id"':'`teamMembers->members`.`id`')
         ],
         "include": [
             {
