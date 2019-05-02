@@ -18,12 +18,12 @@
 	    </div>
 	</div>
 	<form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/turnos'  >
-		<div class="align-right">
+		<div class="align-right flex-buttons">
 			<a href="/escapeRooms/<%= escapeRoom.id %>">
 				<button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button>
 			</a>
-			<button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
 		  	<button class="progress-buttons" type="submit" value="next" id="next" name="next">siguiente</button>
+			<button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
 		</div>
         <%- include('../../partials/_progress', {progress: 1}) %>
 	</form>

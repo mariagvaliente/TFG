@@ -17,10 +17,10 @@
   	</div>
 	  <br>
 	  <br>
-	  <div class="align-right" style="margin-bottom: 60px;">
+	  <div class="align-right flex-buttons" style="margin-bottom: 60px;">
 		<a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button></a>
-  	  <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
   	  <button class="progress-buttons" type="submit" value="next" id="next" name="next">finalizar</button>
+      <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
   	</div>
       <%- include('../../partials/_progress', {progress: 6}) %>
   </form>
