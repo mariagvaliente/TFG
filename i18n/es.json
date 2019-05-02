@@ -1,0 +1,353 @@
+{
+    "analytics": {
+        "main": {
+            "ranking": "Ranking",
+            "retosSuperados": "Retos superados",
+            "summary": "Resumen",
+            "timeline": "Cronograma",
+            "title": "Analíticas de aprendizaje"
+        },
+        "ranking": {
+            "members": "Miembros",
+            "res": "Resultado",
+            "team": "Equipo",
+            "time": "Tiempo",
+            "title": "Ranking",
+            "turno": "Turno"
+        },
+        "retosSuperados": {
+            "title": "Retos superados"
+        },
+        "summary": {
+            "title": "Resumen"
+        },
+        "timeline": {
+            "title": "Cronograma"
+        }
+    },
+    "common": {
+        "back": "volver",
+        "cancel": "cancelar",
+        "continue": "continuar",
+        "delete": "borrar",
+        "edit": "editar",
+        "exit": "salir",
+        "filter": "filtrar",
+        "finish": "finalizar",
+        "flash": {
+            "errors": "Errores",
+            "interestingInfo": "Información de interés",
+            "success": "Tareas completadas con éxito",
+            "errorActivatingTurno": "Error al activar/desactivar el turno",
+            "errorCreatingER": "Error al crear la Escape Room",
+            "errorCreatingHint": "Error al crear la pista",
+            "errorCreatingPuzzle": "Error al crear el reto",
+            "errorCreatingTeam": "Error al crear el equipo",
+            "errorCreatingTurno": "Error al crear el turno",
+            "errorCreatingUser": "Error al crear el usuario",
+            "errorDeletingER": "Error al borrar la Escape Room",
+            "errorDeletingHint": "Error al borrar la pista",
+            "errorDeletingPuzzle": "Error al borrar el reto",
+            "errorDeletingTeam": "Error al borrar el equipo",
+            "errorDeletingTurno": "Error al borrar el turno",
+            "errorDeletingUser": "Error al borrar el usuario",
+            "errorEditingER": "Error al editar la Escape Room",
+            "errorEditingHint": "Error al editar la pista",
+            "errorEditingPuzzle": "Error al editar el reto",
+            "errorEditingTeam": "Error al editar el equipo",
+            "errorEditingTurno": "Error al editar el turno",
+            "errorEditingUser": "Error al editar el usuario",
+            "errorFile": "Error al subir el fichero",
+            "errorImage": "Error al subir la imagen",
+            "mustBeUPMAccount": "Debes registrarte con tu cuenta de correo de la UPM",
+            "successActivatingTurno": "Turno activado/desactivado con éxito",
+            "successCreatingER": "Escape room creada con éxito",
+            "successCreatingHint": "Pista creada con éxito",
+            "successCreatingPuzzle": "Reto creado con éxito",
+            "successCreatingTeam": "Equipo creado con éxito",
+            "successCreatingTurno": "Turno creado con éxito",
+            "successCreatingUser": "Usuario creado con éxito",
+            "successDeletingER": "Escape room borrada con éxito",
+            "successDeletingHint": "Pista borrada con éxito",
+            "successDeletingPuzzle": "Reto borrado con éxito",
+            "successDeletingTeam": "Equipo borrado con éxito",
+            "successDeletingTurno": "Turno borrado con éxito",
+            "successDeletingUser": "Usuario borrado con éxito",
+            "successEditingER": "Escape room editada con éxito",
+            "successEditingHint": "Pista editada con éxito",
+            "successEditingPuzzle": "Reto editado con éxito",
+            "successEditingTeam": "Equipo editado con éxito",
+            "successEditingTurno": "Turno editado con éxito",
+            "successEditingUser": "Usuario editado con éxito",
+            "successImage": "Imagen subida con éxito"
+        },
+        "ideas": "Ideas",
+        "mainPage": "Pág. principal",
+        "next": "siguiente",
+        "orderBy": "Ordenar por",
+        "previous": "anterior",
+        "profile": "Mi perfil",
+        "total": "total",
+        "Total": "Total"
+    },
+    "escapeRoom": {
+        "invitation": {
+            "no": "no",
+            "wannaJoin": "¿Quieres unirte a la Escape Room de",
+            "yes": "sí"
+        },
+        "main": {
+            "noERTeacher": "No has creado ninguna escape room, gestiónalas desde aquí...",
+            "yesERStudent": "Estas son tus escape rooms",
+            "yesERTeacher": "Gestiona las escape rooms desde aquí..."
+        },
+        "steps": {
+            "appearance": {
+                "title": "Apariencia"
+            },
+            "edit": {
+                "descriptionPlaceHolder": "Escribe la descripción de tu Escape Room. Esta será la información que se les presentará a los alumnos",
+                "durationPlaceHolder": "¿Cual es el tiempo máximo del que disponen los alumnos?",
+                "nmaxPlaceHolder": "¿Cuántos participantes puede haber en cada turno?",
+                "noFileUploaded": "No has subido ningún fichero",
+                "noImageUploaded": "No has subido ninguna imagen",
+                "subjectPlaceHolder": "¿A qué asignatura pertenece esta actividad?",
+                "teamSizePlaceHolder": "¿Cuántos alumnos puede haber en cada equipo?",
+                "title": "Configuración básica de la escape room",
+                "titlePlaceHolder": "¿Cómo se llama tu Escape Room?",
+                "videoPlaceHolder": "URL del vídeo de presentación de la Escape Room"
+            },
+            "evaluation": {
+                "forSurveys": "para crear las encuestas y cuestionarios de tu escape room",
+                "or": "o",
+                "posttestField": "Post-test",
+                "posttestPlaceHolder": "Escribe el enlace al post-test",
+                "pretestField": "Pre-test",
+                "pretestPlaceHolder": "Escribe el enlace al pre-test",
+                "surveyField": "Encuesta",
+                "surveyPlaceHolder": "Escribe el enlace a la encuesta",
+                "title": "Evaluación",
+                "youCanUse": "Puedes utilizar"
+            },
+            "hints": {
+                "correctNumber": "Porcentaje de aciertos",
+                "correctNumberPlaceHolder": "¿Qué % de preguntas hay que acertar para obtener una pista?",
+                "explanation": "Si quieres que los alumnos tengan que responder a una serie de preguntas para obtener una pista, sube un fichero MoodleXML que incluya una batería de preguntas",
+                "feedback": "Retroalimentación",
+                "hintFile": "Fichero de preguntas",
+                "MoodleXML": "MoodleXML",
+                "noFile": "No has subido ningún fichero",
+                "questionNumber": "Número de preguntas",
+                "questionNumberPlaceHolder": "¿Cuántas preguntas va a haber en cada intento?",
+                "title": "Pistas",
+                "uploadFile": "Sube un fichero MoodleXML"
+            },
+            "instructions": {
+                "explanation": "Escribe las instrucciones que se proporcionarán a los alumnos cuando entren a jugar a la escape room.\nPuedes incluir enlaces a otras páginas si es necesario.",
+                "placeholder": "Bienvenido a la Escape Room",
+                "title": "Instrucciones"
+            },
+            "list": {
+            	"edit":"Configuración básica",
+            	"turnos": "Turnos",
+            	"puzzles": "Retos",
+            	"hints": "Pistas",
+            	"instructions": "Instrucciones",
+            	"appearance": "Apariencia",
+            	"evaluation": "Evaluación"
+            },
+            "puzzles": {
+            	"automatic": "Automática",
+                "clueName": "Nombre de la pista",
+                "description": "Descripción",
+                "hints": "Pistas",
+                "manual": "Manual",
+                "noCluesYet": "No has definido ninguna pista todavía",
+                "noPuzzlesYet": "No has definido ninguna pista todavía",
+                "notYet": "Hasta que crees el reto no puedes asignarle pistas",
+                "puzzleTitle": "Título",
+                "solution": "Solución",
+                "title": "Retos",
+                "tracking": "Monitorización"
+            },
+            "turnos": {
+                "title": "Turnos"
+            }
+        }
+    },
+    "hint": {
+        "failMessage": "Lo siento, tendrás que seguir intentándolo",
+        "Hints": "Pistas",
+        "need": "¿Necesitas una pista?",
+        "successMessage": "Enhorabuena! Has conseguido una nueva pista",
+        "empty": "No quedan más pistas automáticas para tu situación. Puedes llamar al profesor para que te dé una personalizada.",
+        "failed": "Lo siento, sigue intentándolo"
+    },
+    "participant": {
+        "attendanceSaved": "Asistencia guardada correctamente",
+        "back": "volver",
+        "confirm": "confirmar asistencia",
+        "download": "descargar",
+        "emptyER": "No hay participantes en esta escape room",
+        "emptyTurno": "No hay participantes en este turno",
+        "errorSaving": "Ha ocurrido un error",
+        "participantS": "participante(s)",
+        "present": "Presente",
+        "seeByParticipant": "ver por participante",
+        "select": "marcar/desmarcar todos",
+        "title": "Participantes"
+    },
+    "puzzle": {
+        "check": "comprobar",
+        "puzzle": "reto",
+        "Puzzle": "Reto",
+        "puzzles": "retos",
+        "Puzzles": "Retos",
+        "writeSol": "Escriba la solución",
+        "wrongAnswer": "Respuesta incorrecta",
+        "correctAnswer": "¡Reto superado!"
+    },
+    "showStudent": {
+        "access": "acceder",
+        "beforeLeave": "Antes de irte rellena el siguiente cuestionario",
+        "beforeStart": "Antes de empezar rellena el siguiente cuestionario",
+        "opinion": "¡Tu opinión cuenta! Dinos lo que piensas de la escape room",
+        "play": "jugar",
+        "sureUnjoin": "¿Seguro que deseas desapuntarte?",
+        "unjoin": "desapuntarse"
+    },
+    "showTeacher": {
+        "actionList": {
+            "activateTurno": "comenzar",
+            "analytics": "Analíticas de aprendizaje",
+            "appearance": "Apariencia",
+            "basic": "Configuración básica",
+            "delete": "borrar",
+            "edit": "editar",
+            "join": "Enlace de invitación",
+            "participants": "Participantes",
+            "teams": "Equipos",
+            "turnos": "Turnos",
+            "volver": "volver"
+        },
+        "messages": {
+            "noHintControl": "Esta Escape Room no utiliza ningún mecanismo de control de pistas",
+            "noVideo": "No hay vídeo"
+        },
+        "titles": {
+            "appearance": "Apariencia",
+            "description": "Descripción",
+            "duration": "Duración (min.)",
+            "hints": "Pistas",
+            "instructions": "Instrucciones",
+            "invitation": "Invitación",
+            "nmax": "Aforo turno",
+            "posttest": "Post-test",
+            "pretest": "Pre-test",
+            "puzzles": "Retos",
+            "subject": "Asignatura",
+            "survey": "Encuesta",
+            "teamSize": "Tamaño máx. equipos",
+            "thumbnail": "Miniatura",
+            "title": "Título",
+            "turnos": "Turnos",
+            "video": "Vídeo"
+        }
+    },
+    "team": {
+        "add": "Añada un equipo",
+        "addMsg": "Tus compañeros podrán unirse a tu equipo cuando se registren en la escape room",
+        "addPlaceHolder": "Escribe el nombre del equipo",
+        "back": "volver",
+        "emptyER": "No hay equipos en esta escape room",
+        "emptyTurno": "No hay equipos en este turno",
+        "fullTeam": "Equipo completo. Por favor, elige otro equipo.",
+        "noTeamYet": "No hay equipos todavía...",
+        "seeByTeam": "ver por equipo",
+        "Team": "Equipo",
+        "teamS": "equipo(s)",
+        "title": "Equipos"
+    },
+    "turnos": {
+        "all": "Todos los turnos",
+        "alreadyIn": "Ya estas dentro de un turno.",
+        "arrows": {
+        	"closeText": "Cerrar",
+        	"currentText": "Hoy",
+        	"nextText": "Sig >",
+        	"prevText": "< Ant"
+        	},
+	    "days": {
+			"d": "Domingo",
+			"l": "Lunes",
+			"m": "Martes",
+			"x": "Miércoles",
+			"j": "Jueves",
+			"v": "Viernes",
+			"s": "Sábado"
+	    },
+        "Description": "Descripción",
+        "months": {
+        	"jan": "Enero",
+        	"feb": "Febrero",
+        	"mar": "Marzo",
+        	"apr": "Abril",
+        	"may": "Mayo",
+        	"jun": "Junio",
+        	"jul": "Julio",
+        	"aug": "Agosto",
+        	"sep": "Septiembre",
+        	"oct": "Octubre",
+        	"nov": "Noviembre",
+        	"dec": "Diciembre"
+        },
+        "noIndications": "Sin indicaciones",
+        "selectActivate": "Selecciona el turno que quieres activar/desactivar",
+        "selectStudent": "Selecciona un turno",
+        "todayEscapeRoom": "¡Este día se celebra la Escape Room!",
+        "Turno": "Turno"
+    },
+    "user": {
+        "actions": {
+            "alreadyRegistered": "¿Ya tienes cuenta?",
+            "login": "entrar",
+            "notRegistered": "¿No tienes cuenta?",
+            "register": "regístrate",
+            "save": "guardar"
+        },
+        "dni": "DNI",
+        "gender": "Género",
+        "inputs": {
+            "dniPlaceHolder": "Introduce tu DNI",
+            "editUser": "Editar usuario",
+            "genderPlaceHolder": "Selecciona tu género",
+            "namePlaceHolder": "Introduce tu nombre",
+            "passwordConfirmPlaceHolder": "Introduce tu contraseña",
+            "passwordPlaceHolder": "Introduce tu contraseña",
+            "surnamePlaceHolder": "Introduce tus apellidos",
+            "usernamePlaceHolder": "Introduce tu email"
+        },
+        "messages": {
+            "doNotMatch": "Las contraseñas no coinciden",
+            "fillIn": "Los campos de contraseña y confirmación de contraseña deben ser rellenados",
+            "invalidDNI": "DNI erroneo, formato no válido",
+            "welcome": "Bienvenido a la plataforma de gestión de escape rooms ;)",
+            "wrongLetterDNI": "DNI erroneo, la letra del NIF no se corresponde",
+            "notFound": "Usuario no encontrado",
+            "ensureRegistered": "Ha ocurrido un error. Asegúrate de que te has registrado correctamente en la Escape Room."
+        },
+        "name": "Nombre",
+        "password": "Contraseña",
+        "passwordConfirm": "Confirmar contraseña",
+        "roles": {
+            "admin": "Administrador",
+            "student": "Estudiante",
+            "teacher": "Profesor"
+        },
+        "sessionExpired": "Ha caducado la sesión",
+        "surname": "Apellidos",
+        "title": "Usuario",
+        "username": "E-mail",
+        "wrongCredentials": "Authentication has failed. Retry it again."
+    }
+}

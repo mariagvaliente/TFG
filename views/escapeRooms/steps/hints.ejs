@@ -1,17 +1,17 @@
 <% include ../../partials/_header.ejs %>
 <div class="main step-hints">
-  	<h2>Pistas</h2>
+  	<h2><%=i18n.escapeRoom.steps.hints.title%></h2>  
   	<form class="basicConfig" method='POST' action='/escapeRooms/<%= escapeRoom.id %>/hints' enctype="multipart/form-data" >
   		<div class="wideRow erFormField">
-		    <label class="itemNarrow">1. MoodleXML:</label>
-		    <p class="explanation">Si quieres que los alumnos tengan que responder a una serie de preguntas para obtener una pista, sube un fichero MoodleXML que incluya una batería de preguntas</p>
+		    <label class="itemNarrow">1. <%=i18n.escapeRoom.steps.hints.MoodleXML%>:</label>
+		    <p class="explanation"><%=i18n.escapeRoom.steps.hints.explanation%></p>
 		  	<input class="attach" style="display: none;" type="file" id="hints" name="hints" accept="text/xml"/>
 		  	<label for="hints" class="fileUpload customInput itemWide">
 		  	  <span id="hintsLabel" >
 		  	    <% if (escapeRoom.id && escapeRoom.hintApp) { %>
-		  	      Fichero de preguntas: <%= escapeRoom.hintApp.filename ||  "file" %>
+		  	      <%=i18n.escapeRoom.steps.hints.hintFile%>: <%= escapeRoom.hintApp.filename ||  "file" %>
 		  	    <% } else { %>
-		  	      Sube un fichero MoodleXML
+		  	      <%=i18n.escapeRoom.steps.hints.uploadFile%>
 		  	    <% } %>
 		  	  </span>
 		  	  <span id="upload"
@@ -32,23 +32,23 @@
 		  	</label>
 	  </div>
 		<div class="wideRow erFormField">
-		  <label for="vid"  class="itemNarrow">2. Número de preguntas:</label>
+		  <label for="vid"  class="itemNarrow">2. <%=i18n.escapeRoom.steps.hints.questionNumber%>:</label>
 		  <p class="explanation">Se seleccionarán aleatoriamente del fichero MoodleXML</p>
-		  <input type="number" min="1" class="customInput itemWide" id="numQuestions" name="numQuestions" value="<%= escapeRoom.numQuestions %>" placeholder="¿Cuántas preguntas va a haber en cada intento?" autocomplete="off"/>
+		  <input type="number" min="1" class="customInput itemWide" id="numQuestions" name="numQuestions" value="<%= escapeRoom.numQuestions %>" placeholder="<%=i18n.escapeRoom.steps.hints.questionNumberPlaceHolder%>" autocomplete="off"/>
 		</div>
 		<div class="wideRow erFormField">
-		    <label for="vid"  class="itemNarrow">3. Porcentaje de aciertos:</label>
-		    <input type="number" min="0" max="100" class="customInput itemWide" id="numRight" name="numRight" value="<%= escapeRoom.numRight %>" placeholder="¿Qué % de preguntas hay que acertar para obtener una pista?" autocomplete="off"/>
+		    <label for="vid"  class="itemNarrow">3. <%=i18n.escapeRoom.steps.hints.correctNumber%>:</label>
+		    <input type="number" min="0" max="100" class="customInput itemWide" id="numRight" name="numRight" value="<%= escapeRoom.numRight %>" placeholder="<%=i18n.escapeRoom.steps.hints.correctNumberPlaceHolder%>" autocomplete="off"/>
 		</div>
 		<div class="wideRow erFormField">
-		    <label for="vid"  class="itemNarrow">4. Feedback:
+		    <label for="vid"  class="itemNarrow">4. <%=i18n.escapeRoom.steps.hints.feedback%>:
 		    <input type="checkbox" class="customCheckbox" id="feedback" name="feedback" <%= escapeRoom.feedback ? "checked" : "" %> autocomplete="off"/></label>
 		</div>		
 		<br/><br/><br/>
 	  	<div class="align-right flex-buttons" style="margin-bottom: 60px;">
-			<a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button></a>
-			<button class="progress-buttons" type="submit" value="next" id="next" name="next">siguiente</button>
-			<button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
+			<a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit"><%=i18n.common.exit%></button></a>
+			<button class="progress-buttons" type="submit" value="next" id="next" name="next"><%=i18n.common.next%></button>
+			<button class="progress-buttons" type="submit" value="previous" id="previous" name="previous"><%=i18n.common.previous%></button>
 		</div>
         <%- include('../../partials/_progress', {progress: 3}) %>
 	</form>
@@ -72,7 +72,7 @@ $(function(){
 	  } catch (e) {
 	      $('#delete').hide();
 	      $('#upload').show();
-	      $('#imgLabel').html("No has subido ningún fichero");
+	      $('#imgLabel').html("<%=i18n.escapeRoom.steps.hints.noFile%>");
 	  }
 	});
 
@@ -80,7 +80,7 @@ $(function(){
 	    e.preventDefault();
 	    $('#delete').hide();
 	    $('#upload').show();
-	    $('#hintsLabel').html("No has subido ningún fichero");
+	    $('#hintsLabel').html("<%=i18n.escapeRoom.steps.hints.noFile%>");
 	    $('#keepAttachment').val("0");
 	});
 

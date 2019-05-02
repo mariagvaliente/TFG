@@ -5,8 +5,8 @@
   "scripts": {
     "start_heroku": "heroku local:start",
     "start": "node ./bin/www",
-    "dev": "DEBUG=TFG  nodemon bin/www -e sass,js --exec \"npm run css && npm run lint && node\" && xdg-open http://localhost:3000 ",
-    "dev-windows": "nodemon bin/www -e sass,js --exec \"npm run css && npm run lint && node\" && start http://localhost:3000",
+    "dev": "DEBUG=TFG  nodemon bin/www -e sass,js,json --exec \"npm run css && npm run lint && node\" && xdg-open http://localhost:3000 ",
+    "dev-windows": "nodemon bin/www -e sass,js,json --exec \"npm run css && npm run lint && node\" && start http://localhost:3000",
     "test": "jest",
     "migrate_local": "sequelize db:migrate --url sqlite://$(pwd)/escaperoom.sqlite",
     "migrate_heroku": "heroku run ./node_modules/.bin/sequelize db:migrate --url $DATABASE_URL",
@@ -34,6 +34,7 @@
     "fs": "^0.0.1-security",
     "global": "^4.3.2",
     "http-errors": "~1.6.2",
+    "i18n-express": "^1.1.3",
     "json-2-csv": "^3.5.2",
     "method-override": "^3.0.0",
     "morgan": "^1.9.1",

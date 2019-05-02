@@ -1,12 +1,12 @@
 <% include ../../partials/_header.ejs %>
 <div class="main step-puzzles">
-  <h2>Retos
+  <h2><%=i18n.escapeRoom.steps.puzzles.title%>
   </h2>
     <div>
-        <label for="at"><span>Monitorización</span>
+        <label for="at"><span><%=i18n.escapeRoom.steps.puzzles.tracking%></span>
             <select  required class="customInput" id="at" name="automatic" value="<%= escapeRoom.automatic %>" placeholder="Selecciona la monitorización" autocomplete="off">
-                <option value="False" <%= escapeRoom.automatic === "False" ? "selected" : ""%>>Manual</option>
-                <option value="True" <%= escapeRoom.automatic === "True" ? "selected" : ""%>>Automática</option>
+                <option value="False" <%= !escapeRoom.automatic ? "selected" : ""%>><%=i18n.escapeRoom.steps.puzzles.manual%></option>
+                <option value="True" <%= escapeRoom.automatic ? "selected" : ""%>><%=i18n.escapeRoom.steps.puzzles.automatic%></option>
             </select></label>
     </div>
     </br>
@@ -14,16 +14,16 @@
         <div class="flex-table-retos animated jello">
       <div class="flex-row-retos flex-row-retos-title">
         <div class="flex-cell flex-cell-retos">
-          Título
+          <%=i18n.escapeRoom.steps.puzzles.puzzleTitle%>
         </div>
         <div class="flex-cell flex-cell-sol">
-          Solución
+          <%=i18n.escapeRoom.steps.puzzles.solution%>
         </div>
         <div class="flex-cell flex-cell-desc">
-          Descripción
+          <%=i18n.escapeRoom.steps.puzzles.description%>
         </div>
         <div class="flex-cell flex-cell-pista">
-          Pistas
+          <%=i18n.escapeRoom.steps.puzzles.hints%>
         </div>
       </div>
       <% for(var reto in escapeRoom.puzzles) { %>
@@ -65,12 +65,12 @@
                             </li>
                         <% } %>
                     <% } else {%>
-                            <li class="no-pistas">No has definido ninguna pista todavía</li>
+                            <li class="no-pistas"><%=i18n.escapeRoom.steps.puzzles.noCluesYet%></li>
                     <% } %>
                 </ul>
                 <div class="add-new-hint">
                     <form action="/escapeRooms/<%= escapeRoom.id %>/puzzles/<%=puzzle.id%>/hints/new" method="POST">
-                        <input type="text" value="" placeholder="Nombre de la pista" name="content"/>
+                        <input type="text" value="" placeholder="<%=i18n.escapeRoom.steps.puzzles.clueName%>" name="content"/>
                         <button class="add-hint">
                             <i class="material-icons">add_circle_outline</i>
                         </button>
@@ -103,7 +103,7 @@
           </div>
           <div class="flex-cell flex-cell-pista">
               <div  class="retoTextArea retoEditable no-pistas" data-id="hint">
-                Hasta que crees el reto no puedes asignarle pistas
+                <%=i18n.escapeRoom.steps.puzzles.notYet%>
               </div>
           </div>
           <div class="operations-reto">
@@ -120,11 +120,9 @@
     <input type="hidden" name="retos" id="retos" value="">
   <form method='POST' id="form" action='/escapeRooms/<%= escapeRoom.id %>/puzzles'  >
     <div class="align-right flex-buttons" style="margin-bottom: 60px;">
-      <a href="/escapeRooms/<%= escapeRoom.id %>">
-        <button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button>
-      </a>
-      <button class="progress-buttons" type="submit" value="next" id="next" name="next">siguiente</button>
-      <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
+    <a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit"><%=i18n.common.exit%></button></a>
+    <button class="progress-buttons" type="submit" value="next" id="next" name="next"><%=i18n.common.next%></button>
+    <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous"><%=i18n.common.previous%></button>
     </div>
       <%- include('../../partials/_progress', {progress: 2}) %>
   </form>

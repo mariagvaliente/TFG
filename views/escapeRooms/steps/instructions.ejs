@@ -5,10 +5,9 @@
 <!-- Theme included stylesheets -->
  <% include ../../partials/_header.ejs %>
 <div class="main step-instructions">
-  <h2>Instrucciones</h2>
+  <h2><%=i18n.escapeRoom.steps.instructions.title%></h2>
     <p class="intro-paragraph">
-        Escribe las instrucciones que se proporcionarán a los alumnos cuando entren a jugar a la escape room.
-        Puedes incluir enlaces a otras páginas si es necesario.
+       <%=i18n.escapeRoom.steps.instructions.explanation%>
     </p>
 
     <form method='POST' id="instructionsForm" action='/escapeRooms/<%= escapeRoom.id %>/instructions'  >
@@ -17,16 +16,16 @@
             <%if (escapeRoom.instructions) {%>
                 <%- escapeRoom.instructions %>
             <%} else {%>
-                <h1 class="ql-align-center">Bienvenido a la Escape Room</h1>
+                <h1 class="ql-align-center"><%=i18n.escapeRoom.steps.instructions.placeholder%></h1>
             <%}%>
   		</div>
   	</div>
 
       <div class="align-right flex-buttons">
           <input id="instructions" name="instructions" type="hidden" value=""/>
-          <a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button></a>
-        <button class="progress-buttons" type="submit" value="next" id="next" name="next">siguiente</button>
-        <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
+          <a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit"><%=i18n.common.exit%></button></a>
+          <button class="progress-buttons" type="submit" value="next" id="next" name="next"><%=i18n.common.next%></button>
+          <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous"><%=i18n.common.previous%></button>
     </div>
         <%- include('../../partials/_progress', {progress: 4}) %>
 

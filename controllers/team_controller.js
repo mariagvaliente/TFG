@@ -11,7 +11,8 @@ exports.load = (req, res, next, teamId) => {
     }).
         then((team) => {
             if (!team) {
-                throw new Error(`No hay equipo con id=${teamId}`);
+                res.send(404);
+                throw new Error(404);
             } else {
                 req.team = team;
                 next();
@@ -55,7 +56,7 @@ exports.create = (req, res, next) => {
                                 next(error);
                             });
                     } else {
-                        req.flash("error", "Ya estás dentro de un turno.");
+                        req.flash("error", req.app.locals.i18n.team.alreadyIn);
                         res.redirect(`/users/${req.session.user.id}/escapeRooms`);
                     }
                 }).
@@ -67,7 +68,7 @@ exports.create = (req, res, next) => {
             res.redirect(back);
         }).
         catch((error) => {
-            req.flash("error", `Error creando el equipo: ${error.message}`);
+            req.flash("error", `${req.app.locals.i18n.common.flash.errorCreatingTeam}: ${error.message}`);
             next(error);
         });
 };

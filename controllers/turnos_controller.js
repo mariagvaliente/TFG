@@ -24,7 +24,8 @@ exports.load = (req, res, next, turnId) => {
                 req.turn = turn;
                 next();
             } else {
-                next(new Error(`There is no turn with turnId=${turnId}`));
+                res.status(404);
+                next(new Error(404));
             }
         }).
         catch((error) => next(error));
@@ -85,7 +86,7 @@ exports.activar = (req, res, next) => {
                             res.redirect(back);
                         }).
                         catch((error) => {
-                            req.flash("error", `Error desactivando el turno: ${error.message}`);
+                            req.flash("error", `${req.app.locals.i18n.common.flash.errorActivatingTurno}: ${error.message}`);
                             next(error);
                         });
                 }, escapeRoom.duration * 60000);
@@ -104,7 +105,7 @@ exports.activar = (req, res, next) => {
                     res.redirect(back);
                 }).
                 catch((error) => {
-                    req.flash("error", `Error activando/desactivando el turno: ${error.message}`);
+                    req.flash("error", `${req.app.locals.i18n.common.flash.errorActivatingTurno}: ${error.message}`);
                     next(error);
                 });
         }).
@@ -133,7 +134,7 @@ exports.create = (req, res, next) => {
             res.redirect(back);
         }).
         catch((error) => {
-            req.flash("error", `Error creando el turno: ${error.message}`);
+            req.flash("error", `${req.app.locals.i18n.common.flash.errorCreatingTurno}: ${error.message}`);
             next(error);
         });
 };
@@ -146,7 +147,7 @@ exports.destroy = (req, res, next) => {
         then(() => {
             const back = `/escapeRooms/${req.params.escapeRoomId}/turnos?date=${modDate.getFullYear()}-${modDate.getMonth() + 1}-${modDate.getDate()}`;
 
-            req.flash("success", "Turno borrado correctamente");
+            req.flash("success", req.app.locals.i18n.common.flash.successDeletingTurno);
             res.redirect(back);
         }).
         catch((error) => next(error));

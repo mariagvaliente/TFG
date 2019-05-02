@@ -55,7 +55,7 @@ exports.create = (req, res, next) => {
 
     user.isStudent = Boolean(isStudent);
     if (!isStudent && !isTeacher) {
-        req.flash("error", "Debes registrarte con tu cuenta de correo de la UPM");
+        req.flash("error", req.app.locals.i18n.common.flash.mustBeUPMAccount);
         res.render("index", {user,
             "register": true});
         return;
@@ -79,7 +79,7 @@ exports.create = (req, res, next) => {
         }).
         catch(Sequelize.UniqueConstraintError, (error) => {
             console.error(error);
-            req.flash("error", `El usuario "${username}" ya existe`);
+            req.flash("error", req.app.locals.i18n.common.flash.errorExistingUser);
             res.render("index", {user,
                 "register": true});
         }).
@@ -113,7 +113,7 @@ exports.update = (req, res, next) => {
 
     // Password can not be empty
     if (!body.password) {
-        req.flash("error", "Es obligatorio introducir una contraseña");
+        req.flash("error", req.app.locals.i18n.common.flash.errorMandatoryPass);
 
         return res.render("users/edit", {user});
     }
@@ -125,7 +125,7 @@ exports.update = (req, res, next) => {
         "gender"
     ]}).
         then((user_saved) => {
-            req.flash("success", "Usuario actualizado correctamente");
+            req.flash("success", req.app.locals.i18n.common.flash.successEditingUser);
             res.redirect(`/users/${user_saved.id}/escapeRooms`);
         }).
         catch(Sequelize.ValidationError, (error) => {
@@ -146,7 +146,7 @@ exports.destroy = (req, res, next) => {
                 delete req.session.user;
             }
 
-            req.flash("success", "Usuario borrado correctamente");
+            req.flash("success", req.app.locals.i18n.common.flash.successDeletingUser);
             res.redirect("/goback");
         }).
         catch((error) => next(error));

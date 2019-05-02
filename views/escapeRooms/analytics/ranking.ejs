@@ -1,6 +1,6 @@
 <% include ../../partials/_header.ejs %>
 <div class="main retosSuperados ranking">
-    <h2>Ranking</h2>
+    <h2><%=i18n.ranking.title%></h2>
     	<div class="content">
 	    	<div class="podium">
 	    		<div class="podium-col second">
@@ -39,9 +39,9 @@
 	    	<br/>
 	    	<form method="get" class="participantsList" action="/escapeRooms/<%= escapeRoom.id %>/analytics/ranking">
 	    	    <div class="filters">
-	    	        <label for="turnId">Turno
+	    	        <label for="turnId"><%=i18n.turnos.Turno%>
 	    	            <select name="turnId" id="turnId">
-	    	                <option value="" <%= !turnId ? "selected": ""%> >Todos los turnos</option>
+	    	                <option value="" <%= !turnId ? "selected": ""%> ><%=i18n.turnos.all%></option>
 	    	                <% for (t in escapeRoom.turnos) { 
 	    	                	var turno = escapeRoom.turnos[t] ;
 	    	                if (turno.status !== "pending" ) {%>
@@ -52,7 +52,7 @@
 	    	            } %>
 	    	            </select>
 	    	        </label>
-	    	        <button type="submit" class="filter-button white" >filtrar</button>
+	    	        <button type="submit" class="filter-button white" ><%=i18n.common.filter%></button>
 
 	    	    </div>
 	    	</form>
@@ -60,11 +60,11 @@
 	    	<br/>
 		    <table>
 			    <tr>
-			    	<th>Equipo</th>
-			    	<th>Miembros</th>
-			    	<th>Turno</th>
-			    	<th>Resultado</th>
-			    	<th>Tiempo</th>
+			    	<th><%=i18n.analytics.ranking.team%></th>
+			    	<th><%=i18n.analytics.ranking.members%></th>
+			    	<th><%=i18n.analytics.ranking.turno%></th>
+			    	<th><%=i18n.analytics.ranking.res%></th>
+			    	<th><%=i18n.analytics.ranking.time%></th>
 
 			    </tr>
 			    <% if (teams.length === 0) { %>

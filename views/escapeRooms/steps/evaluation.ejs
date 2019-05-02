@@ -1,26 +1,26 @@
 <% include ../../partials/_header.ejs %>
 <div class="main step-evaluation">
-  <h2>Evaluación</h2>
-	<p class="intro-paragraph">Puedes utilizar <a target="_blank" href="https://docs.google.com/forms/u/0/">Google Forms</a> o <a target="_blank" href="https://www.typeform.com/es/">TypeForm</a> para crear las encuestas y cuestionarios de tu escape room</p>
+  <h2><%=i18n.escapeRoom.steps.evaluation.title%></h2>  
+	<p class="intro-paragraph"><%=i18n.escapeRoom.steps.evaluation.youCanUse%> <a target="_blank" href="https://docs.google.com/forms/u/0/">Google Forms</a> o <a target="_blank" href="https://www.typeform.com/es/">TypeForm</a> <%=i18n.escapeRoom.steps.evaluation.forSurveys%></p>
   <form method='POST' class="basicConfig" action='/escapeRooms/<%= escapeRoom.id %>/evaluation'  >
   	<div class="wideRow erFormField">
-  	    <label for="tit"  class="itemNarrow">1. Pre-test:</label>
-  	    <input autofocus type="text" class="customInput itemWide" id="pretest" name="pretest" value="<%= escapeRoom.pretest %>" placeholder="Escribe el enlace al pre-test" autocomplete="off"/>
+  	    <label for="tit"  class="itemNarrow">1. <%=i18n.escapeRoom.steps.evaluation.pretestField%>:</label>
+  	    <input autofocus type="text" class="customInput itemWide" id="pretest" name="pretest" value="<%= escapeRoom.pretest %>" placeholder="<%=i18n.escapeRoom.steps.evaluation.pretestPlaceHolder%>" autocomplete="off"/>
   	</div>
   	<div class="wideRow erFormField">
-  	    <label for="subj"  class="itemNarrow">2. Post-test:</label>
-  	    <input type="text" class="customInput itemWide" id="posttest" name="posttest" value="<%= escapeRoom.posttest %>" placeholder="Escribe el enlace al post-test" autocomplete="off"/>
+  	    <label for="subj"  class="itemNarrow">2. <%=i18n.escapeRoom.steps.evaluation.posttestField%>:</label>
+  	    <input type="text" class="customInput itemWide" id="posttest" name="posttest" value="<%= escapeRoom.posttest %>" placeholder="<%=i18n.escapeRoom.steps.evaluation.posttestPlaceHolder%>" autocomplete="off"/>
   	</div>
   	<div class="wideRow erFormField">
-  	    <label for="subj"  class="itemNarrow">3. Encuesta:</label>
-  	    <input type="text" class="customInput itemWide" id="survey" name="survey" value="<%= escapeRoom.survey %>" placeholder="Escribe el enlace a la encuesta" autocomplete="off"/>
+  	    <label for="subj"  class="itemNarrow">3. <%=i18n.escapeRoom.steps.evaluation.surveyField%>:</label>
+  	    <input type="text" class="customInput itemWide" id="survey" name="survey" value="<%= escapeRoom.survey %>" placeholder="<%=i18n.escapeRoom.steps.evaluation.surveyPlaceHolder%>" autocomplete="off"/>
   	</div>
 	  <br>
 	  <br>
 	  <div class="align-right flex-buttons" style="margin-bottom: 60px;">
-		<a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit">salir</button></a>
-  	  <button class="progress-buttons" type="submit" value="next" id="next" name="next">finalizar</button>
-      <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous">anterior</button>
+      <a href="/escapeRooms/<%= escapeRoom.id %>"><button class="progress-buttons" type="button" value="exit" id="exit" name="exit"><%=i18n.common.exit%></button></a>
+      <button class="progress-buttons" type="submit" value="next" id="next" name="next"><%=i18n.common.next%></button>
+      <button class="progress-buttons" type="submit" value="previous" id="previous" name="previous"><%=i18n.common.previous%></button>
   	</div>
       <%- include('../../partials/_progress', {progress: 6}) %>
   </form>

@@ -1,6 +1,6 @@
 <% include ../partials/_header.ejs %>
     <div class="main">
-    <h2>Editar configuración básica de la escape room</h2>
+    <h2><%=i18n.escapeRoom.steps.edit.title%></h2>
     <form method="post" class="basicConfig" action="/escapeRooms/<%= escapeRoom.id %>?_method=PUT" enctype="multipart/form-data">
         <% include ../partials/_form.ejs %>
     </form>

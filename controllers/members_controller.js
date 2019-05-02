@@ -16,7 +16,7 @@ exports.add = (req, res, next) => {
                                 next(error);
                             });
                     } else {
-                        req.flash("error", "Ya estas dentro de un turno.");
+                        req.flash("error", req.app.locals.i18n.turnos.alreadyIn);
                         res.redirect(`/users/${req.session.user.id}/escapeRooms`);
                     }
                 }).
@@ -26,7 +26,7 @@ exports.add = (req, res, next) => {
                     next(error);
                 });
         } else {
-            req.flash("error", "Equipo completo. Por favor, elige otro equipo.");
+            req.flash("error", req.app.locals.i18n.team.fullTeam);
             res.redirect(`/escapeRooms/${escapeRoom.id}/turnos/${req.turn.id}/teams`);
         }
     }).

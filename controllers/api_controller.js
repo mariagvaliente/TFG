@@ -20,7 +20,7 @@ exports.check = (req, res, next) => {
     if (answer.toLowerCase().trim() === puzzleSol.toLowerCase().trim()) {
         models.user.findAll({where}).then((users) => {
             if (!users || users.length === 0) {
-                res.status(404).send("Usuario no encontrado");
+                res.status(404).send(req.app.locals.user.messages.notFound);
                 return;
             }
             users[0].getTeamsAgregados({
@@ -40,12 +40,12 @@ exports.check = (req, res, next) => {
                         }).
                             catch((e) => res.status(500).send(e));
                     } else {
-                        res.status(500).send("Ha ocurrido un error. Asegúrate de que te has registrado correctamente en la Escape Room.");
+                        res.status(500).send(req.app.locals.i18n.user.messages.ensureRegistered);
                     }
                 });
         }).
             catch((e) => next(e));
     } else {
-        res.status(401).send("Respuesta incorrecta");
+        res.status(401).send(req.app.locals.i18n.puzzle.wrongAnswer);
     }
 };

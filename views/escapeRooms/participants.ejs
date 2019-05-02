@@ -1,12 +1,11 @@
 <% include ../partials/_header.ejs %>
 
 <div class="main participants">
-    <h2>Participantes</h2>
-    <form method="get" class="participantsList" action="/escapeRooms/<%= escapeRoom.id %>/participants">
+    <h2><%=i18n.participant.title%></h2>
         <div class="filters">
-            <label for="turnId">Turno
+            <label for="turnId"><%=i18n.turnos.Turno%>
                 <select name="turnId" id="turnId">
-                    <option value="" <%= !turnId ? "selected": ""%> >Todos los turnos</option>
+                    <option value="" <%= !turnId ? "selected": ""%> ><%=i18n.turnos.all%></option>
                     <% for (t in escapeRoom.turnos) { %>
                     <% var turno = escapeRoom.turnos[t] %>
                     <option value="<%=turno.id%>" <%= turnId == turno.id ? "selected" : "" %> >
@@ -15,26 +14,26 @@
                     <% } %>
                 </select>
             </label>
-            <label for="orderBy">Ordenar por
+            <label for="orderBy"><%=i18n.common.orderBy%>
                 <select name="orderBy" id="orderBy">
                     <option value="" <%= !orderBy ? "selected": ""%>  disabled></option>
-                    <option value="name" <%= orderBy === "name" ? "selected": ""%>>Nombre</option>
-                    <option value="surname" <%= orderBy === "surname" ? "selected": ""%>>Apellidos</option>
-                    <option value="dni" <%= orderBy === "dni" ? "selected": ""%>>DNI</option>
-                    <option value="username" <%= orderBy === "username" ? "selected": ""%>>E-mail</option>
+                    <option value="name" <%= orderBy === "name" ? "selected": ""%>><%=i18n.user.name%></option>
+                    <option value="surname" <%= orderBy === "surname" ? "selected": ""%>><%=i18n.user.surname%></option>
+                    <option value="dni" <%= orderBy === "dni" ? "selected": ""%>><%=i18n.user.dni%></option>
+                    <option value="username" <%= orderBy === "username" ? "selected": ""%>><%=i18n.user.username%></option>
                 </select></label>
-            <button type="submit" class="filter-button white" >filtrar</button>
+            <button type="submit" class="filter-button white" ><%=i18n.common.filter%></button>
         </div>
         <div class="flex-table-retos-wrapper">
             <div class="flex-table-retos animated jello">
                 <div class="flex-row-retos flex-row-retos-title">
-                    <div class="flex-cell flex-name">Nombre</div>
-                    <div class="flex-cell flex-surname">Apellidos</div>
-                    <div class="flex-cell flex-dni">DNI</div>
-                    <div class="flex-cell flex-username">Email</div>
-                    <div class="flex-cell flex-gender">Género</div>
+                    <div class="flex-cell flex-name"><%=i18n.user.name%></div>
+                    <div class="flex-cell flex-surname"><%=i18n.user.surname%></div>
+                    <div class="flex-cell flex-dni"><%=i18n.user.dni%></div>
+                    <div class="flex-cell flex-username"><%=i18n.user.username%></div>
+                    <div class="flex-cell flex-gender"><%=i18n.user.gender%></div>
                     <div class="flex-cell flex-turno">Turno</div>
-                    <div class="flex-cell flex-attendance">Presente</div>
+                    <div class="flex-cell flex-attendance"><%=i18n.participant.present%></div>
                 </div>
                 <% for (var p in participants) {
                     var participant = participants[p]; %>
@@ -56,24 +55,24 @@
                 <% if (!participants || participants.length === 0) { %>
                 <div class="flex-row-retos">
                     <% if (turnId) {%>
-                    <em class="no-participants">No hay participantes en este turno</em>
+                    <em class="no-participants"><%=i18n.participant.emptyTurno%></em>
                     <% } else { %>
-                    <em class="no-participants">No hay participantes en esta escape room</em>
+                    <em class="no-participants"><%=i18n.participant.emptyER%></em>
                     <% } %>
                 </div>
                 <% } %>
             </div>
         </div>
         <div class="total-number">
-            <b>Total:</b> <%= participants.length %> participante(s)
+            <b><%=i18n.common.Total%>:</b> <%= participants.length %> <%=i18n.participant.participantS%>
         </div>
         <div class="align-right">
             <a href="/escapeRooms/<%=escapeRoom.id%>">
-                <button type="button">volver</button>
+                <button type="button"><%=i18n.participant.back%></button>
             </a>
-            <button type="submit" id="csv-button" class="participants-button download-button" name="csv" value="csv">descargar</button>
-            <button type="button" id="attendance-all-button" class="participants-button attendance-all-button"  >marcar/desmarcar todos</button>
-            <button type="button" id="attendance-button" class="participants-button attendance-button" name="attendance">confirmar asistencia</button>
+            <button type="submit" id="csv-button" class="participants-button download-button" name="csv" value="csv"><%=i18n.participant.download%></button>
+            <button type="button" id="attendance-all-button" class="participants-button attendance-all-button"  ><%=i18n.participant.select%></button>
+            <button type="button" id="attendance-button" class="participants-button attendance-button" name="attendance"><%=i18n.participant.confirm%></button>
         </div>
     </form>
     <br/>
@@ -96,8 +95,8 @@
         headers:{
           'Content-Type': 'application/json'
         }
-      }).then(res => alert("Asistencia guardada correctamente"))
-        .catch(error => alert("Ha ocurrido un error"))
+      }).then(res => alert("<%=i18n.participant.attendanceSaved%>"))
+        .catch(error => alert("<%=i18n.participant.errorSaving%>"))
     });
     var selected = true;
     $('#attendance-all-button').on('click', ()=>{

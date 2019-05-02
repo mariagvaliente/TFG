@@ -9,7 +9,7 @@ exports.load = (req, res, next, puzzleId) => {
                 req.puzzle = puzzle;
                 next();
             } else {
-                next(new Error(`There is no puzzle with puzzleId=${puzzleId}`));
+                next(new Error(404));
             }
         }).
         catch((error) => next(error));
@@ -30,7 +30,7 @@ exports.create = (req, res, next) => {
 
     puzzle.save().
         then(() => {
-            req.flash("success", "Reto creado correctamente.");
+            req.flash("success", req.app.locals.i18n.common.flash.successCreatingPuzzle);
             res.redirect(back);
         }).
         catch(Sequelize.ValidationError, (error) => {
@@ -38,7 +38,7 @@ exports.create = (req, res, next) => {
             res.redirect(back);
         }).
         catch((error) => {
-            req.flash("error", `Error creando el reto: ${error.message}`);
+            req.flash("error", `${req.app.locals.i18n.common.flash.errorCreatingPuzzle}: ${error.message}`);
             next(error);
         });
 };
@@ -63,7 +63,7 @@ exports.update = (req, res, next) => {
         "hint"
     ]}).
         then(() => {
-            req.flash("success", "Reto modificado correctamente.");
+            req.flash("success", req.app.locals.i18n.common.flash.successEditingPuzzle);
             res.redirect(back);
         }).
         catch(Sequelize.ValidationError, (error) => {
@@ -71,7 +71,7 @@ exports.update = (req, res, next) => {
             res.redirect(back);
         }).
         catch((error) => {
-            req.flash("error", `Error modificado el reto: ${error.message}`);
+            req.flash("error", `%{req.app.locals.i18n.common.flash.errorEditingPuzzle}: ${error.message}`);
             next(error);
         });
 };
@@ -82,7 +82,7 @@ exports.destroy = (req, res, next) => {
         then(() => {
             const back = `/escapeRooms/${req.escapeRoom.id}/puzzles`;
 
-            req.flash("success", "Reto borrado correctamente");
+            req.flash("success", req.app.locals.i18n.common.flash.errorDeletingPuzzle);
             res.redirect(back);
         }).
         catch((error) => next(error));
@@ -108,20 +108,20 @@ exports.check = (req, res, next) => {
                 then((team) => {
                     if (team && team.length > 0) {
                         req.puzzle.addSuperados(team[0].id).then(function () {
-                            req.flash("success", "Reto superado!");
+                            req.flash("success", req.app.locals.i18n.puzzle.correctAnswer);
                             res.redirect(`/escapeRooms/${req.escapeRoom.id}/retos`);
                         }).
                             catch(function (e) {
                                 next(e);
                             });
                     } else {
-                        next("Ha ocurrido un error. Asegúrate de que te has registrado correctamente en la Escape Room.");
+                        next(req.app.locals.i18n.user.messages.ensureRegistered);
                     }
                 });
         }).
             catch((e) => next(e));
     } else {
-        req.flash("error", "Respuesta incorecta");
+        req.flash("error", req.app.locals.i18n.puzzle.wrongAnswer);
         res.redirect(`/escapeRooms/${req.escapeRoom.id}/retos`);
     }
 };

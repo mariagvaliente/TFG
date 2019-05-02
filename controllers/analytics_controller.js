@@ -122,13 +122,13 @@ exports.puzzlesByParticipants = (req, res, next) => {
             if (csv) {
                 res.send("Error");
             } else {
-                next("Ha ocurrido un error");
+                next(e);
             }
         });
 };
 
 // GET /escapeRooms/:escapeRoomId/analytics/puzzles/teams
-exports.puzzlesByTeams = (req, res) => {
+exports.puzzlesByTeams = (req, res, next) => {
     const {escapeRoom, query} = req;
     const {turnId} = query;
     const options = {
@@ -176,7 +176,8 @@ exports.puzzlesByTeams = (req, res) => {
             res.render("escapeRooms/analytics/retosSuperadosByTeam", {escapeRoom,
                 results,
                 turnId});
-        });
+        }).
+        catch((e) => next(e));
 };
 
 // GET /escapeRooms/:escapeRoomId/analytics/summary
@@ -193,16 +194,20 @@ exports.ranking = (req, res, next) => {
         "attributes": [
             "name",
             [
-                Sequelize.fn("MAX", 
-                    Sequelize.col( isPg ?'"retos->retosSuperados"."createdAt"':'`retos->retosSuperados`.`createdAt`')),
+                Sequelize.fn(
+                    "MAX",
+                    Sequelize.col(isPg ? "\"retos->retosSuperados\".\"createdAt\"" : "`retos->retosSuperados`.`createdAt`")
+                ),
                 "latestretosuperado"
             ],
             [
-                Sequelize.fn("COUNT", 
-                    Sequelize.col( isPg ?'"retos->retosSuperados"."puzzleId"':'`retos->retosSuperados`.`puzzleId`')),
+                Sequelize.fn(
+                    "COUNT",
+                    Sequelize.col(isPg ? "\"retos->retosSuperados\".\"puzzleId\"" : "`retos->retosSuperados`.`puzzleId`")
+                ),
                 "countretos"
-            ],
-      
+            ]
+
         ],
         "group": [
             "team.id",
@@ -212,10 +217,13 @@ exports.ranking = (req, res, next) => {
             {
                 "model": models.user,
                 "as": "teamMembers",
-                "attributes": ["name","surname"],
+                "attributes": [
+                    "name",
+                    "surname"
+                ],
                 "through": {
                     "model": models.members,
-                    duplicating: true,
+                    "duplicating": true,
                     "attributes": []
                 }
             },
@@ -237,11 +245,11 @@ exports.ranking = (req, res, next) => {
                 "attributes": [],
                 "as": "retos",
                 "required": false,
-                includeIgnoreAttributes: false,
+                "includeIgnoreAttributes": false,
                 "through": {
                     "model": models.retosSuperados,
                     "attributes": [],
-                    "required": true,
+                    "required": true
 
                 }
             }
@@ -252,12 +260,12 @@ exports.ranking = (req, res, next) => {
         ]
     };
 
-    
+
     if (turnId) {
         options.include[1].where.id = turnId;
     }
     models.team.findAll(options).
-        then((teams) => /*res.json(teams)*/res.render("escapeRooms/analytics/ranking", {teams,
+        then((teams) => /* Res.json(teams)*/res.render("escapeRooms/analytics/ranking", {teams,
             escapeRoom,
             turnId})).
         catch((e) => next(e));

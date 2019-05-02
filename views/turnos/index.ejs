@@ -14,7 +14,7 @@
 				<% if (turn.indications) { %>
 					<%= turn.indications %> <br/>
 				<% } else { %> 
-					<em class="no-indications">Sin indicaciones</em>
+					<em class="no-indications"><%=i18n.turnos.noIndications%></em>
 				<% } %>
 			</div>
 			<form method="POST"  action="/escapeRooms/<%= escapeRoom.id %>/turnos/<%=turn.id%>?_method=DELETE">

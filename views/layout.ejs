@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Escape room</title>
+    <title>escapp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <link rel="stylesheet" href="/stylesheets/vendor/animate.css">
@@ -36,7 +36,7 @@
             <span class="close" id="close">&#x2716;</span>
             <% if (messages.info) { %>
                 <article id='flashinfo'>
-                    <h3>Información de interés:</h3>
+                    <h3><%=i18n.common.flash.interestingInfo%>:</h3>
                     <ul>
                         <% for (var i in messages.info) { %>
                             <li> <%= messages.info[i] %> </li>
@@ -47,7 +47,7 @@
 
             <% if (messages.success) { %>
                 <article id='flashsuccess'>
-                    <h3>Tareas completadas con éxito:</h3>
+                    <h3><%=i18n.common.flash.success%>:</h3>
                     <ul>
                         <% for (var i in messages.success) { %>
                             <li> <%= messages.success[i] %> </li>
@@ -58,7 +58,7 @@
 
             <% if (messages.error) { %>
                 <article id='flasherror'>
-                    <h3>Errores:</h3>
+                    <h3><%=i18n.common.flash.errors%>:</h3>
                     <ul>
                         <% for (var i in messages.error) { %>
                             <li> <%= messages.error[i] %> </li>

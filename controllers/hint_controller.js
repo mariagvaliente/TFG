@@ -10,7 +10,7 @@ exports.load = (req, res, next, hintId) => {
                 req.hint = hint;
                 next();
             } else {
-                next(new Error(`There is no hint with hintId=${hintId}`));
+                next(new Error(404));
             }
         }).
         catch((error) => next(error));
@@ -27,7 +27,7 @@ exports.create = (req, res, next) => {
 
     hint.save().
         then(() => {
-            req.flash("success", "Pista creada correctamente.");
+            req.flash("success", req.app.locals.i18n.common.flash.successCreatingHint);
             res.redirect(back);
         }).
         catch(Sequelize.ValidationError, (error) => {
@@ -35,7 +35,7 @@ exports.create = (req, res, next) => {
             res.redirect(back);
         }).
         catch((error) => {
-            req.flash("error", `Error creando la pista: ${error.message}`);
+            req.flash("error", `${req.app.locals.i18n.common.flash.errorCreatingHint}: ${error.message}`);
             next(error);
         });
 };
@@ -50,7 +50,7 @@ exports.update = (req, res, next) => {
     console.log(hint, content);
     hint.save({"fields": ["content"]}).
         then(() => {
-            req.flash("success", "Pista modificada correctamente.");
+            req.flash("success", req.app.locals.i18n.common.flash.successEditingHint);
             res.redirect(back);
         }).
         catch(Sequelize.ValidationError, (error) => {
@@ -58,7 +58,7 @@ exports.update = (req, res, next) => {
             res.redirect(back);
         }).
         catch((error) => {
-            req.flash("error", `Error modificando la pista: ${error.message}`);
+            req.flash("error", `${req.app.locals.i18n.common.flash.errorEditingHint}: ${error.message}`);
             next(error);
         });
 };
@@ -69,7 +69,7 @@ exports.destroy = (req, res, next) => {
         then(() => {
             const back = `/escapeRooms/${req.escapeRoom.id}/puzzles`;
 
-            req.flash("success", "Reto borrado correctamente");
+            req.flash("success", req.app.locals.i18n.common.flash.successDeletingHint);
             res.redirect(back);
         }).
         catch((error) => next(error));
@@ -156,7 +156,7 @@ exports.requestHint = (req, res) => {
                                     }
                                 }
                                 currentHint++;
-                                let pista = "No quedan más pistas automáticas para tu situación. Puedes llamar al profesor para que te dé una personalizada.";
+                                let pista = req.app.locals.i18n.hint.empty;
                                 let hintId = null;
 
                                 if (currentHint < allHintsIndexes.length) {
@@ -184,13 +184,13 @@ exports.requestHint = (req, res) => {
                             score
                         }).save().
                             then(() => {
-                                res.json({"msg": "Lo siento, sigue intentándolo",
+                                res.json({"msg": req.app.locals.i18n.hint.failed,
                                     "ok": false});
                             });
                     }
                 } else {
                     res.status(500);
-                    res.send({"msg": "Ha ocurrido un error. Asegúrate de que te has registrado correctamente en la Escape Room.",
+                    res.send({"msg": req.app.locals.i18n.user.messages.ensureRegistered,
                         "ok": false});
                 }
             });

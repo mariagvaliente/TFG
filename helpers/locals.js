@@ -6,20 +6,8 @@ module.exports = function (app) {
         return d;
     };
 
-    const monthArray = [
-        "Enero",
-        "Febrero",
-        "Marzo",
-        "Abril",
-        "Mayo",
-        "Junio",
-        "Julio",
-        "Agosto",
-        "Septiembre",
-        "Octubre",
-        "Noviembre",
-        "Diciembre"
-    ];
+    console.log(app.locals);
+
 
     app.locals.zeroPadding = zeroPadding;
     app.locals.getFullDate = (d) => {
@@ -28,9 +16,6 @@ module.exports = function (app) {
         return `${zeroPadding(d.getDate())}-${zeroPadding(d.getMonth() + 1)}-${d.getFullYear()} ${zeroPadding(d.getHours())}:${zeroPadding(d.getMinutes())}`;
     };
 
-    app.locals.formatDate = function (currentDate) {
-        return `${currentDate.getDate()} de ${monthArray[currentDate.getMonth()]} de ${currentDate.getFullYear()}`;
-    };
 
     app.locals.formatTime = function (currentDate) {
         currentDate.setMinutes(currentDate.getMinutes() + currentDate.getTimezoneOffset());

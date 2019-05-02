@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Escape room</title>
+    <title><%=escapeRoom.title%></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <link rel="stylesheet" type="text/css" href="/stylesheets/vendor/bootswatch/<%=escapeRoom.appearance%>.bootstrap.min.css">
@@ -45,7 +45,7 @@
             <div class=" row-centered">
                 <div class="col-xs-12">
                     <div >
-                        <h4>Pistas</h4>
+                        <h4><%=i18n.hint.Hints%></h4>
                         <ul id="hintList" >
                         <% for (var h in hints) {
                             let hint = hints[h].hint;
@@ -60,7 +60,7 @@
                         </ul>
                         <br/>
                         <button onclick="previewHintApp()" class="btn btn-primary">
-                            ¿Necesitas una pista?
+                            <%=i18n.hint.need%>
                         </button>
                     </div>
                 </div>

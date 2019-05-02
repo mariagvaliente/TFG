@@ -1,12 +1,12 @@
 <% include ../../partials/_header.ejs %>
 
 <div class="main retosSuperados">
-    <h2>Retos superados</h2>
+    <h2><%=i18n.retosSuperados.title%></h2>
     <form method="get" class="participantsList" action="/escapeRooms/<%= escapeRoom.id %>/analytics/puzzles/participants">
         <div class="filters">
-            <label for="turnId">Turno
+            <label for="turnId"><%=i18n.turnos.Turno%>
                 <select name="turnId" id="turnId">
-                    <option value="" <%= !turnId ? "selected": ""%> >Todos los turnos</option>
+                    <option value="" <%= !turnId ? "selected": ""%> ><%=i18n.turnos.all%></option>
                     <% for (t in escapeRoom.turnos) { %>
                     <% var turno = escapeRoom.turnos[t] %>
                     <option value="<%=turno.id%>" <%= turnId == turno.id ? "selected" : "" %> >
@@ -18,19 +18,19 @@
             <label for="orderBy">Ordenar por
                 <select name="orderBy" id="orderBy">
                     <option value="" <%= !orderBy ? "selected": ""%>  disabled></option>
-                    <option value="name" <%= orderBy === "name" ? "selected": ""%>>Nombre</option>
-                    <option value="surname" <%= orderBy === "surname" ? "selected": ""%>>Apellidos</option>
+                    <option value="name" <%= orderBy === "name" ? "selected": ""%>><%=i18n.user.name%></option>
+                    <option value="surname" <%= orderBy === "surname" ? "selected": ""%>><%=i18n.user.surname%></option>
                 </select></label>
-            <button type="submit" class="filter-button white" >filtrar</button>
+            <button type="submit" class="filter-button white" ><%=i18n.common.filter%></button>
             <button type="submit" name="csv" value="1" class="filter-button white" >descargar</button>
-            <a href="teams"><button type="button" class="buttonTab">ver por equipo</button></a>
+            <a href="teams"><button type="button" class="buttonTab"><%=i18n.team.seeByTeam%></button></a>
 
         </div>
     </form>
     <br/>
     <table>
         <tr class="animated fadeInRight">
-            <th>Nombre</th>
+            <th><%=i18n.user.name%></th>
             <%for (var p in escapeRoom.puzzles) {
                 var puzzle = escapeRoom.puzzles[p];
             %>
@@ -38,7 +38,7 @@
             <%=puzzle.title%>
         </th>
         <%} %>
-            <th>Total</th>
+            <th><%=i18n.common.Total%></th>
         </tr>
         <% var totalRetosSuperados = escapeRoom.puzzles.map(p=>0)%>
         <%for (var p in results) {
@@ -60,7 +60,7 @@
         </tr>
         <%} %>
         <tr class="animated fadeInRight" style="animation-delay: <%=0.2*(results.length)+0.3%>s;">
-            <td class="align-left"><b>Total:</b> <%=results.length%></td>
+            <td class="align-left"><b><%=i18n.common.Total%>:</b> <%=results.length%></td>
             <% for (var s in totalRetosSuperados) { %>
                 <td>
                     <b><%=totalRetosSuperados[s]%></b>

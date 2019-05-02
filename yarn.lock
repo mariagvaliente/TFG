@@ -1977,6 +1977,10 @@ http-signature@~1.2.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
+i18n-express@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/i18n-express/-/i18n-express-1.1.3.tgz#5fb1383594b0826f95aa12308b7a1e481b1cf05a"
+
 iconv-lite@0.4.23:
   version "0.4.23"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.23.tgz#297871f63be507adcfbfca715d0cd0eed84e9a63"

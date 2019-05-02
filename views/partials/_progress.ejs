@@ -2,7 +2,7 @@
 	<div class="progressText"><%=progress%>/6 completado </div>
 	<% var width = progress / 6 * 100 ; %>
 	<% var labels = ["edit","turnos","puzzles","hints","instructions","appearance","evaluation"]%>
-	<% var realLabels = ["Configuración básica","Turnos","Retos","Pistas","Instrucciones","Apariencia","Evaluación"]%>
+	<% var realLabels = labels.map(label=>i18n.escapeRoom.steps.list[label]) %>
 	<% labels.splice(progress, 1)%>
 	<% realLabels.splice(progress, 1)%>
 	<div class="outterBar">

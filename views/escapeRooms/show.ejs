@@ -2,7 +2,7 @@
 <div class="main no-bckg">
 
     <h1>
-        Configuración básica de la escape room:
+        <%=i18n.escapeRoom.steps.edit.title%>:
     </h1>
 
     <br class="escapeRoomItem">
@@ -13,17 +13,17 @@
     </div>
     <div class="menuERShowRight">
        <ul class="menuERactionList">
-           <li><a href="#basic">Configuración básica</a></li>
-           <li><a href="#appearance">Apariencia</a></li>
-           <li><a href="#turnos">Turnos</a></li>
-           <li><a href="#join">Enlace de invitación</a></li>
-           <li><a href="/escapeRooms/<%= escapeRoom.id %>/participants">Participantes <i class="material-icons">keyboard_arrow_right</i></a></li>
-           <li><a href="/escapeRooms/<%= escapeRoom.id %>/teams">Equipos <i class="material-icons">keyboard_arrow_right</i> </a></li>
-           <li><a href="/escapeRooms/<%= escapeRoom.id %>/analytics">Learning analytics <i class="material-icons">keyboard_arrow_right</i> </a></li>
-           <li><a href="/escapeRooms/<%= escapeRoom.id %>/activarTurno"><button class="showMenuButton acceptButton">comenzar</button></a></li>
-           <li><a href="/escapeRooms/<%= escapeRoom.id %>/edit"><button class="showMenuButton editButton">editar</button></a></li>
-           <li><a href="/escapeRooms/<%= escapeRoom.id %>?_method=DELETE" onClick="return confirm('Delete: <%= escapeRoom.title %>');"><button class="showMenuButton deleteButton">borrar</button></a></li>
-           <li><a href="/users/<%= session.user.id %>/escapeRooms"><button class="showMenuButton">volver</button></a></li>
+           <li><a href="#basic"><%=i18n.showTeacher.actionList.basic%></a></li>
+           <li><a href="#appearance"><%=i18n.showTeacher.actionList.appearance%></a></li>
+           <li><a href="#turnos"><%=i18n.showTeacher.actionList.turnos%></a></li>
+           <li><a href="#join"><%=i18n.showTeacher.actionList.join%></a></li>
+           <li><a href="/escapeRooms/<%= escapeRoom.id %>/participants"><%=i18n.showTeacher.actionList.participants%> <i class="material-icons">keyboard_arrow_right</i></a></li>
+           <li><a href="/escapeRooms/<%= escapeRoom.id %>/teams"><%=i18n.showTeacher.actionList.teams%> <i class="material-icons">keyboard_arrow_right</i> </a></li>
+           <li><a href="/escapeRooms/<%= escapeRoom.id %>/analytics"><%=i18n.showTeacher.actionList.analytics%> <i class="material-icons">keyboard_arrow_right</i> </a></li>
+           <li><a href="/escapeRooms/<%= escapeRoom.id %>/activarTurno"><button class="showMenuButton acceptButton"><%=i18n.showTeacher.actionList.activateTurno%></button></a></li>
+           <li><a href="/escapeRooms/<%= escapeRoom.id %>/edit"><button class="showMenuButton editButton"><%=i18n.showTeacher.actionList.edit%></button></a></li>
+           <li><a href="/escapeRooms/<%= escapeRoom.id %>?_method=DELETE" onClick="return confirm('Delete: <%= escapeRoom.title %>');"><button class="showMenuButton deleteButton"><%=i18n.showTeacher.actionList.delete%></button></a></li>
+           <li><a href="/users/<%= session.user.id %>/escapeRooms"><button class="showMenuButton"><%=i18n.showTeacher.actionList.volver%></button></a></li>
        </ul>
 
     </div>
@@ -33,7 +33,7 @@
     <div class="flexShow">
         <div class="flexRow animated bounceIn" id="basic">
             <div class="flexShowLeft">
-                Título:
+                <%=i18n.showTeacher.titles.title%>:
             </div>
             <div class="flexShowRight">
                 <%= escapeRoom.title %>
@@ -41,7 +41,7 @@
         </div>
         <div class="flexRow animated bounceIn">
             <div class="flexShowLeft">
-                Asignatura:
+                <%=i18n.showTeacher.titles.subject%>:
             </div>
             <div class="flexShowRight">
                 <%= escapeRoom.subject %>
@@ -49,7 +49,7 @@
         </div>
         <div class="flexRow animated bounceIn">
             <div class="flexShowLeft">
-                Duración:
+                <%=i18n.showTeacher.titles.duration%>:
             </div>
             <div class="flexShowRight">
                 <%= escapeRoom.duration %>
@@ -57,7 +57,7 @@
         </div>
         <div class="flexRow animated bounceIn">
             <div class="flexShowLeft">
-                Instrucciones:
+                <%=i18n.showTeacher.titles.instructions%>:
             </div>
             <div class="flexShowRight instructionsPreview">
                 <%- escapeRoom.instructions %>
@@ -65,7 +65,7 @@
         </div>
         <div class="flexRow animated bounceIn">
              <div class="flexShowLeft">
-                 Descripción:
+                 <%=i18n.showTeacher.titles.description%>:
              </div>
              <div class="flexShowRight">
                  <%= escapeRoom.description %>
@@ -73,19 +73,20 @@
         </div>
         <div class="flexRow animated bounceIn">
             <div class="flexShowLeft">
-                Vídeo:
+                <%=i18n.showTeacher.titles.video%>:
             </div>
             <div class="flexShowRight">
                 <% if (escapeRoom.video) { %>
-                <a class="show_link" href="<%= escapeRoom.video %>"><%= escapeRoom.video %></a> <button class="copy" id="previewVideo"><i class="material-icons">remove_red_eye</i></button>
+                <a class="show_link" href="<%= escapeRoom.video %>"><%= escapeRoom.video %></a> 
+                    <button class="copy" id="previewVideo"><i class="material-icons">remove_red_eye</i></button>
                 <%  } else { %>
-                <em>No hay vídeo</em>
+                    <em><%=i18n.showTeacher.messages.noVideo%>:</em>
                 <%  } %>
             </div>
         </div>
         <div class="flexRow animated bounceIn">
             <div class="flexShowLeft">
-                Aforo turno:
+                <%=i18n.showTeacher.titles.nmax%>:
             </div>
             <div class="flexShowRight">
                 <%= escapeRoom.nmax %>
@@ -93,7 +94,7 @@
         </div>
         <div class="flexRow animated bounceIn">
             <div class="flexShowLeft">
-                Tamaño máx. equipos:
+                <%=i18n.showTeacher.titles.teamSize%>:
             </div>
             <div class="flexShowRight">
                 <%= escapeRoom.teamSize %>
@@ -101,7 +102,7 @@
         </div>
         <div class="flexRow animated bounceIn" id="join">
             <div class="flexShowLeft">
-                Invitación:
+                <%=i18n.showTeacher.titles.invitation%>:
             </div>
             <div class="flexShowRight">
                 <% var invitationLink = hostName + "/escapeRooms/" + escapeRoom.id +"/join?token=" + escapeRoom.invitation; %>
@@ -114,7 +115,7 @@
         </div>
         <div class="flexRow animated bounceIn" id="appearance">
             <div class="flexShowLeft">
-                Apariencia:
+                <%=i18n.showTeacher.titles.appearance%>:
             </div>
             <div class="flexShowRight">
                 <img src="/images/<%=escapeRoom.appearance%>.png"/>
@@ -122,7 +123,7 @@
         </div>
         <div class="flexRow animated bounceIn" id="turnos">
             <div class="flexShowLeft">
-                Turnos:
+                <%=i18n.showTeacher.titles.turnos%>:
             </div>
             <div class="flexShowRight">
                 <% var turnos = escapeRoom.turnos; %>
@@ -131,7 +132,7 @@
         </div>
         <div class="flexRow animated bounceIn" id="pistas">
             <div class="flexShowLeft">
-                Retos:
+                <%=i18n.showTeacher.titles.puzzles%>:
             </div>
             <div class="flexShowRight previewPuzzles">
                 <%if (escapeRoom.puzzles && escapeRoom.puzzles.length > 0) {%>
@@ -139,16 +140,16 @@
                     <div class="flex-table-retos animated jello">
                         <div class="flex-row-retos flex-row-retos-title">
                             <div class="flex-cell flex-cell-retos">
-                                Título
+                                <%=i18n.escapeRoom.steps.puzzles.puzzleTitle%>:
                             </div>
                             <div class="flex-cell flex-cell-sol">
                                 Solución
                             </div>
                             <div class="flex-cell flex-cell-desc">
-                                Descripción
+                                <%=i18n.escapeRoom.steps.puzzles.description%>:
                             </div>
                             <div class="flex-cell flex-cell-pista">
-                                Pista
+                                <%=i18n.escapeRoom.steps.puzzles.hints%>:
                             </div>
                         </div>
                         <% for(var reto in escapeRoom.puzzles) { %>
@@ -175,7 +176,9 @@
                                         </li>
                                         <% } %>
                                         <% } else {%>
-                                        <span class="no-pistas-preview">No has definido ninguna pista todavía</span>
+                                        <span class="no-pistas-preview">
+                                            <%=i18n.escapeRoom.steps.puzzles.noCluesYet%>:
+                                        </span>
                                         <% } %>
                                     </ul>
                                 </div>
@@ -185,13 +188,13 @@
                     </div>
                 </div>
                 <%} else {%>
-                No se ha definido ningún reto todavía
+                    <%=i18n.escapeRoom.steps.puzzles.noPuzzlesYet%>:
                 <%}%>
             </div>
         </div>
         <div class="flexRow animated bounceIn" id="pistas">
             <div class="flexShowLeft">
-                Pistas:
+                <%=i18n.showTeacher.titles.hints%>:
             </div>
             <div class="flexShowRight">
                 <% if (escapeRoom.hintApp) { %>
@@ -199,13 +202,13 @@
                     <a class="show_link" download="quiz.xml" href="<%= escapeRoom.hintApp.url%>"><%=escapeRoom.hintApp.filename%></a>
                     <button class="copy" onclick="previewHintApp()"><i class="material-icons">remove_red_eye</i></button>
                 <% } else { %>
-                    Esta Escape Room no utiliza ningún mecanismo de control de pistas
+                   <%=i18n.showTeacher.messages.noHintControl%>
                 <% } %>
             </div>
         </div>
         <div class="flexRow animated bounceIn" id="pretest">
             <div class="flexShowLeft">
-                Pre-test:
+                <%=i18n.showTeacher.titles.pretest%>:
             </div>
             <div class="flexShowRight">
                  <a class="show_link" href="<%= escapeRoom.pretest %>"><%= escapeRoom.pretest %></a>
@@ -213,7 +216,7 @@
         </div>
         <div class="flexRow animated bounceIn" id="posttest">
             <div class="flexShowLeft">
-                Post-test:
+               <%=i18n.showTeacher.titles.posttest%>:
             </div>
             <div class="flexShowRight">
                  <a class="show_link" href="<%= escapeRoom.posttest %>"><%= escapeRoom.posttest %></a>
@@ -221,7 +224,7 @@
         </div>
         <div class="flexRow animated bounceIn" id="survey">
             <div class="flexShowLeft">
-                Encuesta:
+                <%=i18n.showTeacher.titles.survey%>:
             </div>
             <div class="flexShowRight">
                  <a class="show_link" href="<%= escapeRoom.survey %>"><%= escapeRoom.survey %></a>

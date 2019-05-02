@@ -10,6 +10,7 @@ const partials = require("express-partials");
 const flash = require("express-flash");
 const methodOverride = require("method-override");
 const dotenv = require("dotenv");
+const i18n = require("i18n-express");
 
 dotenv.config();
 
@@ -58,9 +59,14 @@ app.use(methodOverride("_method", {"methods": [
 ]}));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/api", api);
-require("./helpers/locals")(app);
 
+app.use(i18n({
+    "translationsPath": path.join(__dirname, "i18n"), // <--- use here. Specify translations files path.
+    "siteLangs": ["es"],
+    "textsVarName": "i18n"
+}));
 app.use(partials());
+require("./helpers/locals")(app);
 app.use(flash());
 
 
@@ -98,5 +104,6 @@ app.use((err, req, res) => {
     res.status(err.status || 500);
     res.render("error");
 });
+
 
 module.exports = app;

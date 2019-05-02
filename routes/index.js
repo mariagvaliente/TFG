@@ -150,4 +150,5 @@ router.get("/escapeRooms/:escapeRoomId/analytics/ranking", sessionController.log
 router.get("/escapeRooms/:escapeRoomId/analytics/timeline", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, analyticsController.timeline);
 router.get("/escapeRooms/:escapeRoomId/analytics/puzzles/participants", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, analyticsController.puzzlesByParticipants);
 router.get("/escapeRooms/:escapeRoomId/analytics/puzzles/teams", sessionController.loginRequired, escapeRoomController.adminOrAuthorRequired, analyticsController.puzzlesByTeams);
+
 module.exports = router;

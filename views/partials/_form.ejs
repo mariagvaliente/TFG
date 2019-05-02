@@ -1,48 +1,47 @@
 
 <div class="wideRow erFormField">
-    <label for="tit"  class="itemNarrow">1. Título:</label>
-    <input autofocus type="text" class="customInput itemWide" id="tit" name="title" value="<%= escapeRoom.title %>" placeholder="¿Cómo se llama tu Escape Room?" autocomplete="off"/>
+    <label for="tit"  class="itemNarrow">1. <%=i18n.showTeacher.titles.title%>:</label>
+    <input autofocus type="text" class="customInput itemWide" id="tit" name="title" value="<%= escapeRoom.title %>" placeholder="<%=i18n.escapeRoom.steps.edit.titlePlaceHolder%>" autocomplete="off"/>
 </div>
 
 <div class="wideRow erFormField">
-    <label for="subj"  class="itemNarrow">2. Asignatura:</label>
-    <input type="text" class="customInput itemWide" id="subj" name="subject" value="<%= escapeRoom.subject %>" placeholder="¿A qué asignatura pertenece esta actividad?" autocomplete="off"/>
+    <label for="subj"  class="itemNarrow">2. <%=i18n.showTeacher.titles.subject%>:</label>
+    <input type="text" class="customInput itemWide" id="subj" name="subject" value="<%= escapeRoom.subject %>" placeholder="<%=i18n.escapeRoom.steps.edit.subjectPlaceHolder%>" autocomplete="off"/>
 </div>
 
 <div class="wideRow erFormField">
-    <label for="dur"  class="itemNarrow">3. Duración (min.):</label> <% escapeRoom.invitation = Math.random().toString(36).substr(2)%>
-    <input type="number" type="text" class="customInput itemWide" id="dur" name="duration" value="<%= escapeRoom.duration %>" placeholder="¿Cual es el tiempo máximo del que disponen los alumnos?" autocomplete="off"/>
+    <input type="number" type="text" class="customInput itemWide" id="dur" name="duration" value="<%= escapeRoom.duration %>" placeholder="<%=i18n.escapeRoom.steps.edit.durationPlaceHolder%>" autocomplete="off"/>
 </div>
 
 <div class="wideRow erFormField">
-    <label for="desc"  class="itemNarrow">4. Descripción:</label>
-    <input type="text" class="customInput itemWide" id="desc" name="description" value="<%= escapeRoom.description %>" placeholder="Escribe la descripción de tu Escape Room. Esta será la información que se les presentará a los alumnos" autocomplete="off"/>
+    <label for="desc"  class="itemNarrow">4. <%=i18n.showTeacher.titles.description%>:</label>
+    <input type="text" class="customInput itemWide" id="desc" name="description" value="<%= escapeRoom.description %>" placeholder="<%=i18n.escapeRoom.steps.edit.descriptionPlaceHolder%>" autocomplete="off"/>
 </div>
 
 <div class="wideRow erFormField">
-    <label for="vid"  class="itemNarrow">5. Video:</label>
-    <input type="text" class="customInput itemWide" id="vid" name="video" value="<%= escapeRoom.video %>" placeholder="URL del vídeo de presentación de la Escape Room" autocomplete="off"/>
+    <label for="vid"  class="itemNarrow">5. <%=i18n.showTeacher.titles.video%>:</label>
+    <input type="text" class="customInput itemWide" id="vid" name="video" value="<%= escapeRoom.video %>" placeholder="<%=i18n.escapeRoom.steps.edit.videoPlaceHolder%>" autocomplete="off"/>
 </div>
 
 <div class="wideRow erFormField">
-    <label for="nm"  class="itemNarrow">6. Número máximo de participantes:</label>
-    <input type="number" min="1" class="customInput itemWide" id="nm" name="nmax" value="<%= escapeRoom.nmax %>" placeholder="¿Cuántos participantes puede haber en cada turno?" autocomplete="off"/>
+    <label for="nm"  class="itemNarrow">6. <%=i18n.showTeacher.titles.nmax%>:</label>
+    <input type="number" min="1" class="customInput itemWide" id="nm" name="nmax" value="<%= escapeRoom.nmax %>" placeholder="<%=i18n.escapeRoom.steps.edit.nmaxPlaceHolder%>" autocomplete="off"/>
 </div>
 
 <div class="wideRow erFormField">
-    <label for="ts"  class="itemNarrow">7. Tamaño máximo de los equipos:</label>
-    <input type="number" min="1" class="customInput itemWide" id="ts" name="teamSize" value="<%= escapeRoom.teamSize %>" placeholder="¿Cuántos alumnos puede haber en cada equipo?" autocomplete="off"/>
+    <label for="ts"  class="itemNarrow">7. <%=i18n.showTeacher.titles.teamSize%>:</label>
+    <input type="number" min="1" class="customInput itemWide" id="ts" name="teamSize" value="<%= escapeRoom.teamSize %>" placeholder="<%=i18n.escapeRoom.steps.edit.teamSizePlaceHolder%>" autocomplete="off"/>
 </div>
 
 <div class="wideRow erFormField">
-    <label class="itemNarrow">8. Miniatura:</label>
+    <label class="itemNarrow">8. <%=i18n.showTeacher.titles.thumbnail%>:</label>
     <input class="attach" type="file" id="img" name="image"/>
     <label for="img" class="fileUpload customInput itemWide">
       <span id="imgLabel" >
         <% if (escapeRoom.id && escapeRoom.attachment) { %>
           <%= escapeRoom.attachment.filename ||  "Default" %>
         <% } else { %>
-          No has subido ningún fichero
+          <%=i18n.escapeRoom.steps.edit.noFileUploaded%>
         <% } %>
       </span>
       <span id="upload"
@@ -69,15 +68,14 @@
     <% if (escapeRoom.id) { %>
 
     <a href="/escapeRooms/<%= escapeRoom.id %>">
-      <button class="progress-buttons" id="exit" type="button">volver</button>
+      <button class="progress-buttons" id="exit" type="button"><%=i18n.common.cancel%></button>
     </a>
-  <% } %>
-  <% if (!escapeRoom.id) { %>
+  <% } else { %>
     <a href="/users/<%= session.user.id %>/escapeRooms">
-      <button class="progress-buttons" id="exit" type="button">cancelar</button>
+      <button class="progress-buttons" id="exit" type="button"><%=i18n.common.exit%></button>
     </a>
   <% } %>
-  <button class="progress-buttons" type ="submit">siguiente</button>
+  <button class="progress-buttons" type ="submit"><%=i18n.common.next%></button>
 </div>
 
 <br/><br/><br/><br/><br/><br/>
@@ -98,7 +96,7 @@ $(function(){
       } catch (e) {
           $('#delete').hide();
           $('#upload').show();
-          $('#imgLabel').html("No has subido ninguna imagen");
+          $('#imgLabel').html("<%=i18n.escapeRoom.steps.edit.noImageUploaded%>");
       }
     });
 
@@ -106,7 +104,7 @@ $(function(){
         e.preventDefault();
         $('#delete').hide();
         $('#upload').show();
-        $('#imgLabel').html("No has subido ninguna imagen");
+        $('#imgLabel').html("<%=i18n.escapeRoom.steps.edit.noImageUploaded%>");
         $('#keepAttachment').val("0");
     })
 

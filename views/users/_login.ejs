@@ -1,6 +1,6 @@
-<h1 class="loginWelcomeMessage">Bienvenido a la plataforma de gestión de escape rooms ;)</h1>
+<h1 class="loginWelcomeMessage"></h1>
 
-
+<%=i18n.user.messages.welcome%>
 <h1>Login</h1>
 
 <form method='POST' action='/'>
@@ -8,21 +8,21 @@
     <input type='hidden' name='redir' value='<%= redir %>'>
 
     <div>
-        <label for="login"><span>E-mail</span>
-            <input type="email" id="login" name="login" size="30" autofocus placeholder="Introduce tu email" autocomplete="off"/>
+        <label for="login"><span><%=i18n.user.username%></span>
+            <input type="email" id="login" name="login" size="30" autofocus placeholder="<%=i18n.user.inputs.usernamePlaceHolder%>" autocomplete="off"/>
         </label>
     </div>
     <br />
     <div>
-        <label for="password"><span>Contraseña</span>
-            <input type="password" id="password" name="password" size="30" placeholder="Introduce tu contraseña" autocomplete="off" />
+        <label for="password"><span><%=i18n.user.password%></span>
+            <input type="password" id="password" name="password" size="30" placeholder="<%=i18n.user.inputs.passwordPlaceHolder%>" autocomplete="off" />
         </label>
     </div>
     <br />
     <div>
-        <button class="login" type="submit" value="Login">login</button>
+        <button class="login" type="submit" value="Login"><%=i18n.user.actions.login%></button>
         <br />
     </div>
 </form>
 <br />
-<a class="login" href="/users/new">¿No tienes cuenta?</a>
+<a class="login" href="/users/new"><%=i18n.user.action.notRegistered%></a>

@@ -8,18 +8,18 @@
 <%}%>
 
 <div>
-         <label for="name"><span>Nombre</span>
-         <input type="text" class="customInput" id="name" name="name" value="<%= user.name %>" required placeholder="Introduce tu nombre" autocomplete="off"/> </label>
+         <label for="name"><span><%=i18n.user.name%></span>
+         <input type="text" class="customInput" id="name" name="name" value="<%= user.name %>" required placeholder="<%=i18n.user.inputs.namePlaceHolder %>" autocomplete="off"/> </label>
 </div>
 <br />
 <div>
-         <label for="surname"><span>Apellidos</span>
-        <input type="text" class="customInput" id="surname" name="surname" value="<%= user.surname %>" required placeholder="Introduce tus apellidos" autocomplete="off"/>
+         <label for="surname"><span><%=i18n.user.surname%></span>
+        <input type="text" class="customInput" id="surname" name="surname" value="<%= user.surname %>" required placeholder="<%=i18n.user.inputs.surnamePlaceHolder %>" autocomplete="off"/>
 </div>
 <br />
 <div>
-        <label for="gender"><span>Género</span>
-        <select  required class="customInput" id="gender" name="gender" value="<%= user.gender %>" placeholder="Selecciona tu género" autocomplete="off">
+        <label for="gender"><span><%=i18n.user.gender%></span>
+        <select  required class="customInput" id="gender" name="gender" value="<%= user.gender %>" placeholder="<%=i18n.user.inputs.genderPlaceHolder %>" autocomplete="off">
             <option value="" disabled <%= !user.id ? "selected" : ""%> <option>
             <option value="Femenino" <%= user.gender === "Femenino" ? "selected" : ""%>>Mujer</option>
             <option value="Masculino" <%= user.gender === "Masculino" ? "selected" : ""%>>Hombre</option>
@@ -28,32 +28,32 @@
 </div>
 <br />
 <div>
-        <label for="username"><span>Email</span>
-        <input type="email" <%=user.id?"disabled":""%> class="customInput" id="username" name="username" value="<%= user.username %>" required placeholder="Introduce tu email" autocomplete="off"/></label>
+        <label for="username"><span><%=i18n.user.username%></span>
+        <input type="email" <%=user.id?"disabled":""%> class="customInput" id="username" name="username" value="<%= user.username %>" required placeholder="<%=i18n.user.inputs.usernamePlaceHolder %>" autocomplete="off"/></label>
 </div>
 <br />
 <div>
-    <label for="dni"><span>DNI</span>
-        <input type="dni" <%=user.id?"disabled":""%> class="customInput" id="dni" name="dni" value="<%= user.dni %>" required placeholder="Introduce tu DNI" autocomplete="off"/></label>
+    <label for="dni"><span><%=i18n.user.dni%></span>
+        <input type="dni" <%=user.id?"disabled":""%> class="customInput" id="dni" name="dni" value="<%= user.dni %>" required placeholder="<%=i18n.user.inputs.dniPlaceHolder %>" autocomplete="off"/></label>
 </div>
 <br />
 <div>
-        <label for="user_password"><span>Contraseña</span>
-        <input type="password" class="customInput" id="user_password" name="password" required placeholder="Introduce tu contraseña" autocomplete="off"/></label>
+        <label for="user_password"><span><%=i18n.user.password%></span>
+        <input type="password" class="customInput" id="user_password" name="password" required placeholder="<%=i18n.user.inputs.passwordPlaceHolder %>" autocomplete="off"/></label>
 </div>
 <br />
 <div>
-        <label for="user_confirm_password"><span>Confirmar contraseña</span>
-        <input type="password" class="customInput" id="user_confirm_password" required placeholder="Introduce tu contraseña" autocomplete="off"/></label>
+        <label for="user_confirm_password"><span><%=i18n.user.passwordConfirm%></span>
+        <input type="password" class="customInput" id="user_confirm_password" required placeholder="<%=i18n.user.inputs.passwordConfirmPlaceHolder %>" autocomplete="off"/></label>
 </div>
 <br />
 <%if (!user.id) {%>
-    <button class="registro" type="submit" value="Save" onclick="return (confirmPassword() && confirmDNI())">regístrate</button>
+    <button class="registro" type="submit" value="Save" onclick="return (confirmPassword() && confirmDNI())"><%=i18n.user.actions.register %></button>
     <br />
     <br />
-    <a class="login" href="/">¿Ya tienes cuenta?</a>
+    <a class="login" href="/"><%=i18n.user.actions.alreadyRegistered %></a>
 <%} else {%>
-    <button class="save" type="submit" value="edit" onclick="return confirmPassword()">guardar</button>
+    <button class="save" type="submit" value="edit" onclick="return confirmPassword()"><%=i18n.user.actions.save %></button>
 
 <%} %>
 
@@ -63,13 +63,13 @@
         var pw1 = document.getElementById('user_password').value;
         var pw2 = document.getElementById('user_confirm_password').value;
         if (!pw1 || !pw2) {
-            alert('Password and Confirmation fields must be filled in.');
+            alert('<%=i18n.user.messages.fillIn %>.');
             return false;
         }
         if (pw1 === pw2) {
             return true;
         } else {
-            alert('Passwords do not match.');
+            alert('<%=i18n.user.messages.doNotMatch %>.');
             return false;
         }
     }
@@ -86,13 +86,13 @@
             letra='TRWAGMYFPDXBNJZSQVHLCKET';
             letra=letra.substring(numero,numero+1);
             if (letra!=letr.toUpperCase()) {
-                alert('Dni erroneo, la letra del NIF no se corresponde');
+                alert('<%=i18n.user.messages.wrongLetterDNI %>');
                 return false;
             }else{
                 return true;
             }
         }else{
-            alert('Dni erroneo, formato no válido');
+            alert('<%=i18n.user.messages.invalidDNI %>');
             return false;
         }
     }

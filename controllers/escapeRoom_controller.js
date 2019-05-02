@@ -54,7 +54,8 @@ exports.load = (req, res, next, escapeRoomId) => {
                 req.escapeRoom = escapeRoom;
                 next();
             } else {
-                throw new Error(`No hay escape room con id=${escapeRoomId}`);
+                res.status(404);
+                throw new Error(404);
             }
         }).
         catch((error) => next(error));
@@ -69,8 +70,8 @@ exports.adminOrAuthorRequired = (req, res, next) => {
     if (isAdmin || isAuthor) {
         next();
     } else {
-        console.log("Operación prohibida: El usuario logueado no es el autor de la escape room ni el administrador");
-        res.send(403);
+        res.status(403);
+        next(new Error(403));
     }
 };
 
@@ -116,10 +117,10 @@ exports.adminOrAuthorOrParticipantRequired = (req, res, next) => {
         if (isAdmin || isAuthor || isParticipant) {
             next();
         } else {
-            console.log("Operación prohibida: El usuario logueado no es el autor de la escape room ni el administrador");
-            res.send(403);
+            throw new Error(403);
         }
-    });
+    }).
+        catch((e) => next(e));
 };
 // GET /escapeRooms
 exports.index = (req, res, next) => {
@@ -250,13 +251,13 @@ exports.create = (req, res, next) => {
                     "escapeRoomId": er.id}).
                     catch((error) => { // Ignoring validation errors
                         console.error(error);
-                        req.flash("error", `Error al subir la imagen: ${error.message}`);
+                        req.flash("error", `${req.app.locals.i18n.common.flash.errorImage}: ${error.message}`);
                         attHelper.deleteResource(uploadResult.public_id);
                     })).
                 catch((error) => {
                     console.error(error);
 
-                    req.flash("error", `Error al subir el fichero: ${error.message}`);
+                    req.flash("error", `${req.app.locals.i18n.common.flash.errorFile}: ${error.message}`);
                 }).
                 then(() => {
                     fs.unlink(req.file.path); // Delete the file uploaded at./uploads
@@ -268,7 +269,7 @@ exports.create = (req, res, next) => {
             res.render("escapeRooms/new", {escapeRoom});
         }).
         catch((error) => {
-            req.flash("error", `Error creating a new Escape Room: ${error.message}`);
+            req.flash("error", `${req.app.locals.i18n.common.flash.errorCreatingER}: ${error.message}`);
             next(error);
         });
 };
@@ -303,11 +304,10 @@ exports.update = (req, res, next) => {
         "teamSize"
     ]}).
         then((er) => {
-            req.flash("success", "Escape Room editada con éxito");
+            req.flash("success", req.app.locals.i18n.common.flash.successCreatingER);
             if (body.keepAttachment === "0") {
                 // There is no attachment: Delete old attachment.
                 if (!req.file) {
-                    // Req.flash("info", "This Escape Room has no attachment.");
                     if (er.attachment) {
                         attHelper.deleteResource(er.attachment.public_id);
                         er.attachment.destroy();
@@ -338,18 +338,18 @@ exports.update = (req, res, next) => {
                                 return attachment.save();
                             }).
                             then(() => {
-                                req.flash("success", "Imagen guardada con éxito.");
+                                req.flash("success", req.app.locals.i18n.common.flash.successImage);
                                 if (old_public_id) {
                                     attHelper.deleteResource(old_public_id);
                                 }
                             }).
                             catch((error) => { // Ignoring image validation errors
-                                req.flash("error", `Error al guardar el fichero: ${error.message}`);
+                                req.flash("error", `${req.app.locals.i18n.common.flash.errorFile}: ${error.message}`);
                                 attHelper.deleteResource(uploadResult.public_id);
                             });
                     }).
                     catch((error) => {
-                        req.flash("error", `Error al guardar el fichero: ${error.message}`);
+                        req.flash("error", `${req.app.locals.i18n.common.flash.errorFile}: ${error.message}`);
                     }).
                     then(() => {
                         fs.unlink(req.file.path); // Delete the file uploaded at./uploads
@@ -365,7 +365,7 @@ exports.update = (req, res, next) => {
             res.render("escapeRooms/edit", {escapeRoom});
         }).
         catch((error) => {
-            req.flash("error", `Error al editar la escape room: ${error.message}`);
+            req.flash("error", `${req.app.locals.i18n.common.flash.errorEditingER}: ${error.message}`);
             next(error);
         });
 };
@@ -393,7 +393,7 @@ exports.temasUpdate = (req, res, next) => {
             res.redirect(`/escapeRooms/${escapeRoom.id}/appearance`);
         }).
         catch((error) => {
-            req.flash("error", `Error al editar la escape room: ${error.message}`);
+            req.flash("error", `${req.app.locals.i18n.common.flash.errorEditingER}: ${error.message}`);
             next(error);
         });
 };
@@ -441,7 +441,7 @@ exports.retosUpdate = (req, res, next) => {
             res.redirect(`/escapeRooms/${req.escapeRoom.id}/${isPrevious ? "turnos" : progressBar || "hints"}`);
         }).
         catch((error) => {
-            req.flash("error", `Error al editar la escape room: ${error.message}`);
+            req.flash("error", `${error.message}`);
             next(error);
         });
 };
@@ -516,7 +516,7 @@ exports.pistasUpdate = (req, res, next) => {
                             });
                     }).
                     catch((error) => {
-                        req.flash("error", `Error al guardar el fichero: ${error.message}`);
+                        req.flash("error", `${req.app.locals.i18n.common.flash.errorFile}: ${error.message}`);
                     }).
                     then(() => {
                         fs.unlink(req.file.path); // Delete the file uploaded at./uploads
@@ -532,7 +532,7 @@ exports.pistasUpdate = (req, res, next) => {
             res.render("escapeRooms/hints", {escapeRoom});
         }).
         catch((error) => {
-            req.flash("error", `Error al editar la escape room: ${error.message}`);
+            req.flash("error", `${req.app.locals.i18n.common.flash.errorEditingER}: ${error.message}`);
             next(error);
         });
 };
@@ -566,7 +566,7 @@ exports.encuestasUpdate = (req, res, next) => {
             res.redirect(`/escapeRooms/${escapeRoom.id}/evaluation`);
         }).
         catch((error) => {
-            req.flash("error", `Error al editar la escape room: ${error.message}`);
+            req.flash("error", `${req.app.locals.i18n.common.flash.errorEditingER}: ${error.message}`);
             next(error);
         });
 };
@@ -595,7 +595,7 @@ exports.instructionsUpdate = (req, res, next) => {
             res.redirect(`/escapeRooms/${escapeRoom.id}/instructions`);
         }).
         catch((error) => {
-            req.flash("error", `Error al editar la escape room: ${error.message}`);
+            req.flash("error", `${req.app.locals.i18n.common.flash.errorEditingER}: ${error.message}`);
             next(error);
         });
 };
@@ -612,11 +612,11 @@ exports.destroy = (req, res, next) => {
 
     req.escapeRoom.destroy().
         then(() => {
-            req.flash("success", "Escape Room borrada con éxito");
+            req.flash("success", req.app.locals.i18n.common.flash.successDeletingER);
             res.redirect("/escapeRooms");
         }).
         catch((error) => {
-            req.flash("error", `Error deleting the Escape Room: ${error.message}`);
+            req.flash("error", `${req.app.locals.i18n.common.flash.errorDeletingER}: ${error.message}`);
             next(error);
         });
 };

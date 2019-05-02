@@ -18,7 +18,7 @@ exports.deleteExpiredUserSession = (req, res, next) => {
     if (req.session.user) { // There exista user's session
         if (req.session.user.expires < Date.now()) { // Expired
             delete req.session.user; // Logout
-            req.flash("info", "User session has expired.");
+            req.flash("info", req.app.locals.i18n.user.sessionExpired);
         } else { // Not expired. Reset value.
             req.session.user.expires = Date.now() + maxIdleTime;
         }
@@ -191,12 +191,12 @@ exports.create = (req, res, next) => {
                     res.redirect(`users/${user.id}/escapeRooms`);
                 }
             } else {
-                req.flash("error", "Authentication has failed. Retry it again.");
+                req.flash("error", req.app.locals.i18n.user.wrongCredentials);
                 res.render("index", {redir});
             }
         }).
         catch((error) => {
-            req.flash("error", `An error has occurred: ${error}`);
+            req.flash("error", `${error}`);
             next(error);
         });
 };

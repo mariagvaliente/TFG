@@ -3,19 +3,19 @@
 <div class="main student">
     <div class="dialog" >
         </br>
-        Añada un equipo:
+        <%=i18n.team.add%>:
         </br>
         </br>
         <div class="">
                 <div>
                     <form method="POST" id="newForm" action="/escapeRooms/<%= escapeRoom.id %>/users/<%= session.user.id %>/turnos/<%= turno.id %>/teams">
                         <div>
-                            <input type="text" id="name" required name="name" placeholder="Escribe el nombre del equipo" autocomplete="off"/>
-                            <p class="info">Tus compañeros podrán unirse a tu equipo cuando se registren en la escape room.</p>
+                            <input type="text" id="name" required name="name" placeholder="<%=i18n.team.addPlaceHolder%>" autocomplete="off"/>
+                            <p class="info"> <%=i18n.team.addMsg%>.</p>
                         </div>
                         <div class="join-button-flex-container">
-                        <a  href="javascript:history.back()"><button class="rounded deleteButton" type="button">volver</button></a>
-                        <button class="rounded acceptButton" type="submit">finalizar</button>
+                        <a  href="javascript:history.back()"><button class="rounded deleteButton" type="button"><%=i18n.common.back%></button></a>
+                        <button class="rounded acceptButton" type="submit"><%=i18n.common.finish%></button>
                         </div>
                     </form>
                 </div>

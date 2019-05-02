@@ -24,9 +24,9 @@
 	<% const turno = participant.teamsAgregados[0].turno%>
 	<h3 class="animated slideInUp">Indicaciones</h3>
 	<p class="desc animated slideInUp">
-		<%= turno.indications || "Ninguna" %>
+		<%= turno.indications || i18n.turnos.noIndications %>
 	</p>
-	<h3 class="animated slideInUp">Descripción</h3>
+	<h3 class="animated slideInUp"><%=i18n.turnos.Description%></h3>
 	<p class="desc animated slideInUp"><%=escapeRoom.description%></p>
 
 	<div class="status">
@@ -40,10 +40,10 @@
 			if (lessThanHalfAnHour) {%>
 				<div class="desc centered animated slideInLeft">
 					<% if (escapeRoom.pretest) { %>
-					Antes de empezar rellena el siguiente cuestionario 
+					<%=i18n.showStudent.beforeStart%>
 					<br/><br/>
 					<a target="_blank" href="<%=escapeRoom.pretest%>">
-						<button class="rounded">acceder</button>
+						<button class="rounded"><%=i18n.showStudent.access%></button>
 					</a>
 					<% } %>
 				</div>
@@ -54,18 +54,19 @@
 		<% } else {%>
 			<% if (escapeRoom.posttest) { %>
 				<div class="desc centered animated slideInLeft">
-					Antes de irte rellena el siguiente cuestionario <br/><br/>
+					<%=i18n.showStudent.beforeLeave%>
+					 <br/><br/>
 					<a target="_blank" href="<%=escapeRoom.pretest%>">
-						<button class="rounded">acceder</button>
+						<button class="rounded"><%=i18n.showStudent.access%></button>
 					</a> 
 				</div>
 				<br/><br/><br/>
 			<% } %>
 			<% if (escapeRoom.survey) { %>
 				<div class="desc centered animated slideInRight">
-					¡Tu opinión cuenta! Dinos lo que piensas de la escape room <br/><br/>
+					<%=i18n.showStudent.opinion%> <br/><br/>
 					<a  target="_blank" href="<%=escapeRoom.survey%>">
-						<button class="rounded">acceder</button>
+						<button class="rounded"><%=i18n.showStudent.access%></button>
 					</a>
 				</div>
 			<% } %>
@@ -74,7 +75,7 @@
 	<br/><br/><br/><br/>
 	<form id="unjoin" method="post" 
 	action="/escapeRooms/<%=escapeRoom.id%>/turno/<%=participant.teamsAgregados[0].turno.id%>/team/<%=participant.teamsAgregados[0].id%>?_method=delete">
-		<input type="submit" class="rounded inverse" onclick="return confirm('¿Seguro que deseas desapuntarte?');" value="desapuntarse"></input>
+		<input type="submit" class="rounded inverse" onclick="return confirm('<%=i18n.showStudent.sureUnjoin%>');" value="<%=i18n.showStudent.unjoin%>"></input>
 	</form>
 	<br/><br/><br/>
 </div>

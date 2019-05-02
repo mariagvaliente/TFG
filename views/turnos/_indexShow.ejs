@@ -1,5 +1,23 @@
 
 <%
+const monthArray = [ 
+	i18n.turnos.months.jan,
+    i18n.turnos.months.feb,
+    i18n.turnos.months.mar,
+    i18n.turnos.months.apr,
+    i18n.turnos.months.may,
+    i18n.turnos.months.jun,
+    i18n.turnos.months.jul,
+    i18n.turnos.months.aug,
+    i18n.turnos.months.sep,
+    i18n.turnos.months.oct,
+    i18n.turnos.months.nov,
+    i18n.turnos.months.dec
+];
+
+const formatDate = function (currentDate) {
+    return `${currentDate.getDate()} de ${monthArray[currentDate.getMonth()]} de ${currentDate.getFullYear()}`;
+};
 var pastDates = [];
 %>
 <div>
@@ -23,7 +41,7 @@ var pastDates = [];
 				<% if (turn.indications) { %>
 					<%= turn.indications %> <br/>
 				<% } else { %> 
-					<em class="no-indications"> Sin indicaciones</em>
+					<em class="no-indications"><%=i18n.turnos.noIndications%></em>
 				<% } %>
 			</div>
 		</div>

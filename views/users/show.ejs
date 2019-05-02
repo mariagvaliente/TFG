@@ -1,22 +1,22 @@
 
 <div class="main">
     <h1>
-        Usuario:
+    <%=i18n.user.title%>:
     </h1>
 
     <ul>
         <li>
-            E-mail:
+            <%=i18n.user.username%>:
             <b><%= user.username %></b>
         </li>
 
         <li>
             Rol:
-            <b><%= user.isStudent ? "Estudiante" : "Profesor" %></b>
+            <b><%= user.isStudent ? i18n.user.roles.student : i18n.user.roles.teacher %></b>
         </li>
         <% if(user.isAdmin) {%>
         <li>
-            <b>Administrador</b>: Sí
+            <b>i18n.user.roles.admin</b>: Sí
         </li>
         <% } %>
 
@@ -26,20 +26,20 @@
     <p>
         <% if (session.user.isAdmin || session.user.id === user.id) { %>
         <a href="/users/<%= user.id %>/edit">
-            <button type="button"> Edit</button>
+            <button type="button"><%=i18n.common.edit%></button>
         </a>
         <% } %>
         <% if (session.user.isAdmin && session.user.id !== user.id) { %>
         <a href="/users/<%= user.id %>?_method=DELETE">
             <button type="button"
-                    onClick="return confirm('Delete user: <%= user.username %>');">
-                Delete
+                    onClick="return confirm('<%=i18n.common.delete%> <%=i18n.user.title%>: <%= user.username %>');">
+                <%=i18n.common.delete%>
             </button>
         </a>
         <% } %>
     </p>
     <% } %>
 
-    <a href="/goback"><button type="button">Go back</button></a>
+    <a href="/goback"><button type="button"><%=i18n.common.back%></button></a>
 
 </div>

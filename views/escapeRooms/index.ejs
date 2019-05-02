@@ -5,9 +5,9 @@
         <% if (escapeRooms==0) { %>
         <h1>
             <% if (user && user.isStudent) { %>
-                No tienes ninguna escape room activa, espera a que tu profe te de acceso a alguna...
+                <%=i18n.escapeRoom.main.noERStudent%>
             <% } else { %>
-                No has creado ninguna escape room, gestiónalas desde aquí...
+                <%=i18n.escapeRoom.main.noERTeacher%>
             <% } %>
         </h1>
         <div class="flexBoxEscapeRooms">
@@ -22,9 +22,9 @@
         <% } else {  %>
         <h1>
             <% if (user && user.isStudent) { %>
-                Estas son tus escape rooms
+                <%=i18n.escapeRoom.main.yesERStudent%>
             <% } else { %>
-                Gestiona las escape rooms desde aquí...
+                <%=i18n.escapeRoom.main.yesERTeacher%>
             <% } %>
         </h1>
 
