@@ -46,7 +46,8 @@ exports.puzzlesByParticipants = (req, res, next) => {
         options.include[0].where.id = turnId;
     }
     if (orderBy) {
-        options.order = Sequelize.literal(`lower(user.${orderBy}) ASC`);
+        const isPg = process.env.APP_NAME;
+        options.order = Sequelize.literal(isPg ? `lower("user"."${orderBy}") ASC`: `lower(user.${orderBy}) ASC`) : ;
     }
     const puzzles = escapeRoom.puzzles.map((puz) => puz.id);
     const puzzleNames = escapeRoom.puzzles.map((puz) => puz.title);
