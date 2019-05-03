@@ -210,20 +210,6 @@ button, input[type="submit"] {
     #mainSection .main footer {
       margin-left: calc(600px - 50vw); } }
 
-@media (max-width: 1200px) {
-  #mainSection .menuERShow {
-    flex-wrap: wrap;
-    flex: 1; }
-    #mainSection .menuERShow .attachmentShow {
-      width: 100%;
-      max-width: 100%; }
-    #mainSection .menuERShow .menuERShowRight {
-      width: 100%;
-      margin-left: 0px;
-      border-left: none; }
-      #mainSection .menuERShow .menuERShowRight .menuERactionList {
-        padding: 0px; } }
-
 @media (max-width: 768px) {
   #mainHeader #logoImg, #mainFooter #logoImg {
     width: 22%; }
@@ -554,11 +540,57 @@ button, input[type="submit"] {
 
 #mainSection .main .progress-buttons {
   border-radius: 25px;
-  padding: 10px 20px; }
+  padding: 10px 20px;
+  margin-right: 5px; }
   #mainSection .main .progress-buttons#exit {
     border: 2px solid white;
     background-color: transparent;
     color: white; }
+
+#mainSection .progressBar {
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  left: 25%;
+  color: white;
+  text-align: center;
+  padding-bottom: 10px;
+  margin-bottom: 25px; }
+  #mainSection .progressBar .progressText {
+    padding-bottom: 10px;
+    font-size: 14px; }
+  #mainSection .progressBar .outterBar {
+    height: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    position: relative;
+    z-index: 9999;
+    overflow: hidden; }
+    #mainSection .progressBar .outterBar .innerBar {
+      background-color: white;
+      height: 100%;
+      position: absolute;
+      display: inline-block;
+      border: none;
+      border-radius: 0px;
+      border-width: 0px;
+      padding: 0px; }
+      #mainSection .progressBar .outterBar .innerBar:hover {
+        opacity: 0.7 !important; }
+
+@media (max-width: 768px) {
+  #mainSection .main .menuERShow {
+    flex-wrap: wrap;
+    flex: 1; }
+    #mainSection .main .menuERShow .attachmentShow {
+      width: 100%;
+      max-width: 100%; }
+    #mainSection .main .menuERShow .menuERShowRight {
+      width: 100%;
+      margin-left: 0px;
+      border-left: none; }
+      #mainSection .main .menuERShow .menuERShowRight .menuERactionList {
+        padding: 0px; } }
 
 @media (max-width: 992px) {
   .half-flex-container {
@@ -1502,35 +1534,6 @@ html {
       width: 100%;
       margin-left: -15px;
       padding: 18px; }
-    html body .progressBar {
-      position: absolute;
-      bottom: 0;
-      width: 50%;
-      left: 25%;
-      color: white;
-      text-align: center;
-      padding-bottom: 10px; }
-      html body .progressBar .progressText {
-        padding-bottom: 10px;
-        font-size: 14px; }
-      html body .progressBar .outterBar {
-        height: 10px;
-        border: 2px solid white;
-        border-radius: 5px;
-        position: relative;
-        z-index: 9999;
-        overflow: hidden; }
-        html body .progressBar .outterBar .innerBar {
-          background-color: white;
-          height: 100%;
-          position: absolute;
-          display: inline-block;
-          border: none;
-          border-radius: 0px;
-          border-width: 0px;
-          padding: 0px; }
-          html body .progressBar .outterBar .innerBar:hover {
-            opacity: 0.7 !important; }
     html body input, html body select {
       background-color: #232951;
       -webkit-text-fill-color: #656683 !important;
