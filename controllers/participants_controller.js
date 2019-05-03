@@ -47,7 +47,8 @@ exports.index = (req, res, next) => {
     }
     if (orderBy) {
         const isPg = process.env.APP_NAME;
-        options.order = Sequelize.literal(isPg ? `lower("user"."${orderBy}") ASC`: `lower(user.${orderBy}) ASC`);
+
+        options.order = Sequelize.literal(isPg ? `lower("user"."${orderBy}") ASC` : `lower(user.${orderBy}) ASC`);
     }
     models.user.findAll(options).then((users) => {
         const participants = [];

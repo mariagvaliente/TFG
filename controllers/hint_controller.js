@@ -47,7 +47,6 @@ exports.update = (req, res, next) => {
     const back = `/escapeRooms/${escapeRoom.id}/puzzles`;
 
     hint.content = content;
-    console.log(hint, content);
     hint.save({"fields": ["content"]}).
         then(() => {
             req.flash("success", req.app.locals.i18n.common.flash.successEditingHint);
@@ -87,6 +86,7 @@ exports.hintAppWrapper = (req, res) => {
         "escapeRoom": req.escapeRoom});
 };
 
+// GET /escapeRooms/:escapeRoomId/requestHintt
 exports.requestHint = (req, res) => {
     const {escapeRoom, body} = req;
     const {score, status} = body;
@@ -172,7 +172,8 @@ exports.requestHint = (req, res) => {
                                 }).save().
                                     then(() => {
                                         res.json({"msg": pista,
-                                            "ok": Boolean(hintId)});
+                                            "ok": true,
+                                            "alert": hintId ? false : req.app.locals.i18n.hint.dontClose});
                                     });
                             });
                         });

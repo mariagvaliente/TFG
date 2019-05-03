@@ -48,11 +48,15 @@
                         <h4><%=i18n.hint.Hints%></h4>
                         <ul id="hintList" >
                         <% for (var h in hints) {
-                            let hint = hints[h].hint;
-                            if (hint && hint.id) {%>
+                            let hint = hints[h];
+                            if (hint) {%>
                             <li>
-                                <div class="alert alert-warning">
-                                    <%=hint.content%>
+                                <div class="card border-info mb-3">
+                                    <div class="card-body">
+                                        <div class="card-text">
+                                            <%=hint.hint ? hint.hint.content : i18n.hint.empty%>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
                         <% }

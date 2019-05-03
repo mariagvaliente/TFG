@@ -37,7 +37,6 @@ exports.play = (req, res) => {
     }).then((teams) => {
         const team = teams && teams[0] ? teams[0] : [];
 
-        console.log(team.turno);
         models.requestedHint.findAll({
             "where": {
                 "teamId": team.id,
@@ -65,6 +64,5 @@ exports.preTest = (req, res) => {
 exports.postTest = (req, res) => {
     res.render("escapeRooms/play/posttestandsurvey", {"escapeRoom": req.escapeRoom});
 };
-
 
 

@@ -50,4 +50,10 @@ p {
     display: inline-block;
     list-style: none;
     padding-left: 0px;
+
+}
+
+#hintList .card{
+    display: inline-block;
+    width: auto;
 }

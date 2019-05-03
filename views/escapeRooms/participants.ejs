@@ -2,28 +2,29 @@
 
 <div class="main participants">
     <h2><%=i18n.participant.title%></h2>
-        <div class="filters">
-            <label for="turnId"><%=i18n.turnos.Turno%>
-                <select name="turnId" id="turnId">
-                    <option value="" <%= !turnId ? "selected": ""%> ><%=i18n.turnos.all%></option>
-                    <% for (t in escapeRoom.turnos) { %>
-                    <% var turno = escapeRoom.turnos[t] %>
-                    <option value="<%=turno.id%>" <%= turnId == turno.id ? "selected" : "" %> >
-                        <%= getFullDate(turno.date)%>
-                    </option>
-                    <% } %>
-                </select>
-            </label>
-            <label for="orderBy"><%=i18n.common.orderBy%>
-                <select name="orderBy" id="orderBy">
-                    <option value="" <%= !orderBy ? "selected": ""%>  disabled></option>
-                    <option value="name" <%= orderBy === "name" ? "selected": ""%>><%=i18n.user.name%></option>
-                    <option value="surname" <%= orderBy === "surname" ? "selected": ""%>><%=i18n.user.surname%></option>
-                    <option value="dni" <%= orderBy === "dni" ? "selected": ""%>><%=i18n.user.dni%></option>
-                    <option value="username" <%= orderBy === "username" ? "selected": ""%>><%=i18n.user.username%></option>
-                </select></label>
-            <button type="submit" class="filter-button white" ><%=i18n.common.filter%></button>
-        </div>
+        <form method="get" class="teamsList" action="/escapeRooms/<%= escapeRoom.id %>/participants">
+            <div class="filters">
+                <label for="turnId"><%=i18n.turnos.Turno%>
+                    <select name="turnId" id="turnId">
+                        <option value="" <%= !turnId ? "selected": ""%> ><%=i18n.turnos.all%></option>
+                        <% for (t in escapeRoom.turnos) { %>
+                        <% var turno = escapeRoom.turnos[t] %>
+                        <option value="<%=turno.id%>" <%= turnId == turno.id ? "selected" : "" %> >
+                            <%= getFullDate(turno.date)%>
+                        </option>
+                        <% } %>
+                    </select>
+                </label>
+                <label for="orderBy"><%=i18n.common.orderBy%>
+                    <select name="orderBy" id="orderBy">
+                        <option value="" <%= !orderBy ? "selected": ""%>  disabled></option>
+                        <option value="name" <%= orderBy === "name" ? "selected": ""%>><%=i18n.user.name%></option>
+                        <option value="surname" <%= orderBy === "surname" ? "selected": ""%>><%=i18n.user.surname%></option>
+                        <option value="dni" <%= orderBy === "dni" ? "selected": ""%>><%=i18n.user.dni%></option>
+                        <option value="username" <%= orderBy === "username" ? "selected": ""%>><%=i18n.user.username%></option>
+                    </select></label>
+                <button type="submit" class="filter-button white" ><%=i18n.common.filter%></button>
+            </div>
         <div class="flex-table-retos-wrapper">
             <div class="flex-table-retos animated jello">
                 <div class="flex-row-retos flex-row-retos-title">

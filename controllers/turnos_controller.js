@@ -8,7 +8,7 @@ exports.load = (req, res, next, turnId) => {
             "include": {
                 "model": models.user,
                 "as": "teamMembers"
-            }}
+            }, order: [["date","ASC"]]}
     ]};
 
     if (req.session.user) {
@@ -41,7 +41,7 @@ exports.indexStudent = (req, res, next) => {
         "include": {
             "model": models.user,
             "as": "students"
-        }
+        }, order: [["date","ASC"]]
     }).
         then((turnos) => {
             res.render("turnos/_indexStudent.ejs", {turnos,
@@ -55,7 +55,7 @@ exports.indexStudent = (req, res, next) => {
 exports.indexActivarTurno = (req, res, next) => {
     const {escapeRoom} = req;
 
-    models.turno.findAll({"where": {"escapeRoomId": req.escapeRoom.id}}).
+    models.turno.findAll({"where": {"escapeRoomId": req.escapeRoom.id}, order: [["date","ASC"]]}).
         then((turnos) => {
             res.render("turnos/_indexActivarTurno.ejs", {turnos,
                 escapeRoom});

@@ -179,12 +179,13 @@
         }
     },
     "hint": {
+        "failed": "Lo siento, sigue intentándolo",
         "failMessage": "Lo siento, tendrás que seguir intentándolo",
+        "dontClose": "No quedan más pistas automáticas para tu situación. Puedes llamar al profesor para que te dé una personalizada. No cierres este mensaje hasta que venga",
+        "empty": "Pista personalizada",
         "Hints": "Pistas",
         "need": "¿Necesitas una pista?",
-        "successMessage": "Enhorabuena! Has conseguido una nueva pista",
-        "empty": "No quedan más pistas automáticas para tu situación. Puedes llamar al profesor para que te dé una personalizada.",
-        "failed": "Lo siento, sigue intentándolo"
+        "successMessage": "Enhorabuena! Has conseguido una nueva pista"
     },
     "participant": {
         "attendanceSaved": "Asistencia guardada correctamente",

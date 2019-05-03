@@ -122,7 +122,6 @@ router.get("/escapeRooms/:escapeRoomId(\\d+)/pretest", sessionController.loginRe
 router.get("/escapeRooms/:escapeRoomId(\\d+)/posttest", sessionController.loginRequired, sessionController.studentOrAdminRequired, playController.postTest);
 
 
-
 router.get("/inspiration", sessionController.loginRequired, (req, res) => res.render("inspiration"));
 router.post("/escapeRooms/:escapeRoomId(\\d+)/confirm", sessionController.loginRequired, participantController.confirmAttendance);
 
