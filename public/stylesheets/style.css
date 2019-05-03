@@ -1443,6 +1443,34 @@ button, input[type="submit"] {
     list-style-type: lower-alpha; }
   .main.inspiration .narrative {
     width: 80px; }
+  .main.inspiration table img {
+    width: 80px; }
+  .main.inspiration .specialList {
+    list-style: none; }
+    .main.inspiration .specialList li::before {
+      content: "\2022";
+      color: #FAC855;
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em; }
+  .main.inspiration .flex-horizontal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center; }
+    .main.inspiration .flex-horizontal .square {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      text-align: center;
+      justify-content: flex-end;
+      align-items: center; }
+      .main.inspiration .flex-horizontal .square img {
+        width: 80px; }
+      .main.inspiration .flex-horizontal .square span {
+        font-weight: bold;
+        color: #F47E84; }
 
 * {
   font-family: 'Gugi', "Lucida Grande", Helvetica, Arial, sans-serif;

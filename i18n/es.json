@@ -30,6 +30,7 @@
         "cancel": "cancelar",
         "continue": "continuar",
         "delete": "borrar",
+        "download": "descargar",
         "edit": "editar",
         "exit": "salir",
         "filter": "filtrar",
@@ -190,8 +191,80 @@
         "successMessage": "Enhorabuena! Has conseguido una nueva pista"
     },
     "inspiration": {
+        "downloadText": "También puedes descargar la guía completa",
+        "intro": "¿No sabes por donde empezar a crear tu <em>escape room</em>? <br/> Sigue los siguientes pasos",
         "title": "Guía para crear una escape room",
-        "intro": "¿No sabes por donde empezar a crear tu <em>escape room</em>? <br/> Sigue los siguientes pasos"
+        "steps": {
+            "first": {
+                "title": "Paso 1: Establecer el planteamiento general",
+                "intro": "Una buena manera de empezar a diseñar una <em>escape room</em> educativa es establecer cómo va a encajar la actividad dentro de la asignatura y así poder dimensionar correctamente la actividad.",
+                "list": {
+                    "first": "Opcional u obligatoria",
+                    "second": "Evaluable o extra",
+                    "third": "Individual o por grupos",
+                    "fourth": "En horario de clase o fuera de este",
+                    "fifth": "Duración",
+                    "sixth": "Recursos necesarios: espacio físico, uso de material especial, presupuesto..."
+                }
+            },
+            "second": {
+                "title": "Paso 2: Definir los objetivos de aprendizaje",
+                "intro": "Una vez definida la actividad en el contexto de la asignatura en la cual se va a desarrollar, es necesario delimitar qué contenidos específicos del temario va a cubrir la <em>escape room</em>, al igual que ocurre en cualquier otra actividad didáctica. Se recomienda establecer primero unos objetivos generales y a continuación desgranar éstos en objetivos más específicos que los alumnos deben lograr para superar la actividad."
+            },
+            "third": {
+                "title": "Paso 3: Escoger los retos",
+                "intro": "En base a los objetivos establecidos en el paso anterior, es necesario identificar la manera apropiada de poner a prueba los conocimientos de los alumnos, combinando tareas que involucren la aplicación práctica de las habilidades adquiridas en la asignatura con conocimientos teóricos. Los retos a los que los alumnos se enfrentan son altamente dependientes de la asignatura en la que se enmarca la actividad.<br/>Algunos ejemplos de estos recursos se muestran a continuación. Puedes acceder a un listado de recursos concretos pinchando sobre cada icono.",
+                "middle": "Estos retos pueden crearse fácilmente con plataformas web. Si decides añadir retos que involucren objetos físicos, piensa primero si estos se adaptan al planteamiento general de tu actividad. Algunos ejemplos son:",
+                "list": {
+                    "search": "Búsqueda de objetos físicos escondidos",
+                    "unusual": "Empleo inusual de algún objeto",
+                    "light": "Luces, sonidos, olores…",
+                    "coded": "Mensajes codificados",
+                    "assembly": "Formar las partes de un objeto",
+                    "info": "Extraer información",
+                    "logic": "Lógica abstracta"
+                }
+            },
+            "fourth": {
+                "title": "Paso 4: Seleccionar una temática apropiada",
+                "intro": "La temática es una de las piezas clave que diferencia una <em>escape room</em> de un ejercicio práctico en grupo. Se trata de la historia que envuelve toda la experiencia y que proporciona el carácter inmersivo del juego. Aporta sentido a las tareas que los alumnos deben realizar durante la <em>escape room</em> y cohesiona todas las pruebas de la actividad. Cuando desarrolles la temática has de tener en cuenta:",
+                "list": {
+                    "first": "<strong>La narrativa</strong>,  el contexto temporal y el espacial",
+                    "second": "<strong>El perfil del alumno</strong> al que va dirigido",
+                    "third": "<strong>La coherencia</strong> entre la temática y los retos escogidos",
+                    "fourth": "Incluir el <strong>factor tiempo</strong> en la temática",
+                    "sciencefiction": "Fantasía o ciencia ficción",
+                    "thriller": "Suspense",
+                    "adventure": "Aventuras",
+                    "history": "Historia"
+                },
+                "booksAndMovies": "Una buena fuente de inspiración para seleccionar una temática son los libros, los videojuegos, y las películas y series famosas, ya que es probable que los alumnos conozcan la trama o los personajes de antemano.  Por supuesto, la asignatura en la que se enmarque la <em>escape room</em> ejercerá una gran influencia en la selección de la temática, puesto que los retos a superar deben estar apoyados por la narrativa. Algunos ejemplos de temáticas son:"
+            },
+            "fifth": {
+                "title": "Paso 5: Construir los retos, pistas y demás materiales",
+                "intro" : "Por último, con el diseño de la <em>escape room</em> y los recursos disponibles en mente, es hora de comenzar a construir todas las piezas.",
+                "puzzles": {
+                    "title": "Retos",
+                    "content": "Para construir los retos es común emplear recursos físicos como candados, llaves, cajas, equipamiento de laboratorio, rompecabezas, etc. En el caso de una <em>escape room</em> en las que muchos alumnos participan simultáneamente, este tipo de recursos pueden aumentar en gran medida el presupuesto necesario para la actividad. Una solución es combinar recursos físicos sencillos (de papel, por ejemplo) con recursos digitales gratuitos: aplicaciones móviles, sonidos, puzzles virtuales, etc."
+                },
+                "hints": {
+                    "title": "Pistas",
+                    "content": "Una parte esencial en el diseño de toda <em>escape room</em> son las pistas y ayudas. Es esencial evitar que los alumnos pasen demasiado tiempo en un mismo reto ya que, si esto ocurre, se corre el riesgo de que pierdan la motivación. Además, esa situación puede ser contraproducente desde el punto de vista pedagógico, ya que los alumnos no se enfrentarán  a la totalidad de los retos. Para evitar que la petición de ayuda sea constante, una posibilidad es idear una batería de preguntas que los alumnos tengan que intentar responder cada vez que necesiten una pista. Si consiguen acertar más de un número determinado de preguntas, conseguirán una pista. De esta manera los alumnos se ganarán el derecho a obtener ayuda y se ponen a prueba sus conocimientos teóricos acerca de la asignatura para complementar el contenido práctico que se pone en práctica en la <em>escape room</em>."
+                },
+                "instructions": {
+                    "title": "Instrucciones",
+                    "intro": "Antes de comenzar el desarrollo de la actividad, es importante presentar el juego a los alumnos. Es importante aclarar cuáles son los límites de la actividad, si pueden salir de la sala, si pueden hacer uso de sus dispositivos móviles, si pueden hablar con los demás equipos, etc. A continuación, se les introduce a la temática presentando el objetivo a lograr en la <em>escape room</em> y dando indicaciones de por donde empezar. Esto se puede hacer en forma de videomensaje en el que un personaje (ya sea el profesor o un “actor”) apela a los alumnos para que le ayuden a resolver un misterio, crimen, enigma, etc. También se puede aproximar desde la perspectiva contraria, mostrando un video en el que el personaje ejerce un papel de villano que amenaza a los alumnos."
+                }
+            },
+            "sixth": {
+                "title": "Paso 6: Probar la escape room",
+                "intro": "Detectar y arreglar los errores es crucial para el éxito de una <em>escape room</em> educativa, puesto que la presencia de un fallo podría tener consecuencias catastróficas en el desarrollo de la actividad. Por ello, es necesario probar los retos primero de forma individual y después realizar una simulación completa."
+            },
+            "seventh": {
+                "title": "Paso 7: Elaborar una forma de evaluar la experiencia",
+                "intro": "Existen varias maneras de evaluar si los alumnos han aprendido realizando la actividad. Una manera es mediante un grupo de control, comparando las notas de los alumnos que realizaron la escape room con los que no. Otra manera es realizando un test al principio de la escape room y al final, comprobando si ha habido un incremento significativo de los conocimientos de los alumnos. Por último, al final de la actividad es conveniente realizar una encuesta para conocer la opinión de los alumnos acerca de la escape room."
+            }
+        }
     },
     "participant": {
         "attendanceSaved": "Asistencia guardada correctamente",
