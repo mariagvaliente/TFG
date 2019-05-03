@@ -25,9 +25,9 @@
 				"n": <%= escapeRoom.numQuestions || 1 %>,
 				"scormVersion":"1.2",
 				"showInfoModal":false,
-				"threshold": <%= escapeRoom.numRight || 50 %>,
-				"successMessage": <%=i18n.hint.successMessage%>,
-				"failMessage": <%=i18n.hint.failMessage%>,
+				"threshold": "<%= escapeRoom.numRight || 50 %>",
+				"successMessage": "<%=i18n.hint.successMessage%>",
+				"failMessage": "<%=i18n.hint.failMessage%>",
 				"moodleXMLPath": "<%=escapeRoom.hintApp.url %>",
 				"dev": false
 			}
