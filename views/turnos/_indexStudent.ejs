@@ -31,6 +31,7 @@ const formatDate = function (currentDate) {
         <%
         var pastDates = [];
         var firstDiv = false;
+        turnos = turnos.filter(t=>t.status !== "finished");
         %>
         <%if (turnos && turnos.length > 0) {%>
             <div class="owl-carousel">
