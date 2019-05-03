@@ -458,9 +458,10 @@ exports.pistasUpdate = (req, res, next) => {
     const isPrevious = Boolean(body.previous);
     const progressBar = body.progress;
     const {numQuestions, numRight, feedback} = body;
-
+    let pctgRight = (numRight || numRight === 0) ? ((numRight >=0  && numRight <= numQuestions) ? numRight : numQuestions) : (numQuestions || 0)/2;
+    pctgRight = pctgRight * 100 / (numQuestions || 1);
     escapeRoom.numQuestions = numQuestions;
-    escapeRoom.numRight = numRight;
+    escapeRoom.numRight = pctgRight;
     escapeRoom.feedback = Boolean(feedback);
 
     const back = `/escapeRooms/${escapeRoom.id}/${isPrevious ? "puzzles" : progressBar || "instructions"}`;

@@ -1136,7 +1136,10 @@ button, input[type="submit"] {
     #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-surname {
       width: 15%; }
     #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-username {
-      width: 15%; }
+      width: 15%;
+      text-overflow: ellipsis;
+      white-space: pre;
+      overflow: hidden; }
     #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-dni {
       width: 15%; }
     #mainSection .main.participants .flex-table-retos-wrapper .flex-table-retos .flex-row-retos .flex-cell.flex-gender {

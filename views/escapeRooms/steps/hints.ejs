@@ -33,16 +33,17 @@
 	  </div>
 		<div class="wideRow erFormField">
 		  <label for="vid"  class="itemNarrow">2. <%=i18n.escapeRoom.steps.hints.questionNumber%>:</label>
-		  <p class="explanation">Se seleccionarán aleatoriamente del fichero MoodleXML</p>
+		  <p class="explanation"><%=i18n.escapeRoom.steps.hints.questionNumberExplanation%></p>
 		  <input type="number" min="1" class="customInput itemWide" id="numQuestions" name="numQuestions" value="<%= escapeRoom.numQuestions %>" placeholder="<%=i18n.escapeRoom.steps.hints.questionNumberPlaceHolder%>" autocomplete="off"/>
 		</div>
 		<div class="wideRow erFormField">
 		    <label for="vid"  class="itemNarrow">3. <%=i18n.escapeRoom.steps.hints.correctNumber%>:</label>
-		    <input type="number" min="0" max="100" class="customInput itemWide" id="numRight" name="numRight" value="<%= escapeRoom.numRight %>" placeholder="<%=i18n.escapeRoom.steps.hints.correctNumberPlaceHolder%>" autocomplete="off"/>
+		    <input type="number" min="0" class="customInput itemWide" id="numRight" name="numRight" value="<%= Math.round(escapeRoom.numRight/100*escapeRoom.numQuestions)  %>" placeholder="<%=i18n.escapeRoom.steps.hints.correctNumberPlaceHolder%>" autocomplete="off"/>
 		</div>
 		<div class="wideRow erFormField">
 		    <label for="vid"  class="itemNarrow">4. <%=i18n.escapeRoom.steps.hints.feedback%>:
 		    <input type="checkbox" class="customCheckbox" id="feedback" name="feedback" <%= escapeRoom.feedback ? "checked" : "" %> autocomplete="off"/></label>
+		    <p class="explanation"><%=i18n.escapeRoom.steps.hints.feedbackExplanation%></p>
 		</div>		
 		<br/><br/><br/>
 	  	<div class="align-right flex-buttons" style="margin-bottom: 60px;">
