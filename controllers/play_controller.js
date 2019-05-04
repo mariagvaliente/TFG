@@ -53,6 +53,7 @@ exports.play = (req, res) => {
                 "layout": false});
         });
     });
+
 };
 
 // GET /escapeRooms/:escapeRoomId/pretest

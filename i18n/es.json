@@ -288,7 +288,8 @@
         "Puzzles": "Retos",
         "writeSol": "Escriba la solución",
         "wrongAnswer": "Respuesta incorrecta",
-        "correctAnswer": "¡Reto superado!"
+        "correctAnswer": "¡Reto superado!",
+        "finish": "¡Has superado todos los retos!"
     },
     "showStudent": {
         "access": "acceder",

@@ -70,12 +70,36 @@
                 </div>
             </div>
         <% } %>
-        <%if (!escapeRoom.automatic) { %>
+        <br/><br/>
+
+        <%if (escapeRoom.automatic === "0") { %>
             <div class="dialog" >
-                <h1><%=i18n.puzzle.Puzzles%></h1>
+                <h4><%=i18n.puzzle.Puzzles%></h4>
                 <div class="dialog-content">
-                    <% for(var reto in escapeRoom.puzzles) { %>
-                        <% var puzzle = escapeRoom.puzzles[reto] %>
+                    <% var array = []; %>
+                    <% for (var i = 0; i < escapeRoom.puzzles.length; i++) { %>
+                        <% var igual=false; %>
+                        <%if (team.retos.length === 0) { %>
+                        <%array.push(escapeRoom.puzzles[i])%>
+                        <% }else {%>
+                            <% for (var j = 0; j < team.retos.length && !igual; j++) {%>
+                                <% if(escapeRoom.puzzles[i]['id'] == team.retos[j]['id'] &&
+                                        escapeRoom.puzzles[i]['title'] == team.retos[j]['title']){%>
+                                <%igual=true;%>
+                                <%}%>
+                                <%if(!igual)array.push(escapeRoom.puzzles[i]);%>
+                                <%escapeRoom.puzzles.splice(i, 1);%>
+                                <%team.retos.splice(j, 1);%>
+                                <%i--;%>
+                            <%}%>
+                        <%}%>
+                    <%}%>
+                    <%if (array.length === 0) { %>
+                    <h5><%=i18n.puzzle.finish%></h5>
+                    <%} else {%>
+                    <% for (var reto in array){ %>
+                        <% var puzzle = array[reto] %>
+
                         <div class="flex-cell flex-cell-retos">
                             <div class="retoTextArea editable" data-reto="<%=puzzle.id%>" data-id="title"><%= puzzle.title%></div>
                         </div>
@@ -89,7 +113,8 @@
                                 <button type="submit" class="btn btn-warning">check</button>
                             </form>
                         </div>
-                    <% } %>
+                    <%}%>
+                    <%}%>
                 </div>
             </div>
         <% } else {%>
