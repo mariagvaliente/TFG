@@ -298,6 +298,7 @@
         "opinion": "¡Tu opinión cuenta! Dinos lo que piensas de la escape room",
         "play": "jugar",
         "sureUnjoin": "¿Seguro que deseas desapuntarte?",
+        "congrats": "¡Enhorabuena! Has terminado con éxito la escape room",
         "unjoin": "desapuntarse"
     },
     "showTeacher": {
@@ -386,6 +387,7 @@
         	"dec": "Diciembre"
         },
         "noIndications": "Sin indicaciones",
+        "notActive": "Esta escape room no está activa para tu usuario",
         "selectActivate": "Selecciona el turno que quieres activar/desactivar",
         "selectStudent": "Selecciona un turno",
         "todayEscapeRoom": "¡Este día se celebra la Escape Room!",

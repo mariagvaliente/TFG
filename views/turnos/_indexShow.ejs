@@ -32,8 +32,8 @@ var pastDates = [];
 		<p class="turno-date-title-show"><%=formatDate(dateNoTime)%></p>
 		<div class="flexBoxTurnos">
 	<%}%>
-
-		<div class="turno" data-date="<%=dateNoTime.getTime()%>">
+		<a href="<%=turn.status === 'active' ? '/escapeRooms/'+escapeRoom.id+'/turnos/'+turn.id+'/play' : ''%>" >
+		<div class="turno turno-play turnoProfe <%=turn.status === "active" ? "active" : "finished" %>" data-date="<%=dateNoTime.getTime()%>">
 			<div class="hora">
 				<%= formatTime(date) %>
 			</div>
@@ -45,6 +45,7 @@ var pastDates = [];
 				<% } %>
 			</div>
 		</div>
+		</a>
        
 <%}%>
 </div>

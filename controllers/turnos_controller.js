@@ -93,11 +93,11 @@ exports.activar = (req, res, next) => {
             turno.status = turno.status === "pending" ? "active" : "finished";
             if (turno.status === "active") {
                 turno.startTime = new Date();
-                setTimeout(function () {
+                /*setTimeout(function () {
                     turno.status = "finished";
 
                     turno.save({"fields": ["status"]}).then(() => {
-                        res.redirect(back);
+                        res.redirect(`/escapeRooms/${escapeRoom.id}/turnos/${turno.id}/play`);
                     }).
                         catch(Sequelize.ValidationError, (error) => {
                             error.errors.forEach(({message}) => req.flash("error", message));
@@ -107,7 +107,7 @@ exports.activar = (req, res, next) => {
                             req.flash("error", `${req.app.locals.i18n.common.flash.errorActivatingTurno}: ${error.message}`);
                             next(error);
                         });
-                }, escapeRoom.duration * 60000);
+                }, escapeRoom.duration * 60000);*/
             }
 
             turno.save({"fields": [

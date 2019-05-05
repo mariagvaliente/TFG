@@ -57,3 +57,14 @@ p {
     display: inline-block;
     width: auto;
 }
+
+.sol-input {
+    width: 40%;
+    margin: auto;
+}
+
+#flassmessages {
+  position: fixed;
+  bottom: 0px;
+  left: 10px;
+}

@@ -5,6 +5,7 @@
     </p>
 </div>
 <script>
+    var stopped = window.stopped;
     var rem_time = window.duration || 60;
     if (window.startTime && window.duration) {
         rem_time = window.duration*60 - Math.round((new Date() - startTime)/1000);
@@ -50,7 +51,7 @@
         }
 
         rem_time--;
-        if(rem_time<stopQuickCountDown){
+        if( rem_time<stopQuickCountDown){
             clearInterval(countdownChronoQuick);
             countdownChrono = setInterval('chrono()', 1000);
         }
@@ -58,7 +59,9 @@
     }
     if (window.countdown){
         chrono();
-        var countdownChrono = setInterval('chrono()', 1000);
+        if (!stopped ) {
+            var countdownChrono = setInterval('chrono()', 1000);
+        }
         var countdownChronoQuick;
     }
 

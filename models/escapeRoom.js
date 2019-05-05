@@ -29,7 +29,7 @@ module.exports = function (sequelize, DataTypes) {
         "numRight": {"type": DataTypes.INTEGER},
         "feedback": {"type": DataTypes.BOOLEAN},
         "instructions": {"type": DataTypes.STRING},
-        "automatic": {"type": DataTypes.STRING,
+        "automatic": {"type": DataTypes.BOOLEAN,
             "defaultValue": false}}
     );
 };

@@ -79,6 +79,10 @@ exports.adminOrAuthorOrParticipantRequired = (req, res, next) => {
     const isAdmin = Boolean(req.session.user.isAdmin),
         isAuthor = req.escapeRoom.authorId === req.session.user.id;
 
+    if (isAdmin || isAuthor) {
+        next();
+        return;
+    }
     models.user.findAll({
         "include": [
 
@@ -114,7 +118,7 @@ exports.adminOrAuthorOrParticipantRequired = (req, res, next) => {
         const isParticipant = participants && participants.length > 0;
 
         req.isParticipant = isParticipant ? participants[0] : null;
-        if (isAdmin || isAuthor || isParticipant) {
+        if (isParticipant) {
             next();
         } else {
             throw new Error(403);
@@ -165,16 +169,18 @@ exports.indexBreakDown = (req, res) => {
 exports.show = (req, res) => {
     const {escapeRoom} = req;
     const participant = req.isParticipant;
-
+    const hostName = process.env.APP_NAME || "http://localhost:3000";
     if (participant) {
-        res.render("escapeRooms/show_student", {escapeRoom,
+        res.render("escapeRooms/show_student", {
+            escapeRoom,
             cloudinary,
             participant,
             parseURL});
     } else {
-        res.render("escapeRooms/show", {escapeRoom,
+        res.render("escapeRooms/show", {
+            escapeRoom,
             cloudinary,
-            "hostName": process.env.APP_NAME || "http://localhost:3000",
+            hostName,
             parseURL});
     }
 };
@@ -192,7 +198,8 @@ exports.preview = (req, res) => {
 
 // GET /escapeRooms/new
 exports.new = (req, res) => {
-    const escapeRoom = {"title": "",
+    const escapeRoom = {
+        "title": "",
         "teacher": "",
         "subject": "",
         "duration": "",
@@ -211,7 +218,8 @@ exports.create = (req, res, next) => {
 
         authorId = req.session.user && req.session.user.id || 0,
 
-        escapeRoom = models.escapeRoom.build({title,
+        escapeRoom = models.escapeRoom.build({
+            title,
             subject,
             duration,
             description,
@@ -459,7 +467,8 @@ exports.pistasUpdate = (req, res, next) => {
     const progressBar = body.progress;
     const {numQuestions, numRight, feedback} = body;
     let pctgRight = numRight || 0;
-    pctgRight = ((numRight >= 0 && numRight <= numQuestions) ? numRight : numQuestions) * 100 / (numQuestions || 1);
+
+    pctgRight = (numRight >= 0 && numRight <= numQuestions ? numRight : numQuestions) * 100 / (numQuestions || 1);
     escapeRoom.numQuestions = numQuestions;
     escapeRoom.numRight = pctgRight;
     escapeRoom.feedback = Boolean(feedback);

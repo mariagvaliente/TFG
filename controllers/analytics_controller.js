@@ -16,34 +16,35 @@ exports.puzzlesByParticipants = (req, res, next) => {
     const options = {
         "include": [
             {
-                "model": models.turno,
-                "as": "turnosAgregados",
-                "duplicating": false,
-                "required": true,
-                "attributes": [
-                    "id",
-                    "date"
-                ],
-                "where": {
-                    "escapeRoomId": escapeRoom.id
-                },
-                "through": {"model": models.participants,
-                    "attributes": ["attendance"]}
-            },
-            {
                 "model": models.team,
                 "as": "teamsAgregados",
-                "include": {
-                    "model": models.puzzle,
-                    "as": "retos",
-                    "through": {"model": models.retosSuperados}
-                }
+                "required": true,
+                "include": [
+                    {
+                        "model": models.turno,
+                        "where": {},
+                        "include": {
+                            "model": models.escapeRoom,
+                            "required": true,
+                            "where": {
+                                "id": escapeRoom.id
+                            }
+                        }
+                    },
+                    {
+                        "model": models.puzzle,
+                        "as": "retos",
+                        "through": {
+                            "model": models.retosSuperados
+                        }
+                    }
+                ]
             }
-        ]
-    };
 
+        ]
+    }
     if (turnId) {
-        options.include[0].where.id = turnId;
+        options.include[0].include[0].where.id = turnId;
     }
     if (orderBy) {
         const isPg = process.env.APP_NAME;
@@ -61,19 +62,19 @@ exports.puzzlesByParticipants = (req, res, next) => {
 
                 u.teamsAgregados[0].retos.map((reto) => {
                     const idx = puzzles.indexOf(reto.id);
-
                     if (idx > -1) {
                         retosSuperados[idx] = 1;
                     }
                     return 0;
                 });
+                const total = Math.round(retosSuperados.filter((r) => r === 1).length * 10000 / retosSuperados.length) / 100;
                 return {id,
                     name,
                     surname,
                     dni,
                     username,
                     retosSuperados,
-                    "total": Math.round(retosSuperados.filter((r) => r === 1).length * 10000 / retosSuperados.length) / 100};
+                    total};
             });
 
             if (!csv) {
@@ -107,7 +108,7 @@ exports.puzzlesByParticipants = (req, res, next) => {
                             return;
                         }
                         res.setHeader("Content-Type", "text/csv");
-                        res.setHeader("Content-Disposition", `${"attachment; filename=\"results-"}${Date.now()}.csv"`);
+                        res.setHeader("Content-Disposition", "attachment; filename=\"results-" + Date.now() + ".csv");
                         res.write(csvText);
                         res.end();
                     },
