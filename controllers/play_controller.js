@@ -84,7 +84,11 @@ exports.play = (req, res) => {
 
 exports.finish = (req,res,next) => {
     const isPg = process.env.APP_NAME;
-    models.turno.findOne({
+    if (isPg) {
+        res.render("escapeRooms/play/finish",{ escapeRoom:req.escapeRoom, teams: [], userId: req.session.user.id})
+        return;
+    } else {
+        models.turno.findOne({
             include: [
                 {   
                     model: models.escapeRoom,
@@ -103,60 +107,64 @@ exports.finish = (req,res,next) => {
                     }]
                 }
             ]
-    }).then(turno=>{
+        }).then(turno=>{
 
-        let turnoId = turno.id;
+            let turnoId = turno.id;
 
-        models.team.findAll({
-            "attributes": [
-            "id","name",[
-                Sequelize.fn(
-                    "COUNT",
-                    Sequelize.col(isPg ? "\"retos->retosSuperados\".\"puzzleId\"" : "`retos->retosSuperados`.`puzzleId`")
-                ),
-                "countretos"
-            ],
-            [
-                Sequelize.fn(
-                    "MAX",
-                    Sequelize.col(isPg ? "\"retos->retosSuperados\".\"createdAt\"" : "`retos->retosSuperados`.`createdAt`")
-                ),
-                "latestretosuperado"
-            ]
-            ],
-            "include": [
-            {
-                "model": models.turno,
-                "where": {"id":turnoId}
-            },
-            {
-                "model": models.puzzle,
-                "attributes": [],
-                "as": "retos",
-                "duplicating": false,
-                "through": {
+            models.team.findAll({
+                "attributes": [
+                "id","name",[
+                    Sequelize.fn(
+                        "COUNT",
+                        Sequelize.col(isPg ? "\"retos->retosSuperados\".\"puzzleId\"" : "`retos->retosSuperados`.`puzzleId`")
+                    ),
+                    "countretos"
+                ],
+                [
+                    Sequelize.fn(
+                        "MAX",
+                        Sequelize.col(isPg ? "\"retos->retosSuperados\".\"createdAt\"" : "`retos->retosSuperados`.`createdAt`")
+                    ),
+                    "latestretosuperado"
+                ]
+                ],
+                "include": [
+                {
+                    "model": models.turno,
+                    "where": {"id":turnoId}
+                },
+                {
+                    "model": models.puzzle,
                     "attributes": [],
-                    "model": models.retosSuperados
+                    "as": "retos",
+                    "duplicating": false,
+                    "through": {
+                        "attributes": [],
+                        "model": models.retosSuperados
+                    }
+                },
+                {  
+                    "model": models.user,
+                    "as": "teamMembers",
+                    "attributes": ["id", "name", "surname"]
                 }
-            },
-            {  
-                "model": models.user,
-                "as": "teamMembers",
-                "attributes": ["id", "name", "surname"]
-            }
-            ],
-            "group": ["team.id","teamMembers.id"],
-            "order": [
-               Sequelize.literal("countretos DESC"),
-               Sequelize.literal("latestretosuperado ASC")
-            ]
-        }).then(teams=>{
-            res.render("escapeRooms/play/finish",{escapeRoom:req.escapeRoom, teams, userId: req.session.user.id})
+                ],
+                "group": ["team.id","teamMembers.id"],
+                "order": [
+                   Sequelize.literal("countretos DESC"),
+                   Sequelize.literal("latestretosuperado ASC")
+                ]
+            }).then(teams=>{
+                res.render("escapeRooms/play/finish",{escapeRoom:req.escapeRoom, teams, userId: req.session.user.id})
+            })
+            .catch((e)=>{
+                console.error(e);
+                res.render("escapeRooms/play/finish",{ escapeRoom:req.escapeRoom, teams: [], userId: req.session.user.id})
+            })
+        }).catch((e)=>{
+            console.error(e);
+            res.render("escapeRooms/play/finish",{ escapeRoom:req.escapeRoom, teams: [], userId: req.session.user.id})
         })
-    }).catch((e)=>{
-        console.error(e);
-        res.render("escapeRooms/play/finish",{ escapeRoom:req.escapeRoom, teams: [], userId: req.session.user.id})
-    })
-
+    }
    
 }

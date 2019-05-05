@@ -114,9 +114,12 @@ exports.activar = (req, res, next) => {
                 "startTime",
                 "status"
             ]}).then((t) => {
-                console.log(t);
                 req.flash("success", turno.status === "active" ? "Turno activo." : "Turno desactivado");
-                res.redirect(back);
+                if (turno.status === "active"){
+                     res.redirect(back);
+                } else {
+                    res.redirect(back);
+                }
             }).
                 catch(Sequelize.ValidationError, (error) => {
                     error.errors.forEach(({message}) => req.flash("error", message));
