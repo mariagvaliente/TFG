@@ -2,7 +2,9 @@
 
 <div class="main retosSuperados ranking">
 	<div class="content">
-		<%-include("../../partials/_podium")%>
+		<% if (teams && teams.length >=3 ) {%>
+			<%-include("../../partials/_podium")%>
+		<% } %>
 		<br/><br/>
 
 		<% if (escapeRoom.posttest) { %>

@@ -153,6 +153,9 @@ exports.finish = (req,res,next) => {
         }).then(teams=>{
             res.render("escapeRooms/play/finish",{escapeRoom:req.escapeRoom, teams, userId: req.session.user.id})
         })
+    }).catch((e)=>{
+        console.error(e);
+        res.render("escapeRooms/play/finish",{ escapeRoom:req.escapeRoom, teams: [], userId: req.session.user.id})
     })
 
    
