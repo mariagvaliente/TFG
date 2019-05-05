@@ -151,7 +151,7 @@ exports.finish = (req,res,next) => {
                Sequelize.literal("latestretosuperado ASC")
             ]
         }).then(teams=>{
-            res.render("escapeRooms/play/finish",{escapeRoom:req.escapeRoom, teams})
+            res.render("escapeRooms/play/finish",{escapeRoom:req.escapeRoom, teams, userId: req.session.user.id})
         })
     })
 
