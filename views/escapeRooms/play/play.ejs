@@ -74,7 +74,7 @@
         <% 
         var finish = false;
         %>
-        <%if (isStudent && !escapeRoom.automatic) { %>
+        <%if (isStudent) { %>
             <% 
             var retosSuperados = team.retos.map(a=>a.id);
             finish = retosSuperados.length === escapeRoom.puzzles.length;
@@ -86,7 +86,7 @@
                         <h4 id="puzzles"><%=i18n.puzzle.finish%></h4>
                         <br/>
                         <a href="/escapeRooms/<%= escapeRoom.id %>/finish"><button class="btn btn-primary"><%=i18n.common.finish%></button></a>
-                    <%} else { 
+                    <%} else if(!escapeRoom.automatic){
 
                         var puzzles = escapeRoom.puzzles;
                         for (var reto in puzzles){ %>

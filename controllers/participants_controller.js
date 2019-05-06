@@ -129,7 +129,7 @@ exports.confirmAttendance = (req, res) => {
 exports.studentLeave = (req, res) => {
     models.user.findByPk(req.session.user.id).then((user) => {
         req.team.removeTeamMember(user).then(() => {
-            models.participants.find({"where": {"turnId": req.turn.id,
+            models.participants.findOne({"where": {"turnId": req.turn.id,
                 "userId": req.session.user.id}}).
                 then((participant) => {
                     participant.destroy().then(() => {
