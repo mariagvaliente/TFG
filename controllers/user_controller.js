@@ -31,16 +31,16 @@ exports.new = (req, res) => {
         "gender": "",
         "dni": "",
         "username": "",
-        "password": ""};
+        "password": "",};
 
     res.render("index", {user,
-        "register": true});
+        "register": true, redir: req.query.redir});
 };
 
 
 // POST /users
 exports.create = (req, res, next) => {
-    const {name, surname, gender, username, password, dni} = req.body,
+    const {name, surname, gender, username, password, dni, redir} = req.body,
 
         studentRegex = /(@alumnos\.upm\.es)/,
         teacherRegex = /(@upm\.es)/,
@@ -75,18 +75,18 @@ exports.create = (req, res, next) => {
     ]}).
         then(() => { // Render the users page
             req.flash("success", "Usuario creado con éxito.");
-            res.redirect("/"); // Redirection
+            res.redirect("/?redir="+redir); // Redirection
         }).
         catch(Sequelize.UniqueConstraintError, (error) => {
             console.error(error);
             req.flash("error", req.app.locals.i18n.common.flash.errorExistingUser);
             res.render("index", {user,
-                "register": true});
+                "register": true, redir});
         }).
         catch(Sequelize.ValidationError, (error) => {
             error.errors.forEach(({message}) => req.flash("error", message));
             res.render("index", {user,
-                "register": true});
+                "register": true, redir});
         }).
         catch((error) => next(error));
 };

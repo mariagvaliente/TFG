@@ -634,11 +634,21 @@ exports.destroy = (req, res, next) => {
 // GET /escapeRooms/:escapeRoomId/join
 exports.studentToken = (req, res, next) => {
     const {escapeRoom} = req;
+    models.participants.findOne({where: {
+        userId: req.session.user.id, turnId: {[Sequelize.Op.or]: [escapeRoom.turnos.map(t=>t.id)]}
+    }}).then(p=>{
+        console.log(p)
+      console.log([escapeRoom.turnos.map(t=>t.id)])
+        if(p) {
+          res.redirect("/escapeRooms/"+escapeRoom.id);
+        } else {
+          if (escapeRoom.invitation === req.query.token) {
+            res.render("escapeRooms/indexInvitation", {escapeRoom,
+              cloudinary});
+          } else {
+            res.redirect("/");
+          }
+        }
+    })
 
-    if (escapeRoom.invitation === req.query.token) {
-        res.render("escapeRooms/indexInvitation", {escapeRoom,
-            cloudinary});
-    } else {
-        next(403);
-    }
 };

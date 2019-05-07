@@ -3,7 +3,9 @@
     Regístrate:
 </h1>
     <form method="post" action="/users">
-<%}else{%>
+        <input type='hidden' name='redir' value='<%= redir %>'>
+
+        <%}else{%>
     <form method="post" action="/users/<%=user.id%>?_method=PUT%>">
 <%}%>
 

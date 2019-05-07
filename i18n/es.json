@@ -434,6 +434,6 @@
         "surname": "Apellidos",
         "title": "Usuario",
         "username": "E-mail",
-        "wrongCredentials": "Authentication has failed. Retry it again."
+        "wrongCredentials": "Error al iniciar sesión"
     }
 }
