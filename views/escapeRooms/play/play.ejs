@@ -85,7 +85,11 @@
                     <% if (finish) {   %>
                         <h4 id="puzzles"><%=i18n.puzzle.finish%></h4>
                         <br/>
-                        <a href="/escapeRooms/<%= escapeRoom.id %>/finish"><button class="btn btn-primary"><%=i18n.common.finish%></button></a>
+                        <a href="/escapeRooms/<%= escapeRoom.id %>/finish">
+                            <button class="btn btn-primary">
+                                <%=i18n.common.finish%>
+                            </button>
+                        </a>
                     <%} else if(!escapeRoom.automatic){
 
                         var puzzles = escapeRoom.puzzles;
@@ -129,9 +133,12 @@
                         <% if (finish) { %>
                             var countdown = true;
                             var stopped = true;
-                            var duration = <%=
-                            (escapeRoom.duration + (new Date(team.turno.startTime) - new Date(team.retos[team.retos.length - 1].retosSuperados.createdAt))/1000/60);
+                            var duration = <%=escapeRoom.duration || 0%>;
+                            var startTime = new Date("<%=team.turno.startTime%>");
+                            var now = new Date("<%=team.retos[team.retos.length - 1].retosSuperados.createdAt%>");
+                            //(escapeRoom.duration + (new Date(team.turno.startTime) - new Date(team.retos[team.retos.length - 1].retosSuperados.createdAt))/1000/60);
                              %>
+                        console.log(duration)
                        <% } else { %>
                             var countdown = true;
                             var startTime = new Date("<%=team.turno.startTime%>");

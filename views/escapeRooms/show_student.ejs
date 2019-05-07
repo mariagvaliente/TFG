@@ -49,7 +49,7 @@
 				</div>
 			<% } %>
 		<% } else if(participant.teamsAgregados[0].turno.status === "active") { %>
-			<a href="/escapeRooms/<%=escapeRoom.id%>/play"><button class="rounded editButton pulseButton">jugar</button>
+			<a href="/escapeRooms/<%=escapeRoom.id%>/play"><button class="rounded editButton pulseButton"><%=i18n.showStudent.play%>%></button>
 			</a>
 		<% } else {%>
 			<% if (escapeRoom.posttest) { %>

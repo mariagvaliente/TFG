@@ -8,8 +8,9 @@
     var stopped = window.stopped;
     var rem_time = window.duration || 60;
     if (window.startTime && window.duration) {
-        rem_time = window.duration*60 - Math.round((new Date() - startTime)/1000);
+        rem_time = window.duration*60 - Math.round(((window.now || new Date()) - window.startTime)/1000);
     }
+    console.log(rem_time, window.duration, window.startTime, window.now)
     function chrono(stopQuickCountDown) {
         var seconds = Math.abs(rem_time);
 
