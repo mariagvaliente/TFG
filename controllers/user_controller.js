@@ -57,10 +57,9 @@ exports.create = (req, res, next) => {
     if (!isStudent && !isTeacher) {
         req.flash("error", req.app.locals.i18n.common.flash.mustBeUPMAccount);
         res.render("index", {user,
-            "register": true});
+            "register": true, redir});
         return;
     }
-    console.log(user);
 
     // Save into the data base
     user.save({"fields": [
