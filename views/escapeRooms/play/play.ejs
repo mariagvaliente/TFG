@@ -130,20 +130,13 @@
             <div class="col-xs-12">
                 <script>
                     <%if (team.turno && team.turno.status === "active") { %>
-                        <% if (finish) { %>
                             var countdown = true;
+                            var startTime = new Date("<%=team.turno.startTime%>");
+                            var duration = <%=escapeRoom.duration || 0%>;
+                        <% if (finish) {  %>
                             var stopped = true;
-                            var duration = <%=escapeRoom.duration || 0%>;
-                            var startTime = new Date("<%=team.turno.startTime%>");
                             var now = new Date("<%=team.retos[team.retos.length - 1].retosSuperados.createdAt%>");
-                            //(escapeRoom.duration + (new Date(team.turno.startTime) - new Date(team.retos[team.retos.length - 1].retosSuperados.createdAt))/1000/60);
-                             %>
-                        console.log(duration)
-                       <% } else { %>
-                            var countdown = true;
-                            var startTime = new Date("<%=team.turno.startTime%>");
-                            var duration = <%=escapeRoom.duration || 0%>;
-                        <% } %>
+                       <% } %>
                     <% } else {%>
                         var countdown = false;
                         var duration = 0;

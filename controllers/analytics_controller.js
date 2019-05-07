@@ -42,7 +42,8 @@ exports.puzzlesByParticipants = (req, res, next) => {
             }
 
         ]
-    }
+    };
+
     if (turnId) {
         options.include[0].include[0].where.id = turnId;
     }
@@ -62,12 +63,14 @@ exports.puzzlesByParticipants = (req, res, next) => {
 
                 u.teamsAgregados[0].retos.map((reto) => {
                     const idx = puzzles.indexOf(reto.id);
+
                     if (idx > -1) {
                         retosSuperados[idx] = 1;
                     }
                     return 0;
                 });
                 const total = Math.round(retosSuperados.filter((r) => r === 1).length * 10000 / retosSuperados.length) / 100;
+
                 return {id,
                     name,
                     surname,
@@ -108,7 +111,7 @@ exports.puzzlesByParticipants = (req, res, next) => {
                             return;
                         }
                         res.setHeader("Content-Type", "text/csv");
-                        res.setHeader("Content-Disposition", "attachment; filename=\"results-" + Date.now() + ".csv");
+                        res.setHeader("Content-Disposition", `attachment; filename="results-${Date.now()}.csv`);
                         res.write(csvText);
                         res.end();
                     },

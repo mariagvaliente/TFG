@@ -93,7 +93,7 @@ exports.activar = (req, res, next) => {
             turno.status = turno.status === "pending" ? "active" : "finished";
             if (turno.status === "active") {
                 turno.startTime = new Date();
-                /*setTimeout(function () {
+                /* SetTimeout(function () {
                     turno.status = "finished";
 
                     turno.save({"fields": ["status"]}).then(() => {
@@ -113,10 +113,10 @@ exports.activar = (req, res, next) => {
             turno.save({"fields": [
                 "startTime",
                 "status"
-            ]}).then((t) => {
+            ]}).then(() => {
                 req.flash("success", turno.status === "active" ? "Turno activo." : "Turno desactivado");
-                if (turno.status === "active"){
-                     res.redirect(back);
+                if (turno.status === "active") {
+                    res.redirect(back);
                 } else {
                     res.redirect(back);
                 }

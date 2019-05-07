@@ -57,8 +57,9 @@ exports.play = (req, res) => {
         "required": true
     }).then((teams) => {
         const team = teams && teams[0] ? teams[0] : [];
+
         if (team.turno.status !== "active") {
-            res.redirect("/escapeRooms/"+req.escapeRoom.id);
+            res.redirect(`/escapeRooms/${req.escapeRoom.id}`);
         }
         models.requestedHint.findAll({
             "where": {
@@ -80,40 +81,44 @@ exports.play = (req, res) => {
 };
 
 
-
-
-exports.finish = (req,res,next) => {
+exports.finish = (req, res) => {
     const isPg = process.env.APP_NAME;
+
     if (isPg) {
-        res.render("escapeRooms/play/finish",{ escapeRoom:req.escapeRoom, teams: [], userId: req.session.user.id})
+        res.render("escapeRooms/play/finish", {"escapeRoom": req.escapeRoom,
+            "teams": [],
+            "userId": req.session.user.id});
         return;
-    } else {
-        models.turno.findOne({
-            include: [
-                {   
-                    model: models.escapeRoom,
-                    where: {
-                        id: req.escapeRoom.id
-                    }
-                }, 
-                {
-                    model: models.team,
-                    include: [{
-                        model: models.user,
-                        as: "teamMembers",
-                        where: {
-                            id: req.session.user.id
-                        }
-                    }]
+    }
+    models.turno.findOne({
+        "include": [
+            {
+                "model": models.escapeRoom,
+                "where": {
+                    "id": req.escapeRoom.id
                 }
-            ]
-        }).then(turno=>{
+            },
+            {
+                "model": models.team,
+                "include": [
+                    {
+                        "model": models.user,
+                        "as": "teamMembers",
+                        "where": {
+                            "id": req.session.user.id
+                        }
+                    }
+                ]
+            }
+        ]
+    }).then((turno) => {
+        const turnoId = turno.id;
 
-            let turnoId = turno.id;
-
-            models.team.findAll({
-                "attributes": [
-                "id","name",[
+        models.team.findAll({
+            "attributes": [
+                "id",
+                "name",
+                [
                     Sequelize.fn(
                         "COUNT",
                         Sequelize.col(isPg ? "\"retos->retosSuperados\".\"puzzleId\"" : "`retos->retosSuperados`.`puzzleId`")
@@ -127,11 +132,11 @@ exports.finish = (req,res,next) => {
                     ),
                     "latestretosuperado"
                 ]
-                ],
-                "include": [
+            ],
+            "include": [
                 {
                     "model": models.turno,
-                    "where": {"id":turnoId}
+                    "where": {"id": turnoId}
                 },
                 {
                     "model": models.puzzle,
@@ -143,28 +148,40 @@ exports.finish = (req,res,next) => {
                         "model": models.retosSuperados
                     }
                 },
-                {  
+                {
                     "model": models.user,
                     "as": "teamMembers",
-                    "attributes": ["id", "name", "surname"]
+                    "attributes": [
+                        "id",
+                        "name",
+                        "surname"
+                    ]
                 }
-                ],
-                "group": ["team.id","teamMembers.id"],
-                "order": [
-                   Sequelize.literal("countretos DESC"),
-                   Sequelize.literal("latestretosuperado ASC")
-                ]
-            }).then(teams=>{
-                res.render("escapeRooms/play/finish",{escapeRoom:req.escapeRoom, teams, userId: req.session.user.id})
-            })
-            .catch((e)=>{
+            ],
+            "group": [
+                "team.id",
+                "teamMembers.id"
+            ],
+            "order": [
+                Sequelize.literal("countretos DESC"),
+                Sequelize.literal("latestretosuperado ASC")
+            ]
+        }).then((teams) => {
+            res.render("escapeRooms/play/finish", {"escapeRoom": req.escapeRoom,
+                teams,
+                "userId": req.session.user.id});
+        }).
+            catch((e) => {
                 console.error(e);
-                res.render("escapeRooms/play/finish",{ escapeRoom:req.escapeRoom, teams: [], userId: req.session.user.id})
-            })
-        }).catch((e)=>{
+                res.render("escapeRooms/play/finish", {"escapeRoom": req.escapeRoom,
+                    "teams": [],
+                    "userId": req.session.user.id});
+            });
+    }).
+        catch((e) => {
             console.error(e);
-            res.render("escapeRooms/play/finish",{ escapeRoom:req.escapeRoom, teams: [], userId: req.session.user.id})
-        })
-    }
-   
-}
+            res.render("escapeRooms/play/finish", {"escapeRoom": req.escapeRoom,
+                "teams": [],
+                "userId": req.session.user.id});
+        });
+};

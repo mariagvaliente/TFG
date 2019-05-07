@@ -170,15 +170,14 @@ exports.show = (req, res) => {
     const {escapeRoom} = req;
     const participant = req.isParticipant;
     const hostName = process.env.APP_NAME || "http://localhost:3000";
+
     if (participant) {
-        res.render("escapeRooms/show_student", {
-            escapeRoom,
+        res.render("escapeRooms/show_student", {escapeRoom,
             cloudinary,
             participant,
             parseURL});
     } else {
-        res.render("escapeRooms/show", {
-            escapeRoom,
+        res.render("escapeRooms/show", {escapeRoom,
             cloudinary,
             hostName,
             parseURL});
@@ -198,8 +197,7 @@ exports.preview = (req, res) => {
 
 // GET /escapeRooms/new
 exports.new = (req, res) => {
-    const escapeRoom = {
-        "title": "",
+    const escapeRoom = {"title": "",
         "teacher": "",
         "subject": "",
         "duration": "",
@@ -218,8 +216,7 @@ exports.create = (req, res, next) => {
 
         authorId = req.session.user && req.session.user.id || 0,
 
-        escapeRoom = models.escapeRoom.build({
-            title,
+        escapeRoom = models.escapeRoom.build({title,
             subject,
             duration,
             description,
@@ -632,23 +629,22 @@ exports.destroy = (req, res, next) => {
 
 
 // GET /escapeRooms/:escapeRoomId/join
-exports.studentToken = (req, res, next) => {
+exports.studentToken = (req, res) => {
     const {escapeRoom} = req;
-    models.participants.findOne({where: {
-        userId: req.session.user.id, turnId: {[Sequelize.Op.or]: [escapeRoom.turnos.map(t=>t.id)]}
-    }}).then(p=>{
-        console.log(p)
-      console.log([escapeRoom.turnos.map(t=>t.id)])
-        if(p) {
-          res.redirect("/escapeRooms/"+escapeRoom.id);
-        } else {
-          if (escapeRoom.invitation === req.query.token) {
-            res.render("escapeRooms/indexInvitation", {escapeRoom,
-              cloudinary});
-          } else {
-            res.redirect("/");
-          }
-        }
-    })
 
+    models.participants.findOne({"where": {
+        "userId": req.session.user.id,
+        "turnId": {[Sequelize.Op.or]: [escapeRoom.turnos.map((t) => t.id)]}
+    }}).then((p) => {
+        console.log(p);
+        console.log([escapeRoom.turnos.map((t) => t.id)]);
+        if (p) {
+            res.redirect(`/escapeRooms/${escapeRoom.id}`);
+        } else if (escapeRoom.invitation === req.query.token) {
+            res.render("escapeRooms/indexInvitation", {escapeRoom,
+                cloudinary});
+        } else {
+            res.redirect("/");
+        }
+    });
 };

@@ -155,10 +155,10 @@ const authenticate = (login, password) => models.user.findOne({"where": {"userna
 
 exports.new = (req, res) => {
     // Page to go/show after login:
-    const {redir, id, token} = req.query;
+    const {redir} = req.query;
 
     if (req.session && req.session.user) {
-        res.redirect(redir ? redir: `/users/${req.session.user.id}/escapeRooms/`);
+        res.redirect(redir ? redir : `/users/${req.session.user.id}/escapeRooms/`);
 
         return;
     }

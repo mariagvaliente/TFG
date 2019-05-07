@@ -11,12 +11,11 @@ $(function(){
                     body: JSON.stringify({status, score}), 
                     headers:{
                 'Content-Type': 'application/json'
-            }})
+                }})
                 .then(res=>{
                     return res.json();
                 })
                 .then(res => {
-                    console.log(res);
                     alert(res.alert || res.msg);
                     if(res.ok) {
                         let listEl = document.createElement("li");
@@ -31,16 +30,13 @@ $(function(){
                         `.trim();
                         document.getElementById("hintList").appendChild(listEl);
                     }
-                    newwindow.close();
 
                 })
                 .catch(e=>{
                     console.error(e);
-                    newwindow.close();
                 });
-            } else {
-                newwindow.close();
             }
+            newwindow.close();
         }
     };
 });

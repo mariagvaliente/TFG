@@ -31,10 +31,11 @@ exports.new = (req, res) => {
         "gender": "",
         "dni": "",
         "username": "",
-        "password": "",};
+        "password": ""};
 
     res.render("index", {user,
-        "register": true, redir: req.query.redir});
+        "register": true,
+        "redir": req.query.redir});
 };
 
 
@@ -57,7 +58,8 @@ exports.create = (req, res, next) => {
     if (!isStudent && !isTeacher) {
         req.flash("error", req.app.locals.i18n.common.flash.mustBeUPMAccount);
         res.render("index", {user,
-            "register": true, redir});
+            "register": true,
+            redir});
         return;
     }
 
@@ -74,18 +76,20 @@ exports.create = (req, res, next) => {
     ]}).
         then(() => { // Render the users page
             req.flash("success", "Usuario creado con éxito.");
-            res.redirect("/?redir="+redir); // Redirection
+            res.redirect(`/?redir=${redir}`); // Redirection
         }).
         catch(Sequelize.UniqueConstraintError, (error) => {
             console.error(error);
             req.flash("error", req.app.locals.i18n.common.flash.errorExistingUser);
             res.render("index", {user,
-                "register": true, redir});
+                "register": true,
+                redir});
         }).
         catch(Sequelize.ValidationError, (error) => {
             error.errors.forEach(({message}) => req.flash("error", message));
             res.render("index", {user,
-                "register": true, redir});
+                "register": true,
+                redir});
         }).
         catch((error) => next(error));
 };

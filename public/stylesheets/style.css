@@ -1427,6 +1427,13 @@ button, input[type="submit"] {
   .showStudent .pulseButton:hover {
     animation: none; }
 
+.finish .finish-button {
+  background-color: white;
+  color: #161938;
+  border-color: white;
+  border-style: solid;
+  outline: 0px; }
+
 @-webkit-keyframes pulseButton {
   0% {
     -webkit-box-shadow: 0 0 2px 0 rgba(204, 169, 44, 0.4); }

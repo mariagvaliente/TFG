@@ -1,6 +1,6 @@
 <% include ../../partials/_header.ejs %>
 
-<div class="main retosSuperados ranking">
+<div class="main retosSuperados ranking finish">
 	<div class="content">
 		<h2 style="text-align:center;"><%=i18n.showStudent.congrats%></h2>
 		<% if (teams && teams.length >=3 ) {%>
@@ -13,7 +13,7 @@
 				<%=i18n.showStudent.beforeLeave%>
 				 <br/><br/>
 				<a target="_blank" href="<%=escapeRoom.pretest%>">
-					<button class="rounded"><%=i18n.showStudent.access%></button>
+					<button class="rounded finish-button"><%=i18n.showStudent.access%></button>
 				</a> 
 			</div>
 			<br/><br/><br/>
@@ -22,7 +22,7 @@
 			<div class="desc  animated slideInUp" style="text-align: center;">
 				<%=i18n.showStudent.opinion%> <br/><br/>
 				<a  target="_blank" href="<%=escapeRoom.survey%>">
-					<button class="rounded"><%=i18n.showStudent.access%></button>
+					<button class="rounded finish-button"><%=i18n.showStudent.access%></button>
 				</a>
 			</div>
 		<% } %>
