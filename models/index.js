@@ -95,8 +95,7 @@ user.belongsToMany(turno, {"as": "turnosAgregados",
 team.belongsToMany(user, {"as": "teamMembers",
     "through": "members",
     "foreignKey": "teamId",
-    "otherKey": "userId",
-});
+    "otherKey": "userId"});
 
 user.belongsToMany(team, {"as": "teamsAgregados",
     "through": "members",
