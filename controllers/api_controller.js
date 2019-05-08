@@ -16,10 +16,9 @@ exports.check = (req, res, next) => {
     const answer = solution === undefined || solution === null ? "" : solution;
     // eslint-disable-next-line no-undefined
     const puzzleSol = puzzle.sol === undefined || puzzle.sol === null ? "" : puzzle.sol;
-
     models.user.findAll({where}).then((users) => {
         if (!users || users.length === 0) {
-            res.status(404);
+            res.status(404).end();
             return;
         }
         users[0].getTeamsAgregados({
@@ -36,10 +35,9 @@ exports.check = (req, res, next) => {
                 if (answer.toLowerCase().trim() === puzzleSol.toLowerCase().trim()) {
                     if (team && team.length > 0) {
                         if (team[0].turno.status !== "active") {
-                            res.status(404).send("Not active");
+                          res.status(304).send("The answer is correct but you are not being tracked");
                             return;
                         }
-
                         req.puzzle.addSuperados(team[0].id).then(function () {
                             res.send("Correct answer!");
                         }).
