@@ -46,7 +46,7 @@ const sequelize = require("./models");
 const sessionStore = new SequelizeStore({"db": sequelize,
     "table": "session",
     "checkExpirationInterval": 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds. (15 minutes)
-    "expiration": 3 * 60 * 60 * 100000});// The maximum age (in milliseconds) of a valid session. (4 hours)
+    "expiration": 3 * 60 * 60 * 1000});// The maximum age (in milliseconds) of a valid session. (4 hours)
 
 app.use(session({"secret": "Escape Room",
     "store": sessionStore,
