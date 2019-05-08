@@ -40,6 +40,7 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({"extended": false}));
 app.use(cookieParser());
+app.use("/api", api);
 
 // Configuracion de la session para almacenarla en BBDD usando Sequelize.
 const sequelize = require("./models");
@@ -58,7 +59,6 @@ app.use(methodOverride("_method", {"methods": [
     "GET"
 ]}));
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/api", api);
 
 app.use(i18n({
     "translationsPath": path.join(__dirname, "i18n"), // <--- use here. Specify translations files path.

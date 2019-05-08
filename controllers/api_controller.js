@@ -16,10 +16,10 @@ exports.check = (req, res, next) => {
     const answer = solution === undefined || solution === null ? "" : solution;
     // eslint-disable-next-line no-undefined
     const puzzleSol = puzzle.sol === undefined || puzzle.sol === null ? "" : puzzle.sol;
-    req.session.destroy();
+
     models.user.findAll({where}).then((users) => {
         if (!users || users.length === 0) {
-            res.status(404).send(req.app.locals.i18n.turnos.notActive);
+            res.status(404);
             return;
         }
         users[0].getTeamsAgregados({
