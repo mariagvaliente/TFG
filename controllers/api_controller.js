@@ -19,7 +19,7 @@ exports.check = (req, res, next) => {
 
     models.user.findAll({where}).then((users) => {
         if (!users || users.length === 0) {
-            res.status(404).send(req.app.locals.user.messages.notFound);
+            res.status(404).send(req.app.locals.i18n.user.messages.notFound);
             return;
         }
         users[0].getTeamsAgregados({
