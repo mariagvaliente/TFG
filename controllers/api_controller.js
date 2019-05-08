@@ -36,19 +36,19 @@ exports.check = (req, res, next) => {
                 if (answer.toLowerCase().trim() === puzzleSol.toLowerCase().trim()) {
                     if (team && team.length > 0) {
                         if (team[0].turno.status !== "active") {
-                            res.status(404).send(req.app.locals.i18n.turnos.notActive);
+                            res.status(404).send("Not active");
                             return;
                         }
 
                         req.puzzle.addSuperados(team[0].id).then(function () {
-                            res.send(req.app.locals.i18n.puzzle.correctAnswer);
+                            res.send("Correct answer!");
                         }).
                             catch((e) => res.status(500).send(e));
                     } else {
-                        res.status(304).send(`${req.app.locals.i18n.puzzle.correctAnswer}. ${req.app.locals.i18n.user.messages.ensureRegistered}`);
+                        res.status(304).send("The answer is correct but you are not being tracked");
                     }
                 } else {
-                    res.status(401).send(req.app.locals.i18n.puzzle.wrongAnswer);
+                    res.status(401).send("Wrong");
                 }
             });
     }).
