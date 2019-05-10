@@ -48,7 +48,7 @@ exports.puzzlesByParticipants = (req, res, next) => {
         options.include[0].include[0].where.id = turnId;
     }
     if (orderBy) {
-        const isPg = process.env.APP_NAME;
+        const isPg = process.env.DATABASE_URL;
 
         options.order = Sequelize.literal(isPg ? `lower("user"."${orderBy}") ASC` : `lower(user.${orderBy}) ASC`);
     }
@@ -195,8 +195,9 @@ exports.summary = (req, res) => {
 exports.ranking = (req, res, next) => {
     const {escapeRoom, query} = req;
     const {turnId} = query;
-    const isPg = process.env.APP_NAME;
+    const isPg = process.env.DATABASE_URL;
     const options = {
+        "includeIgnoreAttributes": false,
         "attributes": [
             "name",
             [
@@ -251,7 +252,7 @@ exports.ranking = (req, res, next) => {
                 "attributes": [],
                 "as": "retos",
                 "required": false,
-                "includeIgnoreAttributes": false,
+                "duplicating": true,
                 "through": {
                     "model": models.retosSuperados,
                     "attributes": [],

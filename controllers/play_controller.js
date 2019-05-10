@@ -82,7 +82,7 @@ exports.play = (req, res) => {
 
 
 exports.finish = (req, res) => {
-    const isPg = process.env.APP_NAME;
+    const isPg = process.env.DATABASE_URL;
 
     if (isPg) {
         res.render("escapeRooms/play/finish", {"escapeRoom": req.escapeRoom,

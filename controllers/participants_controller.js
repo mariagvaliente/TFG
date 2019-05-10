@@ -46,7 +46,7 @@ exports.index = (req, res, next) => {
         options.include.where.id = turnId;
     }
     if (orderBy) {
-        const isPg = process.env.APP_NAME;
+        const isPg = process.env.DATABASE_URL;
 
         options.order = Sequelize.literal(isPg ? `lower("user"."${orderBy}") ASC` : `lower(user.${orderBy}) ASC`);
     }
