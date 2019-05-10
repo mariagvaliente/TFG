@@ -126,38 +126,76 @@ exports.adminOrAuthorOrParticipantRequired = (req, res, next) => {
     }).
         catch((e) => next(e));
 };
+
+
 // GET /escapeRooms
 exports.index = (req, res, next) => {
-    let findOptions = {};
-
-    if (req.user) {
-        findOptions = req.user.isStudent ? {"include": [
-            {"model": models.turno,
-                "duplicating": false,
-                "required": true,
-                "include": [
-                    {"model": models.user,
-                        "as": "students",
-                        "duplicating": false,
-                        "required": true,
-                        "where": {"id": req.user.id}}
-                ]},
-            models.attachment
-        ]} : {"include": [
+    if (req.user && !req.user.isStudent) {
+        models.escapeRoom.findAll({"attributes": [
+            "id",
+            "title",
+            "invitation"
+        ],
+        "include": [
             models.attachment,
             {"model": models.user,
                 "as": "author",
                 "where": {"id": req.user.id}}
-        ]};
-    }
+        ]}).then((escapeRooms) => res.render("escapeRooms/index.ejs", {escapeRooms,
+            cloudinary,
+            "user": req.user})).
+            catch((error) => next(error));
+    } else {
+        const findOptions = {
+            "attributes": [
+                "id",
+                "title",
+                "invitation"
+            ],
+            "include": [
+                {
+                    "model": models.turno,
+                    "attributes": [],
+                    "duplicating": false,
+                    "required": true,
+                    "include": [
+                        {
+                            "model": models.user,
+                            "attributes": [],
+                            "as": "students",
+                            "duplicating": false,
+                            "required": false
+                            // "where": {"id": req.user.id}
+                        }
+                    ]
+                },
+                models.attachment
+            ]
+        };
 
-    models.escapeRoom.findAll(findOptions).
-        then((escapeRooms) => {
-            res.render("escapeRooms/index.ejs", {escapeRooms,
-                cloudinary,
-                "user": req.user});
-        }).
-        catch((error) => next(error));
+        models.escapeRoom.findAll(findOptions).
+            then((erAll) => {
+                findOptions.include[0].include[0].where = {"id": req.user.id};
+                findOptions.include[0].include[0].required = true;
+                findOptions.attributes = ["id"];
+                models.escapeRoom.findAll(findOptions).
+                    then((erFiltered) => {
+                        const ids = erFiltered.map((e) => e.id);
+                        const escapeRooms = erAll.map((er) => ({
+                            "id": er.id,
+                            "title": er.title,
+                            "invitation": er.invitation,
+                            "attachment": er.attachment,
+                            "isSignedUp": ids.indexOf(er.id) !== -1
+                        }));
+
+                        res.render("escapeRooms/index.ejs", {escapeRooms,
+                            cloudinary,
+                            "user": req.user});
+                    });
+            }).
+            catch((error) => next(error));
+    }
 };
 
 // GET /escapeRooms

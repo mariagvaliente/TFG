@@ -23,27 +23,27 @@ module.exports = function (sequelize, DataTypes) {
         "unique": true,
         "validate": {"notEmpty": {"msg": "DNI must not be empty."},
             "isValidDNI": (dni) => {
+                const validChars = "TRWAGMYFPDXBNJZSQVHLCKET";
+                const nifRexp = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/i;
+                const nieRexp = /^[XYZ]{1}[0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/i;
+                const str = dni.toString().toUpperCase();
 
-              var validChars = 'TRWAGMYFPDXBNJZSQVHLCKET';
-              var nifRexp = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/i;
-              var nieRexp = /^[XYZ]{1}[0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/i;
-              var str = dni.toString().toUpperCase();
-              if (!nifRexp.test(str) && !nieRexp.test(str)) {
+                if (!nifRexp.test(str) && !nieRexp.test(str)) {
+                    throw new Error("Dni erroneo, formato no válido");
+                }
+
+                const nie = str.
+                    replace(/^[X]/, "0").
+                    replace(/^[Y]/, "1").
+                    replace(/^[Z]/, "2");
+
+                const letter = str.substr(-1);
+                const charIndex = parseInt(nie.substr(0, 8), 10) % 23;
+
+                if (validChars.charAt(charIndex) === letter) {
+                    return true;
+                }
                 throw new Error("Dni erroneo, formato no válido");
-                return false;
-              }
-
-              var nie = str
-                .replace(/^[X]/, '0')
-                .replace(/^[Y]/, '1')
-                .replace(/^[Z]/, '2');
-
-              var letter = str.substr(-1);
-              var charIndex = parseInt(nie.substr(0, 8)) % 23;
-
-              if (validChars.charAt(charIndex) === letter) return true;
-              throw new Error("Dni erroneo, formato no válido");
-              return false;
             }}},
     "isAdmin": {"type": DataTypes.BOOLEAN,
         "defaultValue": false},

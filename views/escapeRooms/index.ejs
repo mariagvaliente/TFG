@@ -32,20 +32,19 @@
             <% for (var i in escapeRooms) { %>
                 <% var escapeRoom = escapeRooms[i]; %>
                 <% var attachment = escapeRoom.attachment; %>
-                <% const notSignedUp = (user && user.isStudent && (!escapeRoom.turnos || escapeRoom.turnos.length === 0))%>
-                <a href="/escapeRooms/<%= escapeRoom.id %><%= notSignedUp ? ("/join?token="+escapeRoom.invitation) : ""%>" class="escapeRoomItemWrapper animated bounceIn" style="animation-delay: <%=100*i%>ms;">
+                <a href="/escapeRooms/<%= escapeRoom.id %><%= (user && user.isStudent && !escapeRoom.isSignedUp) ? ("/join?token="+escapeRoom.invitation) : ""%>" class="escapeRoomItemWrapper animated bounceIn" style="animation-delay: <%=100*i%>ms;">
                     <div class="escapeRoomItem">
                         <div class="erFoto" style="text-align: center">
                             <div class="bckgFoto" style="background-image: url(<% if (attachment) {%><%=attachment.url%><%} else {%>/images/placeholder.png<%}%>)"></div>
                             <div class="escapeRoomTitle"><%= escapeRoom.title %></div>
                         </div>
-                        <!--<% if (user && user.isStudent) {%>
-                            <% if (notSignedUp){ %>
-                            <div class="sign add"><i class="material-icons">add</i></div>
-                            <%} else {%>
+                        <% if (user && user.isStudent) {%>
+                            <% if (escapeRoom.isSignedUp){ %>
                             <div class="sign"><i class="material-icons">check</i></div>
+                            <%} else {%>
+                            <div class="sign add"><i class="material-icons">add</i></div>
                             <%}%>
-                        <%}%>-->
+                        <%}%>
                     </div>
                 </a>
             <% } %>
