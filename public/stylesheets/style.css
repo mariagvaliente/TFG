@@ -316,7 +316,18 @@ button, input[type="submit"] {
       justify-content: flex-end;
       align-items: center;
       border-radius: 10px;
-      padding: 1vw; }
+      padding: 1vw;
+      position: relative; }
+      .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem .sign {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        color: WHITE;
+        padding: 9px;
+        border-radius: 50%;
+        background-color: #48C18E; }
+        .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem .sign.add {
+          background-color: #FAC855; }
       .escapeRooms .flexBoxEscapeRooms .escapeRoomItemWrapper .escapeRoomItem .erFoto {
         width: 100%;
         display: flex;

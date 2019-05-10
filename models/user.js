@@ -23,21 +23,27 @@ module.exports = function (sequelize, DataTypes) {
         "unique": true,
         "validate": {"notEmpty": {"msg": "DNI must not be empty."},
             "isValidDNI": (dni) => {
-                const expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
 
-                if (expresion_regular_dni.test(dni) === true) {
-                    let numero = dni.substr(0, dni.length - 1);
-                    const letr = dni.substr(dni.length - 1, 1);
+              var validChars = 'TRWAGMYFPDXBNJZSQVHLCKET';
+              var nifRexp = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/i;
+              var nieRexp = /^[XYZ]{1}[0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/i;
+              var str = dni.toString().toUpperCase();
+              if (!nifRexp.test(str) && !nieRexp.test(str)) {
+                throw new Error("Dni erroneo, formato no válido");
+                return false;
+              }
 
-                    numero %= 23;
-                    const letra = "TRWAGMYFPDXBNJZSQVHLCKET".substring(numero, numero + 1);
+              var nie = str
+                .replace(/^[X]/, '0')
+                .replace(/^[Y]/, '1')
+                .replace(/^[Z]/, '2');
 
-                    if (letra !== letr.toUpperCase()) {
-                        throw new Error("Dni erroneo, la letra del NIF no se corresponde");
-                    }
-                } else {
-                    throw new Error("Dni erroneo, formato no válido");
-                }
+              var letter = str.substr(-1);
+              var charIndex = parseInt(nie.substr(0, 8)) % 23;
+
+              if (validChars.charAt(charIndex) === letter) return true;
+              throw new Error("Dni erroneo, formato no válido");
+              return false;
             }}},
     "isAdmin": {"type": DataTypes.BOOLEAN,
         "defaultValue": false},

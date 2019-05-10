@@ -73,30 +73,38 @@
             return false;
         }
     }
+    function validateDNI(value){
 
+      var validChars = 'TRWAGMYFPDXBNJZSQVHLCKET';
+      var nifRexp = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/i;
+      var nieRexp = /^[XYZ]{1}[0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/i;
+      var str = value.toString().toUpperCase();
+      if (!nifRexp.test(str) && !nieRexp.test(str)) return false;
+
+      var nie = str
+        .replace(/^[X]/, '0')
+        .replace(/^[Y]/, '1')
+        .replace(/^[Z]/, '2');
+
+      var letter = str.substr(-1);
+      var charIndex = parseInt(nie.substr(0, 8)) % 23;
+
+      if (validChars.charAt(charIndex) === letter) return true;
+
+      return false;
+    }
     function confirmDNI(){
         var numero, letr, letra, expresion_regular_dni;
         var dni = document.getElementById('dni').value;
-        expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
 
-        if(expresion_regular_dni.test (dni) == true){
-            numero = dni.substr(0,dni.length-1);
-            letr = dni.substr(dni.length-1,1);
-            numero = numero % 23;
-            letra='TRWAGMYFPDXBNJZSQVHLCKET';
-            letra=letra.substring(numero,numero+1);
-            if (letra!=letr.toUpperCase()) {
-                alert('<%=i18n.user.messages.wrongLetterDNI %>');
-                return false;
-            }else{
-                return true;
-            }
-        }else{
+        if(!validateDNI(dni)){
             alert('<%=i18n.user.messages.invalidDNI %>');
             return false;
+        } else {
+          return true;
         }
     }
 </script>
 
-    </form>
-    </form>
+</form>
+</form>
