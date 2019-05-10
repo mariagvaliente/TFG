@@ -41,8 +41,8 @@ exports.new = (req, res) => {
 
 // POST /users
 exports.create = (req, res, next) => {
-    const {name, surname, gender, username, password, dni, redir} = req.body,
-
+    const {name, surname, gender, username, password, dni} = req.body;
+    const {redir} = req.query;
         studentRegex = /(@alumnos\.upm\.es)/,
         teacherRegex = /(@upm\.es)/,
         user = models.user.build({name,
@@ -76,7 +76,7 @@ exports.create = (req, res, next) => {
     ]}).
         then(() => { // Render the users page
             req.flash("success", "Usuario creado con éxito.");
-            res.redirect(`/?redir=${redir}`); // Redirection
+            res.redirect(redir ? `/?redir=${redir}`:"/"); // Redirection
         }).
         catch(Sequelize.UniqueConstraintError, (error) => {
             console.error(error);
