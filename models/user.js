@@ -23,6 +23,7 @@ module.exports = function (sequelize, DataTypes) {
         "unique": true,
         "validate": {"notEmpty": {"msg": "DNI must not be empty."},
             "isValidDNI": (dni) => {
+            /*  // DNI Check
                 const validChars = "TRWAGMYFPDXBNJZSQVHLCKET";
                 const nifRexp = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/i;
                 const nieRexp = /^[XYZ]{1}[0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/i;
@@ -44,6 +45,7 @@ module.exports = function (sequelize, DataTypes) {
                     return true;
                 }
                 throw new Error("Dni erroneo, formato no válido");
+                */
             }}},
     "isAdmin": {"type": DataTypes.BOOLEAN,
         "defaultValue": false},
