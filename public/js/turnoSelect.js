@@ -11,7 +11,8 @@ $(function(){
     var car = $(".owl-carousel").owlCarousel(
         {  center: false,
             items:1,
-            loop:true,
+            loop: false,
+            rewind: true,
             margin: 10,
             nav:true,
             dots:true,
