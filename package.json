@@ -16,7 +16,9 @@
     "reset_local": "rm -rf escaperoom.sqlite",
     "open_heroku": "heroku open",
     "css": "node-sass public/stylesheets/style.sass public/stylesheets/style.css",
-    "lint": "eslint . "
+    "lint": "eslint . ",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -45,7 +47,8 @@
     "pg": "7.10.0",
     "sass": "^1.19.0",
     "sequelize": "5.8.2",
-    "sequelize-cli": "^5.4.0"
+    "sequelize-cli": "^5.4.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "jest": "^24.7.1",
@@ -53,5 +56,6 @@
   },
   "engines": {
     "node": "8"
-  }
+  },
+  "snyk": true
 }
