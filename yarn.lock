@@ -1093,11 +1093,10 @@ decode-uri-component@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
 
-deeks@2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/deeks/-/deeks-2.2.1.tgz#4de360652998fd0a681153a9ffde5dcc6c983f4a"
-  dependencies:
-    underscore "1.9.1"
+deeks@2.2.7:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/deeks/-/deeks-2.2.7.tgz#91e711cdd434e0f12ddc194836569e2a3db383ad"
+  integrity sha512-pCKFxSqyY2LAQ3qKQ+y+wOG63Bb9uDmDiHUVnrTR10AP75BVo2QMlgm36G+oPpRDPrgAiw5p9d+lAxdsqOwOyA==
 
 deep-equal@^1.0.1:
   version "1.0.1"
@@ -1181,9 +1180,10 @@ diff-sequences@^24.3.0:
   version "24.3.0"
   resolved "https://registry.yarnpkg.com/diff-sequences/-/diff-sequences-24.3.0.tgz#0f20e8a1df1abddaf4d9c226680952e64118b975"
 
-doc-path@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/doc-path/-/doc-path-2.0.1.tgz#d2adb8bcd31c895b17b92f61eff39aaec04430d2"
+doc-path@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/doc-path/-/doc-path-2.1.2.tgz#08344d188619a6ff7c6631e462362dd720e4e81f"
+  integrity sha512-saM17czrIb4jYLsS5728OKbCa/WQ3xVctkGiMixOHz3X1VYsRn/Q5xPMxE1A5WN+XHHLWak34mMMjmAKRgMLeA==
 
 doctrine@^3.0.0:
   version "3.0.0"
@@ -2773,13 +2773,13 @@ jsesc@^2.5.1:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-2.5.2.tgz#80564d2e483dacf6e8ef209650a67df3f0c283a4"
 
-json-2-csv@^3.5.2:
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/json-2-csv/-/json-2-csv-3.5.3.tgz#3011bc4b9af7a510e2a4fa9f505de5bbace72855"
+json-2-csv@^3.7.8:
+  version "3.7.8"
+  resolved "https://registry.yarnpkg.com/json-2-csv/-/json-2-csv-3.7.8.tgz#d7663bfe6e022387c5a2db0f57745eb84aa19f06"
+  integrity sha512-2CDoU32s/RA9a9xPRVsLDgk7UMW5u2SzrdklsNDl8tmdHUWT7JN2+eUV1hn1TuxJyrJxQjEXM5K4kTTnpY5+Pw==
   dependencies:
-    deeks "2.2.1"
-    doc-path "2.0.1"
-    underscore "1.9.1"
+    deeks "2.2.7"
+    doc-path "2.1.2"
 
 json-parse-better-errors@^1.0.1:
   version "1.0.2"
@@ -4794,10 +4794,6 @@ undefsafe@^2.0.2:
   resolved "https://registry.yarnpkg.com/undefsafe/-/undefsafe-2.0.2.tgz#225f6b9e0337663e0d8e7cfd686fc2836ccace76"
   dependencies:
     debug "^2.2.0"
-
-underscore@1.9.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
 
 union-value@^1.0.0:
   version "1.0.0"
